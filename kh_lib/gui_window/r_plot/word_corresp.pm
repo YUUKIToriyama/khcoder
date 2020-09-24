@@ -6,15 +6,15 @@ sub option1_options{
 
 	if (@{$self->{plots}} == 2){
 		return [
-			kh_msg->get('d_l'), # ¥É¥Ã¥È¤È¥é¥Ù¥ë
-			kh_msg->get('d'), # ¥É¥Ã¥È¤Î¤ß
+			kh_msg->get('d_l'), # ãƒ‰ãƒƒãƒˆã¨ãƒ©ãƒ™ãƒ«
+			kh_msg->get('d'), # ãƒ‰ãƒƒãƒˆã®ã¿
 		] ;
 	} else {
 		return [
-			kh_msg->get('col'), # ¥«¥é¡¼
-			kh_msg->get('gray'), # ¥°¥ì¡¼¥¹¥±¡¼¥ë
-			kh_msg->get('var'), # ÊÑ¿ô¤Î¤ß
-			kh_msg->get('d'), # ¥É¥Ã¥È¤Î¤ß
+			kh_msg->get('col'), # ã‚«ãƒ©ãƒ¼
+			kh_msg->get('gray'), # ã‚°ãƒ¬ãƒ¼ã‚¹ã‚±ãƒ¼ãƒ«
+			kh_msg->get('var'), # å¤‰æ•°ã®ã¿
+			kh_msg->get('d'), # ãƒ‰ãƒƒãƒˆã®ã¿
 		] ;
 	}
 }
@@ -145,11 +145,11 @@ sub extra_save_types{
 }
 
 sub option1_name{
-	return kh_msg->get('view'); #  É½¼¨¡§
+	return kh_msg->get('view'); #  è¡¨ç¤ºï¼š
 }
 
 sub win_title{
-	return kh_msg->get('win_title'); # Ãê½Ğ¸ì¡¦ÂĞ±şÊ¬ÀÏ
+	return kh_msg->get('win_title'); # æŠ½å‡ºèªãƒ»å¯¾å¿œåˆ†æ
 }
 
 sub win_name{

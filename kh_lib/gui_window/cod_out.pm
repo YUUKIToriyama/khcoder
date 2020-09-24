@@ -10,7 +10,7 @@ use gui_window::cod_out::var;
 
 
 #-------------#
-#   GUIºîÀ½   #
+#   GUIä½œè£½   #
 
 sub _new{
 	my $self = shift;
@@ -25,15 +25,15 @@ sub _new{
 		-borderwidth => 2,
 	)->pack(-fill => 'x');
 
-	# ¥ë¡¼¥ë¡¦¥Õ¥¡¥¤¥ë
+	# ãƒ«ãƒ¼ãƒ«ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«
 	$self->{codf_obj} = gui_widget::codf->open(
 		parent => $lf
 	);
 
-	# ¥³¡¼¥Ç¥£¥ó¥°Ã±°Ì
+	# ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°å˜ä½
 	my $f2 = $lf->Frame()->pack(-expand => 'y', -fill => 'x', -pady => 3);
 	$f2->Label(
-		-text => kh_msg->get('gui_window::cod_outtab->unit_cod'), # ¥³¡¼¥Ç¥£¥ó¥°Ã±°Ì¡§
+		-text => kh_msg->get('gui_window::cod_outtab->unit_cod'), # ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°å˜ä½ï¼š
 		-font => "TKFN"
 	)->pack(-anchor => 'w', -side => 'left');
 	my %pack = (
@@ -47,7 +47,7 @@ sub _new{
 	);
 	
 	$win->Button(
-		-text => kh_msg->gget('cancel'), # ¥­¥ã¥ó¥»¥ë
+		-text => kh_msg->gget('cancel'), # ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		-font => "TKFN",
 		-width => 8,
 		-command => sub{$self->close;}
@@ -64,7 +64,7 @@ sub _new{
 }
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 
 sub cfile{
 	my $self = shift;

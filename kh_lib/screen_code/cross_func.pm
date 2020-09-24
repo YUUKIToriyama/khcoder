@@ -37,12 +37,12 @@ sub outtab{
 	my $var_id = shift;
 	my $cell  = shift;
 	
-	# ƒR[ƒfƒBƒ“ƒO‚ÌÀs
+	# ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ã®å®Ÿè¡Œ
 	$self->code($tani) or return 0;
 	unless ($self->valid_codes){ return 0; }
 	$self->cumulate if @{$self->{valid_codes}} > 29;
 	
-	# ŠO•”•Ï”‚Ìƒ`ƒFƒbƒN
+	# å¤–éƒ¨å¤‰æ•°ã®ãƒã‚§ãƒƒã‚¯
 	my $heap = 'TYPE=HEAP';
 	$heap = '' unless $::config_obj->use_heap;
 	my ($outvar_tbl,$outvar_clm);
@@ -76,7 +76,7 @@ sub outtab{
 	}
 	
 	
-	# WŒv—pSQL•¶‚Ìì»
+	# é›†è¨ˆç”¨SQLæ–‡ã®ä½œè£½
 	my $sql;
 	$sql .= "SELECT if ( outvar_lab.lab is NULL, $outvar_tbl.$outvar_clm, outvar_lab.lab) as name,";
 	foreach my $i (@{$self->{valid_codes}}){
@@ -94,12 +94,12 @@ sub outtab{
 	
 	my $h = mysql_exec->select($sql,1)->hundle;
 	
-	# Œ‹‰Êo—Í‚Ìì»
+	# çµæœå‡ºåŠ›ã®ä½œè£½
 	my @result;
 	my @for_chisq;
 	my @for_plot;
 	
-	# ˆês–Ú
+	# ä¸€è¡Œç›®
 	my @head = ('');
 	foreach my $i (@{$self->{valid_codes}}){
 		push @head, gui_window->gui_jchar($i->name);
@@ -107,7 +107,7 @@ sub outtab{
 	push @for_plot, clone(\@head);
 	push @head, kh_msg->get('kh_cod::func->n_cases');
 	push @result, \@head;
-	# ’†g
+	# ä¸­èº«
 	my @sum = ( kh_msg->get('kh_cod::func->total') );
 	my $total;
 	my @arr; #SCREEN Plugin
@@ -126,18 +126,18 @@ sub outtab{
 		next if
 			   length($i->[0]) == 0
 			or $c[0] eq '.'
-			or $c[0] eq 'Œ‡‘¹’l'
+			or $c[0] eq 'æ¬ æå€¤'
 			or $c[0] =~  /^missing$/i
 			or $var_obj->{labels}{$c[0]} eq '.'
-			or $var_obj->{labels}{$c[0]} eq 'Œ‡‘¹’l'
+			or $var_obj->{labels}{$c[0]} eq 'æ¬ æå€¤'
 			or $var_obj->{labels}{$c[0]} =~ /^missing$/i
 		;
 		
 		foreach my $h (@c){
-			if ($n == 0){                         # sƒwƒbƒ_i1—ñ–Új
+			if ($n == 0){                         # è¡Œãƒ˜ãƒƒãƒ€ï¼ˆ1åˆ—ç›®ï¼‰
 				push @current,          gui_window->gui_jchar($h);
 				push @current_for_plot, gui_window->gui_jchar($h);
-			} else {                              # ’†g
+			} else {                              # ä¸­èº«
 				$sum[$n] += $h;
 				my $p = sprintf("%.2f",($h / $nd ) * 100);
 				push @current_for_chisq, [$h, $nd - $h];
@@ -166,7 +166,7 @@ sub outtab{
 		push @arr_temp, $nd;
 		push @arr, \@arr_temp if @arr_temp;
 	}
-	# ‡Œvs
+	# åˆè¨ˆè¡Œ
 	my @c = @sum;
 	my @current; my $n = 0;
 	my @arr_retsu; #SCREEN Plugin
@@ -297,7 +297,7 @@ sub _rsd_copy{
 	my $arref   = clone($_[0]);
 	my @arr   = @{$arref};
 	
-	pop @arr; #ÅIs‚Í—ñ‡Œv‚ª“ü‚Á‚Ä‚¢‚é‚½‚ßœŠO‚·‚é
+	pop @arr; #æœ€çµ‚è¡Œã¯åˆ—åˆè¨ˆãŒå…¥ã£ã¦ã„ã‚‹ãŸã‚é™¤å¤–ã™ã‚‹
 	my @rsd   = ();
 	
 	my $R_debug = 0;
@@ -318,11 +318,11 @@ sub _rsd_copy{
 		}
 		chop $cmd;
 		$cmd .=  "), nrow=".@arr.", ncol=$col_count, byrow=TRUE), correct=TRUE)\n";
-		#‘ƒP[ƒX”‚É‚Â‚¢‚Ä‚ÌŒvZŒ‹‰Ê‚ª—v‚ç‚È‚¢ê‡‚Í chi$residuals[,-ncol(chi$residuals)] ‚Ì‚æ‚¤‚ÉÅI—ñ‚ğœŠO‚µ‚»‚ê‚ğo—Í‚·‚é
-		#paste‚Ìˆø” collapse ‚ÅW‡ƒf[ƒ^‚ğ‚Ğ‚Æ‚Â‚Ì•¶š—ñ‚É‚Ü‚Æ‚ß‚é‚±‚Æ‚ª‚Å‚«‚é ‚»‚Ì‚Æ‚«ƒf[ƒ^ŠÔ‚Éw’è‚µ‚½•¶š‚ª“ü‚é
+		#ç·ã‚±ãƒ¼ã‚¹æ•°ã«ã¤ã„ã¦ã®è¨ˆç®—çµæœãŒè¦ã‚‰ãªã„å ´åˆã¯ chi$residuals[,-ncol(chi$residuals)] ã®ã‚ˆã†ã«æœ€çµ‚åˆ—ã‚’é™¤å¤–ã—ãã‚Œã‚’å‡ºåŠ›ã™ã‚‹
+		#pasteã®å¼•æ•° collapse ã§é›†åˆãƒ‡ãƒ¼ã‚¿ã‚’ã²ã¨ã¤ã®æ–‡å­—åˆ—ã«ã¾ã¨ã‚ã‚‹ã“ã¨ãŒã§ãã‚‹ ãã®ã¨ããƒ‡ãƒ¼ã‚¿é–“ã«æŒ‡å®šã—ãŸæ–‡å­—ãŒå…¥ã‚‹
 		
-		#KHCoder‚Å‚ÍR‚©‚ç‚Ìo—Í‚ğó‚¯æ‚é‚Æs”Ô†([1][2]¥¥¥)‚Í•K‚¸•t‰Á‚³‚ê‚é‚½‚ß(ƒ_ƒuƒ‹ƒNƒH[ƒe[ƒVƒ‡ƒ“‚Í quote=F ‚ÅÁ‚¹‚é)A‚»‚ê‚ğíœ‚·‚é•K—v‚ª‚ ‚é
-		#‚½‚Æ‚¦‚ÎApaste‚Å–Úˆó‚Æ‚È‚é•¶š—ñ‚ğ‘OŒã‚É•t‰Á‚µA³‹K•\Œ»‚Åƒ}ƒbƒ`‚µ‚½•¶š—ñ‚ğæ‚èo‚µ( ~= /header(.+)footer/  $data = $1)‚Äƒf[ƒ^‚Ì‚İ‚ğæ“¾‚·‚é‚Æ‚¢‚¤•û–@‚ª‚ ‚é
+		#KHCoderã§ã¯Rã‹ã‚‰ã®å‡ºåŠ›ã‚’å—ã‘å–ã‚‹ã¨è¡Œç•ªå·([1][2]ãƒ»ãƒ»ãƒ»)ã¯å¿…ãšä»˜åŠ ã•ã‚Œã‚‹ãŸã‚(ãƒ€ãƒ–ãƒ«ã‚¯ã‚©ãƒ¼ãƒ†ãƒ¼ã‚·ãƒ§ãƒ³ã¯ quote=F ã§æ¶ˆã›ã‚‹)ã€ãã‚Œã‚’å‰Šé™¤ã™ã‚‹å¿…è¦ãŒã‚ã‚‹
+		#ãŸã¨ãˆã°ã€pasteã§ç›®å°ã¨ãªã‚‹æ–‡å­—åˆ—ã‚’å‰å¾Œã«ä»˜åŠ ã—ã€æ­£è¦è¡¨ç¾ã§ãƒãƒƒãƒã—ãŸæ–‡å­—åˆ—ã‚’å–ã‚Šå‡ºã—( ~= /header(.+)footer/  $data = $1)ã¦ãƒ‡ãƒ¼ã‚¿ã®ã¿ã‚’å–å¾—ã™ã‚‹ã¨ã„ã†æ–¹æ³•ãŒã‚ã‚‹
 		$cmd .= '
 			c_rsd <- chi$residuals[,-ncol(chi$residuals)]
 			write.table(c_rsd, "C:/khcoder3/screen/test/rsdtest.txt", sep=",", quote=F, append=F, row.names=F, col.names=F)
@@ -343,7 +343,7 @@ sub _rsd_copy{
 sub calc_plugin_loop{
 	my $self = shift;
 	
-	#ƒvƒ‰ƒOƒCƒ“ƒ‰ƒCƒZƒ“ƒXŠm”F
+	#ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ç¢ºèª
 	return 0 unless(system(&screen_code::plugin_path::assistant_path, 0));
 	
 	$self->{config_param} = undef;
@@ -357,14 +357,14 @@ sub calc_plugin_loop{
 
 sub plot_plugin{
 	my $self   = shift;
-	#my $ax     = shift; ƒq[ƒgEƒoƒuƒ‹‚Ìw’è‚Å‚ ‚èƒvƒ‰ƒOƒCƒ“‚Íƒoƒuƒ‹‚Ì‚İ‚È‚Ì‚Å•s—v
-	#my $selection = shift; ƒR[ƒh‚ğ‘I‘ğ‚µ‚Äƒvƒƒbƒg‚·‚é‹@”\ ’²®ƒ{ƒ^ƒ“‚©‚çw’è‚µ‚Ä‚¢‚é
+	#my $ax     = shift; ãƒ’ãƒ¼ãƒˆãƒ»ãƒãƒ–ãƒ«ã®æŒ‡å®šã§ã‚ã‚Šãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã¯ãƒãƒ–ãƒ«ã®ã¿ãªã®ã§ä¸è¦
+	#my $selection = shift; ã‚³ãƒ¼ãƒ‰ã‚’é¸æŠã—ã¦ãƒ—ãƒ­ãƒƒãƒˆã™ã‚‹æ©Ÿèƒ½ èª¿æ•´ãƒœã‚¿ãƒ³ã‹ã‚‰æŒ‡å®šã—ã¦ã„ã‚‹
 	my $selection;
 	
 	unless ($self->{result}){
 		return 0;
 	}
-	#ƒvƒ‰ƒOƒCƒ“‚É‚æ‚éŒvZ‚Å•K—v‚Èƒf[ƒ^‚ª‚ ‚é‚©Šm”F
+	#ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã«ã‚ˆã‚‹è¨ˆç®—ã§å¿…è¦ãªãƒ‡ãƒ¼ã‚¿ãŒã‚ã‚‹ã‹ç¢ºèª
 	unless ($self->{result}{hrt}){
 		return 0;
 	}
@@ -378,7 +378,7 @@ sub plot_plugin{
 	my $nrow = @matrix;
 	my $ncol = @col_names;
 
-	# ƒf[ƒ^s—ñ
+	# ãƒ‡ãƒ¼ã‚¿è¡Œåˆ—
 	my $rcom = 'd <- matrix( c(';
 	my @row_names;
 	foreach my $row (@matrix){
@@ -395,7 +395,7 @@ sub plot_plugin{
 	chop $rcom;
 	$rcom .= "), byrow=T, nrow=$nrow, ncol=$ncol )\n";
 	
-	# c·s—ñ
+	# æ®‹å·®è¡Œåˆ—
 	$rcom .= 'rsd <- matrix( c(';
 	foreach my $row (@{$self->{result}{t_rsd}}){
 		foreach my $cell (@{$row}){
@@ -406,7 +406,7 @@ sub plot_plugin{
 	$rcom .= "), byrow=T, nrow=$ncol, ncol=$nrow )\n";
 	$rcom .= "rsd <- t(rsd)\n";
 	
-	#ƒNƒƒXWŒv‚É‹L†•t‰Á
+	#ã‚¯ãƒ­ã‚¹é›†è¨ˆã«è¨˜å·ä»˜åŠ 
 	$rcom .= 'hrt <- matrix( c(';
 	foreach my $row (@{$self->{result}{hrt}}){
 		foreach my $cell (@{$row}){
@@ -417,8 +417,8 @@ sub plot_plugin{
 	$rcom .= "), byrow=T, nrow=$nrow, ncol=$ncol )\n";
 	$rcom .= "array <- rsd / hrt\n";
 	
-	# —ñ–¼
-	foreach my $i (@col_names){ # s“ª‚Ìu–v‚ğíœiƒf[ƒ^‚ÍdecodeÏ‚İj
+	# åˆ—å
+	foreach my $i (@col_names){ # è¡Œé ­ã®ã€Œï¼Šã€ã‚’å‰Šé™¤ï¼ˆãƒ‡ãƒ¼ã‚¿ã¯decodeæ¸ˆã¿ï¼‰
 		substr($i,0,1) = '';
 	}
 	$rcom .= "colnames(d) <- c(";
@@ -430,7 +430,7 @@ sub plot_plugin{
 	chop $rcom;
 	$rcom .= ")\n";
 	
-	#‰æ‘œ‚Ì—ñ–¼Œ©o‚µ‚Ép’l‚ÌŠî€‚ğ’Ç‰Á‚·‚é
+	#ç”»åƒã®åˆ—åè¦‹å‡ºã—ã«på€¤ã®åŸºæº–ã‚’è¿½åŠ ã™ã‚‹
 	my @last_row = @{${$self->{result}{display}}[-1]};
 	my @p_symbol;
 	foreach my $i (@last_row){
@@ -444,7 +444,7 @@ sub plot_plugin{
 		}
 		push @p_symbol, $temp;
 	}
-	#æ“ª‚Æ––”ö‚ğíœ
+	#å…ˆé ­ã¨æœ«å°¾ã‚’å‰Šé™¤
 	shift @p_symbol; pop @p_symbol;
 	$rcom .= "p_symbol <- c(";
 	foreach my $i (@p_symbol){
@@ -454,7 +454,7 @@ sub plot_plugin{
 	$rcom .= ")\n";
 	$rcom .= "colnames(d) <- paste(p_symbol, colnames(d))\n";
 	
-	# s–¼
+	# è¡Œå
 	$rcom .= "rownames(d) <- c(";
 	foreach my $i (@row_names){
 		$rcom .= "\"$i\",";
@@ -466,7 +466,7 @@ sub plot_plugin{
 
 	$rcom .= "# dpi: short based\n";
 
-	# ƒ}ƒbƒv‚Ì‚‚³
+	# ãƒãƒƒãƒ—ã®é«˜ã•
 	my $label_length = 0;
 	foreach my $i (@row_names){
 		my $t = Encode::encode('cp932', $i);
@@ -487,7 +487,7 @@ sub plot_plugin{
 		$bs_h = (480 - $label_length * 14) / $ncol / 25;
 	}
 	
-	# ƒ}ƒbƒv‚Ì•
+	# ãƒãƒƒãƒ—ã®å¹…
 	$label_length = 0;
 	foreach my $i (@col_names){
 		my $t = Encode::encode('cp932', $i);
@@ -506,13 +506,13 @@ sub plot_plugin{
 	&set_config_param($self,$bubble_size,$height_f,$width_f);
 	
 	
-	# ƒvƒƒbƒgì¬
+	# ãƒ—ãƒ­ãƒƒãƒˆä½œæˆ
 	my $plot;
 	use screen_code::plugin_code_mat;
-	#config_param‚Éİ’è€–Ú‚ğ‚Ü‚Æ‚ß‚Ä‚¢‚é‚Ì‚ÅAˆÈ‰º‚ÍŒÄ‚Ño‚·•K—v‚ª–³‚­‚È‚é
+	#config_paramã«è¨­å®šé …ç›®ã‚’ã¾ã¨ã‚ã¦ã„ã‚‹ã®ã§ã€ä»¥ä¸‹ã¯å‘¼ã³å‡ºã™å¿…è¦ãŒç„¡ããªã‚‹
 	#plot_size_maph      => $height_f, plot_size_mapw      => $width_f,
 	#bubble_size         => $bubble_size,font_size           => $::config_obj->plot_font_size / 100,
-	#ˆÈ‰º‚Ì€–Ú‚Íƒq[ƒgƒ}ƒbƒv—p‚È‚Ì‚Å•s—v
+	#ä»¥ä¸‹ã®é …ç›®ã¯ãƒ’ãƒ¼ãƒˆãƒãƒƒãƒ—ç”¨ãªã®ã§ä¸è¦
 	#heat_dendro_c       => 1,
 	#heat_cellnote       => $nrow < 10 ? 1 : 0,
 	#plot_size_heat      => $height,
@@ -552,7 +552,7 @@ sub plot_plugin{
 		save_sort_file($self);
 		$! = undef;
 		$rtn = system(&screen_code::plugin_path::assistant_path, "6");
-		$rtn = 0 if ($!) ; #system‚ÅƒGƒ‰[‚ª‚ ‚Á‚½ê‡
+		$rtn = 0 if ($!) ; #systemã§ã‚¨ãƒ©ãƒ¼ãŒã‚ã£ãŸå ´åˆ
 		if (read_config($self)) {
 			last;
 		}
@@ -629,7 +629,7 @@ sub save_option{
 	my $dbn = $::project_obj->dbname;
 	my $plot_file_names = $self->{plot_file_names};
 	my $plot_number = $self->{plot_number};
-	#ƒvƒ‰ƒOƒCƒ“‚Ìˆ—•ÏX‚É‚æ‚è•K—v‚È‚­‚È‚é‚©‚à‚µ‚ê‚È‚¢
+	#ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã®å‡¦ç†å¤‰æ›´ã«ã‚ˆã‚Šå¿…è¦ãªããªã‚‹ã‹ã‚‚ã—ã‚Œãªã„
 	my $initial_display = $self->{plot_o};
 	my $font_str = gui_window->gui_jchar($::config_obj->font_main);
 	print $OUT "db_name=$dbn\n";
@@ -827,11 +827,11 @@ sub write_display_data{
 	$ary = $self->{result}{display_for_plugin};
 	open($DATAFILE, ">:encoding(utf8)", $file_display);
 	
-	#•À‚Ñ‘Ö‚¦‘ÎÛ‚ÌsˆÈŠO‚ÉAæ“ª‚ÉŒ©o‚µsA––”ö‚É‡ŒvE“Œvî•ñ‚ª‚ ‚é(“Œvî•ñ‚Í‘‚¦‚é‰Â”\«‚ª‚ ‚é)
+	#ä¸¦ã³æ›¿ãˆå¯¾è±¡ã®è¡Œä»¥å¤–ã«ã€å…ˆé ­ã«è¦‹å‡ºã—è¡Œã€æœ«å°¾ã«åˆè¨ˆãƒ»çµ±è¨ˆæƒ…å ±ãŒã‚ã‚‹(çµ±è¨ˆæƒ…å ±ã¯å¢—ãˆã‚‹å¯èƒ½æ€§ãŒã‚ã‚‹)
 	unshift(@row_sort, 0);
 	push @row_sort, (@row_sort .. @{$ary}-1);
 	
-	#•À‚Ñ‘Ö‚¦‘ÎÛ‚Ì—ñˆÈŠO‚ÉAæ“ª‚ÉŒ©o‚µ—ñA––”ö‚ÉƒP[ƒX”‚ª‚ ‚é
+	#ä¸¦ã³æ›¿ãˆå¯¾è±¡ã®åˆ—ä»¥å¤–ã«ã€å…ˆé ­ã«è¦‹å‡ºã—åˆ—ã€æœ«å°¾ã«ã‚±ãƒ¼ã‚¹æ•°ãŒã‚ã‚‹
 	unshift(@col_sort, 0);
 	push @col_sort, (int(@col_sort));
 	

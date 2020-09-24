@@ -1,7 +1,7 @@
 package mysql_ready::check;
 use strict;
 
-# 涟借妄デ〖タの腊圭拉テスト
+# 鍓嶅嚘鐞嗐儑銉笺偪銇暣鍚堟�с儐銈广儓
 
 sub do{
 	my $self = shift;
@@ -91,9 +91,9 @@ sub do{
 		}
 	}
 	
-	# 窗位
+	# 瀹屼簡
 	if (@error){
-		my $msg = kh_msg->get('error'); # 涟借妄デ〖タの腊圭拉が己われました
+		my $msg = kh_msg->get('error'); # 鍓嶅嚘鐞嗐儑銉笺偪銇暣鍚堟�с亴澶便倧銈屻伨銇椼仧
 		my $n = 0;
 		foreach my $i (@error){
 			if ($n){$msg .= ', ';}

@@ -8,7 +8,7 @@ use Tk;
 use Tk::DockFrame;
 
 #----------#
-#   ºîÀ®   #
+#   ä½œæˆ   #
 #----------#
 
 sub make{
@@ -43,13 +43,13 @@ sub make_control{
 	my $p = shift;
 
 	$self->{b_airborne} = $p->Button(
-		-text    => gui_window->gui_jchar('Î¥Î¦'),
+		-text    => gui_window->gui_jchar('é›¢é™¸'),
 		-command => sub {$self->airborne;},
 		-font    => "TKFN"
 	)->pack(-side => "right");
 
 	$self->{b_land} = $p->Button(
-		-text    => gui_window->gui_jchar('ÃåÎ¦'),
+		-text    => gui_window->gui_jchar('ç€é™¸'),
 		-command => sub {$self->land;},
 		-font    => "TKFN",
 		-state   => 'disable'
@@ -60,14 +60,14 @@ sub make_control{
 sub start{
 	my $self = shift;
 	
-	# ¿ÆWindow¤Î¥Ð¥¤¥ó¥É
+	# è¦ªWindowã®ãƒã‚¤ãƒ³ãƒ‰
 	$self->parent->bind(
 		'<Control-Key-q>',
 		sub{ $self->close; }
 	);
 	$self->parent->protocol('WM_DELETE_WINDOW', sub{ $self->close; });
 
-	# ½é´ü²½
+	# åˆæœŸåŒ–
 	if ($::config_obj->win_gmtry($self->parent_name."_if_air")){
 		$self->parent->geometry($::config_obj->win_gmtry($self->parent_name));
 		$self->parent->update;
@@ -76,20 +76,20 @@ sub start{
 }
 
 #--------------#
-#   ¥¤¥Ù¥ó¥È   #
+#   ã‚¤ãƒ™ãƒ³ãƒˆ   #
 #--------------#
 
 sub airborne{
 	my $self = shift;
 
-	# ¿Æ¤Î¥¸¥ª¥á¥È¥ê¤òÊÝÂ¸
+	# è¦ªã®ã‚¸ã‚ªãƒ¡ãƒˆãƒªã‚’ä¿å­˜
 	$::config_obj->win_gmtry(
 		$self->parent_name,
 		$self->parent->geometry
 	);
 	my $h_w = $self->parent->height;
 
-	# ¥Õ¥ì¡¼¥à¤Î¥¸¥ª¥á¥È¥ê
+	# ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¸ã‚ªãƒ¡ãƒˆãƒª
 	my $g;
 	if ($::config_obj->win_gmtry($self->parent_name."_fr")){
 		$g = $::config_obj->win_gmtry($self->parent_name."_fr");
@@ -97,12 +97,12 @@ sub airborne{
 		$g = $self->frame->geometry;
 	}
 
-	# ÀÚ¤êÎ¥¤·
+	# åˆ‡ã‚Šé›¢ã—
 	$self->frame->undock();
 	$self->frame->geometry($g);
 	$self->frame->title($self->title);
 
-	# ¥Ý¡¼¥È¤Î¥¸¥ª¥á¥È¥ê
+	# ãƒãƒ¼ãƒˆã®ã‚¸ã‚ªãƒ¡ãƒˆãƒª
 	my $g2;
 	if ($::config_obj->win_gmtry($self->parent_name."_po")){
 		$g2 = $::config_obj->win_gmtry($self->parent_name."_po");
@@ -137,7 +137,7 @@ sub airborne{
 sub land{
 	my $self = shift;
 
-	# ¥¸¥ª¥á¥È¥êÊÝÂ¸
+	# ã‚¸ã‚ªãƒ¡ãƒˆãƒªä¿å­˜
 	$::config_obj->win_gmtry(
 		$self->parent_name."_fr",
 		$self->frame->geometry
@@ -147,15 +147,15 @@ sub land{
 		$self->parent->geometry
 	);
 
-	# ¥Ñ¥Ã¥¯¤ä¤êÄ¾¤·
+	# ãƒ‘ãƒƒã‚¯ã‚„ã‚Šç›´ã—
 	$self->port->pack(-fill => 'both', -expand => '1');
 	$self->tower->pack(-fill => 'x', -expand => '0');
 
-	# ¿Æ¤Î¥ê¥µ¥¤¥º
+	# è¦ªã®ãƒªã‚µã‚¤ã‚º
 	$self->parent->geometry( $::config_obj->win_gmtry($self->parent_name) );
 	$self->parent->update;
 
-	# ¥Õ¥ì¡¼¥à¤Î¥ê¥µ¥¤¥º
+	# ãƒ•ãƒ¬ãƒ¼ãƒ ã®ãƒªã‚µã‚¤ã‚º
 	my $w = $self->parent->width;
 	my $h = $self->parent->height - $self->tower->height;
 	
@@ -201,7 +201,7 @@ sub close{
 }
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 #--------------#
 sub if_airborne{
 	my $self = shift;

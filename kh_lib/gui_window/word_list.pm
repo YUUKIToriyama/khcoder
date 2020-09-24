@@ -9,16 +9,16 @@ my $radio_num   = 'tf';
 my $radio_ftype = 'xls';
 
 #-------------#
-#   GUIºîÀ½   #
+#   GUIä½œè£½   #
 
 sub _new{
 	my $self = shift;
 	my $mw = $::main_gui->mw;
 	my $win = $self->{win_obj};
-	$win->title($self->gui_jt( kh_msg->get('win_title') )); # 'Ãê½Ð¸ì¥ê¥¹¥È - ¥ª¥×¥·¥ç¥ó'
+	$win->title($self->gui_jt( kh_msg->get('win_title') )); # 'æŠ½å‡ºèªžãƒªã‚¹ãƒˆ - ã‚ªãƒ—ã‚·ãƒ§ãƒ³'
 
 	#--------------#
-	#   É½¤Î·Á¼°   #
+	#   è¡¨ã®å½¢å¼   #
 
 	my $lf0 = $win->LabFrame(
 		-label => 'Options',
@@ -27,7 +27,7 @@ sub _new{
 	)->pack(-fill => 'x');
 
 	$lf0->Label(
-		-text => kh_msg->get('type'),#$self->gui_jchar('Ãê½Ð¸ì¥ê¥¹¥È¤Î·Á¼°¡§'),
+		-text => kh_msg->get('type'),#$self->gui_jchar('æŠ½å‡ºèªžãƒªã‚¹ãƒˆã®å½¢å¼ï¼š'),
 		-font => "TKFN",
 	)->pack(-anchor => 'w');
 
@@ -39,31 +39,31 @@ sub _new{
 	)->pack(-side => 'left', -padx => 2);
 
 	$f1->Radiobutton(
-		-text             => kh_msg->get('hinshi'),#$self->gui_jchar('ÉÊ»ìÊÌ'),
+		-text             => kh_msg->get('hinshi'),#$self->gui_jchar('å“è©žåˆ¥'),
 		-font             => "TKFN",
 		-variable         => \$radio_type,
 		-value            => 'def',
 	)->pack(-side => 'left', -padx => 4);
 
 	$f1->Radiobutton(
-		-text             => kh_msg->get('top150'),#$self->gui_jchar('ÉÑ½Ð150¸ì'),
+		-text             => kh_msg->get('top150'),#$self->gui_jchar('é »å‡º150èªž'),
 		-font             => "TKFN",
 		-variable         => \$radio_type,
 		-value            => '150',
 	)->pack(-side => 'left', -padx => 4);
 
 	$f1->Radiobutton(
-		-text             => kh_msg->get('single'),#$self->gui_jchar('1Îó'),
+		-text             => kh_msg->get('single'),#$self->gui_jchar('1åˆ—'),
 		-font             => "TKFN",
 		-variable         => \$radio_type,
 		-value            => '1c',
 	)->pack(-side => 'left', -padx => 4);
 
 	#----------#
-	#   ¿ôÃÍ   #
+	#   æ•°å€¤   #
 
 	$lf0->Label(
-		-text => kh_msg->get('count'),#$self->gui_jchar('µ­Æþ¤¹¤ë¿ôÃÍ¡§'),
+		-text => kh_msg->get('count'),#$self->gui_jchar('è¨˜å…¥ã™ã‚‹æ•°å€¤ï¼š'),
 		-font => "TKFN",
 	)->pack(-anchor => 'w');
 
@@ -75,7 +75,7 @@ sub _new{
 	)->pack(-side => 'left', -padx => 2);
 
 	my $inv0 = $f2->Radiobutton(
-		-text             => kh_msg->get('tf'),#$self->gui_jchar('½Ð¸½²ó¿ô¡ÊTF¡Ë'),
+		-text             => kh_msg->get('tf'),#$self->gui_jchar('å‡ºç¾å›žæ•°ï¼ˆTFï¼‰'),
 		-font             => "TKFN",
 		-variable         => \$radio_num,
 		-value            => 'tf',
@@ -85,7 +85,7 @@ sub _new{
 	)->pack(-side => 'left', -padx => 4);
 
 	$f2->Radiobutton(
-		-text             => kh_msg->get('df'),#$self->gui_jchar('Ê¸½ñ¿ô¡ÊDF¡Ë'),
+		-text             => kh_msg->get('df'),#$self->gui_jchar('æ–‡æ›¸æ•°ï¼ˆDFï¼‰'),
 		-font             => "TKFN",
 		-variable         => \$radio_num,
 		-value            => 'df',
@@ -106,10 +106,10 @@ sub _new{
 		if $radio_num eq 'tf';
 
 	#------------------#
-	#   ¥Õ¥¡¥¤¥ë·Á¼°   #
+	#   ãƒ•ã‚¡ã‚¤ãƒ«å½¢å¼   #
 
 	$lf0->Label(
-		-text => kh_msg->get('file_type'),#$self->gui_jchar('½ÐÎÏ¤¹¤ë¥Õ¥¡¥¤¥ë¤Î·Á¼°¡§'),
+		-text => kh_msg->get('file_type'),#$self->gui_jchar('å‡ºåŠ›ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«ã®å½¢å¼ï¼š'),
 		-font => "TKFN",
 	)->pack(-anchor => 'w');
 
@@ -121,7 +121,7 @@ sub _new{
 	)->pack(-side => 'left', -padx => 2);
 
 	$f3->Radiobutton(
-		-text             => kh_msg->get('csv'),#$self->gui_jchar('¥«¥ó¥Þ¶èÀÚ¤ê (*.csv)'),
+		-text             => kh_msg->get('csv'),#$self->gui_jchar('ã‚«ãƒ³ãƒžåŒºåˆ‡ã‚Š (*.csv)'),
 		-font             => "TKFN",
 		-variable         => \$radio_ftype,
 		-value            => 'csv',
@@ -136,7 +136,7 @@ sub _new{
 
 
 	$win->Button(
-		-text => kh_msg->gget('cancel'),#$self->gui_jchar('¥­¥ã¥ó¥»¥ë'),
+		-text => kh_msg->gget('cancel'),#$self->gui_jchar('ã‚­ãƒ£ãƒ³ã‚»ãƒ«'),
 		-font => "TKFN",
 		-width => 8,
 		-command => sub{$self->close;}

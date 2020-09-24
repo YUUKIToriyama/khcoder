@@ -5,7 +5,7 @@ sub innner{
 	my $self = shift;
 	my $lf = $self->{labframe};
 
-	# ¥¢¥ë¥´¥ê¥º¥àÁªÂò
+	# ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ é¸æŠž
 	$self->{mds_obj} = gui_widget::r_mds->open(
 		parent       => $lf,
 		command      => sub{ $self->calc; },
@@ -47,7 +47,7 @@ sub calc{
 	);
 	$wait_window->end(no_dialog => 1);
 	
-	# ¥×¥í¥Ã¥ÈWindow¤ò³«¤¯
+	# ãƒ—ãƒ­ãƒƒãƒˆWindowã‚’é–‹ã
 	if ($::main_gui->if_opened('w_word_mds_plot')){
 		$::main_gui->get('w_word_mds_plot')->close;
 	}
@@ -67,7 +67,7 @@ sub calc{
 }
 
 sub win_title{
-	return kh_msg->get('win_title'); # Ãê½Ð¸ì¡¦Â¿¼¡¸µ¼ÜÅÙË¡¡§Ä´À°
+	return kh_msg->get('win_title'); # æŠ½å‡ºèªžãƒ»å¤šæ¬¡å…ƒå°ºåº¦æ³•ï¼šèª¿æ•´
 }
 
 sub win_name{

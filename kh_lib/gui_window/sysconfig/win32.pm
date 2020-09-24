@@ -9,7 +9,7 @@ use Gui_DragDrop;
 my $last_stanf_lang;
 
 #------------------#
-#   Window¤ò³«¤¯   #
+#   Windowã‚’é–‹ã   #
 #------------------#
 
 sub __new{
@@ -22,7 +22,7 @@ sub __new{
 	$inis->title($self->gui_jt( kh_msg->get('win_title') ));
 
 	my $lfra = $inis->LabFrame(
-		-label => kh_msg->get('words_ext'),#$self->gui_jchar('[¸ì¤òÃê½Ğ¤¹¤ëÊıË¡]'),
+		-label => kh_msg->get('words_ext'),#$self->gui_jchar('[èªã‚’æŠ½å‡ºã™ã‚‹æ–¹æ³•]'),
 		-labelside => 'acrosstop',
 		-borderwidth => 2,
 		-foreground => 'blue',
@@ -34,13 +34,13 @@ sub __new{
 
 	# ChaSen
 	$lfra->Label(
-		-text     => kh_msg->get('chasen'),#$self->gui_jchar('Ããä¥¡ÊÆüËÜ¸ì¡Ë'),
+		-text     => kh_msg->get('chasen'),#$self->gui_jchar('èŒ¶ç­Œï¼ˆæ—¥æœ¬èªï¼‰'),
 	)->pack(-anchor => 'w');
 
 	my $fra1 = $lfra->Frame() ->pack(-anchor=>'c',-fill=>'x',-expand=>'yes');
 
 	$self->{lb1} = $fra1->Label(
-		-text => kh_msg->get('p_chasen.exe'),#$self->gui_jchar('chasen.exe¤Î¥Ñ¥¹¡§'),
+		-text => kh_msg->get('p_chasen.exe'),#$self->gui_jchar('chasen.exeã®ãƒ‘ã‚¹ï¼š'),
 		-font => 'TKFN'
 	)->pack(-side => 'left');
 
@@ -53,13 +53,13 @@ sub __new{
 	);
 
 	$self->{btn1} = $fra1->Button(
-		-text => kh_msg->gget('browse'),#$self->gui_jchar('»²¾È'),
+		-text => kh_msg->gget('browse'),#$self->gui_jchar('å‚ç…§'),
 		-font => 'TKFN',
 		-command => sub { $self->browse_chasen(); }
 	)->pack(-padx => '2',-side => 'right');
 
 	# MeCab
-	my $msg = kh_msg->get('mecab'); #'MeCab¡ÊÆüËÜ¸ì¡Ë';
+	my $msg = kh_msg->get('mecab'); #'MeCabï¼ˆæ—¥æœ¬èªï¼‰';
 
 	$lfra->Label(
 		-text     => $msg,
@@ -68,7 +68,7 @@ sub __new{
 	my $fra2 = $lfra->Frame() ->pack(-anchor=>'c',-fill=>'x',-expand=>'yes');
 
 	$self->{lb2} = $fra2->Label(
-		-text => kh_msg->get('p_mecab.exe'),#$self->gui_jchar('mecab.exe¤Î¥Ñ¥¹¡§'),
+		-text => kh_msg->get('p_mecab.exe'),#$self->gui_jchar('mecab.exeã®ãƒ‘ã‚¹ï¼š'),
 		-font => 'TKFN'
 	)->pack(-side => 'left');
 
@@ -81,7 +81,7 @@ sub __new{
 	);
 
 	$self->{btn2} = $fra2->Button(
-		-text => kh_msg->gget('browse'),#$self->gui_jchar('»²¾È'),
+		-text => kh_msg->gget('browse'),#$self->gui_jchar('å‚ç…§'),
 		-font => 'TKFN',
 		-command => sub { $self->browse_mecab(); }
 	)->pack(-padx => '2',-side => 'right');
@@ -111,7 +111,7 @@ sub __new{
 		-text     => kh_msg->get('stanford'),#$self->gui_jchar('Stemming with "Snowball"'),
 	)->pack(-anchor => 'w');
 
-	# POS Tagger¤Î*.jar¥Õ¥¡¥¤¥ë
+	# POS Taggerã®*.jarãƒ•ã‚¡ã‚¤ãƒ«
 	my $fra_jar = $lfra->Frame()->pack(-fill=>'x',-expand=>'yes',-pady => 1);
 
 	$self->{label_stan3} = $fra_jar->Label(
@@ -127,7 +127,7 @@ sub __new{
 	);
 
 	$self->{btn_stan2} = $fra_jar->Button(
-		-text => kh_msg->gget('browse'),#$self->gui_jchar('»²¾È'),
+		-text => kh_msg->gget('browse'),#$self->gui_jchar('å‚ç…§'),
 		-font => 'TKFN',
 		-command => sub { $self->browse_stanford_jar(); }
 	)->pack(-padx => '2',-side => 'right');
@@ -136,7 +136,7 @@ sub __new{
 		0, $self->gui_jchar($::config_obj->stanf_jar_path)
 	);
 
-	# POS Tagger¤Î¤½¤ÎÂ¾¤ÎÀßÄê
+	# POS Taggerã®ãã®ä»–ã®è¨­å®š
 	my $fra_stan = $lfra->Frame()->pack(-anchor => 'w',-pady => 1);
 	
 	$self->{label_stan1} = $fra_stan->Label(
@@ -172,7 +172,7 @@ sub __new{
 		}
 	)->pack(-side => 'left');
 
-	# POS Tagger¤Î*.tagger¥Õ¥¡¥¤¥ë
+	# POS Taggerã®*.taggerãƒ•ã‚¡ã‚¤ãƒ«
 	my $fra_tag = $lfra->Frame()->pack(-fill=>'x',-expand=>'yes');
 
 	$self->{label_stan4} = $fra_tag->Label(
@@ -188,7 +188,7 @@ sub __new{
 	);
 
 	$self->{btn_stan3} = $fra_tag->Button(
-		-text => kh_msg->gget('browse'),#$self->gui_jchar('»²¾È'),
+		-text => kh_msg->gget('browse'),#$self->gui_jchar('å‚ç…§'),
 		-font => 'TKFN',
 		-command => sub { $self->browse_stanford_tag(); }
 	)->pack(-padx => '2',-side => 'right');
@@ -205,7 +205,7 @@ sub __new{
 	$fra_flp->Label(-text => '    Installation dir: ')->pack(-side => 'left');
 	$self->{entry_freeling} = $fra_flp->Entry()->pack(-side => 'right');
 	$fra_flp->Button(
-		-text => kh_msg->gget('browse'),#$self->gui_jchar('»²¾È'),
+		-text => kh_msg->gget('browse'),#$self->gui_jchar('å‚ç…§'),
 		-command => sub { $self->browse_freeling(); }
 	)->pack(-padx => '2',-side => 'right');
 	$self->{entry_freeling}->insert(
@@ -329,7 +329,7 @@ sub __new{
 		-command => sub {$self->ok;}
 	)->pack(-anchor => 'se',-side => 'right',  -pady => 2);
 
-	# Ê¸»ú²½¤±²óÈòÍÑ¥Ğ¥¤¥ó¥É
+	# æ–‡å­—åŒ–ã‘å›é¿ç”¨ãƒã‚¤ãƒ³ãƒ‰
 	$inis->bind('Tk::Entry', '<Key-Delete>', \&gui_jchar::check_key_e_d);
 	$entry1->bind("<Key>",[\&gui_jchar::check_key_e,Ev('K'),\$entry1]);
 	
@@ -340,7 +340,7 @@ sub __new{
 }
 
 #--------------------#
-#   ¥Õ¥¡¥ó¥¯¥·¥ç¥ó   #
+#   ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³   #
 #--------------------#
 
 sub save_tagger{
@@ -362,7 +362,7 @@ sub save_tagger{
 	$last_stanf_lang = $self->{opt_stan_val};
 }
 
-# OK¥Ü¥¿¥ó
+# OKãƒœã‚¿ãƒ³
 sub ok{
 	my $self = shift;
 	
@@ -422,7 +422,7 @@ sub ok{
 
 }
 
-# Mecab.exe¤Î»²¾È
+# Mecab.exeã®å‚ç…§
 sub browse_mecab{
 	my $self  = shift;
 
@@ -446,7 +446,7 @@ sub browse_mecab{
 	}
 }
 
-# Chasen.exe¤Î»²¾È
+# Chasen.exeã®å‚ç…§
 sub browse_chasen{
 	my $self  = shift;
 
@@ -471,7 +471,7 @@ sub browse_chasen{
 }
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 #--------------#
 
 sub entry1{

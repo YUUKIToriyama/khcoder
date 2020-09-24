@@ -12,14 +12,14 @@ sub search{
 	
 	my $q = $self->{query};
 	
-	# ���ܸ졦���졦�ڹ��ʳ��ξ���query��tokenize���롣
+	# 日本語・中国語・韓国語以外の場合はqueryをtokenizeする。
 	unless (
 		   $::project_obj->morpho_analyzer_lang eq 'jp'
 		|| $::project_obj->morpho_analyzer_lang eq 'cn'
 		|| $::project_obj->morpho_analyzer_lang eq 'kr'
 	){
-		# ������Фؤ��б�
-		# (1)�������
+		# 強制抽出への対応
+		# (1)キーワード
 		#my @keywords = ();
 		#my $h = mysql_exec->select("
 		#	SELECT genkei.name
@@ -27,7 +27,7 @@ sub search{
 		#	WHERE
 		#		genkei.khhinshi_id = khhinshi.id
 		#		AND (
-		#			   khhinshi.name = '����'
+		#			   khhinshi.name = 'タグ'
 		#			OR khhinshi.name = 'TAG'
 		#		)
 		#",1)->hundle;
@@ -37,8 +37,8 @@ sub search{
 		#		push @keywords, $i->[0];
 		#	}
 		#}
-		# (2)�ޡ���
-		# ����ä����Ǥ��Ƹ�Ƥ��
+		# (2)マーク
+		# ちょっと中断して検討…
 
 		# tokenize
 		my $class =

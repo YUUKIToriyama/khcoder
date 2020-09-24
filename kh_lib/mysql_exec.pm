@@ -4,11 +4,11 @@ use strict;
 use Time::Local;
 use kh_project;
 
-# È÷¹Í: MySQL¤È¤Î¤ä¤ê¤È¤ê¤Ï¤¹¤Ù¤Æ¡¢¤³¤Î¥¯¥é¥¹¤òÄÌ¤·¤Æ¹Ô¤¦
+# å‚™è€ƒ: MySQLã¨ã®ã‚„ã‚Šã¨ã‚Šã¯ã™ã¹ã¦ã€ã“ã®ã‚¯ãƒ©ã‚¹ã‚’é€šã—ã¦è¡Œã†
 
-# »È¤¤Êý:
+# ä½¿ã„æ–¹:
 # 	mysql_exec->[do/select]("sql","[1/0]")
-# 		sql: SQLÊ¸
+# 		sql: SQLæ–‡
 #		[1/0]: Critical(1) or not(0)
 
 my ($username, $password, $host, $port, $type, $socket);
@@ -27,7 +27,7 @@ my $win_9x = 0;
 my $dbh_common;
 
 #------------#
-#   DBÁàºî   #
+#   DBæ“ä½œ   #
 #------------#
 
 sub dsn_gen{
@@ -52,7 +52,7 @@ sub connect_common{
 	#print "Created a shared connection to MySQL.\n";
 }
 
-# ´ûÂ¸DB¤ËConnect
+# æ—¢å­˜DBã«Connect
 sub connect_db{
 	my $dbname     = $_[1];
 	my $no_verbose = $_[2];
@@ -60,7 +60,7 @@ sub connect_db{
 	my $dbh = DBI->connect($dsn,$username,$password,{mysql_enable_utf8 => 1})
 		or gui_errormsg->open(type => 'mysql', sql => 'Connect');
 
-	# MySQL¤Î¥Ð¡¼¥¸¥ç¥ó¥Á¥§¥Ã¥¯
+	# MySQLã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒã‚§ãƒƒã‚¯
 	my $t = $dbh->prepare("show variables like \"version\"");
 	$t->execute;
 	my $r = $t->fetch;
@@ -74,7 +74,7 @@ sub connect_db{
 	$mysql_version = $r;
 	print "Connected to MySQL $r, $dbname.\n" unless $no_verbose;
 
-	# OS¤Î¥Ð¡¼¥¸¥ç¥ó¥Á¥§¥Ã¥¯
+	# OSã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³ãƒã‚§ãƒƒã‚¯
 	if ($::config_obj->os eq 'win32'){
 		$win_9x = 1 unless Win32::IsWinNT();
 	}
@@ -85,9 +85,9 @@ sub connect_db{
 	return $dbh;
 }
 
-# DB¤Ø¤ÎÀÜÂ³¥Æ¥¹¥È
+# DBã¸ã®æŽ¥ç¶šãƒ†ã‚¹ãƒˆ
 sub connection_test{
-	# ¥³¥ó¥½¡¼¥ë¤Ø¤Î¥¨¥é¡¼½ÐÎÏÍÞÀ©
+	# ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã¸ã®ã‚¨ãƒ©ãƒ¼å‡ºåŠ›æŠ‘åˆ¶
 	my $temp_file = 'config/temp.txt';
 	my $n = 0;
 	while (-e $temp_file){
@@ -96,7 +96,7 @@ sub connection_test{
 	}
 	open (STDERR,">$temp_file");
 	
-	# ¥Æ¥¹¥È¼Â¹Ô
+	# ãƒ†ã‚¹ãƒˆå®Ÿè¡Œ
 	print "Checking MySQL connection...\n";
 	my $if_error = 0;
 	
@@ -122,7 +122,7 @@ sub connection_test{
 		}
 	}
 
-	# ¥¨¥é¡¼½ÐÎÏÍÞÀ©¤Î²ò½ü
+	# ã‚¨ãƒ©ãƒ¼å‡ºåŠ›æŠ‘åˆ¶ã®è§£é™¤
 	close (STDERR);
 	open(STDERR,'>&STDOUT') or die;
 	unlink($temp_file);
@@ -134,7 +134,7 @@ sub connection_test{
 	}
 }
 
-# ¿·µ¬DB¤ÎºîÀ®
+# æ–°è¦DBã®ä½œæˆ
 sub create_new_db{
 	my $class = shift;
 	my $file = shift;
@@ -219,7 +219,7 @@ sub create_new_db{
 	return $new_db_name;
 }
 
-# DB¤ÎDrop
+# DBã®Drop
 sub drop_db{
 	my $drop = $_[1];
 
@@ -234,7 +234,7 @@ sub drop_db{
 	return 1;
 }
 
-# DB Server¤Î¥·¥ã¥Ã¥È¥À¥¦¥ó
+# DB Serverã®ã‚·ãƒ£ãƒƒãƒˆãƒ€ã‚¦ãƒ³
 
 sub shutdown_db_server{
 
@@ -266,12 +266,12 @@ sub shutdown_db_server{
 		my $dbh = $dbh_common;
 		$dbh->func("shutdown",$host,$username,$password,'admin') if $dbh;
 	}
-	# ¤³¤Î¥ë¡¼¥Á¥ó¤Ï½ªÎ»½èÍý¤Ç¸Æ¤Ð¤ì¤ë¡Ê¤Ï¤º¡Ë¤Ê¤Î¤Ç¡¢Îã³°¥Ï¥ó¥É¥ê¥ó¥°¤ò
-	# ¾Ê¤¤¤Æ½ªÎ»¤µ¤»¤ë¡£
+	# ã“ã®ãƒ«ãƒ¼ãƒãƒ³ã¯çµ‚äº†å‡¦ç†ã§å‘¼ã°ã‚Œã‚‹ï¼ˆã¯ãšï¼‰ãªã®ã§ã€ä¾‹å¤–ãƒãƒ³ãƒ‰ãƒªãƒ³ã‚°ã‚’
+	# çœã„ã¦çµ‚äº†ã•ã›ã‚‹ã€‚
 }
 
 #------------------#
-#   ¥Æ¡¼¥Ö¥ëÁàºî   #
+#   ãƒ†ãƒ¼ãƒ–ãƒ«æ“ä½œ   #
 #------------------#
 
 sub drop_table{
@@ -287,7 +287,7 @@ sub table_exists{
 	
 	my $t = $::project_obj->dbh->prepare("SELECT * FROM $table LIMIT 1")
 		or return 0;
-	$t->{PrintError} = 0; # ¥Æ¡¼¥Ö¥ë¤¬Â¸ºß¤·¤Ê¤«¤Ã¤¿¾ì¹ç¤Î¥¨¥é¡¼½ÐÎÏ¤òÍÞÀ©
+	$t->{PrintError} = 0; # ãƒ†ãƒ¼ãƒ–ãƒ«ãŒå­˜åœ¨ã—ãªã‹ã£ãŸå ´åˆã®ã‚¨ãƒ©ãƒ¼å‡ºåŠ›ã‚’æŠ‘åˆ¶
 	$t->execute or return 0;
 	$t->finish;
 	
@@ -327,7 +327,7 @@ sub table_list{
 }
 
 #----------------#
-#   Do¤ÈSelect   #
+#   Doã¨Select   #
 #----------------#
 
 sub flush{
@@ -456,7 +456,7 @@ sub version_number{
 }
 
 #-------------------------------#
-#   ¥í¥°¥Õ¥¡¥¤¥ë¤ËSQLÊ¸¤òµ­Ï¿   #
+#   ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã«SQLæ–‡ã‚’è¨˜éŒ²   #
 sub log{
 	return 1 unless $::config_obj->sqllog;
 	
@@ -475,7 +475,7 @@ sub log{
 	return 1;
 }
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 #--------------#
 sub sql{
 	my $self = shift;

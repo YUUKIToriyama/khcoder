@@ -387,7 +387,7 @@ sub mark{
 			$text = katakana_h2z($text);
 			$text =~ s/ /　/go;
 			$text =~ s/\t/　/go;
-			$text =~ s/\\/￥/go;
+			$text =~ s/\\/¥/go;
 			$text =~ s/'/’/go;
 			$text =~ s/"/”/go;
 		} else {

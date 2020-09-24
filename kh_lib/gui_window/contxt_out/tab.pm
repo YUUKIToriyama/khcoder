@@ -4,7 +4,7 @@ use base qw(gui_window::contxt_out);
 use strict;
 
 #--------------#
-#   �����å�   #
+#   ロジック   #
 #--------------#
 
 sub go{
@@ -33,12 +33,12 @@ sub go{
 }
 
 #-----------------#
-#   ��¸��λ���  #
+#   保存先の参照  #
 
 sub file_name{
 	my $self = shift;
 	my @types = (
-		[ $self->gui_jchar("���ֶ��ڤ�"),[qw/.txt/] ],
+		[ $self->gui_jchar("タブ区切り"),[qw/.txt/] ],
 		["All files",'*']
 	);
 	my $path = $self->win_obj->getSaveFile(
@@ -57,9 +57,9 @@ sub file_name{
 	return $path;
 }
 
-# Window��٥�
+# Windowラベル
 sub label{
-	return kh_msg->get('win_title') # ����и��ʸ̮�٥��ȥ��ɽ�ν��ϡ� ���ֶ��ڤ�
+	return kh_msg->get('win_title') # 「抽出語ｘ文脈ベクトル」表の出力： タブ区切り
 }
 
 sub win_name{

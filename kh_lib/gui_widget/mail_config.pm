@@ -1,7 +1,7 @@
 package gui_widget::mail_config;
 use base qw(gui_widget);
 
-# Win¤ÈLinux¶¦ÄÌ¤ÎÀßÄê¹àÌÜ
+# Winã¨Linuxå…±é€šã®è¨­å®šé …ç›®
 
 sub _new{
 	my $self = shift;
@@ -9,7 +9,7 @@ sub _new{
 	my $win = $self->parent->Frame();
 
 	my $lf2 = $win->LabFrame(
-		-label => kh_msg->get('display'),# ²èÌÌÉ½¼¨
+		-label => kh_msg->get('display'),# ç”»é¢è¡¨ç¤º
 		-labelside => 'acrosstop',
 		-borderwidth => 2,
 		-foreground => 'blue',
@@ -17,7 +17,7 @@ sub _new{
 
 	my $f4 = $lf2->Frame()->pack(-fill => 'x', -pady => 2);
 	$f4->Label(
-		-text => kh_msg->get('font'),# ¥Õ¥©¥ó¥ÈÀßÄê¡§
+		-text => kh_msg->get('font'),# ãƒ•ã‚©ãƒ³ãƒˆè¨­å®šï¼š
 		-font => "TKFN",
 	)->pack(-side => 'left');
 	$self->{e_font} = $f4->Entry(
@@ -28,7 +28,7 @@ sub _new{
 		-foreground => 'black',
 	)->pack(-side => 'right');
 	$f4->Button(
-		-text  => kh_msg->get('config'), # ÊÑ¹¹
+		-text  => kh_msg->get('config'), # å¤‰æ›´
 		-font  => "TKFN",
 		-command => sub { $self->font_change(); }
 	)->pack(-padx => '2',-side => 'right');
@@ -96,7 +96,7 @@ sub _new{
 
 
 	my $lf = $win->LabFrame(
-		-label => kh_msg->get('other'),# ¤½¤ÎÂ¾
+		-label => kh_msg->get('other'),# ãã®ä»–
 		-labelside => 'acrosstop',
 		-borderwidth => 2,
 		-foreground => 'blue',
@@ -104,7 +104,7 @@ sub _new{
 
 	$self->{check2} = $lf->Checkbutton(
 		-variable => \$self->{if_heap},
-		-text     => kh_msg->get('use_heap'),#$gui_window->gui_jchar('Á°½èÍı¸úÎ¨²½¤Î¤¿¤á¤Ë¥Ç¡¼¥¿¤òRAM¤ËÆÉ¤ß½Ğ¤¹'),
+		-text     => kh_msg->get('use_heap'),#$gui_window->gui_jchar('å‰å‡¦ç†åŠ¹ç‡åŒ–ã®ãŸã‚ã«ãƒ‡ãƒ¼ã‚¿ã‚’RAMã«èª­ã¿å‡ºã™'),
 		-font     => "TKFN",
 		-command  => sub{$self->update;}
 	)->pack(-anchor => 'w');
@@ -117,7 +117,7 @@ sub _new{
 	
 	$self->{check} = $lf->Checkbutton(
 		-variable => \$self->{if_mail},
-		-text     => kh_msg->get('sendmail'),#$gui_window->gui_jchar('Á°½èÍı¤Î´°Î»¤ò¥á¡¼¥ë¤ÇÄÌÃÎ¤¹¤ë'),
+		-text     => kh_msg->get('sendmail'),#$gui_window->gui_jchar('å‰å‡¦ç†ã®å®Œäº†ã‚’ãƒ¡ãƒ¼ãƒ«ã§é€šçŸ¥ã™ã‚‹'),
 		-font     => "TKFN",
 		-command  => sub{$self->update;}
 	)->pack(-anchor => 'w');
@@ -218,14 +218,14 @@ sub font_change{
 	use Tk::FontDialog_kh;
 	
 	my $font = $self->parent->FontDialog(
-		-title            => gui_window->gui_jt(kh_msg->get('change_font')),#$'¥Õ¥©¥ó¥È¤ÎÊÑ¹¹'),
-		-familylabel      => kh_msg->get('select_font'),#$gui_window->gui_jchar('¥Õ¥©¥ó¥È¡§'),
-		-sizelabel        => kh_msg->get('size'),#$gui_window->gui_jchar('¥µ¥¤¥º¡§'),
-		-cancellabel      => kh_msg->gget('cancel'),#$gui_window->gui_jchar('¥­¥ã¥ó¥»¥ë'),
+		-title            => gui_window->gui_jt(kh_msg->get('change_font')),#$'ãƒ•ã‚©ãƒ³ãƒˆã®å¤‰æ›´'),
+		-familylabel      => kh_msg->get('select_font'),#$gui_window->gui_jchar('ãƒ•ã‚©ãƒ³ãƒˆï¼š'),
+		-sizelabel        => kh_msg->get('size'),#$gui_window->gui_jchar('ã‚µã‚¤ã‚ºï¼š'),
+		-cancellabel      => kh_msg->gget('cancel'),#$gui_window->gui_jchar('ã‚­ãƒ£ãƒ³ã‚»ãƒ«'),
 		-nicefontsbutton  => 0,
 		-fixedfontsbutton => 0,
 		-fontsizes        => [8,9,10,11,12,13,14,15,16,17,18,19,20],
-		-sampletext       => kh_msg->get('note_fs'),#$gui_window->gui_jchar('KH Coder¤Ï·×ÎÌ¥Æ¥­¥¹¥ÈÊ¬ÀÏ¤ò¼ÂÁ©¤¹¤ë¤¿¤á¤Î¥Ä¡¼¥ë¤Ç¤¹¡£'),
+		-sampletext       => kh_msg->get('note_fs'),#$gui_window->gui_jchar('KH Coderã¯è¨ˆé‡ãƒ†ã‚­ã‚¹ãƒˆåˆ†æã‚’å®Ÿè·µã™ã‚‹ãŸã‚ã®ãƒ„ãƒ¼ãƒ«ã§ã™ã€‚'),
 		-initfont         => ,"TKFN"
 	)->Show;
 	return unless $font;
@@ -245,7 +245,7 @@ sub font_change{
 
 
 #--------------------------#
-#   ÀßÄêÃÍ¤òÊÖ¤¹¥¢¥¯¥»¥µ   #
+#   è¨­å®šå€¤ã‚’è¿”ã™ã‚¢ã‚¯ã‚»ã‚µ   #
 
 sub plot_font{
 	my $self = shift;

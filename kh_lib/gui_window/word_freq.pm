@@ -11,10 +11,10 @@ sub _new{
 	my $wmw= $self->{win_obj};
 	#$self->{win_obj} = $wmw;
 	#$wmw->focus;
-	$wmw->title($self->gui_jt( kh_msg->get('win_title') )); # '½Ð¸½²ó¿ô¡§Ê¬ÉÛ'
+	$wmw->title($self->gui_jt( kh_msg->get('win_title') )); # 'å‡ºç¾å›žæ•°ï¼šåˆ†å¸ƒ'
 	
 	$wmw->Label(
-		-text => kh_msg->get('descr'),#self->gui_jchar('¢£µ­½ÒÅý·×'),
+		-text => kh_msg->get('descr'),#self->gui_jchar('â– è¨˜è¿°çµ±è¨ˆ'),
 		-font => "TKFN"
 	)->pack(-anchor => 'w');
 	
@@ -38,7 +38,7 @@ sub _new{
 	)->pack();
 	
 	$wmw->Label(
-		-text => kh_msg->get('freq_tab'),#$self->gui_jchar('¢£ÅÙ¿ôÊ¬ÉÛÉ½'),
+		-text => kh_msg->get('freq_tab'),#$self->gui_jchar('â– åº¦æ•°åˆ†å¸ƒè¡¨'),
 		-font => "TKFN"
 	)->pack(-anchor => 'w');
 
@@ -57,14 +57,14 @@ sub _new{
 		-height           => 10,
 	)->pack(-fill =>'both',-expand => 'yes');
 	
-	$lis2->header('create',0,-text => kh_msg->get('tf')); #$self->gui_jchar('½Ð¸½²ó¿ô'));
-	$lis2->header('create',1,-text => kh_msg->get('freq'));#$self->gui_jchar('ÅÙ¿ô'));
-	$lis2->header('create',2,-text => kh_msg->get('pcnt')); #$self->gui_jchar('¥Ñ¡¼¥»¥ó¥È'));
-	$lis2->header('create',3,-text => kh_msg->get('c_freq')); #$self->gui_jchar('ÎßÀÑÅÙ¿ô'));
-	$lis2->header('create',4,-text => kh_msg->get('c_pcnt')); #$self->gui_jchar('ÎßÀÑ¥Ñ¡¼¥»¥ó¥È'));
+	$lis2->header('create',0,-text => kh_msg->get('tf')); #$self->gui_jchar('å‡ºç¾å›žæ•°'));
+	$lis2->header('create',1,-text => kh_msg->get('freq'));#$self->gui_jchar('åº¦æ•°'));
+	$lis2->header('create',2,-text => kh_msg->get('pcnt')); #$self->gui_jchar('ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆ'));
+	$lis2->header('create',3,-text => kh_msg->get('c_freq')); #$self->gui_jchar('ç´¯ç©åº¦æ•°'));
+	$lis2->header('create',4,-text => kh_msg->get('c_pcnt')); #$self->gui_jchar('ç´¯ç©ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆ'));
 	
 	$self->{copy_btn} = $wmw->Button(
-		-text => kh_msg->gget('copy'),#$self->gui_jchar('¥³¥Ô¡¼'),
+		-text => kh_msg->gget('copy'),#$self->gui_jchar('ã‚³ãƒ”ãƒ¼'),
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub {gui_hlist->copy($self->list2);}
@@ -81,7 +81,7 @@ sub _new{
 	);
 
 	my $btn = $wmw->Button(
-		-text => kh_msg->gget('plot'),#$self->gui_jchar('¥×¥í¥Ã¥È'),
+		-text => kh_msg->gget('plot'),#$self->gui_jchar('ãƒ—ãƒ­ãƒƒãƒˆ'),
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub {
@@ -94,14 +94,14 @@ sub _new{
 	}
 
 	$wmw->Button(
-		-text => kh_msg->get('refresh'),#$self->gui_jchar('ºÆ·×»»'),
+		-text => kh_msg->get('refresh'),#$self->gui_jchar('å†è¨ˆç®—'),
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub {$self->count;}
 	)->pack(-side => 'left',-padx => 5);
 
 	$wmw->Button(
-		-text => kh_msg->gget('close'),#$self->gui_jchar('ÊÄ¤¸¤ë'),
+		-text => kh_msg->gget('close'),#$self->gui_jchar('é–‰ã˜ã‚‹'),
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub {$self->close;}
@@ -118,7 +118,7 @@ sub count{
 	my $self = shift;
 	my ($r1, $r2) = mysql_words->freq_of_f;
 	
-	# µ­½ÒÅý·×
+	# è¨˜è¿°çµ±è¨ˆ
 	$self->list1->delete('all');
 	my $numb_style = $self->list1->ItemStyle(
 		'text',
@@ -142,7 +142,7 @@ sub count{
 		++$row;
 	}
 	
-	# ÅÙ¿ôÊ¬ÉÛÉ½
+	# åº¦æ•°åˆ†å¸ƒè¡¨
 	$self->list2->delete('all');
 	$numb_style = $self->list1->ItemStyle(
 		'text',
@@ -179,7 +179,7 @@ sub count{
 }
 
 sub plot{
-	# ¥×¥í¥Ã¥È¤òºîÀ®¤·¤Æ¤«¤éÉ½¼¨ÍÑWindow¤ò³«¤¯
+	# ãƒ—ãƒ­ãƒƒãƒˆã‚’ä½œæˆã—ã¦ã‹ã‚‰è¡¨ç¤ºç”¨Windowã‚’é–‹ã
 	my $self = shift;
 	return 0 unless $::config_obj->R;
 	
@@ -242,7 +242,7 @@ sub plot{
 }
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 
 sub list2{
 	my $self = shift;

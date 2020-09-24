@@ -2,7 +2,7 @@ package Gui_DragDrop;
 use strict;
 
 #-----------------------#
-#   Hlist�ւ̃h���b�v   #
+#   Hlistへのドロップ   #
 #-----------------------#
 
 sub read_CodeFile_droped{
@@ -37,11 +37,11 @@ sub read_CodeFile_droped{
 
 
 #-----------------------#
-#   Entry�ւ̃h���b�v   #
+#   Entryへのドロップ   #
 #-----------------------#
-# �EEntry��Ƀh���b�v���ꂽ�t�@�C���̖��O��}��
+# ・Entry上にドロップされたファイルの名前を挿入
 #
-# �E�Ăяo��
+# ・呼び出し
 # $EntryWidget->DropSite(
 # 	-dropcommand => [\&Gui_DragDrop::get_filename_droped, $EntryWidget,],
 # 	-droptypes   => ($^O eq 'MSWin32' ? 'Win32' : ['KDE', 'XDND', 'Sun'])
@@ -81,11 +81,11 @@ sub get_filename_droped{
 }
 
 #----------------------#
-#   Text�ւ̃h���b�v   #
+#   Textへのドロップ   #
 #----------------------#
-# �EText��Ƀh���b�v���ꂽ�t�@�C�����e��ǂݍ���ő}��
+# ・Text上にドロップされたファイル内容を読み込んで挿入
 #
-# �E�Ăяo��
+# ・呼び出し
 # $TextWidget->DropSite(
 # 	-dropcommand => [\&Gui_DragDrop::read_TextFile_droped,$t],
 # 	-droptypes => ($^O eq 'MSWin32' ? 'Win32' : ['KDE', 'XDND', 'Sun'])
@@ -109,9 +109,9 @@ sub read_TextFile_droped{
 	};
 
 	if ($] > 5.008){
-		# UTF8�t���O�t�Ȃ̂ɁAWindows�̃R�}���h�v�����v�g��print���Ă�������
-		# �����Ȃ��Ƃ����ςȂ��̂��A���Ă���̂ŁA����ɑΉ��B�Ȃ�����ł���
-		# �������̂����ЂƂ悭������Ȃ��̂���...
+		# UTF8フラグ付なのに、Windowsのコマンドプロンプトにprintしても文字化
+		# けしないという変なものが帰ってくるので、それに対応。なぜこれでうま
+		# くいくのか今ひとつよく分からないのだが...
 		utf8::decode($filename);
 	}
 	

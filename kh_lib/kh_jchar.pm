@@ -25,7 +25,7 @@ BEGIN{
 	# print "Jcode conv: $converter\n";
 }
 
-# ¥Õ¥¡¥¤¥ë´İ¤´¤ÈÊÑ´¹
+# ãƒ•ã‚¡ã‚¤ãƒ«ä¸¸ã”ã¨å¤‰æ›
 
 sub to_euc{
 	my $sjistoeuc = $_[1];
@@ -94,7 +94,7 @@ sub to_sjis{
 	rename ("$temp_file","$sjistoeuc");
 }
 
-# ¥Õ¥¡¥¤¥ë¤ÎÊ¸»ú¥³¡¼¥É¤òÈ½ÊÌ
+# ãƒ•ã‚¡ã‚¤ãƒ«ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’åˆ¤åˆ¥
 
 sub check_code{
 	my $the_file = $_[1];
@@ -252,7 +252,7 @@ sub check_code3{
 	return $enc;
 }
 
-# ¥Õ¥¡¥¤¥ë¤ÎÊ¸»ú¥³¡¼¥É¤òÈ½ÊÌ(±Ñ¸ì)
+# ãƒ•ã‚¡ã‚¤ãƒ«ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’åˆ¤åˆ¥(è‹±èª)
 
 sub check_code_en{
 	my $the_file = $_[1];
@@ -300,7 +300,7 @@ sub check_code_en{
 	return $enc;
 }
 
-# ¥Õ¥¡¥¤¥ë¤ÎÊ¸»ú¥³¡¼¥É¤òÈ½ÊÌ(ÂĞ±ş¥³¡¼¥É¤¹¤Ù¤Æ)
+# ãƒ•ã‚¡ã‚¤ãƒ«ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’åˆ¤åˆ¥(å¯¾å¿œã‚³ãƒ¼ãƒ‰ã™ã¹ã¦)
 
 sub check_code_all{
 	my $the_file = $_[1];
@@ -353,7 +353,7 @@ sub check_code_all{
 	return $enc;
 }
 
-# Ê¸»úÎóÊÑ´¹
+# æ–‡å­—åˆ—å¤‰æ›
 
 sub s2e{
 	my $conv = '_s2e_'.$kh_jchar::converter;

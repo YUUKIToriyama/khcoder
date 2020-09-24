@@ -4,7 +4,7 @@ use base qw(gui_window::morpho_crossout);
 use strict;
 
 #----------#
-#   ¼Â¹Ô   #
+#   å®Ÿè¡Œ   #
 
 sub save{
 	my $self = shift;
@@ -12,12 +12,12 @@ sub save{
 	unless ( eval(@{$self->hinshi}) ){
 		gui_errormsg->open(
 			type => 'msg',
-			msg  => kh_msg->get('er_no_pos'), # ÉÊ»ì¤¬1¤Ä¤âÁªÂò¤µ¤ì¤Æ¤¤¤Ş¤»¤ó¡£
+			msg  => kh_msg->get('er_no_pos'), # å“è©ãŒ1ã¤ã‚‚é¸æŠã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚
 		);
 		return 0;
 	}
 	
-	# ÊİÂ¸Àè¤Î»²¾È
+	# ä¿å­˜å…ˆã®å‚ç…§
 	my @types = (
 		['CSV Files',[qw/.csv/] ],
 		["All files",'*']
@@ -26,7 +26,7 @@ sub save{
 		-defaultextension => '.csv',
 		-filetypes        => \@types,
 		-title            => 
-			$self->gui_jt( kh_msg->get('saving') ), # ¡ÖÊ¸½ñ£øÃê½Ğ¸ì¡×É½¡§Ì¾Á°¤òÉÕ¤±¤ÆÊİÂ¸
+			$self->gui_jt( kh_msg->get('saving') ), # ã€Œæ–‡æ›¸ï½˜æŠ½å‡ºèªã€è¡¨ï¼šåå‰ã‚’ä»˜ã‘ã¦ä¿å­˜
 		-initialdir       => $self->gui_jchar($::config_obj->cwd)
 	);
 	unless ($path){
@@ -62,11 +62,11 @@ sub save{
 }
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 
 
 sub label{
-	return kh_msg->get('win_title'); # ¡ÖÊ¸½ñ£øÃê½Ğ¸ì¡×É½¤Î½ĞÎÏ¡§ CSV
+	return kh_msg->get('win_title'); # ã€Œæ–‡æ›¸ï½˜æŠ½å‡ºèªã€è¡¨ã®å‡ºåŠ›ï¼š CSV
 }
 
 sub win_name{

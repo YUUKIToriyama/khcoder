@@ -131,7 +131,7 @@ sub add_menu{
 				$::main_gui->{win_obj}->deiconify;
 				print "$plugin_rtn $system_err $latestTableNum\n";
 				if (length($latestTableNum) == 0 || $system_err != 0) {
-					#ƒGƒ‰[‚Ì‚½‚ß“K—p‚¹‚¸I—¹
+					#ã‚¨ãƒ©ãƒ¼ã®ãŸã‚é©ç”¨ã›ãšçµ‚äº†
 				} elsif ($plugin_rtn == 256) {
 					if (mysql_exec->table_exists("$dbName.outvarcopy")) {
 						mysql_exec->drop_table("$dbName.outvarcopy");
@@ -174,7 +174,7 @@ sub add_menu{
 						mysql_exec->drop_table("$dbName.outvarcopy");
 						mysql_exec->drop_table("$dbName.${latestTableNum}copy");
 						
-						#ƒvƒƒWƒFƒNƒg‚ð•Â‚¶‚ÄŠJ‚­(‘Oˆ—‚à•K—v‚©)
+						#ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’é–‰ã˜ã¦é–‹ã(å‰å‡¦ç†ã‚‚å¿…è¦ã‹)
 						my $cu_project;
 						$cu_project = $::project_obj;
 						undef $::project_obj;

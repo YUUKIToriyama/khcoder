@@ -2,10 +2,10 @@ package mysql_crossout::tab;
 use base qw(mysql_crossout);
 use strict;
 
-sub out2{                               # lengthºîÀ½¤ò¤¹¤ë
+sub out2{                               # lengthä½œè£½ã‚’ã™ã‚‹
 	my $self = shift;
 	
-	# Ìµ»ë¤¹¤ë¸ì¤ò¥ê¥¹¥È¥¢¥Ã¥×
+	# ç„¡è¦–ã™ã‚‹èªã‚’ãƒªã‚¹ãƒˆã‚¢ãƒƒãƒ—
 	my %ignore;
 	my $h = mysql_exec->select(
 		"SELECT id FROM genkei WHERE ( nouse = 1 ) OR khhinshi_id = 99999",
@@ -18,7 +18,7 @@ sub out2{                               # lengthºîÀ½¤ò¤¹¤ë
 	}
 	print "\n";
 	
-	# hyoso2¥Æ¡¼¥Ö¥ë¤òºîÀ®
+	# hyoso2ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆ
 	mysql_exec->do("DROP TABLE IF EXISTS hyoso2", 1);
 	my $sql1 = "
 		CREATE TABLE hyoso2(
@@ -40,7 +40,7 @@ sub out2{                               # lengthºîÀ½¤ò¤¹¤ë
 	
 	open (F,'>:encoding(utf8)', $self->{file_temp}) or die("could not open $self->{file_temp}");
 	
-	# ¥»¥ëÆâÍÆ¤ÎºîÀ½
+	# ã‚»ãƒ«å†…å®¹ã®ä½œè£½
 	my $id = 1;
 	my $last = 1;
 	my $started = 0;
@@ -57,7 +57,7 @@ sub out2{                               # lengthºîÀ½¤ò¤¹¤ë
 		
 		while (my $i = $sth->fetch){
 			if ($last != $i->[0] && $started == 1){
-				# ½ñ¤­½Ğ¤·
+				# æ›¸ãå‡ºã—
 				my $temp = "$last\t";
 				if ($self->{midashi}){
 					$temp .= kh_csv->value_conv_t($self->{midashi}->[$last - 1])."\t";
@@ -71,7 +71,7 @@ sub out2{                               # lengthºîÀ½¤ò¤¹¤ë
 				}
 				chop $temp;
 				print F "$temp\n";
-				# ½é´ü²½
+				# åˆæœŸåŒ–
 				%current = ();
 				$last = $i->[0];
 			}
@@ -79,12 +79,12 @@ sub out2{                               # lengthºîÀ½¤ò¤¹¤ë
 			$last = $i->[0] unless $started;
 			$started = 1;
 			
-			# HTML¥¿¥°¤ÈÌ¤»ÈÍÑ¸ì¤òÌµ»ë
+			# HTMLã‚¿ã‚°ã¨æœªä½¿ç”¨èªã‚’ç„¡è¦–
 			if ( $ignore{$i->[1]} ){
 				next;
 			}
 			
-			# ½¸·×
+			# é›†è¨ˆ
 			++$current{'length_w'};
 			#$current{'length_c'} += length($i->[2]);
 			$current{'length_c'} += $i->[2];
@@ -95,7 +95,7 @@ sub out2{                               # lengthºîÀ½¤ò¤¹¤ë
 		$sth->finish;
 	}
 	
-	# ºÇ½ª¹Ô¤Î½ĞÎÏ
+	# æœ€çµ‚è¡Œã®å‡ºåŠ›
 	my $temp = "$last\t";
 	if ($self->{midashi}){
 		$temp .= kh_csv->value_conv_t($self->{midashi}->[$last - 1])."\t";
@@ -121,7 +121,7 @@ sub finish{
 			thefile => $self->{file},
 		);
 	
-	# ¥Ø¥Ã¥À¹Ô¤ÎºîÀ½
+	# ãƒ˜ãƒƒãƒ€è¡Œã®ä½œè£½
 	my $head = ''; my @head;
 	foreach my $i ('h1','h2','h3','h4','h5','dan','bun'){
 		$head .= "$i\t";
@@ -145,7 +145,7 @@ sub finish{
 	#}
 	print OUTF "$head\n";
 	
-	# °ÌÃÖ¾ğÊó¤È¤Î¥Ş¡¼¥¸
+	# ä½ç½®æƒ…å ±ã¨ã®ãƒãƒ¼ã‚¸
 	
 	my $sql;
 	$sql .= "SELECT ";

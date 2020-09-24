@@ -5,16 +5,16 @@ sub option1_options{
 	my $self = shift;
 	if (@{$self->{plots}} == 4){
 		return [
-			kh_msg->get('cls'),  # ¥¯¥é¥¹¥¿¡¼
-			kh_msg->get('gray'), # ¥°¥ì¡¼¥¹¥±¡¼¥ë
-			kh_msg->get('freq'), # ÅÙ¿ô
-			kh_msg->get('umat'), # U¹ÔÎó
+			kh_msg->get('cls'),  # ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼
+			kh_msg->get('gray'), # ã‚°ãƒ¬ãƒ¼ã‚¹ã‚±ãƒ¼ãƒ«
+			kh_msg->get('freq'), # åº¦æ•°
+			kh_msg->get('umat'), # Uè¡Œåˆ—
 		];
 	} else {
 		return [
-			kh_msg->get('gray'), # ¥°¥ì¡¼¥¹¥±¡¼¥ë
-			kh_msg->get('freq'), # ÅÙ¿ô
-			kh_msg->get('umat'), # U¹ÔÎó
+			kh_msg->get('gray'), # ã‚°ãƒ¬ãƒ¼ã‚¹ã‚±ãƒ¼ãƒ«
+			kh_msg->get('freq'), # åº¦æ•°
+			kh_msg->get('umat'), # Uè¡Œåˆ—
 		];
 	}
 }
@@ -85,11 +85,11 @@ sub start{
 }
 
 sub option1_name{
-	return kh_msg->get('views'); # ' ¥«¥é¡¼¡§';
+	return kh_msg->get('views'); # ' ã‚«ãƒ©ãƒ¼ï¼š';
 }
 
 sub win_title{
-	return kh_msg->get('win_title'); # Ãê½Ð¸ì¡¦¼«¸ÊÁÈ¿¥²½¥Þ¥Ã¥×
+	return kh_msg->get('win_title'); # æŠ½å‡ºèªžãƒ»è‡ªå·±çµ„ç¹”åŒ–ãƒžãƒƒãƒ—
 }
 
 sub win_name{

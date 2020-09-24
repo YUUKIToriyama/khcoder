@@ -4,7 +4,7 @@ use strict;
 
 
 #----------#
-#   ¼Â¹Ô   #
+#   å®Ÿè¡Œ   #
 
 sub save{
 	my $self = shift;
@@ -17,7 +17,7 @@ sub save{
 		return 0;
 	}
 	
-	# ÊİÂ¸Àè¤Î»²¾È
+	# ä¿å­˜å…ˆã®å‚ç…§
 	my @types = (
 		[ "spss syntax file",[qw/.sps/] ],
 		["All files",'*']
@@ -62,11 +62,11 @@ sub save{
 }
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 
 
 sub label{
-	return kh_msg->get('win_title'); # ¡ÖÊ¸½ñ£øÃê½Ğ¸ì¡×É½¤Î½ĞÎÏ¡§ SPSS
+	return kh_msg->get('win_title'); # ã€Œæ–‡æ›¸ï½˜æŠ½å‡ºèªã€è¡¨ã®å‡ºåŠ›ï¼š SPSS
 }
 
 sub win_name{

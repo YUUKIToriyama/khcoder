@@ -9,14 +9,14 @@ sub _save{
 	unless (-e $self->cfile){
 		my $win = $self->win_obj;
 		gui_errormsg->open(
-			msg => kh_msg->get('gui_window::cod_count->error_cod_f'), #"�����ǥ��󥰡��롼�롦�ե����뤬���򤵤�Ƥ��ޤ���",
+			msg => kh_msg->get('gui_window::cod_count->error_cod_f'), #"コーディング・ルール・ファイルが選択されていません。",
 			window => \$win,
 			type => 'msg',
 		);
 		return;
 	}
 	
-	# ��¸��λ���
+	# 保存先の参照
 	my @types = (
 		[ "spss syntax file",[qw/.sps/] ],
 		["All files",'*']
@@ -25,11 +25,11 @@ sub _save{
 		-defaultextension => '.sps',
 		-filetypes        => \@types,
 		-title            =>
-			$self->gui_jt(kh_msg->get('save_as')), # �����ǥ��󥰷�̡�SPSS�ˡ�̾�����դ�����¸
+			$self->gui_jt(kh_msg->get('save_as')), # コーディング結果（SPSS）：名前を付けて保存
 		-initialdir       => $self->gui_jchar($::config_obj->cwd)
 	);
 	
-	# ��¸��¹�
+	# 保存を実行
 	if ($path){
 		$path = gui_window->gui_jg_filename_win98($path);
 		$path = gui_window->gui_jg($path);
@@ -47,7 +47,7 @@ sub _save{
 
 
 sub win_label{
-	return kh_msg->get('win_title'); # �����ǥ��󥰷�̤ν��ϡ�SPSS�ե�����
+	return kh_msg->get('win_title'); # コーディング結果の出力：SPSSファイル
 }
 
 sub win_name{

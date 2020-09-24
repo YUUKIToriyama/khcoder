@@ -6,21 +6,21 @@ use strict;
 use kh_cod::pickup;
 
 #-------------#
-#   GUIºîÀ½   #
+#   GUIä½œè£½   #
 
 sub _new{
 	my $self = shift;
 	my $mw = $::main_gui->mw;
 	my $win = $self->{win_obj};
 	#$win->focus;
-	$win->title($self->gui_jt(kh_msg->get('win_title'))); # ÉôÊ¬¥Æ¥­¥¹¥È¤Î¼è¤ê½Ð¤·
+	$win->title($self->gui_jt(kh_msg->get('win_title'))); # éƒ¨åˆ†ãƒ†ã‚­ã‚¹ãƒˆã®å–ã‚Šå‡ºã—
 	#$self->{win_obj} = $win;
 
 	#----------------------#
-	#   ¸«½Ð¤·¤Î¼è¤ê½Ð¤·   #
+	#   è¦‹å‡ºã—ã®å–ã‚Šå‡ºã—   #
 
 	my $radio_head = $win->Radiobutton(
-		-text             => kh_msg->get('headings'), # ¸«½Ð¤·Ê¸¤À¤±¤ò¼è¤ê½Ð¤¹
+		-text             => kh_msg->get('headings'), # è¦‹å‡ºã—æ–‡ã ã‘ã‚’å–ã‚Šå‡ºã™
 		-font             => "TKFN",
 		-foreground       => 'blue',
 		-activeforeground => 'red',
@@ -36,7 +36,7 @@ sub _new{
 	)->pack(-fill => 'x');
 	
 	#$self->{l_h_1} = $lf->Label(
-	#	-text => kh_msg->get('3'), # ¡¦¼è¤ê½Ð¤¹¸«½Ð¤·¤ÎÁªÂò
+	#	-text => kh_msg->get('3'), # ãƒ»å–ã‚Šå‡ºã™è¦‹å‡ºã—ã®é¸æŠž
 	#	-font => "TKFN"
 	#)->pack(-anchor => 'w');
 	
@@ -47,17 +47,17 @@ sub _new{
 	#)->pack(-side => 'left', -padx => 2);
 	foreach my $i ('H1','H2','H3','H4','H5'){
 		$self->{"check_w_"."$i"} = $f1->Checkbutton(
-			-text     => "$i".kh_msg->get('headings_name'), # ¸«½Ð¤·
+			-text     => "$i".kh_msg->get('headings_name'), # è¦‹å‡ºã—
 			-font     => "TKFN",
 			-variable => \$self->{"check_v_"."$i"},
 		)->pack(-side => 'left', -padx => 4)
 	}
 	
 	#--------------------------#
-	#   ¥³¡¼¥Ç¥£¥ó¥°¡¦¥ë¡¼¥ë   #
+	#   ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ»ãƒ«ãƒ¼ãƒ«   #
 	
 	$win->Radiobutton(
-		-text             => kh_msg->get('codes'), # ÆÃÄê¤Î¥³¡¼¥É¤¬Í¿¤¨¤é¤ì¤¿Ê¸½ñ¤À¤±¤ò¼è¤ê½Ð¤¹
+		-text             => kh_msg->get('codes'), # ç‰¹å®šã®ã‚³ãƒ¼ãƒ‰ãŒä¸Žãˆã‚‰ã‚ŒãŸæ–‡æ›¸ã ã‘ã‚’å–ã‚Šå‡ºã™
 		-font             => "TKFN",
 		-foreground       => 'blue',
 		-activeforeground => 'red',
@@ -76,7 +76,7 @@ sub _new{
 	my $right = $cf->Frame()->pack(-side => 'right');
 
 	#$self->{l_c_1} = $left->Label(
-	#	-text => kh_msg->get('7'), # ¡¦¥³¡¼¥ÉÁªÂò
+	#	-text => kh_msg->get('7'), # ãƒ»ã‚³ãƒ¼ãƒ‰é¸æŠž
 	#	-font => "TKFN"
 	#)->pack(-anchor => 'w');
 	
@@ -104,7 +104,7 @@ sub _new{
 	);
 	my $f2 = $right->Frame()->pack(-fill => 'x',-pady => 8);
 	$self->{l_c_2} = $f2->Label(
-		-text => kh_msg->get('unit'), # ¥³¡¼¥Ç¥£¥ó¥°Ã±°Ì¡§
+		-text => kh_msg->get('unit'), # ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°å˜ä½ï¼š
 		-font => "TKFN"
 	)->pack(-anchor => 'w', -side => 'left');
 	my %pack = (
@@ -117,7 +117,7 @@ sub _new{
 		pack   => \%pack
 	);
 	$self->{ch_w_high} = $right->Checkbutton(
-		-text     => kh_msg->get('higher'), # ¤è¤ê¾å°Ì¤Î¸«½Ð¤·¤ò¿·µ¬¥Æ¥­¥¹¥È¥Õ¥¡¥¤¥ë¤Ë´Þ¤á¤ë
+		-text     => kh_msg->get('higher'), # ã‚ˆã‚Šä¸Šä½ã®è¦‹å‡ºã—ã‚’æ–°è¦ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã«å«ã‚ã‚‹
 		-font     => "TKFN",
 		-variable => \$self->{ch_v_high},
 	)->pack(-anchor => 'w');
@@ -126,7 +126,7 @@ sub _new{
 
 
 	$win->Button(
-		-text => kh_msg->gget('cancel'), # ¥­¥ã¥ó¥»¥ë
+		-text => kh_msg->gget('cancel'), # ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		-font => "TKFN",
 		-width => 8,
 		-command => sub{$self->close;}
@@ -144,7 +144,7 @@ sub _new{
 }
 
 #-------------------#
-#   GUI¤Î¾õÂÖÊÑ¹¹   #
+#   GUIã®çŠ¶æ…‹å¤‰æ›´   #
 
 sub refresh{
 	my $self = shift;
@@ -171,7 +171,7 @@ sub refresh{
 	}
 	
 	
-	# ¸«½Ð¤·¼è¤ê½Ð¤·ÉôÊ¬¡Ê¸«½Ð¤·¤¬¤¢¤ë¤«¤É¤¦¤«¤ò¥Á¥§¥Ã¥¯¡Ë
+	# è¦‹å‡ºã—å–ã‚Šå‡ºã—éƒ¨åˆ†ï¼ˆè¦‹å‡ºã—ãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯ï¼‰
 	foreach my $i ("h5","h4","h3","h2","h1"){
 		my $h = $i;
 		$h =~ tr/h/H/;
@@ -189,7 +189,7 @@ sub refresh{
 	}
 }
 
-# ¥³¡¼¥Ç¥£¥ó¥°¥ë¡¼¥ë¡¦¥Õ¥¡¥¤¥ë¤ÎÆÉ¤ß¹þ¤ß
+# ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ«ãƒ¼ãƒ«ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«ã®èª­ã¿è¾¼ã¿
 
 sub read_code{
 	my $self = shift;
@@ -215,7 +215,7 @@ sub read_code{
 
 
 #--------------#
-#   ½èÍýÆâÍÆ   #
+#   å‡¦ç†å†…å®¹   #
 #--------------#
 
 
@@ -229,7 +229,7 @@ sub save{
 }
 
 #------------------------------------------#
-#   ¥³¡¼¥É¤¬Í¿¤¨¤é¤ì¤¿¥Æ¥­¥¹¥È¤Î¼è¤ê½Ð¤·   #
+#   ã‚³ãƒ¼ãƒ‰ãŒä¸Žãˆã‚‰ã‚ŒãŸãƒ†ã‚­ã‚¹ãƒˆã®å–ã‚Šå‡ºã—   #
 
 sub _cod{
 	my $self = shift;
@@ -256,12 +256,12 @@ sub _cod{
 }
 
 #----------------------#
-#   ¸«½Ð¤·¤Î¼è¤ê½Ð¤·   #
+#   è¦‹å‡ºã—ã®å–ã‚Šå‡ºã—   #
 
 sub _head{
 	my $self = shift;
 	
-	# ¼è¤ê½Ð¤¹¸«½Ð¤·¤Î¥Á¥§¥Ã¥¯
+	# å–ã‚Šå‡ºã™è¦‹å‡ºã—ã®ãƒã‚§ãƒƒã‚¯
 	my %midashi;
 	my $n;
 	foreach my $i ('H1','H2','H3','H4','H5'){
@@ -291,7 +291,7 @@ sub _head{
 }
 
 #------------------#
-#   ÊÝÂ¸Àè¤Î»²¾È   #
+#   ä¿å­˜å…ˆã®å‚ç…§   #
 
 sub get_path{
 	my $self = shift;
@@ -305,7 +305,7 @@ sub get_path{
 			-defaultextension => '.txt',
 			-filetypes        => \@types,
 			-title            =>
-				$self->gui_jt(kh_msg->get('saving')), # ÉôÊ¬¥Æ¥­¥¹¥È¤Î¼è¤ê½Ð¤·¡§Ì¾Á°¤òÉÕ¤±¤ÆÊÝÂ¸
+				$self->gui_jt(kh_msg->get('saving')), # éƒ¨åˆ†ãƒ†ã‚­ã‚¹ãƒˆã®å–ã‚Šå‡ºã—ï¼šåå‰ã‚’ä»˜ã‘ã¦ä¿å­˜
 			-initialdir       => gui_window->gui_jchar($::config_obj->cwd),
 	);
 	$path = gui_window->gui_jg_filename_win98($path);
@@ -316,7 +316,7 @@ sub get_path{
 
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 
 sub cfile{
 	my $self = shift;

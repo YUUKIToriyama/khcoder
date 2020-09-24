@@ -66,7 +66,7 @@ sub innner{
 
 	$lf1->Checkbutton(
 			-text     =>
-				kh_msg->get('gui_widget::r_cls->color'), # ¥¯¥é¥¹¥¿¡¼¤Î¿§Ê¬¤±
+				kh_msg->get('gui_widget::r_cls->color'), # ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ã®è‰²åˆ†ã‘
 			-variable => \$self->{check_color_cls},
 			-anchor => 'w',
 	)->pack(-anchor => 'w', -side => 'left');
@@ -86,7 +86,7 @@ sub calc{
 	} else {
 		gui_errormsg->open(
 			type => 'msg',
-			msg  => kh_msg->gget('r_net_msg_fail'), # Ä´À°¤Ë¼ºÇÔ¤·¤Ş¤·¤Ş¤·¤¿¡£
+			msg  => kh_msg->gget('r_net_msg_fail'), # èª¿æ•´ã«å¤±æ•—ã—ã¾ã—ã¾ã—ãŸã€‚
 		);
 		print "$self->{command_f}\n";
 		$self->close;
@@ -189,7 +189,7 @@ sub calc{
 }
 
 sub win_title{
-	return kh_msg->get('win_title'); # Ãê½Ğ¸ì¡¦¥¯¥é¥¹¥¿¡¼Ê¬ÀÏ¡§Ä´À°
+	return kh_msg->get('win_title'); # æŠ½å‡ºèªãƒ»ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼åˆ†æï¼šèª¿æ•´
 }
 
 sub win_name{

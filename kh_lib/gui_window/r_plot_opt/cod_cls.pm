@@ -5,7 +5,7 @@ sub innner{
 	my $self = shift;
 	my $lf = $self->{labframe};
 
-	# епеще╣е┐б╝╩м└╧д╬еке╫е╖ечеє
+	# уВпуГйуВ╣уВ┐уГ╝хИЖцЮРуБоуВкуГЧуВ╖уГзуГ│
 	$self->{cls_obj} = gui_widget::r_cls->open(
 		parent  => $lf,
 		command => sub{ $self->calc; },
@@ -64,7 +64,7 @@ sub calc{
 }
 
 sub win_title{
-	return kh_msg->get('win_title'); # е│б╝е╟егеєе░бжепеще╣е┐б╝╩м└╧бз─┤└░
+	return kh_msg->get('win_title'); # уВ│уГ╝уГЗуВгуГ│уВ░уГ╗уВпуГйуВ╣уВ┐уГ╝хИЖцЮРя╝Ъшк┐цХ┤
 }
 
 sub win_name{

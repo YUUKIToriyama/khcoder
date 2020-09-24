@@ -5,7 +5,7 @@ sub innner{
 	my $self = shift;
 	my $lf = $self->{labframe};
 
-	# �����ͥåȥ���Υ��ץ����
+	# 共起ネットワークのオプション
 	$self->{net_obj} = gui_widget::r_net->open(
 		parent  => $lf,
 		command => sub{ $self->calc; },
@@ -49,7 +49,7 @@ sub calc{
 		plotwin_name      => 'cod_netg',
 	);
 
-	# �ץ��å�Window�򳫤�
+	# プロットWindowを開く
 	$wait_window->end(no_dialog => 1);
 	
 	if ($::main_gui->if_opened('w_cod_netg_plot')){
@@ -86,7 +86,7 @@ sub calc{
 }
 
 sub win_title{
-	return kh_msg->get('win_title'); # �����ǥ��󥰡������ͥåȥ����Ĵ��
+	return kh_msg->get('win_title'); # コーディング・共起ネットワーク：調整
 }
 
 sub win_name{

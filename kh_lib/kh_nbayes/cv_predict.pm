@@ -27,7 +27,7 @@ sub each{
 		}
 	}
 
-	# ¥í¥°ÊİÂ¸
+	# ãƒ­ã‚°ä¿å­˜
 	if ($self->{cross_savel}){
 		$self->{result_log}{$last} = $r2;
 	}
@@ -49,12 +49,12 @@ sub each{
 sub make_log_file{
 	my $self = shift;
 
-	# ºÇ¾®ÃÍ¤ò$fixer¤È¤¹¤ë
+	# æœ€å°å€¤ã‚’$fixerã¨ã™ã‚‹
 	my %labels;
 	my $fixer = 0;
-	foreach my $i (values %{$self->{result_log}}){  # $i = ¥í¥°
-		foreach my $h (values %{$i}){               # $h = Ãê½Ğ¸ìÊÌ
-			foreach my $j (keys %{$h->{l}}){        # $j = ¥é¥Ù¥ë
+	foreach my $i (values %{$self->{result_log}}){  # $i = ãƒ­ã‚°
+		foreach my $h (values %{$i}){               # $h = æŠ½å‡ºèªåˆ¥
+			foreach my $j (keys %{$h->{l}}){        # $j = ãƒ©ãƒ™ãƒ«
 				$labels{$j} = 1 unless $labels{$j} == 1;
 				$fixer = $h->{l}{$j} if $fixer > $h->{l}{$j};
 			}
@@ -62,7 +62,7 @@ sub make_log_file{
 	}
 	my @labels = sort (keys %labels);
 
-	my $name = kh_msg->get('cross_validation'); # ¡Ê¸òº¹ÂÅÅö²½¡Ë
+	my $name = kh_msg->get('cross_validation'); # ï¼ˆäº¤å·®å¦¥å½“åŒ–ï¼‰
 
 	my $obj;
 	$obj->{labels}     = \@labels;
@@ -78,7 +78,7 @@ sub make_log_file{
 	return 1;
 }
 
-# ¥Æ¥¹¥ÈÊÌ¤Ë»öÁ°³ÎÎ¨¤òÊİÂ¸
+# ãƒ†ã‚¹ãƒˆåˆ¥ã«äº‹å‰ç¢ºç‡ã‚’ä¿å­˜
 sub push_prior_probs{
 	my $self = shift;
 	

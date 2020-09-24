@@ -3,7 +3,7 @@ use strict;
 use Tk;
 use Jcode;
 
-# Perl 5.8¤Î¾ì¹ç¡¢decode¤µ¤ì¤¿Ê¸»úÎó¤¬¥é¥Ù¥ë¤È¤·¤ÆÍ¿¤¨¤é¤ì¤ë¤³¤È¤¬Á°Äó
+# Perl 5.8ã®å ´åˆã€decodeã•ã‚ŒãŸæ–‡å­—åˆ—ãŒãƒ©ãƒ™ãƒ«ã¨ã—ã¦ä¸ãˆã‚‰ã‚Œã‚‹ã“ã¨ãŒå‰æ
 
 sub open{
 	my $self;
@@ -11,7 +11,7 @@ sub open{
 	%{$self} = @_;
 	bless $self, $class;
 	
-	# width¤Î·èÄê
+	# widthã®æ±ºå®š
 	$self->{width} = 0 unless defined($self->{width});
 	foreach my $i (@{$self->{options}}){
 		my $len;
@@ -26,7 +26,7 @@ sub open{
 		$self->{values}{$i->[1]} = $i->[0];
 	}
 
-	# ËÜÂÎºîÀ½
+	# æœ¬ä½“ä½œè£½
 	#$self->{status4test} = "start";
 	$self->{win_obj} = $self->{parent}->Menubutton(
 		-text        => '',
@@ -38,7 +38,7 @@ sub open{
 		-borderwidth => 1,
 	)->pack(%{$self->{pack}});
 	
-	# ¥ª¥×¥·¥ç¥óÄÉ²Ã
+	# ã‚ªãƒ—ã‚·ãƒ§ãƒ³è¿½åŠ 
 	foreach my $i (@{$self->{options}}){
 		$self->{win_obj}->radiobutton(
 			-label     => " $i->[0]",
@@ -49,7 +49,7 @@ sub open{
 		);
 	}
 	
-	# ¥Ç¥Õ¥©¥ë¥ÈÃÍ¤òÅ¬ÍÑ
+	# ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆå€¤ã‚’é©ç”¨
 	$self->{selection} = $self->{options}[0][1];
 	if ( defined( $self->{variable} ) ){
 		if ( length( ${$self->{variable}} ) ){

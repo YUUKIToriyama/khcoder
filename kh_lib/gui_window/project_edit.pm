@@ -12,7 +12,7 @@ sub _new{
 	$self->{project}  = $self->projects->a_project($self->num);
 	my $lm = $self->{project}->lang_method;
 
-	# ³«¤¯
+	# é–‹ã
 	my $mw = $::main_gui->mw;
 	my $npro = $self->{win_obj};
 	$npro->focus();
@@ -29,7 +29,7 @@ sub _new{
 
 	# target file
 	$lfra->Label(
-		-text => kh_msg->get('target_file'),#$self->gui_jchar('Ê¬ÀÏÂÐ¾Ý¥Õ¥¡¥¤¥ë¡§'),
+		-text => kh_msg->get('target_file'),#$self->gui_jchar('åˆ†æžå¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«ï¼š'),
 		-font => "TKFN"
 	)->grid(-row => 0, -column => 0, -sticky => 'w', -pady=>2);
 	
@@ -41,7 +41,7 @@ sub _new{
 	)->pack(-side => 'right', -fill => 'x', -expand => 1);
 
 	$fra1->Button(
-		-text => kh_msg->gget('browse'),#$self->gui_jchar('»²¾È'),
+		-text => kh_msg->gget('browse'),#$self->gui_jchar('å‚ç…§'),
 		-font => "TKFN",
 		#-borderwidth => 1,
 		-command => sub{$self->_sansyo;}
@@ -49,7 +49,7 @@ sub _new{
 
 	# language
 	$lfra->Label(
-		-text => kh_msg->get('lang', 'gui_window::stop_words'), # ¸À¸ì
+		-text => kh_msg->get('lang', 'gui_window::stop_words'), # è¨€èªž
 		-font => "TKFN"
 	)->grid(-row => 1, -column => 0, -sticky => 'w', -pady=>2);
 	
@@ -85,7 +85,7 @@ sub _new{
 
 	# Memo
 	$lfra->Label(
-		-text => kh_msg->get('memo'),#$self->gui_jchar('ÀâÌÀ¡Ê¥á¥â¡Ë¡§'),
+		-text => kh_msg->get('memo'),#$self->gui_jchar('èª¬æ˜Žï¼ˆãƒ¡ãƒ¢ï¼‰ï¼š'),
 		-font => "TKFN"
 	)->grid(-row => 3, -column => 0, -sticky => 'w', -pady=>2);;
 
@@ -108,13 +108,13 @@ sub _new{
 		-command => sub{$self->_edit;},
 	)->pack(-side => 'right');
 
-	# ENTRY¤Î¥Ð¥¤¥ó¥É
+	# ENTRYã®ãƒã‚¤ãƒ³ãƒ‰
 	$npro->bind('Tk::Entry', '<Key-Delete>', \&gui_jchar::check_key_e_d);
 	$e2->bind("<Key>",[\&gui_jchar::check_key_e,Ev('K'),\$e2]);
 	$e2->bind("<Key-Return>",sub{$self->_edit;});
 	$e2->bind("<KP_Enter>",sub{$self->_edit;});
 	
-	# ENTRY¤Ø¤ÎÁÞÆþ
+	# ENTRYã¸ã®æŒ¿å…¥
 	$e1->insert(0,$self->gui_jchar($self->project->file_target));
 	$e2->insert(0,$self->gui_jchar($self->project->comment));
 	$e1->configure(-state => 'disable');
@@ -140,14 +140,14 @@ sub _edit{
 	$self->close();
 	$self->mother->refresh;
 	
-	# ¸½ºß³«¤¤¤Æ¤¤¤ë¥×¥í¥¸¥§¥¯¥È¤òÊÔ½¸¤·¤¿¾ì¹ç
+	# ç¾åœ¨é–‹ã„ã¦ã„ã‚‹ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’ç·¨é›†ã—ãŸå ´åˆ
 	my $current_file;
 	eval{ $current_file = $::project_obj->file_target; };
 	if (
 		   $self->{projects}->a_project($self->{num})->file_target
 		eq $current_file
 	){
-		# ¥³¥á¥ó¥È¤ÎÊÔ½¸¤ò¥á¥¤¥ó¤ÎWindow¤ËÈ¿±Ç¤µ¤»¤ë
+		# ã‚³ãƒ¡ãƒ³ãƒˆã®ç·¨é›†ã‚’ãƒ¡ã‚¤ãƒ³ã®Windowã«åæ˜ ã•ã›ã‚‹
 		$::project_obj->comment( $t );
 		$::main_gui->inner->refresh;
 	}
@@ -246,7 +246,7 @@ sub refresh_method{
 }
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 #--------------#
 
 sub e2{

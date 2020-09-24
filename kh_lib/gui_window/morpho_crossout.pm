@@ -13,7 +13,7 @@ use gui_window::morpho_crossout::tab;
 use gui_window::morpho_crossout::var;
 
 #-------------#
-#   GUIºîÀ½   #
+#   GUIä½œè£½   #
 
 sub _new{
 	my $self = shift;
@@ -29,11 +29,11 @@ sub _new{
 
 	$self->{words_obj} = gui_widget::words->open(
 		parent => $lf,
-		verb   => kh_msg->get('output'), # ½ÐÎÏ
+		verb   => kh_msg->get('output'), # å‡ºåŠ›
 	);
 
 	$win->Button(
-		-text => kh_msg->gget('cancel'), # ¥­¥ã¥ó¥»¥ë
+		-text => kh_msg->gget('cancel'), # ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		-font => "TKFN",
 		-width => 8,
 		-command => sub{$self->close;}
@@ -51,7 +51,7 @@ sub _new{
 }
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 
 sub min{
 	my $self = shift;

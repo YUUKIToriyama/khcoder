@@ -2,7 +2,7 @@ package gui_window::main::inner;
 use strict;
 
 #----------------------#
-#   Window¤ÎÃæ¿ÈºîÀ®   #
+#   Windowã®ä¸­èº«ä½œæˆ   #
 #----------------------#
 
 sub make{
@@ -10,32 +10,32 @@ sub make{
 	my $mw   = shift;
 	my $self;
 
-	# ¥×¥í¥¸¥§¥¯¥È¾ğÊó
+	# ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±
 	my $lab_fra1 = $mw->LabFrame(
 		-label       => 'Project',
 		-labelside   => 'acrosstop',
 		-borderwidth => 2,
 	);
 
-	# ¥Ç¡¼¥¿¥Ù¡¼¥¹¾ğÊó
+	# ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹æƒ…å ±
 	my $lab_fra2 = $mw->LabFrame(
 		-label       => 'Database Stats',
 		-labelside   => 'acrosstop',
 		-borderwidth => '2'
 	);
 
-	# ¸À¸ì¤ÎÀÚ¤êÂØ¤¨¡Ê¤³¤ì¤é¤Î¥Õ¥ì¡¼¥à¤Ï¸å¤Çpack()¤¹¤ë¡Ë
+	# è¨€èªã®åˆ‡ã‚Šæ›¿ãˆï¼ˆã“ã‚Œã‚‰ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã¯å¾Œã§pack()ã™ã‚‹ï¼‰
 	my $fra3 = $mw->Frame();
 
 
-	# ¥×¥í¥¸¥§¥¯¥È¾ğÊó
+	# ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆæƒ…å ±
 	my $fra1 = $lab_fra1->Frame()->pack(
 		-expand => 1,
 		-fill => 'both',
 	);
 	
 	$fra1->Label(
-		-text => kh_msg->get('target'),#gui_window->gui_jchar('¸½ºß¤Î¥×¥í¥¸¥§¥¯¥È¡§','euc'),
+		-text => kh_msg->get('target'),#gui_window->gui_jchar('ç¾åœ¨ã®ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆï¼š','euc'),
 		-font => "TKFN"
 	)->grid(
 		-column => 0,
@@ -59,7 +59,7 @@ sub make{
 	gui_window->disabled_entry_configure($cupro);
 	
 	$fra1->Label(
-		-text => kh_msg->get('memo'),#gui_window->gui_jchar('ÀâÌÀ¡Ê¥á¥â¡Ë¡§','euc'),
+		-text => kh_msg->get('memo'),#gui_window->gui_jchar('èª¬æ˜ï¼ˆãƒ¡ãƒ¢ï¼‰ï¼š','euc'),
 		-font => "TKFN"
 	)->grid(
 		-column => 0,
@@ -84,14 +84,14 @@ sub make{
 	$fra1->gridColumnconfigure(1, -weight => 1);
 
 
-	# ¥Ç¡¼¥¿¥Ù¡¼¥¹¾ğÊó
+	# ãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹æƒ…å ±
 	my $fra2 = $lab_fra2->Frame()->pack(
 		-fill => 'both',
 		-expand => 1,
 	);
 
 	$fra2->Label(
-		-text => kh_msg->get('tokens'),#gui_window->gui_jchar('ÁíÃê½Ğ¸ì¿ô¡§','euc'),
+		-text => kh_msg->get('tokens'),#gui_window->gui_jchar('ç·æŠ½å‡ºèªæ•°ï¼š','euc'),
 		-font => "TKFN"
 	)->grid(
 		-column => 0,
@@ -113,7 +113,7 @@ sub make{
 
 	$fra2->Label(
 		-font => "TKFN",
-		-text => kh_msg->get('types'),#gui_window->gui_jchar('°Û¤Ê¤ê¸ì¿ô¡Ê»ÈÍÑ¡Ë¡§','euc')
+		-text => kh_msg->get('types'),#gui_window->gui_jchar('ç•°ãªã‚Šèªæ•°ï¼ˆä½¿ç”¨ï¼‰ï¼š','euc')
 	)->grid(
 		-column => 0,
 		-row    => 1,
@@ -134,7 +134,7 @@ sub make{
 
 	$fra2->Label(
 		-font => "TKFN",
-		-text => kh_msg->get('docs'),#gui_window->gui_jchar('Ê¸½ñ¤ÎÃ±½ã½¸·×¡§','euc')
+		-text => kh_msg->get('docs'),#gui_window->gui_jchar('æ–‡æ›¸ã®å˜ç´”é›†è¨ˆï¼š','euc')
 	)->grid(
 		-column => 0,
 		-row    => 2,
@@ -164,18 +164,18 @@ sub make{
 	$hlist->header(
 		'create',
 		0,
-		-text=>kh_msg->get('units'),#gui_window->gui_jchar('½¸·×Ã±°Ì','euc')
+		-text=>kh_msg->get('units'),#gui_window->gui_jchar('é›†è¨ˆå˜ä½','euc')
 	);
 	$hlist->header(
 		'create',
 		1,
-		-text => kh_msg->get('cases'),#gui_window->gui_jchar('¥±¡¼¥¹¿ô','euc')
+		-text => kh_msg->get('cases'),#gui_window->gui_jchar('ã‚±ãƒ¼ã‚¹æ•°','euc')
 	);
 
 	$fra2->gridColumnconfigure(1, -weight => 1, -minsize => 30);
 	$fra2->gridRowconfigure(2, -weight => 1);
 
-	# ¸À¸ì¤ÎÀÚ¤êÂØ¤¨
+	# è¨€èªã®åˆ‡ã‚Šæ›¿ãˆ
 	$self->{optmenu_lg_v} = $::config_obj->msg_lang;
 	$self->{optmenu_lg} = gui_widget::optmenu->open(
 		parent  => $fra3,
@@ -240,13 +240,13 @@ sub unselect{
 }
 
 #--------------------#
-#   Ãæ¿È¤Î½ñ¤­´¹¤¨   #
+#   ä¸­èº«ã®æ›¸ãæ›ãˆ   #
 #--------------------#
 sub refresh{
 	my $self = shift;
 	my $mw = $::main_gui->mw;
 	
-	# ½é´ü²½
+	# åˆæœŸåŒ–
 	$self->hlist->delete('all');
 	$mw->title('KH Coder');
 	$self->entry('e_curent_project', '');
@@ -256,7 +256,7 @@ sub refresh{
 	
 	my @list = ();
 
-	if ($::project_obj){                    # ¥×¥í¥¸¥§¥¯¥È¤ò³«¤¤¤Æ¤¤¤ë¾ì¹ç
+	if ($::project_obj){                    # ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’é–‹ã„ã¦ã„ã‚‹å ´åˆ
 		my $title;
 		if ( length($::project_obj->comment) ){
 			$title = $::project_obj->comment;
@@ -268,11 +268,11 @@ sub refresh{
 		$self->entry('e_curent_project', gui_window->gui_jchar($::project_obj->file_short_name));
 		$self->entry('e_project_memo', gui_window->gui_jchar($::project_obj->comment));
 		
-		if ($::project_obj->status_morpho){       # Á°½èÍı¤¬´°Î»¤·¤Æ¤¤¤ë¾ì¹ç
-			# Ãê½Ğ¸ì¿ô
+		if ($::project_obj->status_morpho){       # å‰å‡¦ç†ãŒå®Œäº†ã—ã¦ã„ã‚‹å ´åˆ
+			# æŠ½å‡ºèªæ•°
 			$self->entry('ent_num1', num_format(mysql_words->num_all)." (".num_format(mysql_words->num).")");
 			$self->entry('ent_num2', num_format(mysql_words->num_kinds_all." (".mysql_words->num_kinds.")") );
-			# ½¸·×Ã±°Ì
+			# é›†è¨ˆå˜ä½
 			my %name = (
 				"bun" => kh_msg->gget('sentence'),
 				"dan" => kh_msg->gget('paragraph'),
@@ -298,7 +298,7 @@ sub refresh{
 		}
 	}
 	
-	# ¡ÖÊ¸½ñ¤ÎÃ±½ã½¸·×¡§¡×¤Î¹¹¿·
+	# ã€Œæ–‡æ›¸ã®å˜ç´”é›†è¨ˆï¼šã€ã®æ›´æ–°
 	my $right = $self->hlist->ItemStyle('text',-anchor => 'e',-font => "TKFN");
 	my $row = 0;
 	foreach my $i (@list){
@@ -319,10 +319,10 @@ sub refresh{
 }
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 #--------------#
 
-# ¥¨¥ó¥È¥ê¡¼´Ø·¸
+# ã‚¨ãƒ³ãƒˆãƒªãƒ¼é–¢ä¿‚
 # $obj->entry('entry_name','content');
 # entry names: e_curent_project, e_project_memo, e_words_num
 
@@ -343,7 +343,7 @@ sub hlist{
 	return $self->{hlist};
 }
 
-# ¿ô»ú¤Î3·å¤´¤È¤Ë¥³¥ó¥Ş¤ò¡¦¡¦¡¦
+# æ•°å­—ã®3æ¡ã”ã¨ã«ã‚³ãƒ³ãƒã‚’ãƒ»ãƒ»ãƒ»
 sub num_format{
 	$_ = shift;
 	1 while s/(.*\d)(\d\d\d)/$1,$2/;

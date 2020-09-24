@@ -5,15 +5,15 @@ use strict;
 use Tk;
 
 #------------------#
-#   Window¤ò³«¤¯   #
+#   Windowã‚’é–‹ã   #
 
 sub _new{
 	my $self = shift;
 	$self->{win_obj}->title(
-		$self->gui_jt(kh_msg->get('win_title')) # Ê£¹ç¸ì¤Î¸¡½Ð¡ÊÃãä¥¡Ë
+		$self->gui_jt(kh_msg->get('win_title')) # è¤‡åˆèªžã®æ¤œå‡ºï¼ˆèŒ¶ç­Œï¼‰
 	);
 
-	# ¥¨¥ó¥È¥ê¤È¸¡º÷¥Ü¥¿¥ó¤Î¥Õ¥ì¡¼¥à
+	# ã‚¨ãƒ³ãƒˆãƒªã¨æ¤œç´¢ãƒœã‚¿ãƒ³ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
 	my $fra4 = $self->{win_obj}->LabFrame(
 		-label => 'Filter Entry',
 		-labelside => 'acrosstop',
@@ -31,7 +31,7 @@ sub _new{
 	$e1->bind("<KP_Enter>",sub{$self->search;});
 
 	my $sbutton = $fra4e->Button(
-		-text => kh_msg->get('run'), # ¸¡º÷
+		-text => kh_msg->get('run'), # æ¤œç´¢
 		-font => "TKFN",
 		-command => sub{$self->search;}
 	)->pack(-side => 'right', -padx => '2');
@@ -43,7 +43,7 @@ sub _new{
 		-font => "TKFN"
 	);
 
-	# ¥ª¥×¥·¥ç¥ó¡¦¥Õ¥ì¡¼¥à
+	# ã‚ªãƒ—ã‚·ãƒ§ãƒ³ãƒ»ãƒ•ãƒ¬ãƒ¼ãƒ 
 	my $fra4i = $fra4->Frame->pack(-expand => 'y', -fill => 'x');
 
 	$self->{optmenu_andor} = gui_widget::optmenu->open(
@@ -51,8 +51,8 @@ sub _new{
 		pack    => {-anchor=>'e', -side => 'left', -padx => 2},
 		options =>
 			[
-				[kh_msg->get('gui_window::word_search->or') , 'OR'], # OR¸¡º÷
-				[kh_msg->get('gui_window::word_search->and'), 'AND'], # AND¸¡º÷
+				[kh_msg->get('gui_window::word_search->or') , 'OR'], # ORæ¤œç´¢
+				[kh_msg->get('gui_window::word_search->and'), 'AND'], # ANDæ¤œç´¢
 			],
 		variable => \$self->{and_or},
 	);
@@ -62,15 +62,15 @@ sub _new{
 		pack    => {-anchor=>'e', -side => 'left', -padx => 12},
 		options =>
 			[
-				[kh_msg->get('gui_window::word_search->part')  => 'p'], # ÉôÊ¬°ìÃ×
-				[kh_msg->get('gui_window::word_search->comp') => 'c'], # ´°Á´°ìÃ×
-				[kh_msg->get('gui_window::word_search->forw') => 'z'], # Á°Êý°ìÃ×
-				[kh_msg->get('gui_window::word_search->back') => 'k'] # ¸åÊý°ìÃ×
+				[kh_msg->get('gui_window::word_search->part')  => 'p'], # éƒ¨åˆ†ä¸€è‡´
+				[kh_msg->get('gui_window::word_search->comp') => 'c'], # å®Œå…¨ä¸€è‡´
+				[kh_msg->get('gui_window::word_search->forw') => 'z'], # å‰æ–¹ä¸€è‡´
+				[kh_msg->get('gui_window::word_search->back') => 'k'] # å¾Œæ–¹ä¸€è‡´
 			],
 		variable => \$self->{s_mode},
 	);
 
-	# ·ë²ÌÉ½¼¨ÉôÊ¬
+	# çµæžœè¡¨ç¤ºéƒ¨åˆ†
 	my $fra5 = $self->{win_obj}->LabFrame(
 		-label => 'List (Top 500)',
 		-labelside => 'acrosstop',
@@ -96,18 +96,18 @@ sub _new{
 		#-height           => 20,
 	)->pack(-fill =>'both',-expand => 'yes');
 
-	$lis->header('create',0,-text => kh_msg->get('h_huku')); # Ê£¹ç¸ì
-	$lis->header('create',1,-text => kh_msg->get('h_freq')); # ½Ð¸½¿ô
+	$lis->header('create',0,-text => kh_msg->get('h_huku')); # è¤‡åˆèªž
+	$lis->header('create',1,-text => kh_msg->get('h_freq')); # å‡ºç¾æ•°
 
 	$fra5->Button(
-		-text => kh_msg->gget('copy'), # ¥³¥Ô¡¼
+		-text => kh_msg->gget('copy'), # ã‚³ãƒ”ãƒ¼
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub {gui_hlist->copy($self->{list});}
 	)->pack(-side => 'right');
 
 	$self->{conc_button} = $fra5->Button(
-		-text => kh_msg->get('whole'), # Á´Ê£¹ç¸ì¤Î¥ê¥¹¥È
+		-text => kh_msg->get('whole'), # å…¨è¤‡åˆèªžã®ãƒªã‚¹ãƒˆ
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub {$self->open_full_list;}
@@ -120,19 +120,19 @@ sub _new{
 }
 
 #----------#
-#   ¼Â¹Ô   #
+#   å®Ÿè¡Œ   #
 
 sub search{
 	my $self = shift;
 
-	# ¸¡º÷¼Â¹Ô
+	# æ¤œç´¢å®Ÿè¡Œ
 	my $result = mysql_hukugo->search(
 		query  => $self->gui_jg( $self->{entry}->get ),
 		method => $self->gui_jg( $self->{and_or} ),
 		mode   => $self->gui_jg( $self->{s_mode} ),
 	);
 
-	# ·ë²ÌÉ½¼¨
+	# çµæžœè¡¨ç¤º
 	my $numb_style = $self->{list}->ItemStyle(
 		'text',
 		-anchor => 'e',
@@ -175,7 +175,7 @@ sub start{
 }
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 
 sub win_name{
 	return 'w_hukugo';

@@ -80,7 +80,7 @@ sub make_each_log_table{
 	my %scores;
 	my $cases = @{$labels};
 	
-	# ·çÂ»ÂĞºö
+	# æ¬ æå¯¾ç­–
 	unless ( defined($d) ){
 		return undef;
 	}
@@ -94,11 +94,11 @@ sub make_each_log_table{
 		}
 	}
 	
-	# $h = Ãê½Ğ¸ì
+	# $h = æŠ½å‡ºèª
 	foreach my $h (keys %{$d} ){
 		my $current = [$h, $d->{$h}{v}];
 		my $sum = 0;
-		foreach my $j (@{$labels}){                         # ¥¹¥³¥¢
+		foreach my $j (@{$labels}){                         # ã‚¹ã‚³ã‚¢
 			push @{$current}, sprintf(
 				"%.2f",
 				( $d->{$h}{l}{$j} - $fixer ) * $d->{$h}{v}
@@ -107,7 +107,7 @@ sub make_each_log_table{
 			$sum +=        ( $d->{$h}{l}{$j} - $fixer ) * $d->{$h}{v};
 		}
 		
-		my $s = 0;                                          # Ê¬»¶
+		my $s = 0;                                          # åˆ†æ•£
 		foreach my $j (@{$labels}){
 			$s += 
 				(
@@ -118,7 +118,7 @@ sub make_each_log_table{
 		}
 		push @{$current}, sprintf("%.2f", $s / $cases);
 
-		foreach my $j (@{$labels}){                         # ¥Ñ¡¼¥»¥ó¥È
+		foreach my $j (@{$labels}){                         # ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆ
 			push @{$current}, sprintf(
 				"%.2f",
 				( $d->{$h}{l}{$j} - $fixer ) * $d->{$h}{v} / $sum * 100

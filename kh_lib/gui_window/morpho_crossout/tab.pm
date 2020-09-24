@@ -4,7 +4,7 @@ use base qw(gui_window::morpho_crossout);
 use strict;
 
 #----------#
-#   �¹�   #
+#   実行   #
 
 sub save{
 	my $self = shift;
@@ -17,9 +17,9 @@ sub save{
 		return 0;
 	}
 	
-	# ��¸��λ���
+	# 保存先の参照
 	my @types = (
-		[ kh_msg->get('tabdel'),[qw/.txt/] ], # ���ֶ��ڤ�
+		[ kh_msg->get('tabdel'),[qw/.txt/] ], # タブ区切り
 		["All files",'*']
 	);
 	my $path = $self->win_obj->getSaveFile(
@@ -62,11 +62,11 @@ sub save{
 }
 
 #--------------#
-#   ��������   #
+#   アクセサ   #
 
 
 sub label{
-	return kh_msg->get('win_title'); # ��ʸ�����и��ɽ�ν��ϡ� ���ֶ��ڤ�
+	return kh_msg->get('win_title'); # 「文書ｘ抽出語」表の出力： タブ区切り
 }
 
 sub win_name{

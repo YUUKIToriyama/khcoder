@@ -12,7 +12,7 @@ sub finish{
 			thefile => $self->{file},
 		);
 	
-	# ¥Ø¥Ã¥À¹Ô¤ÎºîÀ½
+	# ãƒ˜ãƒƒãƒ€è¡Œã®ä½œè£½
 	my $head = ''; my @head;
 	foreach my $i ('h1','h2','h3','h4','h5','dan','bun'){
 		$head .= "$i,";
@@ -41,7 +41,7 @@ sub finish{
 	
 	print OUTF "$head\n";
 	
-	# °ÌÃÖ¾ğÊó¤È¤Î¥Ş¡¼¥¸
+	# ä½ç½®æƒ…å ±ã¨ã®ãƒãƒ¼ã‚¸
 	
 	my $sql;
 	$sql .= "SELECT ";

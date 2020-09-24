@@ -2,22 +2,22 @@ package kh_all_in_one;
 use strict;
 
 #-------------------------------#
-#   All In One ÈÇ¤Îµ¯Æ°¡¦½ªÎ»   #
+#   All In One ç‰ˆã®èµ·å‹•ãƒ»çµ‚äº†   #
 #-------------------------------#
 
-# All In OneÈÇ¤Ç¤Ï¡¢
-# (1)¡Öconfig\coder.ini¡×¤Ë²¼µ­¤ÎÀßÄê¤ò²Ã¤¨¤ë
+# All In Oneç‰ˆã§ã¯ã€
+# (1)ã€Œconfig\coder.iniã€ã«ä¸‹è¨˜ã®è¨­å®šã‚’åŠ ãˆã‚‹
 #	all_in_one_pack	1
 #	sql_username	khc
 #	sql_password	khc
 #	sql_host	localhost
 #	sql_port	3307
-# (2) Æ±º­¤¹¤ëMySQL¤ÎÀßÄê
-#	¥æ¡¼¥¶¡¼ÀßÄê: khc[khc], root[khcallinone]
-#	¡Ökhc.ini¡×¤âÅºÉÕ¤¹¤ë
+# (2) åŒæ¢±ã™ã‚‹MySQLã®è¨­å®š
+#	ãƒ¦ãƒ¼ã‚¶ãƒ¼è¨­å®š: khc[khc], root[khcallinone]
+#	ã€Œkhc.iniã€ã‚‚æ·»ä»˜ã™ã‚‹
 
 sub init{
-	# ÍøÍÑ²ÄÇ½¤Ê¥á¥â¥ê¤ÎÎÌ¤ò¼èÆÀ
+	# åˆ©ç”¨å¯èƒ½ãªãƒ¡ãƒ¢ãƒªã®é‡ã‚’å–å¾—
 	require Win32::SystemInfo;
 	my %mHash = (AvailPhys => 0);
 	Win32::SystemInfo::MemoryStatus(\%mHash,'MB');
@@ -28,12 +28,12 @@ sub init{
 	$mHash{AvailPhys} = $mHash{AvailPhys} - 500;
 	$mHash{AvailPhys} = 16 if $mHash{AvailPhys} < 16;
 
-	# pandoc¤Î¥Ñ¥¹¤òÄÉ²Ã
+	# pandocã®ãƒ‘ã‚¹ã‚’è¿½åŠ 
 	my $pandoc = $::config_obj->cwd.'/dep/pandoc-2.7.3-windows-i386';
 	$::config_obj->os_path($pandoc);
 	$::ENV{PATH} = "$pandoc".";"."$::ENV{PATH}";
 
-	# Ããä¥¤Î¥Ñ¥¹ÀßÄê
+	# èŒ¶ç­Œã®ãƒ‘ã‚¹è¨­å®š
 	if (
 		not -e $::config_obj->chasen_path
 		and -e $::config_obj->cwd.'/dep/chasen/chasen.exe'
@@ -43,7 +43,7 @@ sub init{
 		);
 	}
 
-	# Mecab¤Î¥Ñ¥¹ÀßÄê
+	# Mecabã®ãƒ‘ã‚¹è¨­å®š
 	if (
 		not -e $::config_obj->mecab_path
 		and -e $::config_obj->cwd.'/dep/mecab/bin/mecab.exe'
@@ -53,7 +53,7 @@ sub init{
 		);
 	}
 	
-	# FreeLing¤Î¥Ñ¥¹ÀßÄê
+	# FreeLingã®ãƒ‘ã‚¹è¨­å®š
 	if (
 		not -d $::config_obj->freeling_dir
 		and -d $::config_obj->cwd.'/dep/freeling40'
@@ -63,7 +63,7 @@ sub init{
 		);
 	}
 	
-	# JAVA¤Î¥Ñ¥¹ÀßÄê
+	# JAVAã®ãƒ‘ã‚¹è¨­å®š
 	unless ( -e $::config_obj->java_path ) {
 		require Devel::Platform::Info::Win32;
 		my $os_info = Devel::Platform::Info::Win32->new->get_info();
@@ -90,7 +90,7 @@ sub init{
 		}
 	}
 	
-	# HanDic¤Î¥Ñ¥¹ÀßÄê
+	# HanDicã®ãƒ‘ã‚¹è¨­å®š
 	if (
 		not -d $::config_obj->han_dic_path
 		and -d $::config_obj->cwd.'/dep/handic'
@@ -100,7 +100,7 @@ sub init{
 		);
 	}
 	
-	# Stanford segmenter¤Î¥Ñ¥¹ÀßÄê
+	# Stanford segmenterã®ãƒ‘ã‚¹è¨­å®š
 	if (
 		not -d $::config_obj->stanf_seg_path
 		and -d $::config_obj->cwd.'/dep/stanford-segmenter'
@@ -110,7 +110,7 @@ sub init{
 		);
 	}
 
-	# Stanford POS Tagger¤Î¥Ñ¥¹ÀßÄê
+	# Stanford POS Taggerã®ãƒ‘ã‚¹è¨­å®š
 	if (
 		not -e $::config_obj->stanf_tagger_path_en
 		and -e $::config_obj->cwd.'/dep/stanford-postagger/models/wsj-0-18-left3words-distsim.tagger'
@@ -138,7 +138,7 @@ sub init{
 		);
 	}
 
-	# R¤Î¥Ñ¥¹ÀßÄê
+	# Rã®ãƒ‘ã‚¹è¨­å®š
 	if (not -e $::config_obj->r_path){
 		require Devel::Platform::Info::Win32;
 		my $os_info = Devel::Platform::Info::Win32->new->get_info();
@@ -184,7 +184,7 @@ sub init{
 	$ENV{R_PROFILE_USER} = 'DO_NOT_LOAD_FROM_USER_DIR';
 	$ENV{R_ENVIRON_USER} = 'DO_NOT_LOAD_FROM_USER_DIR';
 
-	# MySQLÀßÄê¥Õ¥¡¥¤¥ë½¤Àµ¡Êkhc.ini¡Ë
+	# MySQLè¨­å®šãƒ•ã‚¡ã‚¤ãƒ«ä¿®æ­£ï¼ˆkhc.iniï¼‰
 	my $p1 = $::config_obj->cwd.'/dep/mysql/';
 	my $p2 = $::config_obj->cwd.'/dep/mysql/data/';
 	my $p3 = $p1; chop $p3;
@@ -268,7 +268,7 @@ sub init{
 		);
 	}
 
-	# MySQL¤Îµ¯Æ°
+	# MySQLã®èµ·å‹•
 	return 1 if mysql_exec->connection_test;
 	print "Starting MySQL...\n";
 	require Win32;

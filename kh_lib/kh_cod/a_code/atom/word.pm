@@ -1,4 +1,4 @@
-# ÄÌ¾ï¤ÎÃê½Ğ¸ì¡Ê´ğËÜ·Á¡Ë¤ò»È¤Ã¤¿»ØÄê
+# é€šå¸¸ã®æŠ½å‡ºèªï¼ˆåŸºæœ¬å½¢ï¼‰ã‚’ä½¿ã£ãŸæŒ‡å®š
 
 package kh_cod::a_code::atom::word;
 use base qw(kh_cod::a_code::atom);
@@ -9,7 +9,7 @@ use mysql_exec;
 use POSIX qw(log10);
 
 #-----------------#
-#   SQLÊ¸¤Î½àÈ÷   #
+#   SQLæ–‡ã®æº–å‚™   #
 #-----------------#
 
 my %sql_join = (
@@ -73,7 +73,7 @@ my %sql_group = (
 my $dn;
 
 #--------------------#
-#   WHEREÀáÍÑSQLÊ¸   #
+#   WHEREç¯€ç”¨SQLæ–‡   #
 #--------------------#
 
 sub expr{
@@ -109,7 +109,7 @@ sub idf{
 	my $t = $self->tables;
 	unless ($t){ return '0';}
 
-	# Á´Ê¸½ñ¿ô¤Î¼èÆÀ¡¦Êİ»ı
+	# å…¨æ–‡æ›¸æ•°ã®å–å¾—ãƒ»ä¿æŒ
 	unless (
 		($dn->{$self->{tani}}) && ($dn->{check} eq $::project_obj->file_target)
 	){
@@ -120,7 +120,7 @@ sub idf{
 	}
 
 	my $df = 0;
-	# 1¼ïÎà¤Î¾ì¹ç
+	# 1ç¨®é¡ã®å ´åˆ
 	if (@{$t} == 1){
 		return 0 unless $self->{list};
 		$df = mysql_exec->select("
@@ -131,7 +131,7 @@ sub idf{
 		$df = $df->fetch or return 0;
 		$df = $df->[0];
 	}
-	# 2¼ïÎà°Ê¾å¤Î¾ì¹ç
+	# 2ç¨®é¡ä»¥ä¸Šã®å ´åˆ
 	elsif (@{$t} > 1){
 		my $sql;
 		$sql .= "SELECT COUNT(*)\n";
@@ -163,7 +163,7 @@ sub idf{
 }
 
 #---------------------------------------#
-#   ¥³¡¼¥Ç¥£¥ó¥°½àÈ÷¡Êtmp tableºîÀ®¡Ë   #
+#   ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°æº–å‚™ï¼ˆtmp tableä½œæˆï¼‰   #
 #---------------------------------------#
 
 sub ready{
@@ -221,7 +221,7 @@ sub ready{
 }
 
 #-------------------------------#
-#   ÍøÍÑ¤¹¤ëtmp table¤Î¥ê¥¹¥È   #
+#   åˆ©ç”¨ã™ã‚‹tmp tableã®ãƒªã‚¹ãƒˆ   #
 
 sub tables{
 	my $self = shift;
@@ -229,7 +229,7 @@ sub tables{
 }
 
 #----------------#
-#   ¿Æ¥Æ¡¼¥Ö¥ë   #
+#   è¦ªãƒ†ãƒ¼ãƒ–ãƒ«   #
 sub parent_table{
 	my $self = shift;
 	my $new  = shift;

@@ -30,7 +30,7 @@ sub add_button{
 					my $file_option = 'screen/temp/option.txt';
 					my $font_str = gui_window->gui_jchar($::config_obj->font_main);
 					my $plugin_rtn;
-					#Word�Ƃ���ɗނ���t�@�C���`���͔�Ή�
+					#Wordとそれに類するファイル形式は非対応
 					if ($t =~ /\.(docx|doc|rtf|odt)$/i){
 						return;
 					} elsif ($t =~ /\.(xls|xlsx)$/i){
@@ -110,8 +110,8 @@ sub add_button{
 	}
 }
 
-#�g���q���m�F���{�^���̔�\��/�\����؂�ւ���
-#�v���O�C�����Ή����Ă���g���q�̂Ƃ��Ƀ{�^����\������悤�ɕύX
+#拡張子を確認しボタンの非表示/表示を切り替える
+#プラグインが対応している拡張子のときにボタンを表示するように変更
 sub check_plugin_btn{
 	my $self = shift;
 	my $path = shift;

@@ -2,12 +2,12 @@ package gui_errormsg::print::gui_tk;
 use strict;
 use base qw(gui_errormsg::print);
 
-# ╔ю╔╓╔╒╔М╔╟╔э╔ц╔╞╔╧и╫╪╗
+# Ц┐─Ц┌╓Ц┌╒Ц┐╜Ц┌╟Ц┐°Ц┐┐Ц┌╞Ц┌╧Х║╗Г╓╨
 sub print{
 	use Tk;
 	my $self = shift;
 
-	# ©фWindow╓╛б╦╨ъ╓╧╓К╓╚╓и╓╕╓╚╓РЁнг╖
+	# Х╕╙WindowЦ│▄Е╜≤Е°╗Ц│≥Ц┌▀Ц│▀Ц│╘Ц│├Ц│▀Ц┌▓Г╒╨Х╙█
 	my $window;
 	if (Exists(${$self->{window}})){
 		$window = ${$self->{window}};
@@ -51,7 +51,7 @@ sub print{
 
 }
 
-# ╔г╔у╔╘╔К╔х╓н╔ю╔╓╔╒╔М╔╟╥а╪╟
+# Ц┐┤Ц┐∙Ц┌╘Ц┐╚Ц┐┬Ц│╝Ц┐─Ц┌╓Ц┌╒Ц┐╜Ц┌╟Е╫╒Е╪▐
 
 sub icon{
 	my $self = shift;

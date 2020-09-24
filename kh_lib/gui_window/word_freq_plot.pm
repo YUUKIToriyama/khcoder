@@ -4,7 +4,7 @@ use Tk::PNG;
 use base qw(gui_window);
 
 #------------------#
-#   Window¤ò³«¤¯   #
+#   Windowã‚’é–‹ã   #
 #------------------#
 
 sub _new{
@@ -13,7 +13,7 @@ sub _new{
 	my $mw = $::main_gui->mw;
 	my $win = $self->{win_obj};
 
-	$win->title($self->gui_jt( kh_msg->get('win_title') )); # '½Ğ¸½²ó¿ô¡§Ê¬ÉÛ¡§¥×¥í¥Ã¥È'
+	$win->title($self->gui_jt( kh_msg->get('win_title') )); # 'å‡ºç¾å›æ•°ï¼šåˆ†å¸ƒï¼šãƒ—ãƒ­ãƒƒãƒˆ'
 
 	$self->{img} = $win->Photo(-file => $args{images}->[1]->path);
 	
@@ -26,7 +26,7 @@ sub _new{
 	my $f1 = $win->Frame()->pack(-expand => 'y', -fill => 'x', -pady => 2);
 
 	$f1->Label(
-		-text => kh_msg->get('log'),#$self->gui_jchar(' ÂĞ¿ô¼´¤Î»ÈÍÑ¡§'),
+		-text => kh_msg->get('log'),#$self->gui_jchar(' å¯¾æ•°è»¸ã®ä½¿ç”¨ï¼š'),
 		-font => "TKFN"
 	)->pack(-anchor => 'e', -side => 'left');
 	
@@ -35,16 +35,16 @@ sub _new{
 		pack    => {-anchor=>'e', -side => 'left', -padx => 0},
 		options =>
 			[
-				[kh_msg->get('x') => 1], # $self->gui_jchar('½Ğ¸½²ó¿ô(X)')
-				[kh_msg->get('xy') => 2], # $self->gui_jchar('½Ğ¸½²ó¿ô(X)¤ÈÅÙ¿ô(Y)')
-				[kh_msg->get('none') => 0], # $self->gui_jchar('¤Ê¤·')
+				[kh_msg->get('x') => 1], # $self->gui_jchar('å‡ºç¾å›æ•°(X)')
+				[kh_msg->get('xy') => 2], # $self->gui_jchar('å‡ºç¾å›æ•°(X)ã¨åº¦æ•°(Y)')
+				[kh_msg->get('none') => 0], # $self->gui_jchar('ãªã—')
 			],
 		variable => \$self->{ax},
 		command  => sub {$self->renew;},
 	);
 
 	$f1->Button(
-		-text => kh_msg->gget('close'), #$self->gui_jchar('ÊÄ¤¸¤ë'),
+		-text => kh_msg->gget('close'), #$self->gui_jchar('é–‰ã˜ã‚‹'),
 		-font => "TKFN",
 		-width => 8,
 		-borderwidth => '1',
@@ -54,7 +54,7 @@ sub _new{
 	)->pack(-side => 'right');
 
 	$f1->Button(
-		-text => kh_msg->gget('save'), #$self->gui_jchar('ÊİÂ¸'),
+		-text => kh_msg->gget('save'), #$self->gui_jchar('ä¿å­˜'),
 		-font => "TKFN",
 		#-width => 8,
 		-borderwidth => '1',
@@ -70,7 +70,7 @@ sub _new{
 sub save{
 	my $self = shift;
 
-	# ÊİÂ¸Àè¤Î»²¾È
+	# ä¿å­˜å…ˆã®å‚ç…§
 	my @types = (
 		[ "Encapsulated PostScript",[qw/.eps/] ],
 		[ "PDF",[qw/.pdf/] ],
@@ -85,7 +85,7 @@ sub save{
 		-defaultextension => '.eps',
 		-filetypes        => \@types,
 		-title            =>
-			$self->gui_jt( kh_msg->get('saving') ),#'¥×¥í¥Ã¥È¤òÊİÂ¸'
+			$self->gui_jt( kh_msg->get('saving') ),#'ãƒ—ãƒ­ãƒƒãƒˆã‚’ä¿å­˜'
 		-initialdir       => $self->gui_jchar($::config_obj->cwd)
 	);
 
@@ -113,7 +113,7 @@ sub end{
 }
 
 #--------------#
-#   WindowÌ¾   #
+#   Windowå   #
 
 sub win_name{
 	return 'w_word_freq_plot';

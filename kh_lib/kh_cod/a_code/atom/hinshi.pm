@@ -1,4 +1,4 @@
-# Ãê½Ğ¸ì¤ò»È¤Ã¤¿»ØÄê¡¡¡ÊÉÊ»ì¤È³èÍÑ·Á¤Î»ØÄê¤ËÂĞ±ş¡Ë
+# æŠ½å‡ºèªã‚’ä½¿ã£ãŸæŒ‡å®šã€€ï¼ˆå“è©ã¨æ´»ç”¨å½¢ã®æŒ‡å®šã«å¯¾å¿œï¼‰
 
 package kh_cod::a_code::atom::hinshi;
 use base qw(kh_cod::a_code::atom);
@@ -9,7 +9,7 @@ use mysql_exec;
 use POSIX qw(log10);
 
 #-----------------#
-#   SQLÊ¸¤Î½àÈ÷   #
+#   SQLæ–‡ã®æº–å‚™   #
 #-----------------#
 
 my %sql_join = (
@@ -73,7 +73,7 @@ my %sql_group = (
 my $dn;
 
 #--------------------#
-#   WHEREÀáÍÑSQLÊ¸   #
+#   WHEREç¯€ç”¨SQLæ–‡   #
 #--------------------#
 
 sub expr{
@@ -91,7 +91,7 @@ sub idf{
 	my $self = shift;
 	return 0 unless $self->tables;
 	
-	# Á´Ê¸½ñ¿ô¤Î¼èÆÀ¡¦Êİ»ı
+	# å…¨æ–‡æ›¸æ•°ã®å–å¾—ãƒ»ä¿æŒ
 	unless (
 		($dn->{$self->{tani}}) && ($dn->{check} eq $::project_obj->file_target)
 	){
@@ -101,7 +101,7 @@ sub idf{
 		$dn->{check} = $::project_obj->file_target;
 	}
 	
-	# ·×»»
+	# è¨ˆç®—
 	my $df;
 	$df = mysql_exec->select(
 		"SELECT COUNT(*) FROM $self->{tables}[0]",1
@@ -112,7 +112,7 @@ sub idf{
 }
 
 #---------------------------------------#
-#   ¥³¡¼¥Ç¥£¥ó¥°½àÈ÷¡Êtmp tableºîÀ®¡Ë   #
+#   ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°æº–å‚™ï¼ˆtmp tableä½œæˆï¼‰   #
 #---------------------------------------#
 
 sub ready{
@@ -120,9 +120,9 @@ sub ready{
 	my $tani = shift;
 	$self->{tani} = $tani;
 	
-	# É½ÁØ¸ì¥ê¥¹¥ÈºîÀ®
+	# è¡¨å±¤èªãƒªã‚¹ãƒˆä½œæˆ
 	my $list;
-	if ($self->raw =~ /^(.+)\-\->(.+)\->(.+)$/o) {   # ÉÊ»ì¡õ³èÍÑ »ØÄê
+	if ($self->raw =~ /^(.+)\-\->(.+)\->(.+)$/o) {   # å“è©ï¼†æ´»ç”¨ æŒ‡å®š
 		#print Jcode->new("g: $1, h: $2, k: $3\n")->sjis;
 		
 		$list = mysql_a_word->new(
@@ -131,7 +131,7 @@ sub ready{
 			katuyo => $3
 		)->hyoso_id_s;
 	}
-	elsif ($self->raw =~ /^(.+)\-\->(.+)\=>(.+)$/o) {   # ÉÊ»ì¡õÉ½ÁØ »ØÄê
+	elsif ($self->raw =~ /^(.+)\-\->(.+)\=>(.+)$/o) {   # å“è©ï¼†è¡¨å±¤ æŒ‡å®š
 		#print Jcode->new("g: $1, h: $2, hs: $3\n")->sjis;
 		$list = mysql_a_word->new(
 			genkei => $1,
@@ -139,21 +139,21 @@ sub ready{
 			hyoso => $3
 		)->hyoso_id_s;
 	}
-	elsif ($self->raw =~ /^(.+)\-\->(.+)$/o) {      # ÉÊ»ì»ØÄê
+	elsif ($self->raw =~ /^(.+)\-\->(.+)$/o) {      # å“è©æŒ‡å®š
 		#print Jcode->new("g: $1, h: $2\n")->sjis;
 		$list = mysql_a_word->new(
 			genkei => $1,
 			khhinshi => $2,
 		)->hyoso_id_s;
 	}
-	elsif ($self->raw =~ /^(.+)\->(.+)$/o) {       # ³èÍÑ»ØÄê
+	elsif ($self->raw =~ /^(.+)\->(.+)$/o) {       # æ´»ç”¨æŒ‡å®š
 		#print Jcode->new("g: $1, k: $2\n")->sjis;
 		$list = mysql_a_word->new(
 			genkei => $1,
 			katuyo => $2
 		)->hyoso_id_s;
 	}
-	elsif ($self->raw =~ /^(.+)=>(.+)$/o) {       # É½ÁØ»ØÄê
+	elsif ($self->raw =~ /^(.+)=>(.+)$/o) {       # è¡¨å±¤æŒ‡å®š
 		#print Jcode->new("g: $1, k: $2\n")->sjis;
 		$list = mysql_a_word->new(
 			genkei => $1,
@@ -172,7 +172,7 @@ sub ready{
 		return '';
 	}
 	
-	# ¥Æ¡¼¥Ö¥ëÌ¾·èÄê¤È¥­¥ã¥Ã¥·¥å¤Î¥Á¥§¥Ã¥¯
+	# ãƒ†ãƒ¼ãƒ–ãƒ«åæ±ºå®šã¨ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®ãƒã‚§ãƒƒã‚¯
 	my $debug = 0;
 	my @c_c = kh_cod::a_code->cache_check(
 		tani => $tani,
@@ -190,7 +190,7 @@ sub ready{
 		print "\n" if $debug;
 	}
 	
-	# ¥Æ¡¼¥Ö¥ëºîÀ®
+	# ãƒ†ãƒ¼ãƒ–ãƒ«ä½œæˆ
 	mysql_exec->do("
 		CREATE TABLE $table (
 			id INT primary key not null,
@@ -220,7 +220,7 @@ sub ready{
 }
 
 #-------------------------------#
-#   ÍøÍÑ¤¹¤ëtmp table¤Î¥ê¥¹¥È   #
+#   åˆ©ç”¨ã™ã‚‹tmp tableã®ãƒªã‚¹ãƒˆ   #
 
 sub tables{
 	my $self = shift;
@@ -228,7 +228,7 @@ sub tables{
 }
 
 #----------------#
-#   ¿Æ¥Æ¡¼¥Ö¥ë   #
+#   è¦ªãƒ†ãƒ¼ãƒ–ãƒ«   #
 sub parent_table{
 	my $self = shift;
 	my $new  = shift;

@@ -5,17 +5,17 @@ use gui_widget::optmenu;
 use mysql_outvar;
 
 #-------------#
-#   GUIºîÀ½   #
+#   GUIä½œè£½   #
 
 sub _new{
 	my $self = shift;
 	my $mw = $::main_gui->mw;
 	my $win = $self->{win_obj};
 	#$win->focus;
-	$win->title($self->gui_jt(kh_msg->get('win_title'))); # ¥³¡¼¥Ç¥£¥ó¥°¡¦³°ÉôÊÑ¿ô¤È¤Î¥¯¥í¥¹½¸·×
+	$win->title($self->gui_jt(kh_msg->get('win_title'))); # ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ»å¤–éƒ¨å¤‰æ•°ã¨ã®ã‚¯ãƒ­ã‚¹é›†è¨ˆ
 	
 	#------------------------#
-	#   ¥ª¥×¥·¥ç¥óÆşÎÏÉôÊ¬   #
+	#   ã‚ªãƒ—ã‚·ãƒ§ãƒ³å…¥åŠ›éƒ¨åˆ†   #
 	
 	my $lf = $win->LabFrame(
 		-label => 'Entry',
@@ -24,15 +24,15 @@ sub _new{
 	)->pack(-fill => 'x');
 	
 	my $f0 = $lf->Frame->pack(-fill => 'x');
-	# ¥ë¡¼¥ë¡¦¥Õ¥¡¥¤¥ë
+	# ãƒ«ãƒ¼ãƒ«ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«
 	my %pack0 = (-side => 'left');
 	$self->{codf_obj} = gui_widget::codf->open(
 		parent => $f0,
 		pack   => \%pack0
 	);
-	# ¥»¥ëÆâÍÆÁªÂò
+	# ã‚»ãƒ«å†…å®¹é¸æŠ
 	$f0->Label(
-		-text => kh_msg->get('cells'), # ¡¡¡¡¥»¥ëÆâÍÆ¡§
+		-text => kh_msg->get('cells'), # ã€€ã€€ã‚»ãƒ«å†…å®¹ï¼š
 		-font => "TKFN",
 	)->pack(-side => 'left');
 	
@@ -41,18 +41,18 @@ sub _new{
 		pack    => {-side => 'left'},
 		options =>
 			[
-				[kh_msg->get('f_p') , 0], # ÅÙ¿ô¤È¥Ñ¡¼¥»¥ó¥È
-				[kh_msg->get('f')   , 1], # ÅÙ¿ô¤Î¤ß
-				[kh_msg->get('p')   , 2], # ¥Ñ¡¼¥»¥ó¥È¤Î¤ß
+				[kh_msg->get('f_p') , 0], # åº¦æ•°ã¨ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆ
+				[kh_msg->get('f')   , 1], # åº¦æ•°ã®ã¿
+				[kh_msg->get('p')   , 2], # ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆã®ã¿
 			],
 		variable => \$self->{cell_opt},
 	);
 	
 	my $f1 = $lf->Frame->pack(-fill => 'x', -pady => 3);
 	
-	# Ã±°ÌÁªÂò
+	# å˜ä½é¸æŠ
 	$f1->Label(
-		-text => kh_msg->get('unit_cod'), # ¥³¡¼¥Ç¥£¥ó¥°Ã±°Ì¡§
+		-text => kh_msg->get('unit_cod'), # ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°å˜ä½ï¼š
 		-font => "TKFN"
 	)->pack(-side => 'left');
 	my %pack = (
@@ -65,23 +65,23 @@ sub _new{
 		command => sub{$self->fill;}
 	);
 
-	# ÊÑ¿ôÁªÂò
+	# å¤‰æ•°é¸æŠ
 	$f1->Label(
-		-text => kh_msg->get('var'), #  ¡¡¥¯¥í¥¹¤¹¤ëÊÑ¿ô¡§
+		-text => kh_msg->get('var'), #  ã€€ã‚¯ãƒ­ã‚¹ã™ã‚‹å¤‰æ•°ï¼š
 		-font => "TKFN"
 	)->pack(-side => 'left');
 	
 	$self->{opt_frame} = $f1;
 	
 	$f1->Button(
-		-text    => kh_msg->get('run'), # ½¸·×
+		-text    => kh_msg->get('run'), # é›†è¨ˆ
 		-font    => "TKFN",
 		-width   => 8,
 		-command => sub{$self->_calc;}
 	)->pack( -anchor => 'e', -side => 'right')->focus;
 	
 	#------------------#
-	#   ·ë²ÌÉ½¼¨ÉôÊ¬   #
+	#   çµæœè¡¨ç¤ºéƒ¨åˆ†   #
 
 	my $rf = $win->LabFrame(
 		-label => 'Result',
@@ -115,7 +115,7 @@ sub _new{
 	)->pack(-side => 'left');
 
 	$self->{copy_btn} = $rf->Button(
-		-text => kh_msg->gget('copy_all'), # ¥³¥Ô¡¼¡ÊÉ½Á´ÂÎ¡Ë
+		-text => kh_msg->gget('copy_all'), # ã‚³ãƒ”ãƒ¼ï¼ˆè¡¨å…¨ä½“ï¼‰
 		-font => "TKFN",
 		#-width => 8,
 		-borderwidth => '1',
@@ -137,7 +137,7 @@ sub _new{
 	)->pack(-side => 'right');
 
 	my $b1 = $self->{line_mb} = $rf->Menubutton(
-		-text        => kh_msg->get('line_select'), # ÁªÂò
+		-text        => kh_msg->get('line_select'), # é¸æŠ
 		-tearoff     => 'no',
 		-relief      => 'raised',
 		-indicator   => 'no',
@@ -147,32 +147,32 @@ sub _new{
 	)->pack(-anchor => 'e', -pady => 2, -padx => 2, -side => 'right');
 
 	my $b2 = $rf->Button(
-		-text => kh_msg->get('line_all'), # ¤¹¤Ù¤Æ
+		-text => kh_msg->get('line_all'), # ã™ã¹ã¦
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub { $self->plot(2); }
 	)->pack(-anchor => 'e', -pady => 2, -padx => 2, -side => 'right');
 
 	$rf->Label(
-		-text       => kh_msg->get('line'), # ÀŞ¤ìÀş
+		-text       => kh_msg->get('line'), # æŠ˜ã‚Œç·š
 	)->pack(-side => 'right');
 
 	my $b3 = $rf->Button(
-		-text => kh_msg->get('gui_window::r_plot::cod_mat->fluc'), # ¥Ğ¥Ö¥ë
+		-text => kh_msg->get('gui_window::r_plot::cod_mat->fluc'), # ãƒãƒ–ãƒ«
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub { $self->plot(1); }
 	)->pack(-anchor => 'e', -pady => 2, -padx => 2, -side => 'right');
 
 	my $b4 = $rf->Button(
-		-text => kh_msg->get('gui_window::r_plot::cod_mat->heat'), # ¥Ò¡¼¥È
+		-text => kh_msg->get('gui_window::r_plot::cod_mat->heat'), # ãƒ’ãƒ¼ãƒˆ
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub { $self->plot(0); }
 	)->pack(-anchor => 'e', -pady => 2, -padx => 2, -side => 'right');
 
 	$rf->Label(
-		-text       => kh_msg->get('map'), # ¥Ş¥Ã¥×
+		-text       => kh_msg->get('map'), # ãƒãƒƒãƒ—
 	)->pack(-side => 'right');
 
 	#SCREEN plugin
@@ -180,7 +180,7 @@ sub _new{
 	screen_code::cross_func::add_menu($self,$rf);
 	#SCREEN Plugin
 
-	# R¤¬»È¤¨¤Ê¤¤¾ì¹ç
+	# RãŒä½¿ãˆãªã„å ´åˆ
 	unless ($::config_obj->R){
 		$b1->configure(-state => 'disable');
 		$b2->configure(-state => 'disable');
@@ -197,7 +197,7 @@ sub _new{
 }
 
 #----------------------------------#
-#   ÍøÍÑ¤Ç¤­¤ëÊÑ¿ô¤Î¥ê¥¹¥È¤òÉ½¼¨   #
+#   åˆ©ç”¨ã§ãã‚‹å¤‰æ•°ã®ãƒªã‚¹ãƒˆã‚’è¡¨ç¤º   #
 #----------------------------------#
 
 sub fill{
@@ -222,7 +222,7 @@ sub var_id{
 }
 
 #------------------#
-#   ½¸·×¥ë¡¼¥Á¥ó   #
+#   é›†è¨ˆãƒ«ãƒ¼ãƒãƒ³   #
 
 sub _calc{
 	my $self = shift;
@@ -232,12 +232,12 @@ sub _calc{
 	);
 	$self->win_obj->update;
 	
-	# ÆşÎÏÆâÍÆ¥Á¥§¥Ã¥¯
+	# å…¥åŠ›å†…å®¹ãƒã‚§ãƒƒã‚¯
 	if ($self->var_id =~ /h[1-5]/i ) {
 		unless ( $self->tani && -e $self->cfile ){
 			my $win = $self->win_obj;
 			gui_errormsg->open(
-				msg => kh_msg->get('er_ill'), # »ØÄê¤µ¤ì¤¿¾ò·ï¤Ç¤Î½¸·×¤Ï¹Ô¤¨¤Ş¤»¤ó¡£
+				msg => kh_msg->get('er_ill'), # æŒ‡å®šã•ã‚ŒãŸæ¡ä»¶ã§ã®é›†è¨ˆã¯è¡Œãˆã¾ã›ã‚“ã€‚
 				window => \$win,
 				type => 'msg',
 			);
@@ -248,7 +248,7 @@ sub _calc{
 		unless ( $self->tani && -e $self->cfile && $self->var_id > -1){
 			my $win = $self->win_obj;
 			gui_errormsg->open(
-				msg => kh_msg->get('er_ill'), # »ØÄê¤µ¤ì¤¿¾ò·ï¤Ç¤Î½¸·×¤Ï¹Ô¤¨¤Ş¤»¤ó¡£
+				msg => kh_msg->get('er_ill'), # æŒ‡å®šã•ã‚ŒãŸæ¡ä»¶ã§ã®é›†è¨ˆã¯è¡Œãˆã¾ã›ã‚“ã€‚
 				window => \$win,
 				type => 'msg',
 			);
@@ -259,14 +259,14 @@ sub _calc{
 	
 	#print "var_id: ".$self->var_id."\n";
 	
-	# ½¸·×¤Î¼Â¹Ô
+	# é›†è¨ˆã®å®Ÿè¡Œ
 	my $result;
 	unless ($result = kh_cod::func->read_file($self->cfile)){
 		$self->rtn;
 		return 0;
 	}
 
-	if ($self->{var_obj}->var_id =~ /h[1-5]/){    # ¸«½Ğ¤·¤Î¾ì¹ç
+	if ($self->{var_obj}->var_id =~ /h[1-5]/){    # è¦‹å‡ºã—ã®å ´åˆ
 		unless (
 			$result = $result->tab(
 				$self->tani,
@@ -277,7 +277,7 @@ sub _calc{
 			$self->rtn;
 			return 0;
 		}
-	} else {                                      # ³°ÉôÊÑ¿ô¤Î¾ì¹ç
+	} else {                                      # å¤–éƒ¨å¤‰æ•°ã®å ´åˆ
 		unless (
 			$result = $result->outtab(
 				$self->tani,
@@ -290,7 +290,7 @@ sub _calc{
 		}
 	}
 
-	# ·ë²ÌÉ½¼¨ÍÑ¤ÎHListºîÀ®
+	# çµæœè¡¨ç¤ºç”¨ã®HListä½œæˆ
 	my $cols = @{$result->{display}[0]};
 	my $width = 0;
 	foreach my $i (@{$result->{display}}){
@@ -301,13 +301,13 @@ sub _calc{
 		# So it's OK to get length.
 	}
 	
-	$self->{list}->destroy if $self->{list};                # ¸Å¤¤¤â¤Î¤òÇÑ´ş
+	$self->{list}->destroy if $self->{list};                # å¤ã„ã‚‚ã®ã‚’å»ƒæ£„
 	$self->{list2}->destroy if $self->{list2};
 	$self->{sb1}->destroy if $self->{sb1};
 	$self->{sb2}->destroy if $self->{sb2};
 	$self->{list_flame_inner}->destroy if $self->{list_flame_inner};
 
-	$self->{list_flame_inner} = $self->{list_flame}->Frame( # ¿·¤¿¤Ê¥ê¥¹¥ÈºîÀ®
+	$self->{list_flame_inner} = $self->{list_flame}->Frame( # æ–°ãŸãªãƒªã‚¹ãƒˆä½œæˆ
 		-relief      => 'sunken',
 		-borderwidth => 2
 	);
@@ -341,7 +341,7 @@ sub _calc{
 		-highlightthickness => 0,
 	);
 
-	my $sb1 = $self->{list_flame}->Scrollbar(               # ¥¹¥¯¥í¡¼¥ëÀßÄê
+	my $sb1 = $self->{list_flame}->Scrollbar(               # ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«è¨­å®š
 		-orient  => 'v',
 		-command => [ \&multiscrolly, $self->{sb1}, [$self->{list}, $self->{list2}]]
 	);
@@ -361,7 +361,7 @@ sub _calc{
 	$self->{list}->pack(-fill =>'both',-expand => 'yes', -pady => 0);
 	$sb2->pack(-fill => 'x');
 
-	# ·ë²Ì¤Î½ñ¤­½Ğ¤·
+	# çµæœã®æ›¸ãå‡ºã—
 	my $right_style = $self->list->ItemStyle(
 		'text',
 		-font => "TKFN",
@@ -374,7 +374,7 @@ sub _calc{
 		-background => 'white',
 	);
 	
-	# °ì¹ÔÌÜ¡ÊHeader¡Ë
+	# ä¸€è¡Œç›®ï¼ˆHeaderï¼‰
 	my $col = 0;
 	my @code_names = ();
 	foreach my $i (@{$result->{display}[0]}){
@@ -449,14 +449,14 @@ sub _calc{
 	
 	$self->rtn;
 	
-	# ¥×¥í¥Ã¥ÈWindow¤¬³«¤¤¤Æ¤¤¤ë¾ì¹ç¤ÏÆâÍÆ¤ò¹¹¿·¤¹¤ë
-	if ($::main_gui->if_opened('w_cod_mat_plot')){          # ¥Ş¥Ã¥×
-		# ¥ª¥×¥·¥ç¥óÎà¤Ï¤¹¤Ù¤Æ¥ê¥»¥Ã¥È
+	# ãƒ—ãƒ­ãƒƒãƒˆWindowãŒé–‹ã„ã¦ã„ã‚‹å ´åˆã¯å†…å®¹ã‚’æ›´æ–°ã™ã‚‹
+	if ($::main_gui->if_opened('w_cod_mat_plot')){          # ãƒãƒƒãƒ—
+		# ã‚ªãƒ—ã‚·ãƒ§ãƒ³é¡ã¯ã™ã¹ã¦ãƒªã‚»ãƒƒãƒˆ
 		$self->plot($::main_gui->get('w_cod_mat_plot')->{ax});
 	}
 	
-	if ($::main_gui->if_opened('w_cod_mat_line')){          # ÀŞ¤ìÀş
-		# ¥ª¥×¥·¥ç¥óÎà¤Ï¥ê¥»¥Ã¥È¤¹¤ë¤¬¥³¡¼¥ÉÁªÂò¤À¤±¤Ï³è¤«¤¹¤è¤¦¤Ë»î¤ß¤ë
+	if ($::main_gui->if_opened('w_cod_mat_line')){          # æŠ˜ã‚Œç·š
+		# ã‚ªãƒ—ã‚·ãƒ§ãƒ³é¡ã¯ãƒªã‚»ãƒƒãƒˆã™ã‚‹ãŒã‚³ãƒ¼ãƒ‰é¸æŠã ã‘ã¯æ´»ã‹ã™ã‚ˆã†ã«è©¦ã¿ã‚‹
 		my @selected2 = ();
 		my @selected3 = ();
 		my @names = ();
@@ -465,10 +465,10 @@ sub _calc{
 			$::main_gui->get('w_cod_mat_line')->{plots}[0]->command_f
 			=~ /d <\- as\.matrix\(d\[,c\((.+)\)\]\)\n/ 
 		){
-			# ÁªÂò¤µ¤ì¤¿¥³¡¼¥É¤ÎÈÖ¹æ
+			# é¸æŠã•ã‚ŒãŸã‚³ãƒ¼ãƒ‰ã®ç•ªå·
 			@selected2 = eval( "($1)" );
 			
-			# ÁªÂò¤µ¤ì¤¿¥³¡¼¥É¤ÎÌ¾Á°
+			# é¸æŠã•ã‚ŒãŸã‚³ãƒ¼ãƒ‰ã®åå‰
 			if (
 				$::main_gui->get('w_cod_mat_line')->{plots}[0]->command_f
 				=~ /colnames\(d\) <\- c\((.+?)\)\n/ 
@@ -479,7 +479,7 @@ sub _calc{
 				push @selected_names, $self->gui_jchar($names[$i-1]);
 			}
 			
-			# ÁªÂò¤µ¤ì¤¿¥³¡¼¥É¤Î¡Ê¿·¤·¤¤¡ËÈÖ¹æ
+			# é¸æŠã•ã‚ŒãŸã‚³ãƒ¼ãƒ‰ã®ï¼ˆæ–°ã—ã„ï¼‰ç•ªå·
 			foreach my $i (@selected_names){
 				#print $self->gui_jg($i), ", ";
 				if ($self->{code2number}{$i}){
@@ -549,7 +549,7 @@ sub plot{
 	my $nrow = @matrix;
 	my $ncol = @col_names;
 
-	# ¥Ç¡¼¥¿¹ÔÎó
+	# ãƒ‡ãƒ¼ã‚¿è¡Œåˆ—
 	my $rcom = 'd <- matrix( c(';
 	my @row_names;
 	foreach my $row (@matrix){
@@ -566,7 +566,7 @@ sub plot{
 	chop $rcom;
 	$rcom .= "), byrow=T, nrow=$nrow, ncol=$ncol )\n";
 	
-	# »Äº¹¹ÔÎó
+	# æ®‹å·®è¡Œåˆ—
 	$rcom .= 'rsd <- matrix( c(';
 	foreach my $row (@{$self->{result}{t_rsd}}){
 		foreach my $cell (@{$row}){
@@ -577,8 +577,8 @@ sub plot{
 	$rcom .= "), byrow=T, nrow=$ncol, ncol=$nrow )\n";
 	$rcom .= "rsd <- t(rsd)\n";
 	
-	# ÎóÌ¾
-	foreach my $i (@col_names){ # ¹ÔÆ¬¤Î¡Ö¡ö¡×¤òºï½ü¡Ê¥Ç¡¼¥¿¤ÏdecodeºÑ¤ß¡Ë
+	# åˆ—å
+	foreach my $i (@col_names){ # è¡Œé ­ã®ã€Œï¼Šã€ã‚’å‰Šé™¤ï¼ˆãƒ‡ãƒ¼ã‚¿ã¯decodeæ¸ˆã¿ï¼‰
 		substr($i,0,1) = '';
 	}
 	$rcom .= "colnames(d) <- c(";
@@ -588,7 +588,7 @@ sub plot{
 	chop $rcom;
 	$rcom .= ")\n";
 	
-	# ¹ÔÌ¾
+	# è¡Œå
 	$rcom .= "rownames(d) <- c(";
 	foreach my $i (@row_names){
 		$rcom .= "\"$i\",";
@@ -598,7 +598,7 @@ sub plot{
 	
 	$rcom .= "# END: DATA\n\n";
 
-	# ¥Ş¥Ã¥×¤Î¹â¤µ
+	# ãƒãƒƒãƒ—ã®é«˜ã•
 	my $label_length = 0;
 	foreach my $i (@row_names){
 		if ( $label_length < length($i) ){
@@ -618,7 +618,7 @@ sub plot{
 		$bs_h = (480 - $label_length * 15) / $ncol / 34;
 	}
 	
-	# ¥Ş¥Ã¥×¤ÎÉı
+	# ãƒãƒƒãƒ—ã®å¹…
 	$label_length = 0;
 	foreach my $i (@col_names){
 		if ( $label_length < length($i) ){
@@ -635,9 +635,9 @@ sub plot{
 	my $bubble_size = int( min($bs_h, $bs_w) / ( $::config_obj->plot_font_size / 100 ) * 10 ) / 10;
 	
 	
-	# ¥×¥í¥Ã¥ÈºîÀ®
+	# ãƒ—ãƒ­ãƒƒãƒˆä½œæˆ
 	my $plot;
-	if ($ax <= 1){                      # ¥Ò¡¼¥È¡¦¥Ğ¥Ö¥ë
+	if ($ax <= 1){                      # ãƒ’ãƒ¼ãƒˆãƒ»ãƒãƒ–ãƒ«
 		use plotR::code_mat;
 		$plot = plotR::code_mat->new(
 			font_size           => $::config_obj->plot_font_size / 100,
@@ -693,7 +693,7 @@ sub plot{
 }
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 
 sub cfile{
 	my $self = shift;

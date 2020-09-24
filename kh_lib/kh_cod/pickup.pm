@@ -1,5 +1,5 @@
-# ¡ÖÉôÊ¬¥Æ¥­¥¹¥È¤Î¼è¤ê½Ğ¤·¡×->¡ÖÆÃÄê¤Î¥³¡¼¥É¤¬Í¿¤¨¤é¤ì¤¿Ê¸½ñ¤À¤±¡×¥³¥Ş¥ó¥É
-#                                                         ¤Î¤¿¤á¤Î¥í¥¸¥Ã¥¯
+# ã€Œéƒ¨åˆ†ãƒ†ã‚­ã‚¹ãƒˆã®å–ã‚Šå‡ºã—ã€->ã€Œç‰¹å®šã®ã‚³ãƒ¼ãƒ‰ãŒä¸ãˆã‚‰ã‚ŒãŸæ–‡æ›¸ã ã‘ã€ã‚³ãƒãƒ³ãƒ‰
+#                                                         ã®ãŸã‚ã®ãƒ­ã‚¸ãƒƒã‚¯
 
 package kh_cod::pickup;
 use base qw(kh_cod);
@@ -12,10 +12,10 @@ sub pick{
 	my $self = shift;
 	my %args = @_;
 	
-	use Benchmark;                                    # »ş´Ö·×Â¬ÍÑ
-	my $t0 = new Benchmark;                           # »ş´Ö·×Â¬ÍÑ
+	use Benchmark;                                    # æ™‚é–“è¨ˆæ¸¬ç”¨
+	my $t0 = new Benchmark;                           # æ™‚é–“è¨ˆæ¸¬ç”¨
 	
-	# ¼è¤ê¹ç¤¨¤º¥³¡¼¥Ç¥£¥ó¥°
+	# å–ã‚Šåˆãˆãšã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°
 	my $the_code = $self->{codes}[$args{selected}];
 	$the_code->ready($args{tani});
 	$the_code->code('ct_pickup');
@@ -23,13 +23,13 @@ sub pick{
 		gui_errormsg->open(
 			type => 'msg',
 			msg  =>
-				"ÁªÂò¤µ¤ì¤¿¥³¡¼¥É¤Ï¡¢¤É¤ÎÊ¸½ñ¤Ë¤âÍ¿¤¨¤é¤ì¤Ş¤»¤ó¤Ç¤·¤¿¡£\n".
-				"¥Õ¥¡¥¤¥ëºîÀ½¤ÏÃæ»ß¤µ¤ì¤Ş¤·¤¿¡£"
+				"é¸æŠã•ã‚ŒãŸã‚³ãƒ¼ãƒ‰ã¯ã€ã©ã®æ–‡æ›¸ã«ã‚‚ä¸ãˆã‚‰ã‚Œã¾ã›ã‚“ã§ã—ãŸã€‚\n".
+				"ãƒ•ã‚¡ã‚¤ãƒ«ä½œè£½ã¯ä¸­æ­¢ã•ã‚Œã¾ã—ãŸã€‚"
 		);
 		return 0;
 	}
 
-	# ½ñ¤­½Ğ¤·¡Ê¥Æ¥­¥¹¥È¡Ë
+	# æ›¸ãå‡ºã—ï¼ˆãƒ†ã‚­ã‚¹ãƒˆï¼‰
 	open (F, '>:encoding(utf8)', $args{file}) or
 		gui_errormsg->open(
 			thefile => $args{file},
@@ -40,7 +40,7 @@ sub pick{
 	my $last_seq = 0;
 	my $id = 1;
 	my $bun_num = mysql_exec->select("SELECT MAX(id) FROM bun")
-		->hundle->fetch->[0]; # ¥Ç¡¼¥¿¤Ë´Ş¤Ş¤ì¤ëÊ¸¤Î¿ô
+		->hundle->fetch->[0]; # ãƒ‡ãƒ¼ã‚¿ã«å«ã¾ã‚Œã‚‹æ–‡ã®æ•°
 	my $spacer = $::project_obj->spacer;
 
 	while ($id <= $bun_num){
@@ -63,7 +63,7 @@ sub pick{
 				$i->{rowtxt} =~ s/ \.$/\./;
 			}
 			
-			if ($i->{bun_id} == 0 && $i->{dan_id} == 0){    # ¸«½Ğ¤·¹Ô
+			if ($i->{bun_id} == 0 && $i->{dan_id} == 0){    # è¦‹å‡ºã—è¡Œ
 				if ($last){
 					print F "\n";
 				}
@@ -73,13 +73,13 @@ sub pick{
 				if (
 					   ($last == $i->{dan_id})
 					&& ($last_seq + 1 == $i->{seq})
-				){                  # Æ±¤¸ÃÊÍî¤ÎÂ³¤­
-					print F "\n" if $args{tani} eq 'bun'; # Ê¸Ã±°Ì¤Î¾ì¹ç¤ÏÊ¸¤ÈÊ¸¤È¤ò²ş¹Ô¤Ç¶èÀÚ¤ë
+				){                  # åŒã˜æ®µè½ã®ç¶šã
+					print F "\n" if $args{tani} eq 'bun'; # æ–‡å˜ä½ã®å ´åˆã¯æ–‡ã¨æ–‡ã¨ã‚’æ”¹è¡Œã§åŒºåˆ‡ã‚‹
 					print F $spacer, $i->{rowtxt};
 					print "-";
 				}
-				else {              # ÃÊÍî¤ÎÊÑ¤ï¤êÌÜ
-					print F "\n" if $last; # Ä¾Á°¤¬¸«½Ğ¤·¤Ç¤Ê¤±¤ì¤Ğ²ş¹ÔÉÕ²Ã
+				else {              # æ®µè½ã®å¤‰ã‚ã‚Šç›®
+					print F "\n" if $last; # ç›´å‰ãŒè¦‹å‡ºã—ã§ãªã‘ã‚Œã°æ”¹è¡Œä»˜åŠ 
 					print F "$i->{rowtxt}";
 					$last = $i->{dan_id};
 				}
@@ -89,19 +89,19 @@ sub pick{
 		print "$id,";
 	}
 	close (F);
-	my $t1 = new Benchmark;                           # »ş´Ö·×Â¬ÍÑ
-	print timestr(timediff($t1,$t0)),"\n";            # »ş´Ö·×Â¬ÍÑ
+	my $t1 = new Benchmark;                           # æ™‚é–“è¨ˆæ¸¬ç”¨
+	print timestr(timediff($t1,$t0)),"\n";            # æ™‚é–“è¨ˆæ¸¬ç”¨
 
 
-	# ½ñ¤­½Ğ¤·¡Ê³°ÉôÊÑ¿ô¡Ë
-	my $var_file = $args{file};                   # ½ĞÎÏ¥Õ¥¡¥¤¥ëÌ¾
+	# æ›¸ãå‡ºã—ï¼ˆå¤–éƒ¨å¤‰æ•°ï¼‰
+	my $var_file = $args{file};                   # å‡ºåŠ›ãƒ•ã‚¡ã‚¤ãƒ«å
 	if ($var_file =~ /(.+)\.txt/){
 		$var_file = $1."_var.csv";
 	} else {
 		$var_file .= "_var.csv";
 	}
 	
-	my @vars = ();                                # ÊÑ¿ô¤Î¥ê¥¹¥È¤òºîÀ®
+	my @vars = ();                                # å¤‰æ•°ã®ãƒªã‚¹ãƒˆã‚’ä½œæˆ
 	my %tani_check = ();
 	foreach my $i ('h1','h2','h3','h4','h5','dan','bun'){
 		$tani_check{$i} = 1;
@@ -117,7 +117,7 @@ sub pick{
 	my $tani = $args{tani};
 	
 	if (@vars){
-		my $vd;                                       # ÊÑ¿ô¥Ç¡¼¥¿¤òÆÉ¤ß½Ğ¤·
+		my $vd;                                       # å¤‰æ•°ãƒ‡ãƒ¼ã‚¿ã‚’èª­ã¿å‡ºã—
 		my @vnames = ();
 		foreach my $i (@vars){
 			my $var_obj = mysql_outvar::a_var->new(undef,$i);
@@ -163,20 +163,20 @@ sub pick{
 		}
 		
 		use File::BOM;
-		open my $fh, '>:encoding(utf8):via(File::BOM)' ,$var_file or # ¥Õ¥¡¥¤¥ë¤Ø½ñ¤­½Ğ¤·
+		open my $fh, '>:encoding(utf8):via(File::BOM)' ,$var_file or # ãƒ•ã‚¡ã‚¤ãƒ«ã¸æ›¸ãå‡ºã—
 			gui_errormsg->open(
 				thefile => $var_file,
 				type    => 'file'
 			);
 		
-		my $t = '';                                             # 1¹ÔÌÜ
+		my $t = '';                                             # 1è¡Œç›®
 		foreach my $i (@vnames){
 			$t .= kh_csv->value_conv($i).',';
 		}
 		chop $t;
 		print $fh "$t\n";
 		
-		my $n = @{$vd->{$vnames[0]}} - 1;                        # 2¹ÔÌÜ°Ê¹ß
+		my $n = @{$vd->{$vnames[0]}} - 1;                        # 2è¡Œç›®ä»¥é™
 		for (my $i = 0; $i <= $n; ++$i){
 			my $t = '';
 			foreach my $name (@vnames){

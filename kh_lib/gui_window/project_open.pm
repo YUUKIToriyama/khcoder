@@ -8,7 +8,7 @@ use gui_window::project_edit;
 use gui_jchar;
 
 #----------------#
-#   WindowºîÀ®   #
+#   Windowä½œæˆ   #
 #----------------#
 
 sub _new{
@@ -30,14 +30,14 @@ sub _new{
 	}
 
 	my $mw = $::main_gui->mw;
-	# WindowºîÀ®
+	# Windowä½œæˆ
 	my $few = $self->{win_obj};
 	#$self->{win_obj} = $few;
 	#$few->focus;
 	#$few->grab;
 	$few->title($self->gui_jt( kh_msg->get('win_title') ));
 
-	# ¥ê¥¹¥ÈºîÀ®
+	# ãƒªã‚¹ãƒˆä½œæˆ
 	my $plis = $few->Scrolled(
 		'HList',
 		-scrollbars=> 'osoe',
@@ -56,14 +56,14 @@ sub _new{
 	)->pack(-fill=>'both',-expand => 'yes');
 	$self->{g_list} = $plis;
 
-	$plis->header('create',0,-text => kh_msg->get('target_file') ); # $self->gui_jchar('ÂĞ¾İ¥Õ¥¡¥¤¥ë')
-	$plis->header('create',1,-text => kh_msg->get('lang') ); # ¸À¸ì
-	$plis->header('create',2,-text => kh_msg->get('memo')); # $self->gui_jchar('ÀâÌÀ¡Ê¥á¥â¡Ë')
-	$plis->header('create',3,-text => kh_msg->get('dir')); # $self->gui_jchar('¥Ç¥£¥ì¥¯¥È¥ê')
+	$plis->header('create',0,-text => kh_msg->get('target_file') ); # $self->gui_jchar('å¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«')
+	$plis->header('create',1,-text => kh_msg->get('lang') ); # è¨€èª
+	$plis->header('create',2,-text => kh_msg->get('memo')); # $self->gui_jchar('èª¬æ˜ï¼ˆãƒ¡ãƒ¢ï¼‰')
+	$plis->header('create',3,-text => kh_msg->get('dir')); # $self->gui_jchar('ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒª')
 
-	# ¥Ü¥¿¥ó
+	# ãƒœã‚¿ãƒ³
 	my $b1 = $few->Button(
-		-text => kh_msg->get('del'), #$self->gui_jchar('ºï½ü'),
+		-text => kh_msg->get('del'), #$self->gui_jchar('å‰Šé™¤'),
 		-font => "TKFN",
 		-width => 8,
 		-command => sub{$self->delete;}
@@ -78,7 +78,7 @@ sub _new{
 	)->pack(-anchor => 'w',-side => 'right',-padx => 2,-pady => 2);
 	
 	my $b3 = $few->Button(
-		-text => kh_msg->get('open'),#$self->gui_jchar('³«¤¯'),
+		-text => kh_msg->get('open'),#$self->gui_jchar('é–‹ã'),
 		#-padx => 3,
 		-font => "TKFN",
 		-width => 8,
@@ -90,14 +90,14 @@ sub _new{
 	)->pack(-anchor => 'w',-side => 'right',-padx => 2,-pady => 2);
 
 	my $b2 = $few->Button(
-		-text => kh_msg->get('edit'),#$self->gui_jchar('ÊÔ½¸'),
+		-text => kh_msg->get('edit'),#$self->gui_jchar('ç·¨é›†'),
 		-font => "TKFN",
 		-width => 8,
 		-command => sub{$self->edit;}
 	)->pack(-anchor => 'w',-side => 'right',-padx => 2,-pady => 2);
 	
 	$few->Button(
-		-text => kh_msg->get('new'),#$self->gui_jchar('¿·µ¬'),
+		-text => kh_msg->get('new'),#$self->gui_jchar('æ–°è¦'),
 		#-padx => 2,
 		-font => "TKFN",
 		-width => 8,
@@ -115,7 +115,7 @@ sub _new{
 	
 	$self->refresh;
 	
-	# ³Æ¼ï¥Ğ¥¤¥ó¥É
+	# å„ç¨®ãƒã‚¤ãƒ³ãƒ‰
 	$self->win_obj->bind(
 		'<Key-Return>',
 		sub {$self->_open}
@@ -151,7 +151,7 @@ sub _new{
 }
 
 #--------------------#
-#   ¥Õ¥¡¥ó¥¯¥·¥ç¥ó   #
+#   ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³   #
 #--------------------#
 
 sub edit{
@@ -184,7 +184,7 @@ sub _open{
 }
 
 #--------------#
-#   ÁªÂò³ÎÇ§   #
+#   é¸æŠç¢ºèª   #
 
 sub if_selected{
 	my $self = shift;
@@ -205,7 +205,7 @@ sub if_selected{
 				gui_errormsg->open(
 					type   => 'msg',
 					window  => \$self->win_obj,
-					msg    => kh_msg->get('opened'),#"¤½¤Î¥×¥í¥¸¥§¥¯¥È¤Ï¸½ºß³«¤«¤ì¤Æ¤¤¤Ş¤¹¡£\n»ØÄê¤µ¤ì¤¿Áàºî¤ò¼Â¹Ô¤Ç¤­¤Ş¤»¤ó¡£"
+					msg    => kh_msg->get('opened'),#"ãã®ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã¯ç¾åœ¨é–‹ã‹ã‚Œã¦ã„ã¾ã™ã€‚\næŒ‡å®šã•ã‚ŒãŸæ“ä½œã‚’å®Ÿè¡Œã§ãã¾ã›ã‚“ã€‚"
 				);
 				return 0;
 			} else {
@@ -221,7 +221,7 @@ sub if_selected{
 		gui_errormsg->open(
 			type   => 'msg',
 			window  => \$self->win_obj,
-			msg    => kh_msg->get('select_one'),#"¥×¥í¥¸¥§¥¯¥È¤òÁªÂò¤·¤Æ¤¯¤À¤µ¤¤"
+			msg    => kh_msg->get('select_one'),#"ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’é¸æŠã—ã¦ãã ã•ã„"
 		);
 		return 0;
 	}
@@ -237,14 +237,14 @@ sub if_selected_ed{
 		gui_errormsg->open(
 			type   => 'msg',
 			window  => \$self->win_obj,
-			msg    => kh_msg->get('select_one'),#"¥×¥í¥¸¥§¥¯¥È¤òÁªÂò¤·¤Æ¤¯¤À¤µ¤¤"
+			msg    => kh_msg->get('select_one'),#"ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’é¸æŠã—ã¦ãã ã•ã„"
 		);
 		return 0;
 	}
 }
 
 #--------------------------#
-#   ¥ê¥¹¥È¤Î¥ê¥Õ¥ì¥Ã¥·¥å   #
+#   ãƒªã‚¹ãƒˆã®ãƒªãƒ•ãƒ¬ãƒƒã‚·ãƒ¥   #
 
 sub refresh{
 	my $self = shift;
@@ -277,7 +277,7 @@ sub refresh{
 }
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 #--------------#
 
 sub projects{

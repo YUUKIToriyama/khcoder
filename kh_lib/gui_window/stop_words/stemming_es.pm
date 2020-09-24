@@ -8,7 +8,7 @@ use base qw(gui_window::stop_words);
 
 
 #--------------#
-#   アクセサ   #
+#   繧｢繧ｯ繧ｻ繧ｵ   #
 
 sub method{
 	return 'stemming';

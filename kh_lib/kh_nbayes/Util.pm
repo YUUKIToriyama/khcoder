@@ -7,22 +7,22 @@ sub knb2lst{
 	my $self = {@_};
 	bless $self, $class;
 
-	# ³Ø½¬·ë²Ì¤ÎÆÉ¤ß¹þ¤ß
+	# å­¦ç¿’çµæžœã®èª­ã¿è¾¼ã¿
 	$self->{cls} = Algorithm::NaiveBayes->restore_state($self->{path});
 	my $fixer = 0;
 	foreach my $i (values %{$self->{cls}{model}{smoother}}){
 		$fixer = $i if $fixer > $i;
 	}
 
-	# ¥Ç¡¼¥¿À°·Á[1]
+	# ãƒ‡ãƒ¼ã‚¿æ•´å½¢[1]
 	my @labels = $self->{cls}->labels;
 	my @rows;
 	my %printed = ();
-	foreach my $i (@labels){ # $i = ¥é¥Ù¥ë
-		foreach my $h (keys %{$self->{cls}{model}{probs}{$i}}){ # $h = ¸ì
+	foreach my $i (@labels){ # $i = ãƒ©ãƒ™ãƒ«
+		foreach my $h (keys %{$self->{cls}{model}{probs}{$i}}){ # $h = èªž
 			unless ( $printed{$h} ){
 				my $current = [ $h ];
-				foreach my $k (@labels){ # $k = ¥é¥Ù¥ë
+				foreach my $k (@labels){ # $k = ãƒ©ãƒ™ãƒ«
 					push @{$current},
 						(
 							   $self->{cls}{model}{probs}{$k}{$h}
@@ -41,16 +41,16 @@ sub knb2lst{
 	$self->{info}{words} = @rows;
 	$self->{info}{labels} = \@labels;
 
-	# »öÁ°³ÎÎ¨
-	my $prior_probs = [kh_msg->get('prior')]; # [»öÁ°³ÎÎ¨]
+	# äº‹å‰ç¢ºçŽ‡
+	my $prior_probs = [kh_msg->get('prior')]; # [äº‹å‰ç¢ºçŽ‡]
 	foreach my $i (@labels){
 		push @{$prior_probs}, $self->{cls}{model}{prior_probs}{$i} - $fixer;
 	}
 	push @rows, $prior_probs;
 
-	$self->{cls} = undef; # ¥á¥â¥ê¤Î¥¯¥ê¥¢
+	$self->{cls} = undef; # ãƒ¡ãƒ¢ãƒªã®ã‚¯ãƒªã‚¢
 
-	# ¥Ç¡¼¥¿À°·Á[2]
+	# ãƒ‡ãƒ¼ã‚¿æ•´å½¢[2]
 	my $c = @labels;
 	my @sort;
 	foreach my $i (
@@ -58,12 +58,12 @@ sub knb2lst{
 		@rows
 	){
 		my @current = ();
-		# ¥¹¥³¥¢
+		# ã‚¹ã‚³ã‚¢
 		foreach my $h ( @{$i} ){
 			push @current, $h;
 		}
 		
-		# Ê¬»¶
+		# åˆ†æ•£
 		my $sum = sum( @{$i}[1..$c] );
 		my $s = 0;
 		foreach my $h ( @{$i}[1..$c] ){
@@ -72,7 +72,7 @@ sub knb2lst{
 		$s /= $c;
 		push @current, $s;
 		
-		# ¹Ô¤Î%
+		# è¡Œã®%
 		foreach my $h ( @{$i}[1..$c] ){
 			push @current, $h / $sum * 100;
 		}
@@ -109,7 +109,7 @@ sub make_csv{
 	my $csv = shift;
 	print "$csv\n";
 	
-	# ½ñ¤­½Ð¤·
+	# æ›¸ãå‡ºã—
 	use File::BOM;
 	open (COUT, '>:encoding(utf8):via(File::BOM)', $csv) or 
 		gui_errormsg->open(
@@ -120,17 +120,17 @@ sub make_csv{
 	my @labels = $self->labels;
 
 	my $header = '';
-	$header .= ','.kh_msg->get('h_score','gui_window::use_te_g').',';  #',¥¹¥³¥¢,';
+	$header .= ','.kh_msg->get('h_score','gui_window::use_te_g').',';  #',ã‚¹ã‚³ã‚¢,';
 	for (my $n = 1; $n <= $#labels; ++$n){
 		$header .= ',';
 	}
-	$header .= ','.kh_msg->get('pcnt','gui_window::word_freq')."\n";#",¹Ô¤Î%\n";
+	$header .= ','.kh_msg->get('pcnt','gui_window::word_freq')."\n";#",è¡Œã®%\n";
 
-	$header .= kh_msg->gget('words').','; #"Ãê½Ð¸ì,";
+	$header .= kh_msg->gget('words').','; #"æŠ½å‡ºèªž,";
 	foreach my $i (@labels){
 		$header .= kh_csv->value_conv($i).',';
 	}
-	$header .= kh_msg->get('variance','gui_window::bayes_view_knb').','; #'Ê¬»¶,';
+	$header .= kh_msg->get('variance','gui_window::bayes_view_knb').','; #'åˆ†æ•£,';
 	foreach my $i (@labels){
 		$header .= kh_csv->value_conv($i).',';
 	}

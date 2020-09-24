@@ -7,7 +7,7 @@ use Statistics::Lite qw(max);
 use gui_hlist;
 
 #------------------#
-#   Window¤òºîÀ®   #
+#   Windowã‚’ä½œæˆ   #
 #------------------#
 
 sub _new{
@@ -15,9 +15,9 @@ sub _new{
 	my $mw = $::main_gui->mw;
 	my $wmw= $self->{win_obj};
 	#$self->{win_obj} = $wmw;
-	$wmw->title($self->gui_jt( kh_msg->get('win_title') )); #'¥³¥í¥±¡¼¥·¥ç¥óÅý·×'
+	$wmw->title($self->gui_jt( kh_msg->get('win_title') )); #'ã‚³ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³çµ±è¨ˆ'
 	
-	# Node Word¤Î¾ðÊóÉ½¼¨ÉôÊ¬
+	# Node Wordã®æƒ…å ±è¡¨ç¤ºéƒ¨åˆ†
 	
 	my $fra4 = $wmw->LabFrame(
 		-label => 'Node Word',
@@ -26,7 +26,7 @@ sub _new{
 	)->pack(-fill=>'x');
 	
 	$fra4->Label(
-		-text => kh_msg->get('word'),#$self->gui_jchar('¡¡Ãê½Ð¸ì¡§'),
+		-text => kh_msg->get('word'),#$self->gui_jchar('ã€€æŠ½å‡ºèªžï¼š'),
 		-font => "TKFN"
 	)->pack(-side => 'left');
 	
@@ -38,7 +38,7 @@ sub _new{
 	)->pack(-side => 'left');
 	
 	$fra4->Label(
-		-text => kh_msg->get('pos'),#$self->gui_jchar('¡¡ÉÊ»ì¡§'),
+		-text => kh_msg->get('pos'),#$self->gui_jchar('ã€€å“è©žï¼š'),
 		-font => "TKFN"
 	)->pack(-side => 'left');
 	
@@ -50,7 +50,7 @@ sub _new{
 	)->pack(-side => 'left');
 
 	$fra4->Label(
-		-text => kh_msg->get('conj'),#$self->gui_jchar('¡¡³èÍÑ·Á¡§'),
+		-text => kh_msg->get('conj'),#$self->gui_jchar('ã€€æ´»ç”¨å½¢ï¼š'),
 		-font => "TKFN"
 	)->pack(-side => 'left');
 
@@ -62,12 +62,12 @@ sub _new{
 	)->pack(-side => 'left');
 
 	$self->{label} = $fra4->Label(
-		-text => kh_msg->get('hits'),#$self->gui_jchar('  ¥Ò¥Ã¥È¿ô¡§'),
+		-text => kh_msg->get('hits'),#$self->gui_jchar('  ãƒ’ãƒƒãƒˆæ•°ï¼š'),
 		-font => "TKFN"
 	)->pack(-side => 'left');
 
 
-	# ½¸·×·ë²Ì¤òÉ½¼¨¤¹¤ëÉôÊ¬
+	# é›†è¨ˆçµæžœã‚’è¡¨ç¤ºã™ã‚‹éƒ¨åˆ†
 
 	my $fra5 = $wmw->LabFrame(
 		-label => 'Result',
@@ -107,72 +107,72 @@ sub _new{
 	);
 
 	$lis->header('create',0,-text  => 'N');
-	$lis->header('create',1,-text  => kh_msg->get('h_word')); #$self->gui_jchar('Ãê½Ð¸ì')
-	$lis->header('create',2,-text  => kh_msg->get('h_pos')); #$self->gui_jchar('ÉÊ»ì')
-	$lis->header('create',3,-text  => kh_msg->get('total')); #$self->gui_jchar('¹ç·×')
-	$lis->header('create',4,-text  => kh_msg->get('h_l_total')); #$self->gui_jchar('º¸¹ç·×')
-	$lis->header('create',5,-text  => kh_msg->get('h_r_total')); #$self->gui_jchar('±¦¹ç·×')
+	$lis->header('create',1,-text  => kh_msg->get('h_word')); #$self->gui_jchar('æŠ½å‡ºèªž')
+	$lis->header('create',2,-text  => kh_msg->get('h_pos')); #$self->gui_jchar('å“è©ž')
+	$lis->header('create',3,-text  => kh_msg->get('total')); #$self->gui_jchar('åˆè¨ˆ')
+	$lis->header('create',4,-text  => kh_msg->get('h_l_total')); #$self->gui_jchar('å·¦åˆè¨ˆ')
+	$lis->header('create',5,-text  => kh_msg->get('h_r_total')); #$self->gui_jchar('å³åˆè¨ˆ')
 	$lis->header(
 		'create', 6,
-		-text  => kh_msg->get('l5'),#$self->gui_jchar('º¸5'),
+		-text  => kh_msg->get('l5'),#$self->gui_jchar('å·¦5'),
 		-style => $style_blue
 	);
 	$lis->header(
 		'create',7,
-		-text  => kh_msg->get('l4'),#$self->gui_jchar('º¸4'),
+		-text  => kh_msg->get('l4'),#$self->gui_jchar('å·¦4'),
 		-style => $style_blue
 	);
 	$lis->header(
 		'create',8,
-		-text  => kh_msg->get('l3'),#$self->gui_jchar('º¸3'),
+		-text  => kh_msg->get('l3'),#$self->gui_jchar('å·¦3'),
 		-style => $style_blue
 	);
 	$lis->header(
 		'create',9,
-		-text  => kh_msg->get('l2'),#$self->gui_jchar('º¸2'),
+		-text  => kh_msg->get('l2'),#$self->gui_jchar('å·¦2'),
 		-style => $style_blue
 	);
 	$lis->header(
 		'create',10,
-		-text  => kh_msg->get('l1'),#$self->gui_jchar('º¸1'),
+		-text  => kh_msg->get('l1'),#$self->gui_jchar('å·¦1'),
 		-style => $style_blue
 	);
 	#$lis->header('create',11,-text => $self->gui_jchar('*'));
 	$lis->header(
 		'create',11,
-		-text => kh_msg->get('r1'),#$self->gui_jchar('±¦1'),
+		-text => kh_msg->get('r1'),#$self->gui_jchar('å³1'),
 		-style => $style_green
 	);
 	$lis->header(
 		'create',12,
-		-text => kh_msg->get('r2'),#$self->gui_jchar('±¦2'),
+		-text => kh_msg->get('r2'),#$self->gui_jchar('å³2'),
 		-style => $style_green
 	);
 	$lis->header(
 		'create',13,
-		-text => kh_msg->get('r3'),#$self->gui_jchar('±¦3'),
+		-text => kh_msg->get('r3'),#$self->gui_jchar('å³3'),
 		-style => $style_green
 	);
 	$lis->header(
 		'create',14,
-		-text => kh_msg->get('r4'),#$self->gui_jchar('±¦4'),
+		-text => kh_msg->get('r4'),#$self->gui_jchar('å³4'),
 		-style => $style_green
 	);
 	$lis->header(
 		'create',15,
-		-text => kh_msg->get('r5'),#$self->gui_jchar('±¦5'),
+		-text => kh_msg->get('r5'),#$self->gui_jchar('å³5'),
 		-style => $style_green
 	);
 	$lis->header(
 		'create',16,
-		-text  => kh_msg->get('h_score') #$self->gui_jchar('¥¹¥³¥¢')
+		-text  => kh_msg->get('h_score') #$self->gui_jchar('ã‚¹ã‚³ã‚¢')
 	);
 
 
-	# ·ë²ÌÁàºîÍÑ¤Î¥Ü¥¿¥óÎà
+	# çµæžœæ“ä½œç”¨ã®ãƒœã‚¿ãƒ³é¡ž
 
 	$self->{copy_btn} = $fra5->Button(
-		-text => kh_msg->gget('copy'),#$self->gui_jchar('¥³¥Ô¡¼'),
+		-text => kh_msg->gget('copy'),#$self->gui_jchar('ã‚³ãƒ”ãƒ¼'),
 		-font => "TKFN",
 		#-width => 8,
 		-borderwidth => '1',
@@ -196,18 +196,18 @@ sub _new{
 	)->pack(-side => 'left');
 
 	$fra5->Button(
-		-text => kh_msg->get('filter'),#self->gui_jchar('¥Õ¥£¥ë¥¿ÀßÄê'),
+		-text => kh_msg->get('filter'),#self->gui_jchar('ãƒ•ã‚£ãƒ«ã‚¿è¨­å®š'),
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub {gui_window::word_conc_coloc_opt->open;}
 	)->pack(-side => 'left',-anchor => 'w', -pady => 1, -padx => 2);
 
-	# ¥Õ¥£¥ë¥¿ÀßÄê¤Î½é´ü²½
+	# ãƒ•ã‚£ãƒ«ã‚¿è¨­å®šã®åˆæœŸåŒ–
 	
 	$filter = undef;
-	$filter->{limit}   = 200;                  # LIMIT¿ô
+	$filter->{limit}   = 200;                  # LIMITæ•°
 	$filter->{filter}  = 1;
-	my $h = mysql_exec->select("               # ÉÊ»ì¤Ë¤è¤ë¥Õ¥£¥ë¥¿
+	my $h = mysql_exec->select("               # å“è©žã«ã‚ˆã‚‹ãƒ•ã‚£ãƒ«ã‚¿
 		SELECT name, khhinshi_id
 		FROM   hselection
 		WHERE  ifuse = 1
@@ -215,8 +215,8 @@ sub _new{
 	while (my $i = $h->fetch){
 		if (
 			   $i->[0] =~ /B$/
-			|| $i->[0] eq 'ÈÝÄê½õÆ°»ì'
-			|| $i->[0] eq '·ÁÍÆ»ì¡ÊÈó¼«Î©¡Ë'
+			|| $i->[0] eq 'å¦å®šåŠ©å‹•è©ž'
+			|| $i->[0] eq 'å½¢å®¹è©žï¼ˆéžè‡ªç«‹ï¼‰'
 		){
 			$filter->{hinshi}{$i->[1]} = 0;
 		} else {
@@ -226,13 +226,13 @@ sub _new{
 
 
 	$fra5->Label(
-		-text => kh_msg->get('sort'),#$self->gui_jchar('¡¡¥½¡¼¥È¡§'),
+		-text => kh_msg->get('sort'),#$self->gui_jchar('ã€€ã‚½ãƒ¼ãƒˆï¼š'),
 		-font => "TKFN"
 	)->pack(-side => 'left');
 
 	my @options = (
 		[ kh_msg->get('h_score'), 'score'],
-		[ kh_msg->get('total'),   'sum'], # ¹ç·×
+		[ kh_msg->get('total'),   'sum'], # åˆè¨ˆ
 		[ kh_msg->get('l_total'), 'suml'],
 		[ kh_msg->get('r_total'), 'sumr'],
 		[ kh_msg->get('l5'),  'l5'],
@@ -267,7 +267,7 @@ sub _new{
 			}
 	);
 
-	# ½¸·×ÈÏ°Ï¤ÎÀßÄê
+	# é›†è¨ˆç¯„å›²ã®è¨­å®š
 	$self->{span1} = 'l5';
 	$self->{span2} = 'r5';
 	
@@ -323,7 +323,7 @@ sub _new{
 	$self->update_span;
 
 
-	# ¤½¤ÎÂ¾¡¦ºÇ½ª½èÍý
+	# ãã®ä»–ãƒ»æœ€çµ‚å‡¦ç†
 	
 	$self->disabled_entry_configure($e1);
 	$self->disabled_entry_configure($e4);
@@ -413,7 +413,7 @@ sub update_span{
 
 
 #--------------#
-#   ·ë²ÌÉ½¼¨   #
+#   çµæžœè¡¨ç¤º   #
 #--------------#
 
 sub view{
@@ -445,7 +445,7 @@ sub view{
 		$self->list->header('create',16,-text  => kh_msg->get('h_score'));
 	}
 	
-	# node word ¾ðÊó¤ÎÉ½¼¨
+	# node word æƒ…å ±ã®è¡¨ç¤º
 	$self->{entry}{nw_w}->configure(-state => 'normal');
 	$self->{entry}{nw_h}->configure(-state => 'normal');
 	$self->{entry}{nw_k}->configure(-state => 'normal');
@@ -476,7 +476,7 @@ sub view{
 		   $gui_window::word_conc::additional->{1}{pos}
 		&& length($gui_window::word_conc::additional->{1}{query})
 	){
-		$if_tuika = kh_msg->get('additional'); #'  ¡ÜÄÉ²Ã¾ò·ï';
+		$if_tuika = kh_msg->get('additional'); #'  ï¼‹è¿½åŠ æ¡ä»¶';
 	}
 	$self->{label}->configure(
 		-text => 
@@ -488,7 +488,7 @@ sub view{
 	$self->list->delete('all');
 	$self->win_obj->update;
 	
-	# ½¸·×·ë²Ì¤Î¼èÆÀ
+	# é›†è¨ˆçµæžœã®å–å¾—
 	return unless $self->{result_obj};
 	my $res = $self->{result_obj}->format_coloc(
 		sort   => $self->{sort},
@@ -498,7 +498,7 @@ sub view{
 	);
 	return unless $res;
 	
-	# ½¸·×·ë²Ì¤ÎÉ½¼¨
+	# é›†è¨ˆçµæžœã®è¡¨ç¤º
 	my $right_style = $self->list->ItemStyle(
 		'text',
 		-font             => "TKFN",
@@ -543,7 +543,7 @@ sub view{
 		my $col = 1;
 		my $max = max @{$i}[5...14];
 		foreach my $h (@{$i}){
-			if ($col > 2){              # ¿ô»ú
+			if ($col > 2){              # æ•°å­—
 				my $style;
 				if ($col < 6){
 					$style = $right_style;
@@ -566,7 +566,7 @@ sub view{
 					-text  => $h,
 					-style => $style
 				);
-			} else {                    # ÆüËÜ¸ìÊ¸»ú
+			} else {                    # æ—¥æœ¬èªžæ–‡å­—
 				$self->list->itemCreate(
 					$row,
 					$col,
@@ -582,7 +582,7 @@ sub view{
 
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 
 sub list{
 	my $self = shift;

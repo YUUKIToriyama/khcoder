@@ -12,7 +12,7 @@ BEGIN {
 
 	# for Windows [1]
 	if ($^O eq 'MSWin32'){
-		# Cwd.pm‚Ìã‘‚«
+		# Cwd.pmã®ä¸Šæ›¸ã
 		no warnings 'redefine';
 		sub Cwd::_win32_cwd {
 			if (defined &DynaLoader::boot_DynaLoader) {
@@ -31,13 +31,13 @@ BEGIN {
 		use warnings 'redefine';
 	}
 
-	# ƒ‚ƒWƒ…[ƒ‹‚ÌƒpƒX‚ð’Ç‰Á
+	# ãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ã®ãƒ‘ã‚¹ã‚’è¿½åŠ 
 	push @INC, cwd.'/kh_lib';
 	push @INC, cwd.'/plugin';
 
 	# for Windows [2]
 	if ($^O eq 'MSWin32'){
-		# ƒRƒ“ƒ\[ƒ‹‚ðÅ¬‰»
+		# ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã‚’æœ€å°åŒ–
 		require Win32::Console;
 		Win32::Console->new->Title('Console of KH Coder');
 		if (defined($PerlApp::VERSION) && substr($PerlApp::VERSION,0,1) >= 7 ){
@@ -61,7 +61,7 @@ BEGIN {
 				2
 			);
 		}
-		# ƒXƒvƒ‰ƒbƒVƒ…
+		# ã‚¹ãƒ—ãƒ©ãƒƒã‚·ãƒ¥
 		#require Tk::Splash;
 		#$splash = Tk::Splash->Show(
 		#	Tk->findINC('kh_logo.bmp'),
@@ -69,7 +69,7 @@ BEGIN {
 		#	109,
 		#	'',
 		#);
-		# Tk‚ðInvoke‚µ‚È‚¢ƒ}ƒ‹ƒ`ƒXƒŒƒbƒh—p‚ÌƒXƒvƒ‰ƒbƒVƒ…
+		# Tkã‚’Invokeã—ãªã„ãƒžãƒ«ãƒã‚¹ãƒ¬ãƒƒãƒ‰ç”¨ã®ã‚¹ãƒ—ãƒ©ãƒƒã‚·ãƒ¥
 		require Tk::Splash;
 		require Win32::GUI::SplashScreen;
 		Win32::GUI::SplashScreen::Show(
@@ -86,7 +86,7 @@ BEGIN {
 		}
 	}
 
-	# Ý’è‚Ì“Ç‚Ýž‚Ý
+	# è¨­å®šã®èª­ã¿è¾¼ã¿
 	require kh_sysconfig;
 	$config_obj = kh_sysconfig->readin('./config/coder.ini',&cwd);
 }
@@ -100,7 +100,7 @@ use kh_projects;
 use kh_morpho;
 use gui_window;
 
-# Windows”ÅƒpƒbƒP[ƒW—p‚Ì‰Šú‰»
+# Windowsç‰ˆãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ç”¨ã®åˆæœŸåŒ–
 if (
 	   ($::config_obj->os eq 'win32')
 	&& $::config_obj->all_in_one_pack
@@ -109,7 +109,7 @@ if (
 	kh_all_in_one->init;
 }
 
-# R‚Ì‰Šú‰»
+# Rã®åˆæœŸåŒ–
 use Statistics::R;
 *Statistics::R::output_chk = sub {return 1};
 
@@ -133,11 +133,11 @@ if ($::config_obj->{R}){
 }
 chdir ($::config_obj->{cwd});
 
-# WorkerƒXƒŒƒbƒh‚ÌŠJŽn
+# Workerã‚¹ãƒ¬ãƒƒãƒ‰ã®é–‹å§‹
 use my_threads;
 my_threads->init;
 
-# GUI‚ÌŠJŽn
+# GUIã®é–‹å§‹
 $main_gui = gui_window::main->open;
 
 $main_gui->win_obj->bind(
@@ -150,7 +150,7 @@ $main_gui->win_obj->bind(
 MainLoop;
 
 #--------------------#
-#   ƒeƒXƒg—pƒR[ƒh   #
+#   ãƒ†ã‚¹ãƒˆç”¨ã‚³ãƒ¼ãƒ‰   #
 
 sub test{
 
@@ -166,17 +166,17 @@ binmode STDOUT, ":encoding(UTF-8)";
 
 my $t0 = new Benchmark;
 
-kh_at::project_new->exec_test('project_new');      # ƒeƒXƒgƒtƒ@ƒCƒ‹“o˜^&‘Oˆ—
+kh_at::project_new->exec_test('project_new');      # ãƒ†ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ç™»éŒ²&å‰å‡¦ç†
 #kh_at->open_test_project;
 
-kh_at::pretreatment->exec_test('pretreatment');    # ‘Oˆ—ƒƒjƒ…[
-kh_at::words->exec_test('words');                  # ’ŠoŒêƒƒjƒ…[
-kh_at::out_var->exec_test('out_var');              # ŠO•”•Ï”ƒƒjƒ…[
-kh_at::cod->exec_test('cod');                      # ƒR[ƒfƒBƒ“ƒO
-#kh_at::transf->exec_test('transf');                # ƒeƒLƒXƒgƒtƒ@ƒCƒ‹
+kh_at::pretreatment->exec_test('pretreatment');    # å‰å‡¦ç†ãƒ¡ãƒ‹ãƒ¥ãƒ¼
+kh_at::words->exec_test('words');                  # æŠ½å‡ºèªžãƒ¡ãƒ‹ãƒ¥ãƒ¼
+kh_at::out_var->exec_test('out_var');              # å¤–éƒ¨å¤‰æ•°ãƒ¡ãƒ‹ãƒ¥ãƒ¼
+kh_at::cod->exec_test('cod');                      # ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°
+#kh_at::transf->exec_test('transf');                # ãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«
 
-kh_at->close_test_project;                         # ƒvƒƒWƒFƒNƒg‚ð•Â‚¶‚é
-kh_at->delete_test_project;                        # ƒvƒƒWƒFƒNƒg‚ðíœ
+kh_at->close_test_project;                         # ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’é–‰ã˜ã‚‹
+kh_at->delete_test_project;                        # ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’å‰Šé™¤
 
 my $t1 = new Benchmark;
 

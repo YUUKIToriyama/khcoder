@@ -6,7 +6,7 @@ use gui_errormsg;
 use mysql_outvar::a_var;
 
 #----------------------#
-#   ÊÑ¿ô¥ê¥¹¥È¤òÊÖ¤¹   #
+#   å¤‰æ•°ãƒªã‚¹ãƒˆã‚’è¿”ã™   #
 
 sub get_list{
 	my $h = mysql_exec->select("
@@ -19,7 +19,7 @@ sub get_list{
 }
 
 #----------------#
-#   ÊÑ¿ô¤òºï½ü   #
+#   å¤‰æ•°ã‚’å‰Šé™¤   #
 
 sub delete{
 	my $class = shift;
@@ -33,7 +33,7 @@ sub delete{
 }
 
 #--------------------------#
-#   ÊÑ¿ô¤ò¥Õ¥¡¥¤¥ë¤ËÊİÂ¸   #
+#   å¤‰æ•°ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜   #
 
 sub save{
 	my $class = shift;

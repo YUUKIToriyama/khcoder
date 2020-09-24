@@ -1,4 +1,4 @@
-# ¸ì¤Î¥Õ¥ì¡¼¥º¤Ë¤è¤ë»ØÄê
+# èªã®ãƒ•ãƒ¬ãƒ¼ã‚ºã«ã‚ˆã‚‹æŒ‡å®š
 
 package kh_cod::a_code::atom::phrase;
 use base qw(kh_cod::a_code::atom);
@@ -12,7 +12,7 @@ sub reset{
 }
 
 #-----------------#
-#   SQLÊ¸¤Î½àÈ÷   #
+#   SQLæ–‡ã®æº–å‚™   #
 #-----------------#
 
 my %sql_join = (
@@ -117,7 +117,7 @@ my %sql_group = (
 my $dn;
 
 #--------------------#
-#   WHEREÀáÍÑSQLÊ¸   #
+#   WHEREç¯€ç”¨SQLæ–‡   #
 #--------------------#
 
 sub expr{
@@ -135,7 +135,7 @@ sub idf{
 	my $self = shift;
 	return 0 unless $self->tables;
 	
-	# Á´Ê¸½ñ¿ô¤Î¼èÆÀ¡¦Êİ»ı
+	# å…¨æ–‡æ›¸æ•°ã®å–å¾—ãƒ»ä¿æŒ
 	unless (
 		($dn->{$self->{tani}}) && ($dn->{check} eq $::project_obj->file_target)
 	){
@@ -145,7 +145,7 @@ sub idf{
 		$dn->{check} = $::project_obj->file_target;
 	}
 	
-	# ·×»»
+	# è¨ˆç®—
 	my $df;
 	$df = mysql_exec->select(
 		"SELECT COUNT(*) FROM $self->{tables}[0]",1
@@ -156,7 +156,7 @@ sub idf{
 }
 
 #---------------------------------------#
-#   ¥³¡¼¥Ç¥£¥ó¥°½àÈ÷¡Êtmp tableºîÀ®¡Ë   #
+#   ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°æº–å‚™ï¼ˆtmp tableä½œæˆï¼‰   #
 #---------------------------------------#
 
 sub ready{
@@ -164,10 +164,10 @@ sub ready{
 	my $tani = shift;
 	$self->{tani} = $tani;
 	
-	# ¥ë¡¼¥ë»ØÄê¤Î²ò¼á
+	# ãƒ«ãƒ¼ãƒ«æŒ‡å®šã®è§£é‡ˆ
 	my @wlist = split /\+/, $self->raw;
 	
-	# ³ÆÃ±¸ì¤Î½Ğ¸½Ê¸½ñ¥ê¥¹¥È¤òºîÀ½
+	# å„å˜èªã®å‡ºç¾æ–‡æ›¸ãƒªã‚¹ãƒˆã‚’ä½œè£½
 	my (%w2tab, %w2hyoso, @hyosos);
 	foreach my $i (@wlist){
 		my $list = mysql_a_word->new(
@@ -209,7 +209,7 @@ sub ready{
 		}
 	}
 	
-	# ¥Æ¡¼¥Ö¥ëÌ¾·èÄê¤È¥­¥ã¥Ã¥·¥å¤Î¥Á¥§¥Ã¥¯
+	# ãƒ†ãƒ¼ãƒ–ãƒ«åæ±ºå®šã¨ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®ãƒã‚§ãƒƒã‚¯
 	my $debug = 0;
 	my @c_c = kh_cod::a_code->cache_check(
 		tani => $tani,
@@ -228,7 +228,7 @@ sub ready{
 		print "\n" if $debug;
 	}
 
-	# AND¸¡º÷¤Ë¤è¤ë¹Ê¤ê¹ş¤ß¤ò¼Â»Ü
+	# ANDæ¤œç´¢ã«ã‚ˆã‚‹çµã‚Šè¾¼ã¿ã‚’å®Ÿæ–½
 	mysql_exec->drop_table("ct_tmp_phrase");
 	mysql_exec->do("
 		CREATE TEMPORARY TABLE ct_tmp_phrase (id int) TYPE=HEAP
@@ -259,7 +259,7 @@ sub ready{
 	$sql .= ")";
 	mysql_exec->do("$sql",1);
 
-	# TMP¥Æ¡¼¥Ö¥ë¤ÎºîÀ½
+	# TMPãƒ†ãƒ¼ãƒ–ãƒ«ã®ä½œè£½
 	#my $table = "ct_$tani"."_phrase_$num";
 	$self->{tables} = ["$table"];
 	++$num;
@@ -271,7 +271,7 @@ sub ready{
 		)
 	",1);
 
-	# Ï¢Â³¤·¤Æ½Ğ¸½¤·¤Æ¤¤¤ë¤«¤É¤¦¤«¤ò¥Á¥§¥Ã¥¯
+	# é€£ç¶šã—ã¦å‡ºç¾ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 	my $n2 = @wlist - 1;
 	$sql = '';
 	$sql .= "INSERT INTO $table (id, num)\n";
@@ -301,7 +301,7 @@ sub ready{
 }
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 #--------------#
 
 sub tables{

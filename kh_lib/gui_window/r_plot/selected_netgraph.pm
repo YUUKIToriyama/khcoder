@@ -8,17 +8,17 @@ sub option1_options{
 		return [
 			kh_msg->get('gui_window::r_plot::word_netgraph->cnt_b'),
 			kh_msg->get('gui_window::r_plot::word_netgraph->com_r'),
-			kh_msg->get('gui_window::r_plot::word_netgraph->com_m'), # ¥µ¥Ö¥°¥é¥Õ¸¡½Ğ¡Êmodularity¡Ë
+			kh_msg->get('gui_window::r_plot::word_netgraph->com_m'), # ã‚µãƒ–ã‚°ãƒ©ãƒ•æ¤œå‡ºï¼ˆmodularityï¼‰
 		];
 	} else {
 		return [
-			kh_msg->get('gui_window::r_plot::word_netgraph->cnt_b'), # Ãæ¿´À­¡ÊÇŞ²ğ¡Ë
-			kh_msg->get('gui_window::r_plot::word_netgraph->cnt_d'), # Ãæ¿´À­¡Ê¼¡¿ô¡Ë
-			kh_msg->get('gui_window::r_plot::word_netgraph->cnt_v'), # Ãæ¿´À­¡Ê¸ÇÍ­¥Ù¥¯¥È¥ë¡Ë
-			kh_msg->get('gui_window::r_plot::word_netgraph->com_b'), # ¥µ¥Ö¥°¥é¥Õ¸¡½Ğ¡ÊÇŞ²ğ¡Ë
+			kh_msg->get('gui_window::r_plot::word_netgraph->cnt_b'), # ä¸­å¿ƒæ€§ï¼ˆåª’ä»‹ï¼‰
+			kh_msg->get('gui_window::r_plot::word_netgraph->cnt_d'), # ä¸­å¿ƒæ€§ï¼ˆæ¬¡æ•°ï¼‰
+			kh_msg->get('gui_window::r_plot::word_netgraph->cnt_v'), # ä¸­å¿ƒæ€§ï¼ˆå›ºæœ‰ãƒ™ã‚¯ãƒˆãƒ«ï¼‰
+			kh_msg->get('gui_window::r_plot::word_netgraph->com_b'), # ã‚µãƒ–ã‚°ãƒ©ãƒ•æ¤œå‡ºï¼ˆåª’ä»‹ï¼‰
 			kh_msg->get('gui_window::r_plot::word_netgraph->com_r'),
-			kh_msg->get('gui_window::r_plot::word_netgraph->com_m'), # ¥µ¥Ö¥°¥é¥Õ¸¡½Ğ¡Êmodularity¡Ë
-			kh_msg->get('gui_window::r_plot::word_netgraph->none'),  # ¤Ê¤·
+			kh_msg->get('gui_window::r_plot::word_netgraph->com_m'), # ã‚µãƒ–ã‚°ãƒ©ãƒ•æ¤œå‡ºï¼ˆmodularityï¼‰
+			kh_msg->get('gui_window::r_plot::word_netgraph->none'),  # ãªã—
 		];
 	}
 }
@@ -141,11 +141,11 @@ sub extra_save_types{
 }
 
 sub option1_name{
-	return kh_msg->get('color'); #  ¥«¥é¡¼¡§
+	return kh_msg->get('color'); #  ã‚«ãƒ©ãƒ¼ï¼š
 }
 
 sub win_title{
-	return kh_msg->get('win_title'); # ´ØÏ¢¸ì¡¦¶¦µ¯¥Í¥Ã¥È¥ï¡¼¥¯
+	return kh_msg->get('win_title'); # é–¢é€£èªãƒ»å…±èµ·ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯
 }
 
 sub win_name{

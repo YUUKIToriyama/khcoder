@@ -1,4 +1,4 @@
-# Ê¸½ñÄ¹¤Ë¤è¤ë»ØÄê
+# æ–‡æ›¸é•·ã«ã‚ˆã‚‹æŒ‡å®š
 
 package kh_cod::a_code::atom::length;
 use base qw(kh_cod::a_code::atom);

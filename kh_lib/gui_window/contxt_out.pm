@@ -12,7 +12,7 @@ use gui_window::contxt_out::csv;
 use gui_window::contxt_out::tab;
 
 #-------------#
-#   GUIºîÀ½   #
+#   GUIä½œè£½   #
 #-------------#
 
 sub _new{
@@ -22,22 +22,22 @@ sub _new{
 	$win->title($self->gui_jt($self->label));
 	#$self->{win_obj} = $win;
 
-	# ³Æ¼ï¥Õ¥ì¡¼¥à
+	# å„ç¨®ãƒ•ãƒ¬ãƒ¼ãƒ 
 	my $wf = $win->Frame()->pack(-fill => 'both', -expand => 1);
 	my $lf = $wf->LabFrame(
-		-label => kh_msg->get('words'), # Ãê½Ğ¸ì
+		-label => kh_msg->get('words'), # æŠ½å‡ºèª
 		-labelside => 'acrosstop',
 		-foreground => 'blue',
 		-borderwidth => 2,
 	)->pack(-fill => 'both', -expand => 1, -side => 'left');
 	my $rf = $wf->LabFrame(
-		-label => kh_msg->get('words4cntxt'), # Ê¸Ì®¥Ù¥¯¥È¥ë¤Î·×»»¤ËÍÑ¤¤¤ëÃê½Ğ¸ì
+		-label => kh_msg->get('words4cntxt'), # æ–‡è„ˆãƒ™ã‚¯ãƒˆãƒ«ã®è¨ˆç®—ã«ç”¨ã„ã‚‹æŠ½å‡ºèª
 		-labelside => 'acrosstop',
 		-foreground => 'blue',
 		-borderwidth => 2,
 	)->pack(-fill => 'both', -expand => 1, -side => 'left');
 	my $of = $win ->LabFrame(
-		-label => kh_msg->get('options'), # ½¸·×Ã±°Ì¤È½Å¤ßÉÕ¤±
+		-label => kh_msg->get('options'), # é›†è¨ˆå˜ä½ã¨é‡ã¿ä»˜ã‘
 		-labelside => 'acrosstop',
 		-foreground => 'blue',
 		-borderwidth => 2,
@@ -47,7 +47,7 @@ sub _new{
 	)->pack(-anchor => 'se', -side => 'right');
 
 	#--------------------#
-	#   ½¸·×¥ª¥×¥·¥ç¥ó   #
+	#   é›†è¨ˆã‚ªãƒ—ã‚·ãƒ§ãƒ³   #
 
 	$of->Label(
 		-text => '    ',
@@ -64,20 +64,20 @@ sub _new{
 	);
 
 	#--------------------------------#
-	#   Ê¸Ì®·×»»¤Ë»ÈÍÑ¤¹¤ë¸ì¤ÎÁªÂò   #
+	#   æ–‡è„ˆè¨ˆç®—ã«ä½¿ç”¨ã™ã‚‹èªã®é¸æŠ   #
 
 	my $right = $rf->Frame()->pack(-fill => 'both', -expand => 1);
 
 	
-	# ºÇ¾®¡¦ºÇÂç½Ğ¸½¿ô
+	# æœ€å°ãƒ»æœ€å¤§å‡ºç¾æ•°
 	$right->Label(
-		-text => kh_msg->get('gui_widget::words->by_tf'), # ºÇ¾®/ºÇÂç ½Ğ¸½¿ô¤Ë¤è¤ë¸ì¤ÎÁªÂò
+		-text => kh_msg->get('gui_widget::words->by_tf'), # æœ€å°/æœ€å¤§ å‡ºç¾æ•°ã«ã‚ˆã‚‹èªã®é¸æŠ
 		-font => "TKFN"
 	)->pack(-anchor => 'w', -pady => 5);
 	
 	my $r2 = $right->Frame()->pack(-fill => 'x');
 	$r2->Label(
-		-text => kh_msg->get('gui_widget::words->min_tf'), #      ºÇ¾®½Ğ¸½¿ô¡§
+		-text => kh_msg->get('gui_widget::words->min_tf'), #      æœ€å°å‡ºç¾æ•°ï¼š
 		-font => "TKFN"
 	)->pack(-side => 'left');
 	$self->{ent_min2} = $r2->Entry(
@@ -88,7 +88,7 @@ sub _new{
 	$self->config_entry_focusin($self->{ent_min2});
 	
 	$r2->Label(
-		-text => kh_msg->get('gui_widget::words->max_tf'), # ¡¡ ºÇÂç½Ğ¸½¿ô¡§
+		-text => kh_msg->get('gui_widget::words->max_tf'), # ã€€ æœ€å¤§å‡ºç¾æ•°ï¼š
 		-font => "TKFN"
 	)->pack(-side => 'left');
 	$self->{ent_max2} = $r2->Entry(
@@ -99,14 +99,14 @@ sub _new{
 	$self->{ent_min2}->insert(0,'1');
 	$self->config_entry_focusin($self->{ent_max2});
 
-	# ºÇ¾®¡¦ºÇÂç Ê¸½ñ¿ô¤Ë¤è¤ëÁªÂò
+	# æœ€å°ãƒ»æœ€å¤§ æ–‡æ›¸æ•°ã«ã‚ˆã‚‹é¸æŠ
 	$right->Label(
-		-text => kh_msg->get('gui_widget::words->by_df'), # ¡¦ºÇ¾®/ºÇÂç Ê¸½ñ¿ô¤Ë¤è¤ë¸ì¤ÎÁªÂò
+		-text => kh_msg->get('gui_widget::words->by_df'), # ãƒ»æœ€å°/æœ€å¤§ æ–‡æ›¸æ•°ã«ã‚ˆã‚‹èªã®é¸æŠ
 		-font => "TKFN"
 	)->pack(-anchor => 'w', -pady => 5);
 	my $r5 = $right->Frame()->pack(-fill => 'x');
 	$r5->Label(
-		-text => kh_msg->get('gui_widget::words->min_df'), # ¡¡ ¡¡ºÇ¾®Ê¸½ñ¿ô¡§
+		-text => kh_msg->get('gui_widget::words->min_df'), # ã€€ ã€€æœ€å°æ–‡æ›¸æ•°ï¼š
 		-font => "TKFN"
 	)->pack(-side => 'left');
 	$self->{ent_min_df2} = $r5->Entry(
@@ -116,7 +116,7 @@ sub _new{
 	)->pack(-side => 'left');
 	$self->config_entry_focusin($self->{ent_min_df2});
 	$r5->Label(
-		-text => kh_msg->get('gui_widget::words->max_df'), # ¡¡ ºÇÂçÊ¸½ñ¿ô¡§
+		-text => kh_msg->get('gui_widget::words->max_df'), # ã€€ æœ€å¤§æ–‡æ›¸æ•°ï¼š
 		-font => "TKFN"
 	)->pack(-side => 'left');
 	$self->{ent_max_df2} = $r5->Entry(
@@ -128,7 +128,7 @@ sub _new{
 	$self->config_entry_focusin($self->{ent_max_df2});
 	my $r6 = $right->Frame()->pack(-fill => 'x');
 	$r6->Label(
-		-text => kh_msg->get('gui_widget::words->df_unit'), # ¡¡ ¡¡Ê¸½ñ¤È¸«¤Ê¤¹Ã±°Ì¡§
+		-text => kh_msg->get('gui_widget::words->df_unit'), # ã€€ ã€€æ–‡æ›¸ã¨è¦‹ãªã™å˜ä½ï¼š
 		-font => "TKFN"
 	)->pack(-side => 'left');
 	my %pack = (
@@ -143,9 +143,9 @@ sub _new{
 	$self->{tani_obj_df2}->{raw_opt} = 'bun';
 	$self->{tani_obj_df2}->mb_refresh;
 
-	# ÉÊ»ì¤Ë¤è¤ëÃ±¸ì¤Î¼è¼ÎÁªÂò
+	# å“è©ã«ã‚ˆã‚‹å˜èªã®å–æ¨é¸æŠ
 	$right->Label(
-		-text => kh_msg->get('gui_widget::words->by_pos'), # ¡¦ÉÊ»ì¤Ë¤è¤ë¸ì¤ÎÁªÂò
+		-text => kh_msg->get('gui_widget::words->by_pos'), # ãƒ»å“è©ã«ã‚ˆã‚‹èªã®é¸æŠ
 		-font => "TKFN"
 	)->pack(-anchor => 'w', -pady => 5);
 	my $r3 = $right->Frame()->pack(-fill => 'both',-expand => 1);
@@ -167,14 +167,14 @@ sub _new{
 	$self->{hinshi_obj2}->select_all;
 	my $r4 = $r3->Frame()->pack(-fill => 'x', -expand => 'y',-side => 'left');
 	$r4->Button(
-		-text => kh_msg->gget('all'), # ¤¹¤Ù¤Æ
+		-text => kh_msg->gget('all'), # ã™ã¹ã¦
 		-width => 8,
 		-font => "TKFN",
 		-borderwidth => 1,
 		-command => sub{$self->{hinshi_obj2}->select_all;}
 	)->pack(-pady => 3);
 	$r4->Button(
-		-text => kh_msg->gget('clear'), # ¥¯¥ê¥¢
+		-text => kh_msg->gget('clear'), # ã‚¯ãƒªã‚¢
 		-width => 8,
 		-font => "TKFN",
 		-borderwidth => 1,
@@ -184,7 +184,7 @@ sub _new{
 	$right->Label(
 		-text => 
 			 kh_msg->get('gui_widget::words->check_desc1')
-			.kh_msg->get('use') # »ÈÍÑ
+			.kh_msg->get('use') # ä½¿ç”¨
 			.kh_msg->get('gui_widget::words->check_desc2'),
 		-font => "TKFN"
 	)->pack(-anchor => 'w');
@@ -194,7 +194,7 @@ sub _new{
 		-font => "TKFN"
 	)->pack(-anchor => 'w', -side => 'left');
 	$cf2->Button(
-		-text => kh_msg->get('gui_widget::words->check'), # ¥Á¥§¥Ã¥¯
+		-text => kh_msg->get('gui_widget::words->check'), # ãƒã‚§ãƒƒã‚¯
 		-font => "TKFN",
 		-borderwidth => 1,
 		-command => sub{$self->check2;}
@@ -209,7 +209,7 @@ sub _new{
 
 
 	#------------------#
-	#   Ãê½Ğ¸ì¤ÎÁªÂò   #
+	#   æŠ½å‡ºèªã®é¸æŠ   #
 	
 	$self->{words_obj} = gui_widget::words->open(
 		parent => $lf,
@@ -218,10 +218,10 @@ sub _new{
 	);
 
 	#----------------#
-	#   ¼Â¹Ô¥Ü¥¿¥ó   #
+	#   å®Ÿè¡Œãƒœã‚¿ãƒ³   #
 
 	$bf->Button(
-		-text => kh_msg->gget('cancel'), # ¥­¥ã¥ó¥»¥ë
+		-text => kh_msg->gget('cancel'), # ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		-font => "TKFN",
 		-width => 8,
 		-command => sub{$self->close;}
@@ -252,7 +252,7 @@ sub _new{
 }
 
 #------------------------#
-#   Ãê½Ğ¸ì¿ô¤Î¥Á¥§¥Ã¥¯   #
+#   æŠ½å‡ºèªæ•°ã®ãƒã‚§ãƒƒã‚¯   #
 
 sub check2{
 	my $self = shift;
@@ -281,7 +281,7 @@ sub check2{
 
 
 #--------------------------#
-#   ÆşÎÏ¥Á¥§¥Ã¥¯¥ë¡¼¥Á¥ó   #
+#   å…¥åŠ›ãƒã‚§ãƒƒã‚¯ãƒ«ãƒ¼ãƒãƒ³   #
 
 sub check{
 	my $self = shift;
@@ -314,7 +314,7 @@ sub check{
 
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 #--------------#
 
 sub min{

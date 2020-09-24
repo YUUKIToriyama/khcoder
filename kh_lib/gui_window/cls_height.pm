@@ -8,7 +8,7 @@ use gui_window::cls_height::word;
 use gui_window::cls_height::cod;
 
 #------------------#
-#   Window¤ò³«¤¯   #
+#   Windowã‚’é–‹ã   #
 #------------------#
 
 sub _new{
@@ -33,12 +33,12 @@ sub _new{
 	my $f1 = $win->Frame()->pack(-expand => 'y', -fill => 'x', -pady => 2);
 
 	$f1->Label(
-		-text => kh_msg->get('plotting'), #  ¥×¥í¥Ã¥ÈÈÏ°Ï¡§ 
+		-text => kh_msg->get('plotting'), #  ãƒ—ãƒ­ãƒƒãƒˆç¯„å›²ï¼š 
 		-font => "TKFN"
 	)->pack(-anchor => 'e', -side => 'left');
 
 	$self->{btn_first} = $f1->Button(
-		-text => kh_msg->get('f50'), # << ºÇ½é50
+		-text => kh_msg->get('f50'), # << æœ€åˆ50
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub {
@@ -52,7 +52,7 @@ sub _new{
 	)->pack(-side => 'left', -padx => 2);
 
 	$self->{btn_all} = $f1->Button(
-		-text => kh_msg->get('all'), # Á´ÂÎ
+		-text => kh_msg->get('all'), # å…¨ä½“
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub {
@@ -66,7 +66,7 @@ sub _new{
 	)->pack(-side => 'left', -padx => 2);
 
 	$self->{btn_last} = $f1->Button(
-		-text => kh_msg->get('l50'), # ºÇ¸å50 >>
+		-text => kh_msg->get('l50'), # æœ€å¾Œ50 >>
 		-font => "TKFN",
 		-borderwidth => '1',
 		-state => 'disabled',
@@ -81,7 +81,7 @@ sub _new{
 	)->pack(-side => 'left', -padx => 2);
 
 	$f1->Button(
-		-text => kh_msg->gget('close'), # ÊÄ¤¸¤ë
+		-text => kh_msg->gget('close'), # é–‰ã˜ã‚‹
 		-font => "TKFN",
 		-width => 8,
 		-borderwidth => '1',
@@ -89,7 +89,7 @@ sub _new{
 	)->pack(-side => 'right');
 
 	$f1->Button(
-		-text => kh_msg->gget('save'), # ÊİÂ¸
+		-text => kh_msg->gget('save'), # ä¿å­˜
 		-font => "TKFN",
 		#-width => 8,
 		-borderwidth => '1',
@@ -102,7 +102,7 @@ sub _new{
 sub save{
 	my $self = shift;
 
-	# ÊİÂ¸Àè¤Î»²¾È
+	# ä¿å­˜å…ˆã®å‚ç…§
 	my @types = (
 		[ "Encapsulated PostScript",[qw/.eps/] ],
 		[ "PDF",[qw/.pdf/] ],
@@ -117,7 +117,7 @@ sub save{
 		-defaultextension => '.eps',
 		-filetypes        => \@types,
 		-title            =>
-			$self->gui_jt(kh_msg->get('save_as')), # ¥×¥í¥Ã¥È¤òÊİÂ¸
+			$self->gui_jt(kh_msg->get('save_as')), # ãƒ—ãƒ­ãƒƒãƒˆã‚’ä¿å­˜
 		-initialdir       => $self->gui_jchar($::config_obj->cwd)
 	);
 
@@ -133,7 +133,7 @@ sub _save{
 	my $self = shift;
 	my $path = shift;
 	
-	# R Source¤òÊİÂ¸¤¹¤ë¾ì¹ç¤Ë¤ÏÂĞºö¤¬É¬Í×¡©
+	# R Sourceã‚’ä¿å­˜ã™ã‚‹å ´åˆã«ã¯å¯¾ç­–ãŒå¿…è¦ï¼Ÿ
 	$self->{plots}{$self->{type}}{$self->{range}}->save($path) if $path;
 }
 

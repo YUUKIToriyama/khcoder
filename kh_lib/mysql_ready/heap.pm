@@ -74,9 +74,9 @@ sub rowdata_restore{
 sub hyosobun{
 	return 0 unless $::config_obj->use_heap;
 	
-	return 1; # Ìµ¸ú²½¡Ä
+	return 1; # ç„¡åŠ¹åŒ–â€¦
 	
-	# hyosobun¥Æ¡¼¥Ö¥ë¤òÆÉ¤ß¹þ¤ß
+	# hyosobunãƒ†ãƒ¼ãƒ–ãƒ«ã‚’èª­ã¿è¾¼ã¿
 	mysql_exec->drop_table("hyosobun_isam");
 	mysql_exec->do("ALTER TABLE hyosobun RENAME hyosobun_isam",1);
 	mysql_exec->do("
@@ -116,7 +116,7 @@ sub hyosobun{
 sub clear_heap{
 	return 0 unless $::config_obj->use_heap;
 
-	return 1; # Ìµ¸ú²½¡Ä
+	return 1; # ç„¡åŠ¹åŒ–â€¦
 
 	mysql_exec->drop_table("hyosobun");
 	mysql_exec->do("ALTER TABLE hyosobun_isam RENAME hyosobun",1);

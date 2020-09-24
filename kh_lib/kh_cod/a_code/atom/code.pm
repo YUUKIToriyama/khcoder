@@ -1,4 +1,4 @@
-# ´û¤ËÄêµÁ¤·¤Æ¤¢¤ë¥³¡¼¥É¤ÎÍøÍÑ --- <¡ö¥³¡¼¥ÉÌ¾>
+# æ—¢ã«å®šç¾©ã—ã¦ã‚ã‚‹ã‚³ãƒ¼ãƒ‰ã®åˆ©ç”¨ --- <ï¼Šã‚³ãƒ¼ãƒ‰å>
 
 package kh_cod::a_code::atom::code;
 use base qw(kh_cod::a_code::atom);
@@ -11,7 +11,7 @@ sub reset{
 }
 
 #--------------------#
-#   WHEREÀáÍÑSQLÊ¸   #
+#   WHEREç¯€ç”¨SQLæ–‡   #
 #--------------------#
 
 sub expr{
@@ -37,7 +37,7 @@ sub num_expr{
 }
 
 #---------------------------------------#
-#   ¥³¡¼¥Ç¥£¥ó¥°½àÈ÷¡Êtmp tableºîÀ®¡Ë   #
+#   ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°æº–å‚™ï¼ˆtmp tableä½œæˆï¼‰   #
 #---------------------------------------#
 
 sub ready{
@@ -47,7 +47,7 @@ sub ready{
 	
 	return $self unless $self->{the_code};
 	
-	# ¥³¡¼¥Ç¥£¥ó¥°¤¬¼Â¹Ô¤µ¤ì¤Æ¤¤¤Ê¤«¤Ã¤¿¾ì¹ç¤Ï¡¢¤³¤³¤Ç¼Â¹Ô
+	# ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãŒå®Ÿè¡Œã•ã‚Œã¦ã„ãªã‹ã£ãŸå ´åˆã¯ã€ã“ã“ã§å®Ÿè¡Œ
 	unless (
 		   $self->{the_code}->if_done == 1 
 		&& $self->{the_code}->tani    eq $tani
@@ -60,11 +60,11 @@ sub ready{
 	$self->{hyosos} = $self->{the_code}->hyosos;
 	
 	if ($self->{the_code}->res_table){
-		# ¿·¤·¤¤¥Æ¡¼¥Ö¥ëÌ¾¤ÎºîÀ®¡¦¥»¥Ã¥È
+		# æ–°ã—ã„ãƒ†ãƒ¼ãƒ–ãƒ«åã®ä½œæˆãƒ»ã‚»ãƒƒãƒˆ
 		my $table  = "ct_$tani"."_atomcode_$num";
 		push @{$self->{tables}}, $table;
 		++$num;
-		# ¥Æ¡¼¥Ö¥ë¤ò¥³¥Ô¡¼
+		# ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ã‚³ãƒ”ãƒ¼
 		my $oldtab = $self->{the_code}->res_table;
 		#print "\tatom-code: old-$oldtab, new-$table\n";
 		mysql_exec->drop_table($table);
@@ -91,7 +91,7 @@ sub clear{
 
 
 #----------------------------#
-#   ¥³¡¼¥ÉÆÉ¤ß¹ş¤ß»ş¤Î½èÍı   #
+#   ã‚³ãƒ¼ãƒ‰èª­ã¿è¾¼ã¿æ™‚ã®å‡¦ç†   #
 
 sub when_read{
 	my $self = shift;
@@ -111,7 +111,7 @@ sub when_read{
 }
 
 #-------------------------------#
-#   ÍøÍÑ¤¹¤ëtmp table¤Î¥ê¥¹¥È   #
+#   åˆ©ç”¨ã™ã‚‹tmp tableã®ãƒªã‚¹ãƒˆ   #
 
 sub tables{
 	my $self = shift;
@@ -119,7 +119,7 @@ sub tables{
 }
 
 #----------------#
-#   ¿Æ¥Æ¡¼¥Ö¥ë   #
+#   è¦ªãƒ†ãƒ¼ãƒ–ãƒ«   #
 sub parent_table{
 	my $self = shift;
 	my $new  = shift;
@@ -131,7 +131,7 @@ sub parent_table{
 }
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 
 sub raw_for_cache_chk{
 	my $self = shift;

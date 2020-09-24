@@ -52,7 +52,7 @@ sub innner{
 	my $left  = $lf->Frame()->pack(-side => 'left', -fill => 'both', -expand => 1);
 	my $right = $lf->Frame()->pack(-side => 'right', -fill => 'both');
 
-	# ¶¦ÄÌ¤Î¥Ñ¥é¥á¡¼¥¿¡¼
+	# å…±é€šã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 	my @code_names = ();
 	if ( $self->{command_f} =~ /colnames\(d\) <\- c\((.+)\)\n/ ){
 		use Unicode::Escape;
@@ -78,7 +78,7 @@ sub innner{
 	}
 
 
-	# ¶¦ÄÌ¤ÎGUI
+	# å…±é€šã®GUI
 	my $rf = $left->LabFrame(
 		-label => kh_msg->get('common'),
 		-labelside => 'acrosstop',
@@ -116,7 +116,7 @@ sub innner{
 			-expand => 1
 	);
 
-	# ¥³¡¼¥ÉÁªÂòÍÑHList
+	# ã‚³ãƒ¼ãƒ‰é¸æŠžç”¨HList
 	$self->{hlist} = $rf2_1->Scrolled(
 		'HList',
 		-scrollbars         => 'osoe',
@@ -139,21 +139,21 @@ sub innner{
 		-side   => 'left'
 	);
 	$rf2_2->Button(
-		-text => kh_msg->gget('all'), # ¤¹¤Ù¤Æ
+		-text => kh_msg->gget('all'), # ã™ã¹ã¦
 		-width => 8,
 		-font => "TKFN",
 		-borderwidth => 1,
 		-command => sub{$self->select_all;}
 	)->pack(-pady => 3);
 	$rf2_2->Button(
-		-text => kh_msg->gget('clear'), # ¥¯¥ê¥¢
+		-text => kh_msg->gget('clear'), # ã‚¯ãƒªã‚¢
 		-width => 8,
 		-font => "TKFN",
 		-borderwidth => 1,
 		-command => sub{$self->select_none;}
 	)->pack();
 
-	# ¥³¡¼¥É¤Î¥ê¥¹¥È¥¢¥Ã¥×
+	# ã‚³ãƒ¼ãƒ‰ã®ãƒªã‚¹ãƒˆã‚¢ãƒƒãƒ—
 	my $wleft = $self->{hlist}->ItemStyle('window',-anchor => 'w');
 
 	my $row = 0;
@@ -185,7 +185,7 @@ sub innner{
 		++$row;
 	}
 
-	# ¥Õ¥©¥ó¥È¥µ¥¤¥º
+	# ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º
 	my $rf3 = $rf->Frame()->pack(
 		-fill   => 'x',
 		-expand => 0,
@@ -211,7 +211,7 @@ sub innner{
 		-text => '%',
 	)->pack(-side => 'left');
 
-	# ¥Ò¡¼¥È¥Þ¥Ã¥×¤Î¥Ñ¥é¥á¡¼¥¿¡¼
+	# ãƒ’ãƒ¼ãƒˆãƒžãƒƒãƒ—ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 	if ( $self->{command_f} =~ /\ndendro_c <\- ([0-9]+)\n/ ){
 		$self->{heat_dendro_c} = $1;
 	}
@@ -224,7 +224,7 @@ sub innner{
 		$self->{heat_cellnote} = $1;
 	}
 
-	# ¥Ð¥Ö¥ë¥×¥í¥Ã¥È¤Î¥Ñ¥é¥á¡¼¥¿¡¼
+	# ãƒãƒ–ãƒ«ãƒ—ãƒ­ãƒƒãƒˆã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 	if ( $self->{command_f} =~ /bubble_size <\- (.+)\n/ ){
 		$self->{bubble_size} = $1;
 	}
@@ -258,7 +258,7 @@ sub innner{
 		$self->{color_fix} = $1;
 	}
 
-	# ¥Ò¡¼¥È¥Þ¥Ã¥×¤ÎGUI
+	# ãƒ’ãƒ¼ãƒˆãƒžãƒƒãƒ—ã®GUI
 	my $lf_h = $right->LabFrame(
 		-label => kh_msg->get('gui_window::r_plot::cod_mat->heat'),
 		-labelside => 'acrosstop',
@@ -280,7 +280,7 @@ sub innner{
 		-text     => kh_msg->get('dendro_v'), 
 	)->pack(-anchor => 'w');
 
-	my $f_h1 = $lf_h->Frame()->pack(-fill=>'x',-expand=>0); # ¥×¥í¥Ã¥È¹â¤µ
+	my $f_h1 = $lf_h->Frame()->pack(-fill=>'x',-expand=>0); # ãƒ—ãƒ­ãƒƒãƒˆé«˜ã•
 	$f_h1->Label(
 		-text => kh_msg->get('plot_size_heat'),
 	)->pack(-side => 'left');
@@ -295,14 +295,14 @@ sub innner{
 	
 	$self->{entry_plot_size_heat}->insert(0,$self->{plot_size_heat});
 
-	# ¥Ð¥Ö¥ë¥×¥í¥Ã¥È¤ÎGUI
+	# ãƒãƒ–ãƒ«ãƒ—ãƒ­ãƒƒãƒˆã®GUI
 	my $lf_f = $right->LabFrame(
 		-label => kh_msg->get('gui_window::r_plot::cod_mat->fluc'),
 		-labelside => 'acrosstop',
 		-borderwidth => 2,
 	)->pack(-fill => 'x', -expand => 0, -anchor => 'nw');
 	
-	my $f_f1 = $lf_f->Frame()                               # ¥Ð¥Ö¥ë¤ÎÂç¤­¤µ
+	my $f_f1 = $lf_f->Frame()                               # ãƒãƒ–ãƒ«ã®å¤§ãã•
 		->pack(-fill=>'x',-expand=>0, -pady => 2);
 	$f_f1->Label(
 		-text => kh_msg->get('bubble_size'),
@@ -322,7 +322,7 @@ sub innner{
 		-text => '%',
 	)->pack(-side => 'left');
 
-	my $f_f3 = $lf_f->Frame()                               # ¥Ð¥Ö¥ë·Á¾õ
+	my $f_f3 = $lf_f->Frame()                               # ãƒãƒ–ãƒ«å½¢çŠ¶
 		->pack(-fill=>'x',-expand=>0, -pady => 2)
 	;
 	$f_f3->Label(
@@ -330,13 +330,13 @@ sub innner{
 	)->pack(-side => 'left');
 
 	$f_f3->Radiobutton(
-		-text     => kh_msg->get('square'),# ÀµÊý·Á
+		-text     => kh_msg->get('square'),# æ­£æ–¹å½¢
 		-variable => \$self->{bubble_shape},
 		-value    => 0,
 	)->pack(-side => 'left');
 
 	$f_f3->Radiobutton(
-		-text     => kh_msg->get('circle'),# ±ß
+		-text     => kh_msg->get('circle'),# å††
 		-variable => \$self->{bubble_shape},
 		-value    => 1,
 	)->pack(-side => 'left');
@@ -363,7 +363,7 @@ sub innner{
 	$self->{ent_breaks}->bind("<Key-Return>", sub{ $self->calc; });
 	$self->{ent_breaks}->bind("<KP_Enter>",   sub{ $self->calc; });
 
-	$lf_f->Checkbutton(                                     # »Äº¹¤Ë¤è¤ë¿§Ê¬¤±
+	$lf_f->Checkbutton(                                     # æ®‹å·®ã«ã‚ˆã‚‹è‰²åˆ†ã‘
 		-variable => \$self->{color_rsd},
 		-text     => kh_msg->get('color_rsd'),
 		-command  => sub {$self->color_widgets;}
@@ -377,19 +377,19 @@ sub innner{
 		-text     => '  ',
 	)->pack(-side => 'left');
 
-	$self->{widget_color_col1} = $f_f4->Radiobutton( # ¥«¥é¡¼1
+	$self->{widget_color_col1} = $f_f4->Radiobutton( # ã‚«ãƒ©ãƒ¼1
 		-text     => kh_msg->get('col1'),
 		-variable => \$self->{color_gry},
 		-value    => 0,
 	)->pack(-side => 'left');
 
-	#$self->{widget_color_col2} = $f_f4->Radiobutton( # ¥«¥é¡¼2
+	#$self->{widget_color_col2} = $f_f4->Radiobutton( # ã‚«ãƒ©ãƒ¼2
 	#	-text     => kh_msg->get('col2'),
 	#	-variable => \$self->{color_gry},
 	#	-value    => -1,
 	#)->pack(-side => 'left');
 
-	$self->{widget_color_gry} = $f_f4->Radiobutton( # ¥°¥ì¡¼
+	$self->{widget_color_gry} = $f_f4->Radiobutton( # ã‚°ãƒ¬ãƒ¼
 		-text     => kh_msg->get('gray'),
 		-variable => \$self->{color_gry},
 		-value    => 1,
@@ -405,7 +405,7 @@ sub innner{
 		-text     => '  ',
 	)->pack(-side => 'left');
 
-	$f_f5->Checkbutton(                                     # ¥«¥é¡¼¥¹¥±¡¼¥ë¸ÇÄê
+	$f_f5->Checkbutton(                                     # ã‚«ãƒ©ãƒ¼ã‚¹ã‚±ãƒ¼ãƒ«å›ºå®š
 		-variable => \$self->{color_fix},
 		-text     => kh_msg->get('color_fix'),
 		-command  => sub {$self->color_fix;}
@@ -421,7 +421,7 @@ sub innner{
 	$self->{entry_color_fix}->insert(0,$self->{color_maxv});
 	$self->color_fix;
 
-	my $f_f2 = $lf_f->Frame()                               # ¥×¥í¥Ã¥È¤ÎÉý
+	my $f_f2 = $lf_f->Frame()                               # ãƒ—ãƒ­ãƒƒãƒˆã®å¹…
 		->pack(-fill=>'x',-expand=>0, -pady => 2);
 	$f_f2->Label(
 		-text => kh_msg->get('plot_size_mapw'),
@@ -437,7 +437,7 @@ sub innner{
 	
 	$self->{entry_plot_size_mapw}->insert(0,$self->{plot_size_mapw});
 
-	$f_f2->Label(                                            # ¥×¥í¥Ã¥È¤Î¹â¤µ
+	$f_f2->Label(                                            # ãƒ—ãƒ­ãƒƒãƒˆã®é«˜ã•
 		-text => kh_msg->get('plot_size_maph'),
 	)->pack(-side => 'left');
 	
@@ -513,7 +513,7 @@ sub calc{
 		gui_errormsg->open(
 			type   => 'msg',
 			window  => \$self->win_obj,
-			msg    => kh_msg->get('select_1'), # '¥³¡¼¥É¤ò1¤Ä°Ê¾åÁªÂò¤·¤Æ¤¯¤À¤µ¤¤¡£'
+			msg    => kh_msg->get('select_1'), # 'ã‚³ãƒ¼ãƒ‰ã‚’1ã¤ä»¥ä¸Šé¸æŠžã—ã¦ãã ã•ã„ã€‚'
 		);
 		return 0;
 	}
@@ -565,7 +565,7 @@ sub calc{
 }
 
 
-# ¤¹¤Ù¤ÆÁªÂò
+# ã™ã¹ã¦é¸æŠž
 sub select_all{
 	my $self = shift;
 	foreach my $i (@{$self->{checks}}){
@@ -574,7 +574,7 @@ sub select_all{
 	return $self;
 }
 
-# ¥¯¥ê¥¢
+# ã‚¯ãƒªã‚¢
 sub select_none{
 	my $self = shift;
 	foreach my $i (@{$self->{checks}}){
@@ -585,7 +585,7 @@ sub select_none{
 
 
 sub win_title{
-	return kh_msg->get('win_title'); # ¥³¡¼¥Ç¥£¥ó¥°¡¦Â¿¼¡¸µ¼ÜÅÙË¡¡§Ä´À°
+	return kh_msg->get('win_title'); # ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ»å¤šæ¬¡å…ƒå°ºåº¦æ³•ï¼šèª¿æ•´
 }
 
 sub win_name{

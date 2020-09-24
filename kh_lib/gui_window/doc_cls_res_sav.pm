@@ -19,18 +19,18 @@ sub _new{
 	#$self->innner;
 
 	$lf->Label(
-		-text => kh_msg->get('desc'), # Ê¬Îà·ë²Ì¤ò³°ÉôÊÑ¿ô¤È¤·¤ÆÊİÂ¸¤·¤Ş¤¹¡£
+		-text => kh_msg->get('desc'), # åˆ†é¡çµæœã‚’å¤–éƒ¨å¤‰æ•°ã¨ã—ã¦ä¿å­˜ã—ã¾ã™ã€‚
 		-font => "TKFN",
 	)->pack(-anchor => 'w');
 
-	# ¥¯¥é¥¹¥¿¡¼¿ô
+	# ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼æ•°
 	my $f4 = $lf->Frame()->pack(
 		-fill => 'x',
 		-pady => 2
 	);
 
 	$f4->Label(
-		-text => kh_msg->get('name'), # ÊÑ¿ôÌ¾¡§
+		-text => kh_msg->get('name'), # å¤‰æ•°åï¼š
 		-font => "TKFN",
 	)->pack(-side => 'left');
 
@@ -44,7 +44,7 @@ sub _new{
 	$self->{entry_name}->bind("<KP_Enter>",sub{$self->save;});
 
 	$self->{win_obj}->Button(
-		-text => kh_msg->gget('cancel'), # ¥­¥ã¥ó¥»¥ë
+		-text => kh_msg->gget('cancel'), # ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		-font => "TKFN",
 		-width => 8,
 		-command => sub{$self->close;}
@@ -68,7 +68,7 @@ sub save{
 	unless ( length($name) ){
 		gui_errormsg->open(
 			type => 'msg',
-			msg  => kh_msg->get('specify_var'),# ÊÑ¿ôÌ¾¤ò»ØÄê¤·¤Æ¤¯¤À¤µ¤¤
+			msg  => kh_msg->get('specify_var'),# å¤‰æ•°åã‚’æŒ‡å®šã—ã¦ãã ã•ã„
 		);
 		return 0;
 	}
@@ -76,7 +76,7 @@ sub save{
 	my $var_obj = mysql_outvar::a_var->new($self->{var_from})->copy($name)
 		or return 0;
 
-	# ¡Ö³°ÉôÊÑ¿ô¥ê¥¹¥È¡×¤ò³«¤¯
+	# ã€Œå¤–éƒ¨å¤‰æ•°ãƒªã‚¹ãƒˆã€ã‚’é–‹ã
 	my $win_list = gui_window::outvar_list->open;
 	$win_list->_fill;
 
@@ -85,7 +85,7 @@ sub save{
 }
 
 sub win_title{
-	return kh_msg->get('win_title'); # Ê¸½ñ¡¦¥¯¥é¥¹¥¿¡¼Ê¬ÀÏ¡§ÊİÂ¸
+	return kh_msg->get('win_title'); # æ–‡æ›¸ãƒ»ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼åˆ†æï¼šä¿å­˜
 }
 
 sub win_name{

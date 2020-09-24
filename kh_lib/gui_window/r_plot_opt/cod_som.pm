@@ -5,7 +5,7 @@ sub innner{
 	my $self = shift;
 	my $lf = $self->{labframe};
 
-	# ¥¯¥é¥¹¥¿¡¼¿ô
+	# ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼æ•°
 	$self->{som_obj} = gui_widget::r_som->open(
 		parent  => $lf,
 		command => sub{ $self->calc; },
@@ -52,7 +52,7 @@ sub calc{
 		plotwin_name   => 'cod_som',
 	);
 
-	# ¥×¥í¥Ã¥ÈWindow¤ò³«¤¯
+	# ãƒ—ãƒ­ãƒƒãƒˆWindowã‚’é–‹ã
 	if ($::main_gui->if_opened('w_cod_som_plot')){
 		$::main_gui->get('w_cod_som_plot')->close;
 	}
@@ -75,7 +75,7 @@ sub calc{
 }
 
 sub win_title{
-	return kh_msg->get('win_title'); # ¥³¡¼¥Ç¥£¥ó¥°¡¦¼«¸ÊÁÈ¿¥²½¥Þ¥Ã¥×¡§Ä´À°
+	return kh_msg->get('win_title'); # ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ»è‡ªå·±çµ„ç¹”åŒ–ãƒžãƒƒãƒ—ï¼šèª¿æ•´
 }
 
 sub win_name{

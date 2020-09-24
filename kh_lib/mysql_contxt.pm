@@ -64,7 +64,7 @@ sub save{
 	$self->{file_save} = shift;
 
 	#--------------------------#
-	#   ¥Ç¡¼¥¿¥Õ¥¡¥¤¥ë¤Î½ÐÎÏ   #
+	#   ãƒ‡ãƒ¼ã‚¿ãƒ•ã‚¡ã‚¤ãƒ«ã®å‡ºåŠ›   #
 	
 	my $file_data = $self->data_file;
 	open (DOUT,'>:encoding(utf8)', $file_data) or 
@@ -75,11 +75,11 @@ sub save{
 	my $n = 1;
 	foreach my $i (@{$self->{wList}}){
 	print "\rout, $n.";
-		# ³ÆÃ±°Ì¤Î½¸·×¤ò¹ç»»
+		# å„å˜ä½ã®é›†è¨ˆã‚’åˆç®—
 		my %line;
 		foreach my $t (@{$self->{tani}}){
 			my $table = 'ct_'."$t->[0]".'_contxt_'."$i";
-			# Ê¸½ñ¿ô¡ÊÊ¬Êì¤Î¼èÆÀ¡Ë
+			# æ–‡æ›¸æ•°ï¼ˆåˆ†æ¯ã®å–å¾—ï¼‰
 			my $r_num_hdl = mysql_exec->select("
 				SELECT num
 				FROM   $table
@@ -91,7 +91,7 @@ sub save{
 			} else {
 				next;
 			}
-			# ´üÂÔÃÍ·×»»¡Ê³ä¤ê»»¡õ½Å¤ßÉÕ¤±¡Ë
+			# æœŸå¾…å€¤è¨ˆç®—ï¼ˆå‰²ã‚Šç®—ï¼†é‡ã¿ä»˜ã‘ï¼‰
 			my $sth = mysql_exec->select("
 				SELECT word, num
 				FROM   $table
@@ -102,7 +102,7 @@ sub save{
 			}
 			$sth->finish;
 		}
-		# ½ñ¤­½Ð¤·
+		# æ›¸ãå‡ºã—
 		my $line =
 			$self->{wName}{$i}
 			.'('
@@ -144,7 +144,7 @@ sub _culc_each{
 	
 	my $n = 0;
 	foreach my $i (@{$self->{wList}}){
-		# ¥Æ¡¼¥Ö¥ë¤Î½àÈ÷
+		# ãƒ†ãƒ¼ãƒ–ãƒ«ã®æº–å‚™
 		print "\r$tani, $n, list, ";
 		my $table = 'ct_'."$tani".'_contxt_'."$i";
 		mysql_exec->drop_table($table);
@@ -155,7 +155,7 @@ sub _culc_each{
 			)
 		",1);
 		
-		# Åö³º¤Î¸ì¤¬½Ð¸½¤·¤Æ¤¤¤ëÊ¸½ñ¤Î¥ê¥¹¥È
+		# å½“è©²ã®èªžãŒå‡ºç¾ã—ã¦ã„ã‚‹æ–‡æ›¸ã®ãƒªã‚¹ãƒˆ
 		my $table_w = 'ct_'."$tani".'_kihon_'. "$i";
 		unless ( mysql_exec->table_exists($table_w) ){
 			mysql_exec->do("
@@ -178,7 +178,7 @@ sub _culc_each{
 			",1);
 		}
 		
-		# Åö³º¤Î¸ì¤Î½Ð¸½¿ô
+		# å½“è©²ã®èªžã®å‡ºç¾æ•°
 		my $d_num = mysql_exec->select("
 			SELECT COUNT(*)
 			FROM   $table_w
@@ -189,7 +189,7 @@ sub _culc_each{
 		",1);
 		print "count.";
 		
-		# ³Æ¸ì¤Î½Ð¸½¿ô¤ò¥«¥¦¥ó¥È
+		# å„èªžã®å‡ºç¾æ•°ã‚’ã‚«ã‚¦ãƒ³ãƒˆ
 		my $sql = "
 			INSERT INTO $table (word, num)
 			SELECT genkei.id, count(*)
@@ -229,12 +229,12 @@ sub _culc_each{
 }
 
 #------------------------#
-#   Ãê½Ð¸ì¥ê¥¹¥È¤ÎºîÀ½   #
+#   æŠ½å‡ºèªžãƒªã‚¹ãƒˆã®ä½œè£½   #
 
 sub wlist{
 	my $self = shift;
 	
-	# Ãê½Ð¸ì¤Î¥ê¥¹¥È
+	# æŠ½å‡ºèªžã®ãƒªã‚¹ãƒˆ
 	my $sql = "
 		SELECT genkei.id, genkei.name, genkei.num
 		FROM   genkei, hselection, df_$self->{tani_df}
@@ -274,7 +274,7 @@ sub wlist{
 	$self->{wName}   = \%name;
 	$self->{wNum}    = \%num;
 	
-	# Ê¸Ì®¸ì¤Î¥ê¥¹¥È
+	# æ–‡è„ˆèªžã®ãƒªã‚¹ãƒˆ
 	$sql = "
 		SELECT genkei.id, genkei.name
 		FROM   genkei, hselection, df_$self->{tani_df2}

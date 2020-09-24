@@ -6,7 +6,7 @@ sub get_msg{
 	my $self = shift;
 	my $msg;
 	
-	eval { $msg = kh_msg->get('could_not_open_the_file'); }; # ¥Õ¥¡¥¤¥ë¤ò³«¤±¤Ş¤»¤ó¤Ç¤·¤¿¡£\nKH Coder¤ò½ªÎ»¤·¤Ş¤¹¡£\n*
+	eval { $msg = kh_msg->get('could_not_open_the_file'); }; # ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é–‹ã‘ã¾ã›ã‚“ã§ã—ãŸã€‚\nKH Coderã‚’çµ‚äº†ã—ã¾ã™ã€‚\n*
 	$msg = "Could not open the file. KH Coder will quit now.\n" unless $msg;
 	print "catched: $@\n";
 	

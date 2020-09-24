@@ -4,7 +4,7 @@ use base qw(gui_window);
 use Tk;
 
 #----------------#
-#   WindowºîÀ®   #
+#   Windowä½œæˆ   #
 #----------------#
 
 sub _new{
@@ -12,23 +12,23 @@ sub _new{
 	my $mw = $::main_gui->mw;
 	my $win = $self->{win_obj};
 	#$win->focus;
-	$win->title($self->gui_jt( kh_msg->get('win_title') )); # 'ÄÉ²Ã¾ò·ï¡§KWIC¥³¥ó¥³¡¼¥À¥ó¥¹'
+	$win->title($self->gui_jt( kh_msg->get('win_title') )); # 'è¿½åŠ æ¡ä»¶ï¼šKWICã‚³ãƒ³ã‚³ãƒ¼ãƒ€ãƒ³ã‚¹'
 	#$self->{win_obj} = $win;
 
 	$win->Label(
-		-text => kh_msg->get('preface1'),#$self->gui_jchar("¡¦¡Öº¸±¦¡ÊÁ°¸å¡Ë¤ËÆÃÄê¤Î¸ì¤¬½Ğ¸½¤·¤Æ¤¤¤ë¤³¤È¡×¤È¤¤¤¦¾ò·ï¤òÄÉ²Ã¤Ç¤Ş¤¹¡£"),
+		-text => kh_msg->get('preface1'),#$self->gui_jchar("ãƒ»ã€Œå·¦å³ï¼ˆå‰å¾Œï¼‰ã«ç‰¹å®šã®èªãŒå‡ºç¾ã—ã¦ã„ã‚‹ã“ã¨ã€ã¨ã„ã†æ¡ä»¶ã‚’è¿½åŠ ã§ã¾ã™ã€‚"),
 		-font => "TKFN"
 	)->pack(-anchor => 'w');
 	$win->Label(
-		-text => kh_msg->get('preface2'),#$self->gui_jchar("¡¡¾ò·ï¤òÄÉ²Ã¤¹¤ë¤Ë¤Ï¡¢¤Ş¤º¡Ö°ÌÃÖ¡×¤ò»ØÄê¤·¤Æ²¼¤µ¤¤¡£"),
+		-text => kh_msg->get('preface2'),#$self->gui_jchar("ã€€æ¡ä»¶ã‚’è¿½åŠ ã™ã‚‹ã«ã¯ã€ã¾ãšã€Œä½ç½®ã€ã‚’æŒ‡å®šã—ã¦ä¸‹ã•ã„ã€‚"),
 		-font => "TKFN"
 	)->pack(-anchor => 'w');
 
 	my @options = (
-		[ kh_msg->get('0'),  '0'],#$self->gui_jchar('»ØÄê¤Ê¤·')
-		[ kh_msg->get('rl'), 'rl'],#$self->gui_jchar('º¸±¦¡¦1-5')
-		[ kh_msg->get('l'),   'l'],#$self->gui_jchar('º¸¡¦1-5')
-		[ kh_msg->get('r'),   'r'],#$self->gui_jchar('±¦¡¦1-5')
+		[ kh_msg->get('0'),  '0'],#$self->gui_jchar('æŒ‡å®šãªã—')
+		[ kh_msg->get('rl'), 'rl'],#$self->gui_jchar('å·¦å³ãƒ»1-5')
+		[ kh_msg->get('l'),   'l'],#$self->gui_jchar('å·¦ãƒ»1-5')
+		[ kh_msg->get('r'),   'r'],#$self->gui_jchar('å³ãƒ»1-5')
 		[ kh_msg->get('l5'),     'l5'],
 		[ kh_msg->get('l4'),     'l4'],
 		[ kh_msg->get('l3'),     'l3'],
@@ -42,16 +42,16 @@ sub _new{
 	);
 
 	#-----------#
-	#   1¤ÄÌÜ   #
+	#   1ã¤ç›®   #
 
 	my $f2 = $win->LabFrame(
-		-label => kh_msg->get('opt1'),#$self->gui_jchar('ÄÉ²Ã¾ò·ï1'),
+		-label => kh_msg->get('opt1'),#$self->gui_jchar('è¿½åŠ æ¡ä»¶1'),
 		-labelside => 'acrosstop',
 		-borderwidth => 2,
 	)->pack(-fill=>'x');
 
 	$f2->Label(
-		-text => kh_msg->get('position'),#$self->gui_jchar('°ÌÃÖ¡§'),
+		-text => kh_msg->get('position'),#$self->gui_jchar('ä½ç½®ï¼š'),
 		-font => "TKFN"
 	)->pack(-side => 'left');
 
@@ -65,7 +65,7 @@ sub _new{
 	);
 	
 	$f2->Label(
-		-text => kh_msg->get('word'),#$self->gui_jchar('¡¡Ãê½Ğ¸ì¡§'),
+		-text => kh_msg->get('word'),#$self->gui_jchar('ã€€æŠ½å‡ºèªï¼š'),
 		-font => "TKFN"
 	)->pack(-side => 'left');
 
@@ -76,7 +76,7 @@ sub _new{
 	)->pack(-side => 'left');
 
 	$f2->Label(
-		-text => kh_msg->get('pos'),#$self->gui_jchar('¡¡ÉÊ»ì¡§'),
+		-text => kh_msg->get('pos'),#$self->gui_jchar('ã€€å“è©ï¼š'),
 		-font => "TKFN"
 	)->pack(-side => 'left');
 
@@ -87,7 +87,7 @@ sub _new{
 	)->pack(-side => 'left');
 
 	$f2->Label(
-		-text => kh_msg->get('conj'),#$self->gui_jchar('¡¡³èÍÑ·Á¡§'),
+		-text => kh_msg->get('conj'),#$self->gui_jchar('ã€€æ´»ç”¨å½¢ï¼š'),
 		-font => "TKFN"
 	)->pack(-side => 'left');
 
@@ -98,16 +98,16 @@ sub _new{
 	)->pack(-side => 'left');
 	
 	#-----------#
-	#   2¤ÄÌÜ   #
+	#   2ã¤ç›®   #
 	
 	my $f3 = $win->LabFrame(
-		-label => kh_msg->get('opt2'),#$self->gui_jchar('ÄÉ²Ã¾ò·ï2'),
+		-label => kh_msg->get('opt2'),#$self->gui_jchar('è¿½åŠ æ¡ä»¶2'),
 		-labelside => 'acrosstop',
 		-borderwidth => 2,
 	)->pack(-fill=>'x');
 
 	$f3->Label(
-		-text => kh_msg->get('position'),#$self->gui_jchar('°ÌÃÖ¡§'),
+		-text => kh_msg->get('position'),#$self->gui_jchar('ä½ç½®ï¼š'),
 		-font => "TKFN"
 	)->pack(-side => 'left');
 
@@ -121,7 +121,7 @@ sub _new{
 	);
 
 	$f3->Label(
-		-text => kh_msg->get('word'),#$self->gui_jchar('¡¡Ãê½Ğ¸ì¡§'),
+		-text => kh_msg->get('word'),#$self->gui_jchar('ã€€æŠ½å‡ºèªï¼š'),
 		-font => "TKFN"
 	)->pack(-side => 'left');
 
@@ -132,7 +132,7 @@ sub _new{
 	)->pack(-side => 'left');
 
 	$f3->Label(
-		-text => kh_msg->get('pos'),#$self->gui_jchar('¡¡ÉÊ»ì¡§'),
+		-text => kh_msg->get('pos'),#$self->gui_jchar('ã€€å“è©ï¼š'),
 		-font => "TKFN"
 	)->pack(-side => 'left');
 
@@ -143,7 +143,7 @@ sub _new{
 	)->pack(-side => 'left');
 
 	$f3->Label(
-		-text => kh_msg->get('conj'),#$self->gui_jchar('¡¡³èÍÑ·Á¡§'),
+		-text => kh_msg->get('conj'),#$self->gui_jchar('ã€€æ´»ç”¨å½¢ï¼š'),
 		-font => "TKFN"
 	)->pack(-side => 'left');
 
@@ -154,16 +154,16 @@ sub _new{
 	)->pack(-side => 'left');
 	
 	#-----------#
-	#   3¤ÄÌÜ   #
+	#   3ã¤ç›®   #
 	
 	my $f4 = $win->LabFrame(
-		-label => kh_msg->get('opt3'),#$self->gui_jchar('ÄÉ²Ã¾ò·ï3'),
+		-label => kh_msg->get('opt3'),#$self->gui_jchar('è¿½åŠ æ¡ä»¶3'),
 		-labelside => 'acrosstop',
 		-borderwidth => 2,
 	)->pack(-fill=>'x');
 
 	$f4->Label(
-		-text => kh_msg->get('position'),#$self->gui_jchar('°ÌÃÖ¡§'),
+		-text => kh_msg->get('position'),#$self->gui_jchar('ä½ç½®ï¼š'),
 		-font => "TKFN"
 	)->pack(-side => 'left');
 
@@ -177,7 +177,7 @@ sub _new{
 	);
 
 	$f4->Label(
-		-text => kh_msg->get('word'),#$self->gui_jchar('¡¡Ãê½Ğ¸ì¡§'),
+		-text => kh_msg->get('word'),#$self->gui_jchar('ã€€æŠ½å‡ºèªï¼š'),
 		-font => "TKFN"
 	)->pack(-side => 'left');
 
@@ -188,7 +188,7 @@ sub _new{
 	)->pack(-side => 'left');
 
 	$f4->Label(
-		-text => kh_msg->get('pos'),#$self->gui_jchar('¡¡ÉÊ»ì¡§'),
+		-text => kh_msg->get('pos'),#$self->gui_jchar('ã€€å“è©ï¼š'),
 		-font => "TKFN"
 	)->pack(-side => 'left');
 
@@ -199,7 +199,7 @@ sub _new{
 	)->pack(-side => 'left');
 
 	$f4->Label(
-		-text => kh_msg->get('conj'),#$self->gui_jchar('¡¡³èÍÑ·Á¡§'),
+		-text => kh_msg->get('conj'),#$self->gui_jchar('ã€€æ´»ç”¨å½¢ï¼š'),
 		-font => "TKFN"
 	)->pack(-side => 'left');
 
@@ -223,7 +223,7 @@ sub _new{
 
 	# OK & Cancel
 	$win->Button(
-		-text => kh_msg->gget('cancel'),#$self->gui_jchar('¥­¥ã¥ó¥»¥ë'),
+		-text => kh_msg->gget('cancel'),#$self->gui_jchar('ã‚­ãƒ£ãƒ³ã‚»ãƒ«'),
 		-font => "TKFN",
 		-width => 8,
 		-command => sub{$self->close;}
@@ -278,7 +278,7 @@ sub start {
 }
 
 #----------------------#
-#   Window¤Î¾õÂÖÊÑ¹¹   #
+#   Windowã®çŠ¶æ…‹å¤‰æ›´   #
 
 sub _menu_check{
 	my $self = shift;
@@ -316,7 +316,7 @@ sub _menu_check{
 }
 
 #------------------#
-#   Option¤ÎÊİÂ¸   #
+#   Optionã®ä¿å­˜   #
 #------------------#
 
 sub save{

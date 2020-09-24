@@ -17,15 +17,15 @@ sub _new{
 
 	my $mw = $::main_gui->mw;
 	my $wmw= $self->{win_obj};
-	$wmw->title($self->gui_jt(kh_msg->get('win_title'))); # Ê¸½ñ¤Î¥¯¥é¥¹¥¿¡¼Ê¬ÀÏ
+	$wmw->title($self->gui_jt(kh_msg->get('win_title'))); # æ–‡æ›¸ã®ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼åˆ†æž
 
 	#--------------------------------#
-	#   ³Æ¥¯¥é¥¹¥¿¡¼¤Ë´Þ¤Þ¤ì¤ëÊ¸½ñ   #
+	#   å„ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ã«å«ã¾ã‚Œã‚‹æ–‡æ›¸   #
 
 	my $fr_top = $wmw->Frame()->pack(-fill => 'both', -expand => 'yes');
 
 	my $fr_dcs = $fr_top->LabFrame(
-		-label => kh_msg->get('docs_in_clusters'), # ³Æ¥¯¥é¥¹¥¿¡¼¤Ë´Þ¤Þ¤ì¤ëÊ¸½ñ
+		-label => kh_msg->get('docs_in_clusters'), # å„ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ã«å«ã¾ã‚Œã‚‹æ–‡æ›¸
 		-labelside => 'acrosstop',
 		-borderwidth => 2,
 	)->pack(-fill=>'both', -expand => 1, -padx => 2, -pady => 2, -side => 'left');
@@ -48,8 +48,8 @@ sub _new{
 		-height           => 10,
 		-width            => 10,
 	)->pack(-fill =>'both',-expand => 'yes');
-	$lis2->header('create',0,-text => kh_msg->get('h_cls_id')); # ¥¯¥é¥¹¥¿¡¼ÈÖ¹æ
-	$lis2->header('create',1,-text => kh_msg->get('h_doc_num')); # Ê¸½ñ¿ô
+	$lis2->header('create',0,-text => kh_msg->get('h_cls_id')); # ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ç•ªå·
+	$lis2->header('create',1,-text => kh_msg->get('h_doc_num')); # æ–‡æ›¸æ•°
 
 	$lis2->bind("<Shift-Double-1>",sub{$self->cls_words;});
 	$lis2->bind("<ButtonPress-3>",sub{$self->cls_words;});
@@ -61,7 +61,7 @@ sub _new{
 	my $fhl = $fr_dcs->Frame->pack(-fill => 'x');
 
 	my $btn_ds = $fhl->Button(
-		-text        => kh_msg->get('docs'), # Ê¸½ñ¸¡º÷
+		-text        => kh_msg->get('docs'), # æ–‡æ›¸æ¤œç´¢
 		-font        => "TKFN",
 		-borderwidth => '1',
 		-command     => sub {$self->cls_docs;}
@@ -69,12 +69,12 @@ sub _new{
 
 	$wmw->Balloon()->attach(
 		$btn_ds,
-		-balloonmsg => kh_msg->get('bal_docs'), # ¥¯¥é¥¹¥¿¡¼¤Ë´Þ¤Þ¤ì¤ëÊ¸½ñ¤ò¸¡º÷\n[¥¯¥é¥¹¥¿¡¼¤ò¥À¥Ö¥ë¥¯¥ê¥Ã¥¯]
+		-balloonmsg => kh_msg->get('bal_docs'), # ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ã«å«ã¾ã‚Œã‚‹æ–‡æ›¸ã‚’æ¤œç´¢\n[ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ã‚’ãƒ€ãƒ–ãƒ«ã‚¯ãƒªãƒƒã‚¯]
 		-font       => "TKFN"
 	);
 
 	my $btn_ass = $fhl->Button(
-		-text        => kh_msg->get('words'), # ÆÃÄ§¸ì
+		-text        => kh_msg->get('words'), # ç‰¹å¾´èªž
 		-font        => "TKFN",
 		-borderwidth => '1',
 		-command     => sub {$self->cls_words;}
@@ -82,12 +82,12 @@ sub _new{
 	
 	$wmw->Balloon()->attach(
 		$btn_ass,
-		-balloonmsg => kh_msg->get('bal_words'), # ¥¯¥é¥¹¥¿¡¼¤ÎÆÃÄ§¤ò¤¢¤é¤ï¤¹¸ì¤ò¸¡º÷\n[Shift + ¥¯¥é¥¹¥¿¡¼¤ò¥À¥Ö¥ë¥¯¥ê¥Ã¥¯]
+		-balloonmsg => kh_msg->get('bal_words'), # ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ã®ç‰¹å¾´ã‚’ã‚ã‚‰ã‚ã™èªžã‚’æ¤œç´¢\n[Shift + ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ã‚’ãƒ€ãƒ–ãƒ«ã‚¯ãƒªãƒƒã‚¯]
 		-font       => "TKFN"
 	);
 	
 	$self->{copy_btn} = $fhl->Button(
-		-text        => kh_msg->gget('copy'), # ¥³¥Ô¡¼
+		-text        => kh_msg->gget('copy'), # ã‚³ãƒ”ãƒ¼
 		-font        => "TKFN",
 		-borderwidth => '1',
 		-command     => sub {gui_hlist->copy_all($self->list);}
@@ -95,7 +95,7 @@ sub _new{
 	
 	if ( $self->{plots}{_dendro} ){
 		$fhl->Button(
-			-text        => kh_msg->gget('plot'), # ¥×¥í¥Ã¥È
+			-text        => kh_msg->gget('plot'), # ãƒ—ãƒ­ãƒƒãƒˆ
 			-font        => "TKFN",
 			-borderwidth => '1',
 			-command     => sub {
@@ -112,10 +112,10 @@ sub _new{
 	}
 
 	#--------------------------#
-	#   ¥¯¥é¥¹¥¿¡¼Ê»¹ç¤Î²áÄø   #
+	#   ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ä½µåˆã®éŽç¨‹   #
 	
 	my $fr_cls = $fr_top->LabFrame(
-		-label => kh_msg->get('agglm'), # ¥¯¥é¥¹¥¿¡¼Ê»¹ç¤Î²áÄø
+		-label => kh_msg->get('agglm'), # ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ä½µåˆã®éŽç¨‹
 		-labelside => 'acrosstop',
 		-borderwidth => 2,
 	)->pack(-fill=>'both', -expand => 1, -padx => 2, -pady => 2, -side => 'right');
@@ -138,17 +138,17 @@ sub _new{
 		-height           => 10,
 		-width            => 10,
 	)->pack(-fill =>'both',-expand => 'yes');
-	$lis_f->header('create',0,-text => kh_msg->get('h_stage')); # ÃÊ³¬
-	$lis_f->header('create',1,-text => kh_msg->get('h_cls1')); # Ê»¹ç1
-	$lis_f->header('create',2,-text => kh_msg->get('h_cls2')); # Ê»¹ç2
-	$lis_f->header('create',3,-text => kh_msg->get('h_coeff')); # Ê»¹ç¿å½à
+	$lis_f->header('create',0,-text => kh_msg->get('h_stage')); # æ®µéšŽ
+	$lis_f->header('create',1,-text => kh_msg->get('h_cls1')); # ä½µåˆ1
+	$lis_f->header('create',2,-text => kh_msg->get('h_cls2')); # ä½µåˆ2
+	$lis_f->header('create',3,-text => kh_msg->get('h_coeff')); # ä½µåˆæ°´æº–
 	
 	$lis_f->bind("<Double-1>",sub{$self->merge_docs;});
 	
 	my $fhr = $fr_cls->Frame->pack(-fill => 'x');
 
 	my $mb = $fhr->Menubutton(
-		-text        => kh_msg->get('docs'), # Ê¸½ñ¸¡º÷
+		-text        => kh_msg->get('docs'), # æ–‡æ›¸æ¤œç´¢
 		-tearoff     => 'no',
 		-relief      => 'raised',
 		-indicator   => 'no',
@@ -159,27 +159,27 @@ sub _new{
 
 	$mb->command(
 		-command => sub {$self->merge_docs();},
-		-label   => kh_msg->get('both'), # 1¤È2
+		-label   => kh_msg->get('both'), # 1ã¨2
 	);
 
 	$mb->command(
 		-command => sub {$self->merge_docs('l');},
-		-label   => kh_msg->get('only1'), # 1¤Î¤ß
+		-label   => kh_msg->get('only1'), # 1ã®ã¿
 	);
 
 	$mb->command(
 		-command => sub {$self->merge_docs('r');},
-		-label   => kh_msg->get('only2'), # 2¤Î¤ß
+		-label   => kh_msg->get('only2'), # 2ã®ã¿
 	);
 
 	$wmw->Balloon()->attach(
 		$mb,
-		-balloonmsg => kh_msg->get('bal_agg_docs'), # [¥À¥Ö¥ë¥¯¥ê¥Ã¥¯]\nÊ»¹ç¤·¤¿¥¯¥é¥¹¥¿¡¼¤Ë´Þ¤Þ¤ì¤ëÊ¸½ñ¤ò¸¡º÷
+		-balloonmsg => kh_msg->get('bal_agg_docs'), # [ãƒ€ãƒ–ãƒ«ã‚¯ãƒªãƒƒã‚¯]\nä½µåˆã—ãŸã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ã«å«ã¾ã‚Œã‚‹æ–‡æ›¸ã‚’æ¤œç´¢
 		-font       => "TKFN"
 	);
 
 	$self->{btn_prev} = $fhr->Button(
-		-text => kh_msg->get('gui_window::word_conc->prev').'200', # Á°200
+		-text => kh_msg->get('gui_window::word_conc->prev').'200', # å‰200
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub {
@@ -189,7 +189,7 @@ sub _new{
 	)->pack(-side => 'left',-padx => 2, -pady => 2);
 
 	$self->{btn_next} = $fhr->Button(
-		-text => kh_msg->get('gui_window::word_conc->next').'200', # ¼¡200
+		-text => kh_msg->get('gui_window::word_conc->next').'200', # æ¬¡200
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub {
@@ -199,7 +199,7 @@ sub _new{
 	)->pack(-side => 'left',-padx => 2, -pady => 2);
 
 	$fhr->Button(
-		-text        => kh_msg->gget('copy'), # ¥³¥Ô¡¼
+		-text        => kh_msg->gget('copy'), # ã‚³ãƒ”ãƒ¼
 		-font        => "TKFN",
 		-borderwidth => '1',
 		-command     => sub {
@@ -214,7 +214,7 @@ sub _new{
 	)->pack(-side => 'right', -padx => 2, -pady => 2);
 	
 	$fhr->Button(
-		-text => kh_msg->gget('plot'), # ¥×¥í¥Ã¥È
+		-text => kh_msg->gget('plot'), # ãƒ—ãƒ­ãƒƒãƒˆ
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub {
@@ -233,12 +233,12 @@ sub _new{
 	
 	
 	#----------------#
-	#   Window²¼Éô   #
+	#   Windowä¸‹éƒ¨   #
 	
 	my $fb = $wmw->Frame()->pack(-fill => 'x', -padx => 2, -pady => 2);
 	
 	$fb->Button(
-		-text => kh_msg->get('config'), # Ä´À°
+		-text => kh_msg->get('config'), # èª¿æ•´
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub {
@@ -250,7 +250,7 @@ sub _new{
 	)->pack(-side => 'left',-padx => 5);
 
 	$fb->Button(
-		-text => kh_msg->get('save'), # Ê¬Îà·ë²Ì¤ÎÊÝÂ¸
+		-text => kh_msg->get('save'), # åˆ†é¡žçµæžœã®ä¿å­˜
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub {
@@ -271,9 +271,9 @@ sub renew{
 	my $self = shift;
 	
 	#--------------------------------#
-	#   ³Æ¥¯¥é¥¹¥¿¡¼¤Ë´Þ¤Þ¤ì¤ëÊ¸½ñ   #
+	#   å„ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ã«å«ã¾ã‚Œã‚‹æ–‡æ›¸   #
 	
-	# ³°ÉôÊÑ¿ô¼è¤ê¤À¤·
+	# å¤–éƒ¨å¤‰æ•°å–ã‚Šã ã—
 	my $var_obj = mysql_outvar::a_var->new('_cluster_tmp');
 	
 	my $sql = '';
@@ -286,7 +286,7 @@ sub renew{
 		++$v{$i->[0]};
 	}
 
-	# É½¼¨
+	# è¡¨ç¤º
 	my $numb_style = $self->list->ItemStyle(
 		'text',
 		-anchor => 'e',
@@ -296,8 +296,8 @@ sub renew{
 	$self->list->delete('all');
 	my $row = 0;
 	foreach my $i (sort {$a<=>$b} keys %v){
-		my $t = kh_msg->get('cluster').$i; # ¥¯¥é¥¹¥¿¡¼
-		$t = kh_msg->get('na') if $i eq '.'; # Ê¬ÎàÉÔ²Ä
+		my $t = kh_msg->get('cluster').$i; # ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼
+		$t = kh_msg->get('na') if $i eq '.'; # åˆ†é¡žä¸å¯
 		
 		$self->list->add($row,-at => "$row");
 		$self->list->itemCreate(
@@ -313,9 +313,9 @@ sub renew{
 	}
 	
 	#--------------------------#
-	#   ¥¯¥é¥¹¥¿¡¼Ê»¹ç¤Î²áÄø   #
+	#   ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ä½µåˆã®éŽç¨‹   #
 	
-	# ¥Ç¡¼¥¿¤ÎÆÉ¤ß¹þ¤ß
+	# ãƒ‡ãƒ¼ã‚¿ã®èª­ã¿è¾¼ã¿
 	if ($self->{merge_files}){
 		open (MERGE,$self->{merge_files}{'_cluster_tmp'}) or
 			gui_errormsg->open(
@@ -331,11 +331,11 @@ sub renew{
 		close (MERGE);
 		$self->{merge} = $merge;
 		
-		# É½¼¨
+		# è¡¨ç¤º
 		$self->{start} = 0;
 		$self->fill_list2;
 		
-		# ¥ê¥â¡¼¥È¥¦¥£¥ó¥É¥¦
+		# ãƒªãƒ¢ãƒ¼ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 		#if ($::main_gui->if_opened('w_doc_cls_height')){
 		#	$::main_gui->get('w_doc_cls_height')->renew(
 		#		'_cluster_tmp'
@@ -343,7 +343,7 @@ sub renew{
 		#}
 	}
 	
-	# ¥Ç¥ó¥É¥í¥°¥é¥à¡¦¥¦¥£¥ó¥É¥¦
+	# ãƒ‡ãƒ³ãƒ‰ãƒ­ã‚°ãƒ©ãƒ ãƒ»ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦
 	#if ($::main_gui->if_opened('w_doc_cls_plot')){
 	#	$::main_gui->get('w_doc_cls_plot')->close;
 	#	
@@ -419,14 +419,14 @@ sub merge_docs{
 	my $self = shift;
 	my $opt  = shift;
 	
-	# ÁªÂò²Õ½ê¤ò¼èÆÀ
+	# é¸æŠžç®‡æ‰€ã‚’å–å¾—
 	my @selected = $self->list2->infoSelection;
 	unless(@selected){
 		return 0;
 	}
 	my $n = $self->gui_jg( $self->list2->itemCget($selected[0], 0, -text)) - 1;
 	
-	# Ê¸½ñÈÖ¹æ¤òÃµº÷
+	# æ–‡æ›¸ç•ªå·ã‚’æŽ¢ç´¢
 	my (@docs, @cls);
 	
 	if ($opt eq 'l'){
@@ -484,7 +484,7 @@ sub search_byov{
 	my $self = shift;
 	my $docs = shift;
 	
-	# ¥Ç¡¼¥¿½àÈ÷
+	# ãƒ‡ãƒ¼ã‚¿æº–å‚™
 	my %doc;
 	foreach my $i (@{$docs}){
 		$doc{$i} = 1;
@@ -502,7 +502,7 @@ sub search_byov{
 	}
 	chomp $t;
 	
-	# ¥Õ¥¡¥¤¥ë¤Ë½ñ¤­½Ð¤·
+	# ãƒ•ã‚¡ã‚¤ãƒ«ã«æ›¸ãå‡ºã—
 	my $file = $::project_obj->file_TempCSV;
 	open (OVOUT,">$file") or 
 		gui_errormsg->open(
@@ -512,7 +512,7 @@ sub search_byov{
 	print OVOUT $t;
 	close (OVOUT);
 	
-	# ³°ÉôÊÑ¿ô¤È¤·¤ÆÆÉ¤ß¹þ¤ß
+	# å¤–éƒ¨å¤‰æ•°ã¨ã—ã¦èª­ã¿è¾¼ã¿
 	foreach my $i (@{mysql_outvar->get_list}){
 		if ($i->[1] eq '_temp_for_search'){
 			mysql_outvar->delete(name => '_temp_for_search');
@@ -524,7 +524,7 @@ sub search_byov{
 		var_type => 'INT',
 	)->read;
 	
-	# ¥ê¥â¡¼¥È¥¦¥£¥ó¥É¥¦¤ÎÁàºî
+	# ãƒªãƒ¢ãƒ¼ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ“ä½œ
 	my $win;
 	if ($::main_gui->if_opened('w_doc_search')){
 		$win = $::main_gui->get('w_doc_search');
@@ -558,7 +558,7 @@ sub search_direct{
 		$q .= "No. == $i";
 	}
 	
-	# ¥ê¥â¡¼¥È¥¦¥£¥ó¥É¥¦¤ÎÁàºî
+	# ãƒªãƒ¢ãƒ¼ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ“ä½œ
 	my $win;
 	if ($::main_gui->if_opened('w_doc_search')){
 		$win = $::main_gui->get('w_doc_search');
@@ -586,7 +586,7 @@ sub search_direct{
 sub cls_words{
 	my $self = shift;
 	
-	# ¥¯¥¨¥ê¡¼ºîÀ®
+	# ã‚¯ã‚¨ãƒªãƒ¼ä½œæˆ
 	my @selected = $self->list->infoSelection;
 	unless(@selected){
 		return 0;
@@ -600,7 +600,7 @@ sub cls_words{
 		$query = '<>'.'_cluster_tmp'.'-->.';
 	}
 	
-	# ¥ê¥â¡¼¥È¥¦¥£¥ó¥É¥¦¤ÎÁàºî
+	# ãƒªãƒ¢ãƒ¼ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ“ä½œ
 	my $win;
 	if ($::main_gui->if_opened('w_doc_ass')){
 		$win = $::main_gui->get('w_doc_ass');
@@ -625,7 +625,7 @@ sub cls_words{
 sub cls_docs{
 	my $self = shift;
 	
-	# ¥¯¥¨¥ê¡¼ºîÀ®
+	# ã‚¯ã‚¨ãƒªãƒ¼ä½œæˆ
 	my @selected = $self->list->infoSelection;
 	unless(@selected){
 		return 0;
@@ -638,7 +638,7 @@ sub cls_docs{
 		$query = '<>'.'_cluster_tmp'.'-->.';
 	}
 	
-	# ¥ê¥â¡¼¥È¥¦¥£¥ó¥É¥¦¤ÎÁàºî
+	# ãƒªãƒ¢ãƒ¼ãƒˆã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®æ“ä½œ
 	my $win;
 	if ($::main_gui->if_opened('w_doc_search')){
 		$win = $::main_gui->get('w_doc_search');
@@ -669,18 +669,18 @@ sub end{
 			mysql_outvar->delete(name => '_temp_for_search');
 		}
 	}
-	# ¡Ö³°ÉôÊÑ¿ô¥ê¥¹¥È¡×¤¬³«¤¤¤Æ¤¤¤ë¾ì¹ç¤Ï¹¹¿·
+	# ã€Œå¤–éƒ¨å¤‰æ•°ãƒªã‚¹ãƒˆã€ãŒé–‹ã„ã¦ã„ã‚‹å ´åˆã¯æ›´æ–°
 	if ($::main_gui->if_opened('w_outvar_list')){
 		my $win_list = $::main_gui->get('w_outvar_list');
 		$win_list->_fill if defined($win_list);
 	}
 	
-	# ¡ÖÊ»¹ç¿å½à¡×¤¬³«¤¤¤Æ¤¤¤ë¾ì¹ç¤ÏÊÄ¤¸¤ë
+	# ã€Œä½µåˆæ°´æº–ã€ãŒé–‹ã„ã¦ã„ã‚‹å ´åˆã¯é–‰ã˜ã‚‹
 	if ($::main_gui->if_opened('w_doc_cls_height')){
 		$::main_gui->get('w_doc_cls_height')->close;
 	}
 
-	# ¥Ç¥ó¥É¥í¥°¥é¥à¤¬³«¤¤¤Æ¤¤¤ë¾ì¹ç¤ÏÊÄ¤¸¤ë
+	# ãƒ‡ãƒ³ãƒ‰ãƒ­ã‚°ãƒ©ãƒ ãŒé–‹ã„ã¦ã„ã‚‹å ´åˆã¯é–‰ã˜ã‚‹
 	if ($::main_gui->if_opened('w_doc_cls_plot')){
 		$::main_gui->get('w_doc_cls_plot')->close;
 	}
@@ -688,7 +688,7 @@ sub end{
 
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 
 sub win_name{
 	return 'w_doc_cls_res';

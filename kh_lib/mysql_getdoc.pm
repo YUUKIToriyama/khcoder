@@ -18,35 +18,35 @@ sub get{
 	bless $self, $class;
 	my $debug = 0;
 
-	# Ê¸½ñ¤ÎÆÃÄê
+	# æ–‡æ›¸ã®ç‰¹å®š
 	print "id..." if $debug;
 	unless ( defined($self->{doc_id}) && length($self->{doc_id}) ){
 		$self->{doc_id} = $self->get_doc_id;
 	}
 
-	# ËÜÊ¸¤Î¼è¤ê½Ğ¤·
+	# æœ¬æ–‡ã®å–ã‚Šå‡ºã—
 	print "body..." if $debug;
 	my $d = $self->get_body;
 
 	print "color1..." if $debug;
-	my %for_color = ();                           # ¶¯Ä´»ØÄê¤Î½àÈ÷
-	foreach my $i (@{$self->{w_force}}){               # ¤½¤ÎÂ¾¤Î¥³¡¼¥É
+	my %for_color = ();                           # å¼·èª¿æŒ‡å®šã®æº–å‚™
+	foreach my $i (@{$self->{w_force}}){               # ãã®ä»–ã®ã‚³ãƒ¼ãƒ‰
 		$for_color{$i} = "force";
 	}
-	foreach my $i (@{$self->{w_other}}){               # ¤½¤ÎÂ¾¤Î¥³¡¼¥É
+	foreach my $i (@{$self->{w_other}}){               # ãã®ä»–ã®ã‚³ãƒ¼ãƒ‰
 		$for_color{$i} = "CodeW";
 	}
-	foreach my $i (@{$self->{w_search}}){              # ¸¡º÷¸ì
+	foreach my $i (@{$self->{w_search}}){              # æ¤œç´¢èª
 		$for_color{$i} = "search";
 	}
-	my $html = mysql_exec->select("                    # HTML¥¿¥°
+	my $html = mysql_exec->select("                    # HTMLã‚¿ã‚°
 		select hyoso.id
 		from  hselection,
 			genkei LEFT JOIN hyoso ON hyoso.genkei_id = genkei.id
 		where
 			genkei.khhinshi_id = hselection.khhinshi_id
 			AND (
-				   hselection.name = 'HTML¥¿¥°'
+				   hselection.name = 'HTMLã‚¿ã‚°'
 				|| hselection.name = 'HTML_TAG'
 			)
 	",1)->hundle;
@@ -55,7 +55,7 @@ sub get{
 	}
 	
 	print "color2..." if $debug;
-	my @body = (); my $last = -1;                 # ²ş¹ÔÉÕ²Ã¡õ¸¡º÷¸ì¶¯Ä´
+	my @body = (); my $last = -1;                 # æ”¹è¡Œä»˜åŠ ï¼†æ¤œç´¢èªå¼·èª¿
 	my $lastw = '';
 	foreach my $i (@{$d}){
 		unless ($i->[2] == $last){
@@ -73,7 +73,7 @@ sub get{
 	}
 	$self->{body} = \@body;
 	
-	# ¾å°Ì¸«½Ğ¤·¤Î¼è¤ê½Ğ¤·
+	# ä¸Šä½è¦‹å‡ºã—ã®å–ã‚Šå‡ºã—
 	print "header..." if $debug;
 	$self->{header} = $self->get_header;
 	
@@ -82,7 +82,7 @@ sub get{
 }
 
 #----------------#
-#   ËÜÊ¸¤Î¼èÆÀ   #
+#   æœ¬æ–‡ã®å–å¾—   #
 
 sub get_body{
 	my $self = shift;
@@ -104,7 +104,7 @@ sub get_body{
 
 
 #----------------#
-#   Ê¸½ñ¤ÎÆÃÄê   #
+#   æ–‡æ›¸ã®ç‰¹å®š   #
 
 sub get_doc_id{
 	my $self = shift;
@@ -146,7 +146,7 @@ sub get_doc_id{
 
 
 #----------------------#
-#   ¾å°Ì¸«½Ğ¤·¤Î¼èÆÀ   #
+#   ä¸Šä½è¦‹å‡ºã—ã®å–å¾—   #
 
 sub get_header{
 	my $self = shift;
@@ -167,8 +167,8 @@ sub get_header{
 
 	my %possible;
 	foreach my $i (@possible_header){
-		if ($i eq $tani){last;}                   # ¾å°Ì¤«¤É¤¦¤«¥Á¥§¥Ã¥¯
-		if (                                      # ¥¿¥°¤¬¤¢¤ë¤«¥Á¥§¥Ã¥¯
+		if ($i eq $tani){last;}                   # ä¸Šä½ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
+		if (                                      # ã‚¿ã‚°ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			mysql_exec->select(
 				"select status from status where name = \'$i\'",1
 			)->hundle->fetch->[0]
@@ -233,7 +233,7 @@ sub id_for_print{
 	my $debug = 0;
 	print "doc_id: $self->{doc_id}\n" if $debug;
 	
-	# Ê¸½ñ¤Î°ÌÃÖ¾ğÊó¤ò¼èÆÀ
+	# æ–‡æ›¸ã®ä½ç½®æƒ…å ±ã‚’å–å¾—
 	my $sql = 'SELECT ';
 	foreach my $i ('h1','h2','h3','h4','h5','dan','bun'){
 		$sql .= $i.'_id,';
@@ -256,8 +256,8 @@ sub id_for_print{
 	chop $r;
 	chop $r;
 	
-	# ³°ÉôÊÑ¿ô¤Î¼èÆÀ
-	my @vars;                           # ³°ÉôÊÑ¿ô¤Î¥ê¥¹¥ÈºîÀ®
+	# å¤–éƒ¨å¤‰æ•°ã®å–å¾—
+	my @vars;                           # å¤–éƒ¨å¤‰æ•°ã®ãƒªã‚¹ãƒˆä½œæˆ
 	my %tani_check = ();
 	foreach my $i ('h1','h2','h3','h4','h5','dan','bun'){
 		$tani_check{$i} = 1;
@@ -265,7 +265,7 @@ sub id_for_print{
 	}
 	my $h = mysql_outvar->get_list;
 	foreach my $i (@{$h}){
-		if ($tani_check{$i->[0]}){      # »È¤¨¤ë³°ÉôÊÑ¿ô¤«¤É¤¦¤«¥Á¥§¥Ã¥¯
+		if ($tani_check{$i->[0]}){      # ä½¿ãˆã‚‹å¤–éƒ¨å¤‰æ•°ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
 			push @vars, mysql_outvar::a_var->new($i->[1],$i->[2]);
 		}
 	}
@@ -274,7 +274,7 @@ sub id_for_print{
 	} else {
 		return $r;
 	}
-	foreach my $i (@vars){              # ÃÍ¤Î¼èÆÀ
+	foreach my $i (@vars){              # å€¤ã®å–å¾—
 		my $val = $i->doc_val(
 			doc_id => $self->{doc_id},
 			tani   => $self->{tani}

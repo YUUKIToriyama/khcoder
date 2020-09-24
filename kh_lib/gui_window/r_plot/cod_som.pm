@@ -5,26 +5,26 @@ sub option1_options{
 	my $self = shift;
 	if (@{$self->{plots}} == 4){
 		return [
-			kh_msg->get('gui_window::r_plot::word_som->cls'),  # ¥¯¥é¥¹¥¿¡¼
-			kh_msg->get('gui_window::r_plot::word_som->gray'), # ¥°¥ì¡¼¥¹¥±¡¼¥ë
-			kh_msg->get('gui_window::r_plot::word_som->freq'), # ÅÙ¿ô
-			kh_msg->get('gui_window::r_plot::word_som->umat'), # U¹ÔÎó
+			kh_msg->get('gui_window::r_plot::word_som->cls'),  # ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼
+			kh_msg->get('gui_window::r_plot::word_som->gray'), # ã‚°ãƒ¬ãƒ¼ã‚¹ã‚±ãƒ¼ãƒ«
+			kh_msg->get('gui_window::r_plot::word_som->freq'), # åº¦æ•°
+			kh_msg->get('gui_window::r_plot::word_som->umat'), # Uè¡Œåˆ—
 		];
 	} else {
 		return [
-			kh_msg->get('gui_window::r_plot::word_som->gray'), # ¥°¥ì¡¼¥¹¥±¡¼¥ë
-			kh_msg->get('gui_window::r_plot::word_som->freq'), # ÅÙ¿ô
-			kh_msg->get('gui_window::r_plot::word_som->umat'), # U¹ÔÎó
+			kh_msg->get('gui_window::r_plot::word_som->gray'), # ã‚°ãƒ¬ãƒ¼ã‚¹ã‚±ãƒ¼ãƒ«
+			kh_msg->get('gui_window::r_plot::word_som->freq'), # åº¦æ•°
+			kh_msg->get('gui_window::r_plot::word_som->umat'), # Uè¡Œåˆ—
 		];
 	}
 }
 
 sub option1_name{
-	return kh_msg->get('gui_window::r_plot::word_som->views'); # ' ¥«¥é¡¼¡§';
+	return kh_msg->get('gui_window::r_plot::word_som->views'); # ' ã‚«ãƒ©ãƒ¼ï¼š';
 }
 
 sub win_title{
-	return kh_msg->get('win_title'); # ¥³¡¼¥É¡¦¼«¸ÊÁÈ¿¥²½¥Þ¥Ã¥×
+	return kh_msg->get('win_title'); # ã‚³ãƒ¼ãƒ‰ãƒ»è‡ªå·±çµ„ç¹”åŒ–ãƒžãƒƒãƒ—
 }
 
 sub win_name{

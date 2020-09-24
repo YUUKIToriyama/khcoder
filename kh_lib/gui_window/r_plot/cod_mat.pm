@@ -4,14 +4,14 @@ use base qw(gui_window::r_plot);
 
 sub option1_options{
 	return [
-		kh_msg->get('heat'), # '�ҡ��ȥޥå�',
-		kh_msg->get('fluc'), # '�Х֥�ץ��å�',
+		kh_msg->get('heat'), # 'ヒートマップ',
+		kh_msg->get('fluc'), # 'バブルプロット',
 		#kh_msg->get('line'),
 	];
 }
 
 sub option1_name{
-	return kh_msg->get('gui_window::r_plot::word_corresp->view'); # ' ɽ����';
+	return kh_msg->get('gui_window::r_plot::word_corresp->view'); # ' 表示：';
 }
 
 sub photo_pane_width{
@@ -19,11 +19,11 @@ sub photo_pane_width{
 	return $::config_obj->plot_size_words;
 }
 
-# Ĵ���Ѥ�Window�򳫤�
+# 調整用のWindowを開く
 sub open_config{
 	my $self = shift;
 	
-	# �����������μ���
+	# 画像サイズの取得
 	my $ax = $self->{ax};
 	$self->{ax} = 0;
 	$self->renew(1);
@@ -60,7 +60,7 @@ sub img_width{
 	return $gui_window::r_plot::imgs->{$self->win_name}->width;
 }
 
-# ����ɽ���ѥ��֥������Ȥ�ƺ����ʥ���������С���ꥻ�åȤ��뤿���
+# 画像表示用オブジェクトを再作成（スクロールバーをリセットするため）
 sub renew{
 	my $self = shift;
 	my $opt  = shift;

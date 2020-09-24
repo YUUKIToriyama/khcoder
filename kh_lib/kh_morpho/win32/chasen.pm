@@ -3,7 +3,7 @@ use strict;
 use base qw( kh_morpho::win32 );
 
 #--------------------#
-#   Ããä¥¤Î¼Â¹Ô´Ø·¸   #
+#   èŒ¶ç­Œã®å®Ÿè¡Œé–¢ä¿‚   #
 #--------------------#
 
 sub _run_morpho{
@@ -32,7 +32,7 @@ sub _run_morpho{
 	$self->{cmdline} = "chasen -r \"$chasenrc\" -o \"".$self->output."\" \"".$self->target."\"";
 
 	require Win32::Process;
-	# Win32::Process->import; # ¤³¤ì¤Ç¤Ï¤¦¤Ş¤¯¤¤¤«¤Ê¤¤¡©
+	# Win32::Process->import; # ã“ã‚Œã§ã¯ã†ã¾ãã„ã‹ãªã„ï¼Ÿ
 
 	my $ChasenObj;
 	Win32::Process::Create(

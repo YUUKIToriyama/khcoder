@@ -99,7 +99,7 @@ sub calc_plugin_loop{
 	my $self = shift;
 	my $isCode = shift;
 	
-	#ƒvƒ‰ƒOƒCƒ“ƒ‰ƒCƒZƒ“ƒXŠm”F
+	#ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ãƒ©ã‚¤ã‚»ãƒ³ã‚¹ç¢ºèª
 	return 0 unless(system(&screen_code::plugin_path::assistant_path, 0));
 	
 	reset_plot_hash($self);
@@ -120,11 +120,11 @@ sub calc_plugin_loop{
 sub calc_plugin{
 	my $self = shift;
 	
-	# “ü—Í‚Ìƒ`ƒFƒbƒN
+	# å…¥åŠ›ã®ãƒã‚§ãƒƒã‚¯
 	unless ( eval(@{$self->hinshi}) ){
 		gui_errormsg->open(
 			type => 'msg',
-			msg  => kh_msg->get('gui_window::word_corresp->select_pos'), # '•iŒ‚ª1‚Â‚à‘I‘ğ‚³‚ê‚Ä‚¢‚Ü‚¹‚ñB',
+			msg  => kh_msg->get('gui_window::word_corresp->select_pos'), # 'å“è©ãŒ1ã¤ã‚‚é¸æŠã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚',
 		);
 		return 0;
 	}
@@ -145,7 +145,7 @@ sub calc_plugin{
 	if ($check_num < 3){
 		gui_errormsg->open(
 			type => 'msg',
-			msg  => kh_msg->gget('select_3words'), #'­‚È‚­‚Æ‚à3‚ÂˆÈã‚Ì’ŠoŒê‚ğ‘I‘ğ‚µ‚Ä‰º‚³‚¢B',
+			msg  => kh_msg->gget('select_3words'), #'å°‘ãªãã¨ã‚‚3ã¤ä»¥ä¸Šã®æŠ½å‡ºèªã‚’é¸æŠã—ã¦ä¸‹ã•ã„ã€‚',
 		);
 		return 0;
 	}
@@ -173,7 +173,7 @@ sub calc_plugin{
 
 	my $w = gui_wait->start;
 
-	# ƒf[ƒ^‚Ìæ‚èo‚µ
+	# ãƒ‡ãƒ¼ã‚¿ã®å–ã‚Šå‡ºã—
 	my $r_command = mysql_crossout::r_com->new(
 		tani   => $self->tani,
 		tani2  => $self->tani,
@@ -185,13 +185,13 @@ sub calc_plugin{
 		rownames => 0,
 	)->run;
 
-	# ƒNƒ‰ƒXƒ^[•ªÍ‚ğÀs‚·‚é‚½‚ß‚ÌƒRƒ}ƒ“ƒh
+	# ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼åˆ†æã‚’å®Ÿè¡Œã™ã‚‹ãŸã‚ã®ã‚³ãƒãƒ³ãƒ‰
 	$r_command .= "d <- t(d)\n";
 	$r_command .= "# END: DATA\n";
 
 	&set_config_param($self);
 
-	#config_param‚Éİ’è€–Ú‚ğ‚Ü‚Æ‚ß‚Ä‚¢‚é‚Ì‚ÅAˆÈ‰º‚ÍŒÄ‚Ño‚·•K—v‚ª–³‚­‚È‚é
+	#config_paramã«è¨­å®šé …ç›®ã‚’ã¾ã¨ã‚ã¦ã„ã‚‹ã®ã§ã€ä»¥ä¸‹ã¯å‘¼ã³å‡ºã™å¿…è¦ãŒç„¡ããªã‚‹
 	#$self->{cls_obj}->params,font_size => $self->{font_obj}->font_size,plot_size => $self->{font_obj}->plot_size, 
 	my $plot = &make_plot_plugin(
 		&get_config_param($self),
@@ -223,7 +223,7 @@ sub calc_plugin{
 	
 	if ($plot->{initial_add_flag}) {
 		$self->{add_plot} = $self->{config_param}->{cluster_number};
-		#‰Šú•\¦ƒvƒƒbƒg‚ğw’èƒNƒ‰ƒXƒ^[”‚Ì‚à‚Ì‚É•Ï‚¦‚é•K—v‚Í‚ ‚é‚©
+		#åˆæœŸè¡¨ç¤ºãƒ—ãƒ­ãƒƒãƒˆã‚’æŒ‡å®šã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼æ•°ã®ã‚‚ã®ã«å¤‰ãˆã‚‹å¿…è¦ã¯ã‚ã‚‹ã‹
 		#$self->{plot_o} = $self->{config_param}->{cluster_number};
 		return 1;
 	}
@@ -238,7 +238,7 @@ sub calc_plugin{
 		save_config($self);
 		$! = undef;
 		$rtn = system(&screen_code::plugin_path::assistant_path, "4");
-		$rtn = 0 if ($!) ; #system‚ÅƒGƒ‰[‚ª‚ ‚Á‚½ê‡
+		$rtn = 0 if ($!) ; #systemã§ã‚¨ãƒ©ãƒ¼ãŒã‚ã£ãŸå ´åˆ
 		if (read_config($self)) {
 			last;
 		}
@@ -259,7 +259,7 @@ sub calc_plugin{
 }
 
 
-# ƒvƒƒbƒgì¬••\¦
+# ãƒ—ãƒ­ãƒƒãƒˆä½œæˆï¼†è¡¨ç¤º
 sub calc_code_plugin{
 	my $self = shift;
 
@@ -272,14 +272,14 @@ sub calc_code_plugin{
 		gui_errormsg->open(
 			type   => 'msg',
 			window  => \$self->win_obj,
-			msg    => kh_msg->get('gui_window::cod_corresp->sel3'), # 'ƒR[ƒh‚ğ3‚ÂˆÈã‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢B'
+			msg    => kh_msg->get('gui_window::cod_corresp->sel3'), # 'ã‚³ãƒ¼ãƒ‰ã‚’3ã¤ä»¥ä¸Šé¸æŠã—ã¦ãã ã•ã„ã€‚'
 		);
 		return 0;
 	}
 
 	my $wait_window = gui_wait->start;
 
-	# ƒf[ƒ^æ“¾
+	# ãƒ‡ãƒ¼ã‚¿å–å¾—
 	my $r_command;
 	unless ( $r_command =  kh_cod::func->read_file($self->cfile)->out2r_selected($self->tani,\@selected) ){
 		gui_errormsg->open(
@@ -292,13 +292,13 @@ sub calc_code_plugin{
 		return 0;
 	}
 	
-	# ƒNƒ‰ƒXƒ^[•ªÍÀs‚Ì‚½‚ß‚ÌRƒRƒ}ƒ“ƒh
+	# ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼åˆ†æå®Ÿè¡Œã®ãŸã‚ã®Rã‚³ãƒãƒ³ãƒ‰
 	$r_command .= "\n";
 	$r_command .= "d <- t(d)\n";
 	$r_command .= "row.names(d) <- c(";
 	foreach my $i (@{$self->{checks}}){
 		my $name = $i->{name};
-		if (index($name,'–') == 0){
+		if (index($name,'ï¼Š') == 0){
 			substr($name, 0, 2) = '';
 		}
 		elsif (index($name,'*') == 0){
@@ -315,7 +315,7 @@ sub calc_code_plugin{
 
 	&set_config_param($self);
 
-	#config_param‚Éİ’è€–Ú‚ğ‚Ü‚Æ‚ß‚Ä‚¢‚é‚Ì‚ÅAˆÈ‰º‚ÍŒÄ‚Ño‚·•K—v‚ª–³‚­‚È‚é
+	#config_paramã«è¨­å®šé …ç›®ã‚’ã¾ã¨ã‚ã¦ã„ã‚‹ã®ã§ã€ä»¥ä¸‹ã¯å‘¼ã³å‡ºã™å¿…è¦ãŒç„¡ããªã‚‹
 	#$self->{cls_obj}->params,font_size => $self->{font_obj}->font_size,plot_size => $self->{font_obj}->plot_size, 
 	my $plot = &make_plot_plugin(
 		&get_config_param($self),
@@ -361,7 +361,7 @@ sub calc_code_plugin{
 		save_config($self);
 		$! = undef;
 		$rtn = system(&screen_code::plugin_path::assistant_path, "4");
-		$rtn = 0 if ($!) ; #system‚ÅƒGƒ‰[‚ª‚ ‚Á‚½ê‡
+		$rtn = 0 if ($!) ; #systemã§ã‚¨ãƒ©ãƒ¼ãŒã‚ã£ãŸå ´åˆ
 		read_config($self);
 		if (!$rtn) {
 			last;
@@ -412,7 +412,7 @@ sub make_plot_plugin{
 
 	my $setting_cls_num = 0;
 	my $default_cls_num = int( sqrt( $args{data_number} ) + 0.5);
-	#ƒvƒ‰ƒOƒCƒ“‹N“®‚Ü‚½‚Í’²®‚Åİ’è•ÏX‚ÉAƒNƒ‰ƒXƒ^[”‚ªw’è‚³‚ê‚Ä‚¢‚é‚©(„§’l‚Ì‘¼‚Éw’è‚³‚ê‚½ƒNƒ‰ƒXƒ^[”‚Ìƒvƒƒbƒg‚às‚¤•K—v‚ª‚ ‚é)
+	#ãƒ—ãƒ©ã‚°ã‚¤ãƒ³èµ·å‹•æ™‚ã¾ãŸã¯èª¿æ•´ã§è¨­å®šå¤‰æ›´æ™‚ã«ã€ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼æ•°ãŒæŒ‡å®šã•ã‚Œã¦ã„ã‚‹ã‹(æ¨å¥¨å€¤ã®ä»–ã«æŒ‡å®šã•ã‚ŒãŸã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼æ•°ã®ãƒ—ãƒ­ãƒƒãƒˆã‚‚è¡Œã†å¿…è¦ãŒã‚ã‚‹)
 	my $initial_add_flag = 0;
 	if($args{add_plot})  {
 		$setting_cls_num = $args{add_plot};
@@ -426,7 +426,7 @@ sub make_plot_plugin{
 		#	$setting_cls_num = $cluster_number;
 		}
 	}
-	#w’è‚³‚ê‚½ƒNƒ‰ƒXƒ^[”‚ªKHCoder„§’l‚Æ“¯’l
+	#æŒ‡å®šã•ã‚ŒãŸã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼æ•°ãŒKHCoderæ¨å¥¨å€¤ã¨åŒå€¤
 	if ($cluster_number == $default_cls_num) {
 		$initial_add_flag = 0;
 	}
@@ -467,10 +467,10 @@ if (exists(\"doc_length_mtr\")){
 	if ($args{method_dist} eq 'euclid'){
 		$r_command .= "d <- t( scale( t(d) ) )\n";
 	}
-	# euclid‚Ìê‡‚Í’ŠoŒê‚²‚Æ‚É•W€‰»
-		# euclidŒW”‚ğg‚¤å|‚©‚ç‚·‚é‚ÆA•W€‰»‚Í•s—v‚Æ‚àl‚¦‚ç‚ê‚é‚ªA
-		# •W€‰»‚ğs‚í‚È‚¢‚Æ˜A½‚Ì’ö“x‚ªŒƒ‚µ‚­‚È‚èAƒNƒ‰ƒXƒ^[•ªÍ‚Æ‚µ‚Ä
-		# ‚Ì—p‚ğ‚È‚³‚È‚­‚È‚éê‡‚ª‚Ü‚ÜŒ©‚ç‚ê‚éB
+	# euclidã®å ´åˆã¯æŠ½å‡ºèªã”ã¨ã«æ¨™æº–åŒ–
+		# euclidä¿‚æ•°ã‚’ä½¿ã†ä¸»æ—¨ã‹ã‚‰ã™ã‚‹ã¨ã€æ¨™æº–åŒ–ã¯ä¸è¦ã¨ã‚‚è€ƒãˆã‚‰ã‚Œã‚‹ãŒã€
+		# æ¨™æº–åŒ–ã‚’è¡Œã‚ãªã„ã¨é€£é–ã®ç¨‹åº¦ãŒæ¿€ã—ããªã‚Šã€ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼åˆ†æã¨ã—ã¦
+		# ã®ç”¨ã‚’ãªã•ãªããªã‚‹å ´åˆãŒã¾ã¾è¦‹ã‚‰ã‚Œã‚‹ã€‚
 
 	$r_command .= "method_dist <- \"$args{method_dist}\"\n";
 	$r_command .= "method_clst <- \"$args{method_mthd}\"\n";
@@ -528,11 +528,11 @@ if (
 	my $leatest_plot = $args{leatest_plot};
 	my $plot_file_names = $args{plot_file_names};
 	my $plot_number = $args{plot_number};
-	#ƒfƒtƒHƒ‹ƒg•ªŠ„”‚Æƒvƒ‰ƒOƒCƒ“‚Ì•ªŠ„”‚ª“¯‚¶ê‡
+	#ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåˆ†å‰²æ•°ã¨ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã®åˆ†å‰²æ•°ãŒåŒã˜å ´åˆ
 	my $default_duplicate = 0;
 	while(1) {
 		my $r_command_a;
-		#ˆê“xƒvƒ‰ƒOƒCƒ“‚És‚Á‚½Œã‚Í‚à‚¤ˆê“x$r_command‚ª•K—v
+		#ä¸€åº¦ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã«è¡Œã£ãŸå¾Œã¯ã‚‚ã†ä¸€åº¦$r_commandãŒå¿…è¦
 		if ($first) {
 			$r_command_a = $r_command;
 			$first = 0;
@@ -541,7 +541,7 @@ if (
 		}
 		my $pattern_num = $leatest_plot;
 		$pattern_num += $default_duplicate;
-		#’Ç‰Áƒvƒƒbƒg‚ÅƒNƒ‰ƒXƒ^[”‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢‚Æ‚¢‚¤ó‹µ‚Í‚ ‚è‚¦‚È‚¢‚Æ‚¢‚¤‘z’è
+		#è¿½åŠ ãƒ—ãƒ­ãƒƒãƒˆã§ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼æ•°ãŒè¨­å®šã•ã‚Œã¦ã„ãªã„ã¨ã„ã†çŠ¶æ³ã¯ã‚ã‚Šãˆãªã„ã¨ã„ã†æƒ³å®š
 		if ($setting_cls_num) {
 			$pattern_num = -1;
 		}
@@ -558,7 +558,7 @@ if (
 		$plot_file_names = $plot_file_names."$leatest_plot".",";
 	
 		my $r_msg = $plot1->{r_msg};
-		#•ªŠ„”‚ªAuto‚Å–³‚¢ê‡‚Íˆê–‡‚¾‚¯ƒvƒƒbƒg‚·‚é
+		#åˆ†å‰²æ•°ãŒAutoã§ç„¡ã„å ´åˆã¯ä¸€æšã ã‘ãƒ—ãƒ­ãƒƒãƒˆã™ã‚‹
 		if ($setting_cls_num) {
 			push @{$plots}, $plot1;
 			$plot_number = $plot_number."$setting_cls_num".",";
@@ -569,11 +569,11 @@ if (
 			$plot_number = $plot_number."$cluster_number".",";
 			last;
 		}
-		#Rˆ—‚©‚ç•Ô‚·ƒƒbƒZ[ƒW‚ÅKHCoderƒfƒtƒHƒ‹ƒg‚Ì„§’l‚ğƒvƒƒbƒg‚µ‚½‚©‚Ç‚¤‚©‚ğ”»’è
+		#Rå‡¦ç†ã‹ã‚‰è¿”ã™ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã§KHCoderãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®æ¨å¥¨å€¤ã‚’ãƒ—ãƒ­ãƒƒãƒˆã—ãŸã‹ã©ã†ã‹ã‚’åˆ¤å®š
 		if ($r_msg =~ /^\[1\] default.*/) {
 			
-			#ƒfƒtƒHƒ‹ƒg”»’è•¶š—ñ‚ğÁ‹‚µAƒvƒ‰ƒOƒCƒ“‚ª”»’è‚µ‚½„§•ªŠ„”‚ğŒŸØ‚·‚é
-			#„§•ªŠ„”‚ª–³‚¢ê‡(’¼ü‚É‹ß‚¢•¹‡…€‚¾‚Æ‚ ‚è‚¦‚é)‚Íƒ‹[ƒvˆ—‚ğ”²‚¯‚é”»’è‚ğ‚·‚é
+			#ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆåˆ¤å®šæ–‡å­—åˆ—ã‚’æ¶ˆå»ã—ã€ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ãŒåˆ¤å®šã—ãŸæ¨å¥¨åˆ†å‰²æ•°ã‚’æ¤œè¨¼ã™ã‚‹
+			#æ¨å¥¨åˆ†å‰²æ•°ãŒç„¡ã„å ´åˆ(ç›´ç·šã«è¿‘ã„ä½µåˆæ°´æº–ã ã¨ã‚ã‚Šãˆã‚‹)ã¯ãƒ«ãƒ¼ãƒ—å‡¦ç†ã‚’æŠœã‘ã‚‹åˆ¤å®šã‚’ã™ã‚‹
 			if ($r_msg =~ /\n/) {
 				$r_msg =~ s/^.*[\n]//;
 			} else {
@@ -595,7 +595,7 @@ if (
 			my @splited = split(/\s+/,$r_msg);
 			$plot1->{cls_num} = $splited[$leatest_plot + $default_duplicate];
 			$plot_number = $plot_number."$splited[$leatest_plot + $default_duplicate]"." (Monkin),";
-			#w’è‚³‚ê‚½ƒNƒ‰ƒXƒ^[”‚ªƒvƒ‰ƒOƒCƒ“„§’l‚Æ“¯’l
+			#æŒ‡å®šã•ã‚ŒãŸã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼æ•°ãŒãƒ—ãƒ©ã‚°ã‚¤ãƒ³æ¨å¥¨å€¤ã¨åŒå€¤
 			if ($cluster_number == int($splited[$leatest_plot + $default_duplicate])) {
 				$initial_add_flag = 0;
 			}
@@ -624,7 +624,7 @@ if (
 	
 	my $plotR;
 	# heights
-	#ƒvƒƒbƒg‰æ‘œ‚ªí‚É 1_–¼‘O ‚¾‚ªAƒfƒtƒHƒ‹ƒg‚ğ0”Ô‚Åƒvƒƒbƒg‚·‚é‚æ‚¤‚É•ÏX‚µ‚½‚Ì‚Å 0_–¼‘O ‚Å‚à‚¢‚¢‚©‚à‚µ‚ê‚È‚¢(ˆ—‚É‰e‹¿‚Í‚µ‚È‚¢)
+	#ãƒ—ãƒ­ãƒƒãƒˆç”»åƒãŒå¸¸ã« 1_åå‰ ã ãŒã€ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚’0ç•ªã§ãƒ—ãƒ­ãƒƒãƒˆã™ã‚‹ã‚ˆã†ã«å¤‰æ›´ã—ãŸã®ã§ 0_åå‰ ã§ã‚‚ã„ã„ã‹ã‚‚ã—ã‚Œãªã„(å‡¦ç†ã«å½±éŸ¿ã¯ã—ãªã„)
 	if (!$args{maked_merges}) {
 		foreach my $i ('last','first','all'){
 			my $r_command_f = $r_command."pp_type <- \"$i\"\n"."default_cls <- $default_cls_num\n".$r_command_add;
@@ -651,7 +651,7 @@ if (
 	$plotR->{plot_number} = $plot_number;
 	$plotR->{leatest_plot} = $leatest_plot;
 	$plotR->{plot_size} = $args{plot_size};
-	#w’è‚³‚ê‚½ƒNƒ‰ƒXƒ^[”‚Å’Ç‰Áƒvƒƒbƒg‚ª•K—v‚©
+	#æŒ‡å®šã•ã‚ŒãŸã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼æ•°ã§è¿½åŠ ãƒ—ãƒ­ãƒƒãƒˆãŒå¿…è¦ã‹
 	$plotR->{initial_add_flag} = $initial_add_flag;
 	return $plotR;
 }
@@ -716,9 +716,9 @@ sub save_option{
 	my $dbn = $::project_obj->dbname;
 	my $plot_file_names = $self->{plot_file_names};
 	my $plot_number = $self->{plot_number};
-	#’Ç‰Áƒvƒƒbƒgˆ—‚ÌŠÖŒW‚Å––”ö‚É•s—v‚ÈƒRƒ“ƒ}‚ª‚ ‚é‚½‚ßíœ‚·‚é
+	#è¿½åŠ ãƒ—ãƒ­ãƒƒãƒˆå‡¦ç†ã®é–¢ä¿‚ã§æœ«å°¾ã«ä¸è¦ãªã‚³ãƒ³ãƒãŒã‚ã‚‹ãŸã‚å‰Šé™¤ã™ã‚‹
 	chop($plot_file_names);chop($plot_number);
-	#ƒvƒ‰ƒOƒCƒ“‚Ìˆ—•ÏX‚É‚æ‚è•K—v‚È‚­‚È‚é‚©‚à‚µ‚ê‚È‚¢
+	#ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã®å‡¦ç†å¤‰æ›´ã«ã‚ˆã‚Šå¿…è¦ãªããªã‚‹ã‹ã‚‚ã—ã‚Œãªã„
 	my $initial_display;
 	if ($self->{add_plot}) {
 		$initial_display = $self->{leatest_plot} - 1;
@@ -866,25 +866,25 @@ sub reset_plot_hash{
 sub r_command_height{
 	my $t = '
 
-# ƒvƒƒbƒg‚Ì€”õŠJn
-pp_focus  <- 50     # Å‰EÅŒã‚Ì50‰ñ‚Ì•¹‡‚ğƒvƒƒbƒg
-pp_kizami <-  5     # ƒNƒ‰ƒXƒ^[”‚Ì‚«‚´‚İi5ŒÂ‚¨‚«‚É•\¦j
+# ãƒ—ãƒ­ãƒƒãƒˆã®æº–å‚™é–‹å§‹
+pp_focus  <- 50     # æœ€åˆãƒ»æœ€å¾Œã®50å›ã®ä½µåˆã‚’ãƒ—ãƒ­ãƒƒãƒˆ
+pp_kizami <-  5     # ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼æ•°ã®ãã–ã¿ï¼ˆ5å€‹ãŠãã«è¡¨ç¤ºï¼‰
 
-# •¹‡…€‚ğæ“¾
+# ä½µåˆæ°´æº–ã‚’å–å¾—
 det <- hcl$merge
 det <- cbind(1:nrow(det), nrow(det):1, det, hcl$height)
 colnames(det) <- c("u_n", "cls_n", "u1", "u2", "height")
 
-# ƒ^ƒCƒv•Ê‚Ìˆ—F•K—v‚È•”•ª‚Ì•¹‡ƒf[ƒ^Øo‚µE•\‹LEƒNƒ‰ƒXƒ^[”•\¦‚Ì‚«‚´‚İ
+# ã‚¿ã‚¤ãƒ—åˆ¥ã®å‡¦ç†ï¼šå¿…è¦ãªéƒ¨åˆ†ã®ä½µåˆãƒ‡ãƒ¼ã‚¿åˆ‡å‡ºã—ãƒ»è¡¨è¨˜ãƒ»ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼æ•°è¡¨ç¤ºã®ãã–ã¿
 if (pp_type == "last"){
 	n_start <- nrow(det) - pp_focus + 1
 	if (n_start < 1){ n_start <- 1 }
 	det <- det[nrow(det):n_start,]
 	
 	str_xlab <- paste(" ('
-	.kh_msg->pget('gui_window::word_cls->last1') # ÅŒã‚Ì
+	.kh_msg->pget('gui_window::word_cls->last1') # æœ€å¾Œã®
 	.'",pp_focus,"'
-	.kh_msg->pget('gui_window::word_cls->last2') # ‰ñ
+	.kh_msg->pget('gui_window::word_cls->last2') # å›
 	.')",sep="")
 } else if (pp_type == "first") {
 	if ( pp_focus > nrow(det) ){
@@ -893,9 +893,9 @@ if (pp_type == "last"){
 	det <- det[pp_focus:1,]
 	
 	str_xlab <- paste(" ('
-	.kh_msg->pget('gui_window::word_cls->first1') # Å‰‚Ì
+	.kh_msg->pget('gui_window::word_cls->first1') # æœ€åˆã®
 	.'",pp_focus,"'
-	.kh_msg->pget('gui_window::word_cls->first2') # ‰ñ
+	.kh_msg->pget('gui_window::word_cls->first2') # å›
 	.')",sep="")
 } else if (pp_type == "all") {
 	det <- det[nrow(det):1,]
@@ -905,7 +905,7 @@ if (pp_type == "last"){
 	str_xlab <- ""
 }
 
-# ƒNƒ‰ƒXƒ^[”‚Ìƒ}[ƒJ[‚ğ“ü‚ê‚é€”õ
+# ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼æ•°ã®ãƒãƒ¼ã‚«ãƒ¼ã‚’å…¥ã‚Œã‚‹æº–å‚™
 p_type <- NULL
 p_nums <- NULL
 #screen plugin2 start#
@@ -920,7 +920,7 @@ for (i in 1:nrow(det)){
 }
 #screen plugin2 end#
 
-# ƒvƒƒbƒg
+# ãƒ—ãƒ­ãƒƒãƒˆ
 par(mai=c(0,0,0,0), mar=c(4,4,1,1), omi=c(0,0,0,0), oma =c(0,0,0,0) )
 plot(
 	det[,"u_n"],
@@ -929,10 +929,10 @@ plot(
 	pch  = p_type,
 	bty = "l",
 	xlab = paste("'
-	.kh_msg->pget('gui_window::word_cls->agglomer') # ƒNƒ‰ƒXƒ^[•¹‡‚Ì’iŠK
+	.kh_msg->pget('gui_window::word_cls->agglomer') # ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ä½µåˆã®æ®µéš
 	.'",str_xlab,sep = ""),
 	ylab = "'
-	.kh_msg->pget('gui_window::word_cls->hight') # •¹‡…€i”ñ—Ş—“xj
+	.kh_msg->pget('gui_window::word_cls->hight') # ä½µåˆæ°´æº–ï¼ˆéé¡ä¼¼åº¦ï¼‰
 	.'",
 	#screen plugin p_col#
 )
@@ -952,7 +952,7 @@ legend(
 	min(det[,"u_n"]),
 	max(det[,"height"]),
 	legend = c("'
-	.kh_msg->pget('gui_window::word_cls->note1') # ¦ƒvƒƒbƒg“à‚Ì”’lƒ‰ƒxƒ‹‚Í\n@•¹‡Œã‚ÌƒNƒ‰ƒXƒ^[‘”
+	.kh_msg->pget('gui_window::word_cls->note1') # â€»ãƒ—ãƒ­ãƒƒãƒˆå†…ã®æ•°å€¤ãƒ©ãƒ™ãƒ«ã¯\nã€€ä½µåˆå¾Œã®ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ç·æ•°
 	.'"),
 	#pch = c(16),
 	cex = .9,
@@ -1008,20 +1008,20 @@ if ( exists("PERL_font_family") ){
 
 #screen plugin1#
 
-# ƒNƒ‰ƒXƒ^[‚²‚Æ‚ÌƒJƒ‰[İ’è
+# ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ã”ã¨ã®ã‚«ãƒ©ãƒ¼è¨­å®š
 
 if (n_cls > 1){
 	memb <- cutree(hcl,k=n_cls)
-	# ‘S‘Ì‚ÌFİ’è
+	# å…¨ä½“ã®è‰²è¨­å®š
 	p <- p + scale_colour_hue(l=40, c=100)
-	# Ø‚è—£‚µü(1)
+	# åˆ‡ã‚Šé›¢ã—ç·š(1)
 	cutpoint <- mean(
 		c(
 			rev(hcl$height)[n_cls-1],
 			rev(hcl$height)[n_cls]
 		)
 	)
-	# F‚Ì‡”Ô‚ğŒˆ’è
+	# è‰²ã®é †ç•ªã‚’æ±ºå®š
 	n <- length( unique(memb[hcl$order]) )
 	new_col <- NULL
 	for (i in 1:ceiling(n / 2) ){
@@ -1030,7 +1030,7 @@ if (n_cls > 1){
 			new_col <- c(new_col, i + ceiling(n / 2))
 		}
 	}
-	# ƒNƒ‰ƒXƒ^[”Ô†¨F–¼‚Ì•ÏŠ·—pƒxƒNƒgƒ‹ì¬icol_vecj
+	# ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ç•ªå·â†’è‰²åã®å¤‰æ›ç”¨ãƒ™ã‚¯ãƒˆãƒ«ä½œæˆï¼ˆcol_vecï¼‰
 	col_tab <- cbind(
 		unique(memb[hcl$order]),
 		new_col
@@ -1044,7 +1044,7 @@ if (n_cls > 1){
 		}
 		col_vec <- c(col_vec, c)
 	}
-	# ü‚ÌF•ª‚¯
+	# ç·šã®è‰²åˆ†ã‘
 	seg_bl <- NULL
 	seg_cl <- NULL
 	colnames(ddata$segment) <- c(
@@ -1100,7 +1100,7 @@ if (n_cls > 1){
 	if (is.null(seg_bl) == F){
 		colnames(seg_bl) <- c("x0", "y0", "x1", "y1")
 		seg_bl <- as.data.frame(seg_bl)
-		# Ø‚è—£‚µü(2)
+		# åˆ‡ã‚Šé›¢ã—ç·š(2)
 		if ( max(seg_bl$y1) > cutpoint ){
 			p <- p + geom_hline(
 				yintercept = cutpoint,
@@ -1115,7 +1115,7 @@ if (n_cls > 1){
 	seg_cl$c <- col_vec[seg_cl$c]
 
 	p <- p + geom_text(
-		data=data.frame(                    # ƒ‰ƒxƒ‹
+		data=data.frame(                    # ãƒ©ãƒ™ãƒ«
 			x=label(ddata)$x,
 			y=label(ddata)$y,
 			text=labels[ as.numeric( as.vector( ddata$labels$text ) ) ],
@@ -1145,7 +1145,7 @@ if (n_cls > 1){
 	seg_bl <- ddata$segment
 	col_vec <- c("001")
 	p <- p + geom_text(
-		data=data.frame(                    # ƒ‰ƒxƒ‹
+		data=data.frame(                    # ãƒ©ãƒ™ãƒ«
 			x=label(ddata)$x,
 			y=label(ddata)$y,
 			text=labels[ as.numeric( as.vector( ddata$labels$text ) ) ],
@@ -1175,7 +1175,7 @@ if (is.null(seg_bl) == F){
 }
 
 p <- p + geom_text(
-	data=data.frame(                    # ƒ‰ƒxƒ‹•ÏŠ·
+	data=data.frame(                    # ãƒ©ãƒ™ãƒ«å¤‰æ›
 		x=label(ddata)$x,
 		y=label(ddata)$y,
 		text=labels[ as.numeric( as.vector( ddata$labels$text ) ) ],
@@ -1194,7 +1194,7 @@ p <- p + geom_text(
 	size = 5 * 0.85 * font_size
 )
 
-# Œê‚âƒR[ƒh‚Ì’·‚³‚É‚ ‚í‚¹‚Ä—]”’‚Ì‘å‚«‚³‚ğİ’è
+# èªã‚„ã‚³ãƒ¼ãƒ‰ã®é•·ã•ã«ã‚ã‚ã›ã¦ä½™ç™½ã®å¤§ãã•ã‚’è¨­å®š
 y_max <- max( ddata$segment$y1 )
 y_min <- 0.2
 # "strwidth" crashes if the device is cairo_pdf or cairo_ps 
@@ -1217,7 +1217,7 @@ if (y_min > y_max * 2){
 }
 y_min <- y_min * -1
 
-# –Ú·‚ÌˆÊ’u‚ğİ’è
+# ç›®ç››ã®ä½ç½®ã‚’è¨­å®š
 b1 <- 0
 for (i in 1:1000){
 	b1 <- signif(y_max * 0.875, i)

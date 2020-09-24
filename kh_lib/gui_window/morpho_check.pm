@@ -7,14 +7,14 @@ use mysql_morpho_check;
 use gui_window::morpho_detail;
 
 #----------------#
-#   WindowÉÁ²è   #
+#   Windowæç”»   #
 
 sub _new{
 	my $self = shift;
 	
 	my $mw = $::main_gui->mw;
 	my $wmw= $self->{win_obj};
-	$wmw->title($self->gui_jt( kh_msg->get('win_title') )); # '¸ì¤ÎÃê½Ð·ë²Ì'
+	$wmw->title($self->gui_jt( kh_msg->get('win_title') )); # 'èªžã®æŠ½å‡ºçµæžœ'
 
 	my $fra4 = $wmw->LabFrame(
 		-label => 'Search Entry',
@@ -23,11 +23,11 @@ sub _new{
 	)->pack(-fill=>'x');
 
 	$fra4->Label(
-		-text => kh_msg->get('note'),#$self->gui_jchar('¡¦¸ì¤ÎÃê½Ð¡Ê·ÁÂÖÁÇ²òÀÏ¡Ë·ë²Ì¤ò³ÎÇ§¤·¤¿¤¤¥Õ¥ì¡¼¥º / Ê¸¤òÆþÎÏ¤·¤Æ²¼¤µ¤¤'),
+		-text => kh_msg->get('note'),#$self->gui_jchar('ãƒ»èªžã®æŠ½å‡ºï¼ˆå½¢æ…‹ç´ è§£æžï¼‰çµæžœã‚’ç¢ºèªã—ãŸã„ãƒ•ãƒ¬ãƒ¼ã‚º / æ–‡ã‚’å…¥åŠ›ã—ã¦ä¸‹ã•ã„'),
 		-font => "TKFN",
 	)->pack(-anchor => 'w');
 
-	# ¥¨¥ó¥È¥ê¤È¸¡º÷¥Ü¥¿¥ó¤Î¥Õ¥ì¡¼¥à
+	# ã‚¨ãƒ³ãƒˆãƒªã¨æ¤œç´¢ãƒœã‚¿ãƒ³ã®ãƒ•ãƒ¬ãƒ¼ãƒ 
 	my $fra4e = $fra4->Frame()->pack(-expand => 'y', -fill => 'x');
 	my $e1 = $fra4e->Entry(
 		-font => "TKFN",
@@ -39,12 +39,12 @@ sub _new{
 	$e1->bind("<KP_Enter>",sub{$self->search;});
 
 	my $sbutton = $fra4e->Button(
-		-text => kh_msg->gget('search'),#$self->gui_jchar('¸¡º÷'),
+		-text => kh_msg->gget('search'),#$self->gui_jchar('æ¤œç´¢'),
 		-font => "TKFN",
 		-command => sub{$self->search;}
 	)->pack(-side => 'right', -padx => '2');
 
-	# ·ë²ÌÉ½¼¨ÉôÊ¬
+	# çµæžœè¡¨ç¤ºéƒ¨åˆ†
 	my $fra5 = $wmw->LabFrame(
 		-label => 'Result',
 		-labelside => 'acrosstop',
@@ -73,17 +73,17 @@ sub _new{
 	)->pack(-fill =>'both',-expand => 'yes');
 
 	$lis->header('create',0,-text => 'ID');
-	$lis->header('create',1,-text => kh_msg->get('sentence')); # $self->gui_jchar('Ê¸¡ÊÊ¬³äºÑ¤ß¡Ë')
+	$lis->header('create',1,-text => kh_msg->get('sentence')); # $self->gui_jchar('æ–‡ï¼ˆåˆ†å‰²æ¸ˆã¿ï¼‰')
 
 	$fra5->Button(
-		-text => kh_msg->gget('copy'),#$self->gui_jchar('¥³¥Ô¡¼'),
+		-text => kh_msg->gget('copy'),#$self->gui_jchar('ã‚³ãƒ”ãƒ¼'),
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub {gui_hlist->copy($self->list);}
 	)->pack(-side => 'right');
 
 	$self->{conc_button} = $fra5->Button(
-		-text => kh_msg->get('details'),#$self->gui_jchar('¾ÜºÙÉ½¼¨'),
+		-text => kh_msg->get('details'),#$self->gui_jchar('è©³ç´°è¡¨ç¤º'),
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub {$self->detail;}
@@ -101,7 +101,7 @@ sub _new{
 }
 
 #----------#
-#   ¸¡º÷   #
+#   æ¤œç´¢   #
 
 sub search{
 	my $self = shift;
@@ -134,7 +134,7 @@ sub search{
 }
 
 #--------------#
-#   ¾ÜºÙÉ½¼¨   #
+#   è©³ç´°è¡¨ç¤º   #
 
 sub detail{
 	my $self = shift;

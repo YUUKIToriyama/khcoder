@@ -72,7 +72,7 @@ sub add_menu_exec_plugin{
 				my $filter_file = $::project_obj->dir_CoderData."type_filter.txt";
 				my $font_str = gui_window->gui_jchar($::config_obj->font_main);
 				$font_str =~ s/,.*//; #フォントサイズ情報は不要
-				$font_str =~ tr/　！”＃＄％＆’（）＊＋，－．／０-９：；＜＝＞？＠Ａ-Ｚ［￥］＾＿｀ａ-ｚ｛｜｝/ -}/; #全角英字はコマンドラインで渡せないため一度半角に変換する
+				$font_str =~ tr/　！”＃＄％＆’（）＊＋，−．／０-９：；＜＝＞？＠Ａ-Ｚ［¥］＾＿｀ａ-ｚ｛｜｝/ -}/; #全角英字はコマンドラインで渡せないため一度半角に変換する
 				
 				my $plugin_rtn = -1;
 				my $system_err = 0;

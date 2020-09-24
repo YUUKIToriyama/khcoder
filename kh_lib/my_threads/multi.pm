@@ -22,7 +22,7 @@ share $cur2;
 use vars qw($que_any1);
 $que_any1 = new Thread::Queue::Any;
 
-# Worker Thread‚ð2‚Â‹N“®‚µ‚Ä‚¨‚­
+# Worker Threadã‚’2ã¤èµ·å‹•ã—ã¦ãŠã
 sub init{
 	print "Starting worker threads...\n";
 	my $thread1 = threads->new(\&worker_thread1);
@@ -32,7 +32,7 @@ sub init{
 	return 1;
 }
 
-# Worker Thread—p‚ÉMySQL‚ÉƒRƒlƒNƒg‚µ’¼‚µ‚Ä‚¨‚­
+# Worker Threadç”¨ã«MySQLã«ã‚³ãƒã‚¯ãƒˆã—ç›´ã—ã¦ãŠã
 sub open_project{
 	my $dbname = $::project_obj->dbname;
 	my $cmd = 

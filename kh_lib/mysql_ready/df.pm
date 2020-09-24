@@ -49,7 +49,7 @@ sub calc{
 	my $class = shift;
 	my $self = shift;
 
-	# ¸«½Ğ¤·¤¬Â¸ºß¤¹¤ë¤«¤É¤¦¤«¤ò¥Á¥§¥Ã¥¯
+	# è¦‹å‡ºã—ãŒå­˜åœ¨ã™ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 	my @avail = ();
 	foreach my $tani ('bun','dan','h1','h2','h3','h4','h5'){
 		if ( mysql_exec->table_exists($tani) ){
@@ -58,7 +58,7 @@ sub calc{
 		}
 	}
 
-	# ½¸·×¤Î½àÈ÷¤È¼Â¹Ô
+	# é›†è¨ˆã®æº–å‚™ã¨å®Ÿè¡Œ
 	my $switch = 'exec1';
 	foreach my $tani (@avail){
 		my $heap = '';
@@ -67,7 +67,7 @@ sub calc{
 			print " df: heap ";
 		}
 		
-		# Ê¸°Ê³°¤ÎÃ±°Ì¤Ç¤ÏÃæ´Ö¥Æ¡¼¥Ö¥ë¤òºîÀ®¡Êhyosobun.id¤È³ÆÃ±°Ì.id¤òÄ¾·ë¡Ë
+		# æ–‡ä»¥å¤–ã®å˜ä½ã§ã¯ä¸­é–“ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’ä½œæˆï¼ˆhyosobun.idã¨å„å˜ä½.idã‚’ç›´çµï¼‰
 		my $tain_hb = '';
 		unless ($tani eq 'bun'){
 			my $t0 = new Benchmark;
@@ -94,7 +94,7 @@ sub calc{
 			#print "TMP\t",timestr(timediff($t1,$t0)),"\n";
 		}
 		
-		# ¥Æ¡¼¥Ö¥ë½àÈ÷
+		# ãƒ†ãƒ¼ãƒ–ãƒ«æº–å‚™
 		my $t0 = new Benchmark;
 		my_threads->$switch("
 			mysql_exec->drop_table(\"df_$tani\");
@@ -106,8 +106,8 @@ sub calc{
 			\",1);
 		");
 
-		# ½¸·×¤Î¼Â¹Ô
-		if ($tani eq 'bun'){  # Ê¸Ã±°Ì
+		# é›†è¨ˆã®å®Ÿè¡Œ
+		if ($tani eq 'bun'){  # æ–‡å˜ä½
 			my_threads->$switch("
 				mysql_exec->do(\"
 					INSERT INTO df_$tani (genkei_id, f)
@@ -120,7 +120,7 @@ sub calc{
 					GROUP BY genkei.id
 				\",1);
 			");
-		} else {              # Ê¸°Ê³°¤ÎÃ±°Ì
+		} else {              # æ–‡ä»¥å¤–ã®å˜ä½
 			my_threads->$switch("
 				mysql_exec->do(\"
 					INSERT INTO df_$tani (genkei_id, f)
@@ -149,8 +149,8 @@ sub calc{
 	my_threads->wait1;
 	my_threads->wait2;
 	
-	# Ãæ´Ö¥Æ¡¼¥Ö¥ë¤òHEAP¤«¤éMyISAM¤ËÊÑ´¹
-	$switch = 'exec1';                            # ¥¹¥ì¥Ã¥É¸ÇÄê¤Ç½ç¼¡½èÍı
+	# ä¸­é–“ãƒ†ãƒ¼ãƒ–ãƒ«ã‚’HEAPã‹ã‚‰MyISAMã«å¤‰æ›
+	$switch = 'exec1';                            # ã‚¹ãƒ¬ãƒƒãƒ‰å›ºå®šã§é †æ¬¡å‡¦ç†
 	if ($::config_obj->use_heap){
 		foreach my $tani (@avail){
 			if ($tani eq 'bun' ){
@@ -175,7 +175,7 @@ sub calc{
 				mysql_exec->drop_table(\"$heap_table\");
 			");
 		}
-		my_threads->wait1;                        # ¥¹¥ì¥Ã¥É¸ÇÄê¤Ç½ç¼¡½èÍı
+		my_threads->wait1;                        # ã‚¹ãƒ¬ãƒƒãƒ‰å›ºå®šã§é †æ¬¡å‡¦ç†
 	}
 	
 	return 1;
@@ -184,7 +184,7 @@ sub calc{
 sub old{
 		my $tani;
 		
-		# ¥Æ¡¼¥Ö¥ëºîÀ½
+		# ãƒ†ãƒ¼ãƒ–ãƒ«ä½œè£½
 		mysql_exec->drop_table("df_$tani");
 		mysql_exec->do("
 			CREATE TABLE df_$tani(
@@ -192,7 +192,7 @@ sub old{
 				f         INT
 			)
 		",1);
-		# ½¸·×¤Î¼Â¹Ô
+		# é›†è¨ˆã®å®Ÿè¡Œ
 		my $sql1 = "INSERT INTO df_$tani (genkei_id, f)\n";
 		my $sql2 = "SELECT genkei.id, COUNT(DISTINCT $tani.id)\n";
 		$sql2 .= "FROM hyosobun, $tani, hyoso, genkei\n";

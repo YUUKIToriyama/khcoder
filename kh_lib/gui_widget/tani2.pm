@@ -57,7 +57,7 @@ sub _new{
 	$self->{win_obj} = $f1;
 	
 	$f1->Label(
-		-text => kh_msg->get('unit_c'), # ¥³¡¼¥Ç¥£¥ó¥°Ã±°Ì¡§
+		-text => kh_msg->get('unit_c'), # ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°å˜ä½ï¼š
 		-font => "TKFN",
 	)->pack(-side => 'left');
 	
@@ -91,7 +91,7 @@ sub _new{
 	$self->{raw_opt} = gui_window->gui_jchar($name{$::project_obj->last_tani});
 
 	$f1->Label(
-		-text => kh_msg->get('unit_t'), #     ½¸·×Ã±°Ì¡§
+		-text => kh_msg->get('unit_t'), #     é›†è¨ˆå˜ä½ï¼š
 		-font => "TKFN",
 	)->pack(-side => 'left');
 
@@ -114,7 +114,7 @@ sub start{
 }
 
 #-----------------------------#
-#   2¤ÄÌÜ¤ÎOptionmenu¤òÄ´À°   #
+#   2ã¤ç›®ã®Optionmenuã‚’èª¿æ•´   #
 
 sub check{
 	my $self = shift;
@@ -171,7 +171,7 @@ sub check{
 
 
 #--------------------------------#
-#   ÁªÂò¤µ¤ì¤¿ÃÍ¤òÊÖ¤¹¥¢¥¯¥»¥µ   #
+#   é¸æŠã•ã‚ŒãŸå€¤ã‚’è¿”ã™ã‚¢ã‚¯ã‚»ã‚µ   #
 
 sub tani1{
 	my $self = shift;
@@ -188,7 +188,7 @@ sub tani2{
 }
 
 #----------------------#
-#   ¤½¤ÎÂ¾¤Î¥¢¥¯¥»¥µ   #
+#   ãã®ä»–ã®ã‚¢ã‚¯ã‚»ã‚µ   #
 
 sub opt2{
 	my $self = shift;

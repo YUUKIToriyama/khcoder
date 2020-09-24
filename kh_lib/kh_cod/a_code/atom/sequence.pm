@@ -1,4 +1,4 @@
-# ¸ì¤Î¥Õ¥ì¡¼¥º¤Ë¤è¤ë»ØÄê
+# èªã®ãƒ•ãƒ¬ãƒ¼ã‚ºã«ã‚ˆã‚‹æŒ‡å®š
 
 package kh_cod::a_code::atom::sequence;
 use base qw(kh_cod::a_code::atom);
@@ -14,7 +14,7 @@ sub reset{
 }
 
 #-----------------#
-#   SQLÊ¸¤Î½àÈ÷   #
+#   SQLæ–‡ã®æº–å‚™   #
 #-----------------#
 
 my %sql_join = (
@@ -79,7 +79,7 @@ my %sql_group = (
 my $dn;
 
 #--------------------#
-#   WHEREÀáÍÑSQLÊ¸   #
+#   WHEREç¯€ç”¨SQLæ–‡   #
 #--------------------#
 
 sub expr{
@@ -97,7 +97,7 @@ sub idf{
 	my $self = shift;
 	return 0 unless $self->tables;
 	
-	# Á´Ê¸½ñ¿ô¤Î¼èÆÀ¡¦Êİ»ı
+	# å…¨æ–‡æ›¸æ•°ã®å–å¾—ãƒ»ä¿æŒ
 	unless (
 		($dn->{$self->{tani}}) && ($dn->{check} eq $::project_obj->file_target)
 	){
@@ -107,7 +107,7 @@ sub idf{
 		$dn->{check} = $::project_obj->file_target;
 	}
 	
-	# ·×»»
+	# è¨ˆç®—
 	my $df;
 	$df = mysql_exec->select(
 		"SELECT COUNT(*) FROM $self->{tables}[0]",1
@@ -118,7 +118,7 @@ sub idf{
 }
 
 #----------------------#
-#   ¥³¡¼¥Ç¥£¥ó¥°½àÈ÷   #
+#   ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°æº–å‚™   #
 #----------------------#
 
 sub ready{
@@ -126,14 +126,14 @@ sub ready{
 	my $tani = shift;
 	$self->{tani} = $tani;
 	
-	# ¥ë¡¼¥ë»ØÄê¤Î²ò¼á
+	# ãƒ«ãƒ¼ãƒ«æŒ‡å®šã®è§£é‡ˆ
 	my @wlist;
 	my $max_dist = 10;
 	my $option   = '';
-	if ($self->raw =~ /^seq\((.+)\)$/o){                   # ¥Ç¥Õ¥©¥ë¥È
+	if ($self->raw =~ /^seq\((.+)\)$/o){                   # ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆ
 		@wlist = split /\-/, $1;
 	}
-	elsif ( $self->raw =~ /^seq\((.+)\)\[(.+)\]$/o ){      # ¥ª¥×¥·¥ç¥ó
+	elsif ( $self->raw =~ /^seq\((.+)\)\[(.+)\]$/o ){      # ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 		@wlist = split /\-/, $1;
 		if ($2 =~ /^([0-9]+)$/){
 			$max_dist = $1;
@@ -162,7 +162,7 @@ sub ready{
 		}
 	}
 	
-	# ³ÆÃ±¸ì¤Î½Ğ¸½Ê¸½ñ¥ê¥¹¥È¤òºîÀ½
+	# å„å˜èªã®å‡ºç¾æ–‡æ›¸ãƒªã‚¹ãƒˆã‚’ä½œè£½
 	my (%w2tab, %w2hyoso, @hyosos, %hyoso2w);
 	foreach my $i (@wlist){
 		my $list = mysql_a_word->new(
@@ -207,7 +207,7 @@ sub ready{
 		}
 	}
 
-	# ¥Æ¡¼¥Ö¥ëÌ¾·èÄê¤È¥­¥ã¥Ã¥·¥å¤Î¥Á¥§¥Ã¥¯
+	# ãƒ†ãƒ¼ãƒ–ãƒ«åæ±ºå®šã¨ã‚­ãƒ£ãƒƒã‚·ãƒ¥ã®ãƒã‚§ãƒƒã‚¯
 	my @c_c = kh_cod::a_code->cache_check(
 		tani => $tani,
 		kind => 'sequence',
@@ -225,7 +225,7 @@ sub ready{
 		print "\n" if $debug;
 	}
 
-	# AND¸¡º÷¤Ë¤è¤ë¹Ê¤ê¹ş¤ß
+	# ANDæ¤œç´¢ã«ã‚ˆã‚‹çµã‚Šè¾¼ã¿
 	mysql_exec->drop_table("ct_tmp_sequence");
 	mysql_exec->do("
 		CREATE TEMPORARY TABLE ct_tmp_sequence (id int) TYPE=HEAP
@@ -256,7 +256,7 @@ sub ready{
 	$sql .= ")";
 	mysql_exec->do("$sql",1);
 
-	# ¶á¤¯¤Ë½Ğ¸½¤·¤Æ¤¤¤ë¤«¤É¤¦¤«¤ò¥Á¥§¥Ã¥¯:  1. ¥Ç¡¼¥¿¤Î¼è¤ê½Ğ¤·
+	# è¿‘ãã«å‡ºç¾ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯:  1. ãƒ‡ãƒ¼ã‚¿ã®å–ã‚Šå‡ºã—
 	$sql  = '';
 	$sql .= "SELECT $tani.id, hyosobun.id, hyosobun.hyoso_id";
 	if ($option eq 'b'){
@@ -313,24 +313,24 @@ sub ready{
 		];
 	}
 
-	# ¶á¤¯¤Ë½Ğ¸½¤·¤Æ¤¤¤ë¤«¤É¤¦¤«¤ò¥Á¥§¥Ã¥¯:  2. ¥Á¥§¥Ã¥¯¼Â¹Ô
+	# è¿‘ãã«å‡ºç¾ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯:  2. ãƒã‚§ãƒƒã‚¯å®Ÿè¡Œ
 	my %result = ();
 	my $chk_data_rows = @chk_data - @wlist;
 	for (my $n = 0; $n <= $chk_data_rows; ++$n){
 		print "$n,$chk_data[$n]->[0],$chk_data[$n]->[1],$chk_data[$n]->[2]\n" if $debug;
 		
-		# ÀèÆ¬¸å°Ê³°¤Î¾ì¹ç¤Ï¥Á¥§¥Ã¥¯¤ò¥¹¥­¥Ã¥×
+		# å…ˆé ­å¾Œä»¥å¤–ã®å ´åˆã¯ãƒã‚§ãƒƒã‚¯ã‚’ã‚¹ã‚­ãƒƒãƒ—
 		unless ( $chk_data[$n]->[2] eq $wlist[0] ){
 			print "\tskip (1)\n" if $debug;
 			next;
 		}
-		# Ä¾¸å¤¬Æ±¤¸¸ì¤Î¾ì¹ç¤Ï¥Á¥§¥Ã¥¯¤ò¥¹¥­¥Ã¥×
+		# ç›´å¾ŒãŒåŒã˜èªã®å ´åˆã¯ãƒã‚§ãƒƒã‚¯ã‚’ã‚¹ã‚­ãƒƒãƒ—
 		if ($chk_data[$n]->[2] eq $chk_data[$n+1]->[2]){
 			print "\tskip (0)\n" if $debug;
 			next;
 		}
 		
-		# ¸åÂ³¤ò¥Á¥§¥Ã¥¯
+		# å¾Œç¶šã‚’ãƒã‚§ãƒƒã‚¯
 		my $w_count     = 0;
 		my %w_count_chk = ();
 		my $wn          = 0;
@@ -338,18 +338,18 @@ sub ready{
 		my $pos_hb      = $chk_data[$n]->[1];
 		my $pos_opt     = $chk_data[$n]->[3];
 		while ($chk_data[$sn]->[0] == $chk_data[$n]->[0]){
-			# Æ±¤¸Ê¸½ñÆâ¤Î¸åÂ³¤ò¥Á¥§¥Ã¥¯¤·¤Æ¤¤¤¯
+			# åŒã˜æ–‡æ›¸å†…ã®å¾Œç¶šã‚’ãƒã‚§ãƒƒã‚¯ã—ã¦ã„ã
 			print "\t$sn,$chk_data[$sn]->[0],$chk_data[$sn]->[1],$chk_data[$sn]->[2],$chk_data[$sn]->[3]\n" if $debug;
 			
-			# ¸åÂ³¤¬Î¥¤ì¤¹¤®¤Æ¤¤¤ì¤ĞÃæÃÇ
-			if (                                                 # ¸ì¿ô
+			# å¾Œç¶šãŒé›¢ã‚Œã™ãã¦ã„ã‚Œã°ä¸­æ–­
+			if (                                                 # èªæ•°
 				   ( $max_dist > 0 )
 				&& ( $chk_data[$sn]->[1] - $pos_hb > $max_dist )
 			){
 				print "\ttoo long!\n" if $debug;
 				last;
 			}
-			if (                                                 # Ê¸¡¦ÃÊÍî
+			if (                                                 # æ–‡ãƒ»æ®µè½
 				   ( length($option) > 0 )
 				&! ( $pos_opt == $chk_data[$sn]->[3] )
 			){
@@ -357,10 +357,10 @@ sub ready{
 				last;
 			}
 			
-			# Ì¤¥Á¥§¥Ã¥¯¤Ç½çÈÖÄÌ¤ê¤Î¸ì¤¬Í­¤ì¤Ğ¥«¥¦¥ó¥È¥¢¥Ã¥×
+			# æœªãƒã‚§ãƒƒã‚¯ã§é †ç•ªé€šã‚Šã®èªãŒæœ‰ã‚Œã°ã‚«ã‚¦ãƒ³ãƒˆã‚¢ãƒƒãƒ—
 			if (
-				   ($w_count_chk{$chk_data[$sn]->[2]} == 0) # Ì¤¥Á¥§¥Ã¥¯¡©
-				&& ($chk_data[$sn]->[2] eq $wlist[$wn])     # ½çÈÖÄÌ¤ê¡©
+				   ($w_count_chk{$chk_data[$sn]->[2]} == 0) # æœªãƒã‚§ãƒƒã‚¯ï¼Ÿ
+				&& ($chk_data[$sn]->[2] eq $wlist[$wn])     # é †ç•ªé€šã‚Šï¼Ÿ
 			){
 				print "\tcount up!\n" if $debug;
 				$w_count_chk{$chk_data[$sn]->[2]} = 1;
@@ -377,7 +377,7 @@ sub ready{
 		}
 	}
 
-	# ¶á¤¯¤Ë½Ğ¸½¤·¤Æ¤¤¤ë¤«¤É¤¦¤«¤ò¥Á¥§¥Ã¥¯:  3. ·ë²Ì¤Î½ñ¤­½Ğ¤·
+	# è¿‘ãã«å‡ºç¾ã—ã¦ã„ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯:  3. çµæœã®æ›¸ãå‡ºã—
 	#my $table = "ct_$tani"."_sequence_$num";
 	$self->{tables} = ["$table"];
 	++$num;
@@ -397,7 +397,7 @@ sub ready{
 }
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 #--------------#
 
 sub tables{

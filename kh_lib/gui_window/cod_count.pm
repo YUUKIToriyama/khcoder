@@ -12,17 +12,17 @@ use Tk::LabFrame;
 use Tk::HList;
 
 #-------------#
-#   GUIºîÀ½   #
+#   GUIä½œè£½   #
 
 sub _new{
 	my $self = shift;
 	my $mw = $::main_gui->mw;
 	my $win = $self->{win_obj};
 	#$win->focus;
-	$win->title($self->gui_jt(kh_msg->get('win_title'))); # ¥³¡¼¥Ç¥£¥ó¥°¡¦Ã±½ã½¸·×
+	$win->title($self->gui_jt(kh_msg->get('win_title'))); # ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ»å˜ç´”é›†è¨ˆ
 	
 	#------------------------#
-	#   ¥ª¥×¥·¥ç¥óÆþÎÏÉôÊ¬   #
+	#   ã‚ªãƒ—ã‚·ãƒ§ãƒ³å…¥åŠ›éƒ¨åˆ†   #
 
 	my $lf = $win->LabFrame(
 		-label => 'Entry',
@@ -30,7 +30,7 @@ sub _new{
 		-borderwidth => 2,
 	)->pack(-fill => 'x');
 
-	# ¥ë¡¼¥ë¡¦¥Õ¥¡¥¤¥ë
+	# ãƒ«ãƒ¼ãƒ«ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«
 	my %pack4cod = (
 			-anchor => 'w',
 	);
@@ -39,10 +39,10 @@ sub _new{
 		pack   => \%pack4cod,
 	);
 
-	# ¥³¡¼¥Ç¥£¥ó¥°Ã±°Ì
+	# ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°å˜ä½
 	my $f2 = $lf->Frame()->pack(-expand => 'y', -fill => 'x', -pady => 3);
 	$f2->Label(
-		-text => kh_msg->get('gui_window::cod_corresp->coding_unit'), # ¥³¡¼¥Ç¥£¥ó¥°Ã±°Ì¡§
+		-text => kh_msg->get('gui_window::cod_corresp->coding_unit'), # ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°å˜ä½ï¼š
 		-font => "TKFN"
 	)->pack(-anchor => 'w', -side => 'left');
 	my %pack = (
@@ -56,14 +56,14 @@ sub _new{
 	);
 
 	$f2->Button(
-		-text    => kh_msg->get('go_c'), # ½¸·×
+		-text    => kh_msg->get('go_c'), # é›†è¨ˆ
 		-font    => "TKFN",
 		-width   => 8,
 		-command => sub{$self->_calc;}
 	)->pack( -side => 'right',-pady => 2);
 
 	#------------------#
-	#   ·ë²ÌÉ½¼¨ÉôÊ¬   #
+	#   çµæžœè¡¨ç¤ºéƒ¨åˆ†   #
 
 	my $rf = $win->LabFrame(
 		-label => 'Result',
@@ -89,9 +89,9 @@ sub _new{
 		-height           => 10,
 	)->pack(-fill =>'both',-expand => 'yes');
 
-	$lis->header('create',0,-text => kh_msg->get('h_code')); # ¥³¡¼¥ÉÌ¾
-	$lis->header('create',1,-text => kh_msg->get('h_freq')); # ÉÑÅÙ
-	$lis->header('create',2,-text => kh_msg->get('h_pcnt')); # ¥Ñ¡¼¥»¥ó¥È
+	$lis->header('create',0,-text => kh_msg->get('h_code')); # ã‚³ãƒ¼ãƒ‰å
+	$lis->header('create',1,-text => kh_msg->get('h_freq')); # é »åº¦
+	$lis->header('create',2,-text => kh_msg->get('h_pcnt')); # ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆ
 
 	my $label = $rf->Label(
 		-text       => 'Ready.',
@@ -100,7 +100,7 @@ sub _new{
 	)->pack(-side => 'left');
 
 	$self->{copy_btn} = $rf->Button(
-		-text => kh_msg->gget('copy'), # ¥³¥Ô¡¼
+		-text => kh_msg->gget('copy'), # ã‚³ãƒ”ãƒ¼
 		-font => "TKFN",
 		-width => 8,
 		-borderwidth => '1',
@@ -123,7 +123,7 @@ sub _new{
 }
 
 #------------------#
-#   ½¸·×¥ë¡¼¥Á¥ó   #
+#   é›†è¨ˆãƒ«ãƒ¼ãƒãƒ³   #
 
 sub _calc{
 	my $self = shift;
@@ -141,7 +141,7 @@ sub _calc{
 	unless (-e $codf){
 		my $win = $self->win_obj;
 		gui_errormsg->open(
-			msg => kh_msg->get('error_cod_f'), # ¥³¡¼¥Ç¥£¥ó¥°¡¦¥ë¡¼¥ë¡¦¥Õ¥¡¥¤¥ë¤¬ÁªÂò¤µ¤ì¤Æ¤¤¤Þ¤»¤ó¡£
+			msg => kh_msg->get('error_cod_f'), # ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ»ãƒ«ãƒ¼ãƒ«ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«ãŒé¸æŠžã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚
 			window => \$win,
 			type => 'msg',
 		);
@@ -212,7 +212,7 @@ sub _calc{
 
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 
 sub cfile{
 	my $self = shift;

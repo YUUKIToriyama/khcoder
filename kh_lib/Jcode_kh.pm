@@ -3,8 +3,8 @@
 #
 
 # kh
-# shiftjis‚ğcp932‚ÉAeuc-jp‚ğeucJP-ms‚É•ÏŠ·‚µ‚½B
-# Encode::EUCJPMSƒ‚ƒWƒ…[ƒ‹‚ª•K—v
+# shiftjisã‚’cp932ã«ã€euc-jpã‚’eucJP-msã«å¤‰æ›ã—ãŸã€‚
+# Encode::EUCJPMSãƒ¢ã‚¸ãƒ¥ãƒ¼ãƒ«ãŒå¿…è¦
 
 no warnings 'redefine';
 

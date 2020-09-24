@@ -197,7 +197,7 @@ sub destroy{
 }
 
 #--------------#
-#   アクセサ   #
+#   繧｢繧ｯ繧ｻ繧ｵ   #
 
 sub hlist{
 	my $self = shift;

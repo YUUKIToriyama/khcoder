@@ -148,7 +148,7 @@ my $DEBUG_TIMING = 0;
     chmod(0777 , "$file._") ;
     $this->{OUTPUT_R_POS} = -s $this->{OUTPUT_R} ;
 
-	# Win9x¤Ç¤Ï¤¤¤Ã¤¿¤óÂ¾¤Î¥Õ¥¡¥¤¥ë¤Ë¥³¥Ô¡¼¤·¤Ê¤¤¤È¥µ¥¤¥º¤òÆÉ¤á¤Ê¤¤
+	# Win9xã§ã¯ã„ã£ãŸã‚“ä»–ã®ãƒ•ã‚¡ã‚¤ãƒ«ã«ã‚³ãƒ”ãƒ¼ã—ãªã„ã¨ã‚µã‚¤ã‚ºã‚’èª­ã‚ãªã„
 	if (
 		   ( $DEBUG_TIMING )
 		|| ( ( $^O eq 'MSWin32' ) and not ( Win32::IsWinNT() ) )
@@ -209,7 +209,7 @@ my $DEBUG_TIMING = 0;
 			while (1){
 				my $s = -s $this->{OUTPUT_R};
 				
-				# Win9x¤Ç¤Ï¤¤¤Ã¤¿¤óÂ¾¤Î¥Õ¥¡¥¤¥ë¤Ë¥³¥Ô¡¼¤·¤Ê¤¤¤È¥µ¥¤¥º¤òÆÉ¤á¤Ê¤¤
+				# Win9xã§ã¯ã„ã£ãŸã‚“ä»–ã®ãƒ•ã‚¡ã‚¤ãƒ«ã«ã‚³ãƒ”ãƒ¼ã—ãªã„ã¨ã‚µã‚¤ã‚ºã‚’èª­ã‚ãªã„
 				if (
 					   ( $DEBUG_TIMING )
 					|| ( ( $^O eq 'MSWin32' ) and not ( Win32::IsWinNT() ) )
@@ -267,7 +267,7 @@ my $DEBUG_TIMING = 0;
       
       my $s = -s $this->{OUTPUT_R} ;
 
-		# Win9x¤Ç¤Ï¤¤¤Ã¤¿¤óÂ¾¤Î¥Õ¥¡¥¤¥ë¤Ë¥³¥Ô¡¼¤·¤Ê¤¤¤È¥µ¥¤¥º¤òÆÉ¤á¤Ê¤¤
+		# Win9xã§ã¯ã„ã£ãŸã‚“ä»–ã®ãƒ•ã‚¡ã‚¤ãƒ«ã«ã‚³ãƒ”ãƒ¼ã—ãªã„ã¨ã‚µã‚¤ã‚ºã‚’èª­ã‚ãªã„
 		if (
 			   ( $DEBUG_TIMING )
 			|| ( ( $^O eq 'MSWin32' ) and not ( Win32::IsWinNT() ) )
@@ -456,7 +456,7 @@ my $DEBUG_TIMING = 0;
 
 	my $pid; # kh 
 	if ($::config_obj->os eq 'win32'){
-		# Windows¤Ç¤ÏWin32::Process¤ò»È¤Ã¤Æµ¯Æ°
+		# Windowsã§ã¯Win32::Processã‚’ä½¿ã£ã¦èµ·å‹•
 		my $r_process;
 		require Win32::Process;
 		#print "starting R in $this->{LOG_DIR}, $this->{R_BIN}\n";
@@ -475,7 +475,7 @@ my $DEBUG_TIMING = 0;
 		$this->{HOLD_PIPE_X} = ++$HOLD_PIPE_X ;
 		*{"HOLD_PIPE$HOLD_PIPE_X"} = "dummy" ;
 
-		# Windows¤Î¾ì¹ç¤Ï¥É¥é¥¤¥Ö¤Î¥Õ¥¡¥¤¥ë¥·¥¹¥Æ¥à¤ò¥Á¥§¥Ã¥¯
+		# Windowsã®å ´åˆã¯ãƒ‰ãƒ©ã‚¤ãƒ–ã®ãƒ•ã‚¡ã‚¤ãƒ«ã‚·ã‚¹ãƒ†ãƒ ã‚’ãƒã‚§ãƒƒã‚¯
 		require Win32::DriveInfo;
 		my @drive_info = Win32::DriveInfo::VolumeInfo (
 			substr($::config_obj->cwd, 0, 1)

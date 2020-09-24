@@ -4,7 +4,7 @@ use base qw(gui_window::morpho_crossout);
 use strict;
 
 #----------#
-#   悸乖   #
+#   瀹熻   #
 
 sub save{
 	my $self = shift;
@@ -17,7 +17,7 @@ sub save{
 		return 0;
 	}
 	
-	# 瘦赂黎の徊救
+	# 淇濆瓨鍏堛伄鍙傜収
 	my @types = (
 		['CSV Files',[qw/.csv/] ],
 		["All files",'*']
@@ -62,11 +62,11 @@ sub save{
 }
 
 #--------------#
-#   アクセサ   #
+#   銈€偗銈汇偟   #
 
 
 sub label{
-	return kh_msg->get('win_title'); # ≈矢今ｘ藐叫胳∽山の叫蜗¨ 稍年墓CSV
+	return kh_msg->get('win_title'); # 銆屾枃鏇革綐鎶藉嚭瑾炪�嶈〃銇嚭鍔涳細 涓嶅畾闀稢SV
 }
 
 sub win_name{

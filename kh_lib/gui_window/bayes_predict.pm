@@ -5,13 +5,13 @@ use strict;
 use Jcode;
 
 #-------------#
-#   GUIºîÀ½   #
+#   GUIä½œè£½   #
 
 sub _new{
 	my $self = shift;
 	my $mw = $::main_gui->mw;
 	my $win = $self->{win_obj};
-	$win->title($self->gui_jt(kh_msg->get('win_title'))); # ³Ø½¬·ë²Ì¤òÍÑ¤¤¤¿¼«Æ°Ê¬Îà
+	$win->title($self->gui_jt(kh_msg->get('win_title'))); # å­¦ç¿’çµæžœã‚’ç”¨ã„ãŸè‡ªå‹•åˆ†é¡ž
 
 	my $lf = $win->LabFrame(
 		-label => 'Entry',
@@ -19,10 +19,10 @@ sub _new{
 		-borderwidth => 2,
 	)->pack(-fill => 'x');
 
-	# Ê¬ÎàÃ±°Ì¤Î»ØÄê
+	# åˆ†é¡žå˜ä½ã®æŒ‡å®š
 	my $f2 = $lf->Frame()->pack(-expand => 'y', -fill => 'x', -pady => 3);
 	$f2->Label(
-		-text => kh_msg->get('unit'), # Ê¬Îà¤ÎÃ±°Ì¡§
+		-text => kh_msg->get('unit'), # åˆ†é¡žã®å˜ä½ï¼š
 		-font => "TKFN"
 	)->pack(-anchor => 'w', -side => 'left');
 	my %pack = (
@@ -35,16 +35,16 @@ sub _new{
 		pack   => \%pack
 	);
 
-	# ¥Õ¥¡¥¤¥ëÌ¾¤Î»ØÄê
+	# ãƒ•ã‚¡ã‚¤ãƒ«åã®æŒ‡å®š
 	my $fra4e = $lf->Frame()->pack(-expand => 'y', -fill => 'x',-pady => 3);
 	
 	$fra4e->Label(
-		-text => kh_msg->get('model_file'), # ³Ø½¬·ë²Ì¥Õ¥¡¥¤¥ë¡§
+		-text => kh_msg->get('model_file'), # å­¦ç¿’çµæžœãƒ•ã‚¡ã‚¤ãƒ«ï¼š
 		-font => "TKFN",
 	)->pack(-side => 'left');
 	
 	$fra4e->Button(
-		-text    => kh_msg->gget('browse'), # »²¾È
+		-text    => kh_msg->gget('browse'), # å‚ç…§
 		-font    => "TKFN",
 		-command => sub { $self->file; },
 	)->pack(-side => 'left');
@@ -61,10 +61,10 @@ sub _new{
 	);
 	
 
-	# ÊÑ¿ôÌ¾¤Î»ØÄê
+	# å¤‰æ•°åã®æŒ‡å®š
 	my $fra4g = $lf->Frame()->pack(-expand => 'y', -fill => 'x', -pady =>3);
 	$fra4g->Label(
-		-text => kh_msg->get('var_name'), # ÊÑ¿ôÌ¾¡§
+		-text => kh_msg->get('var_name'), # å¤‰æ•°åï¼š
 		-font => "TKFN"
 	)->pack(-anchor => 'w', -side => 'left');
 
@@ -78,19 +78,19 @@ sub _new{
 	$self->{entry_ovn}->bind("<KP_Enter>",sub{$self->_calc;});
 
 	$lf->Label(
-		-text => kh_msg->get('var_desc'), #     ¡ÊÊ¬Îà¤Î·ë²Ì¤Ï³°ÉôÊÑ¿ô¤È¤·¤ÆÊÝÂ¸¤µ¤ì¤Þ¤¹¡Ë
+		-text => kh_msg->get('var_desc'), #     ï¼ˆåˆ†é¡žã®çµæžœã¯å¤–éƒ¨å¤‰æ•°ã¨ã—ã¦ä¿å­˜ã•ã‚Œã¾ã™ï¼‰
 		-font => "TKFN"
 	)->pack(-anchor => 'w');
 
 	my $lff = $win->Frame()->pack(-fill => 'x', -expand => 0);
 	$self->{chkw_savelog} = $lff->Checkbutton(
-			-text     => kh_msg->get('save_log'), # Ê¬Îà¥í¥°¤ò¥Õ¥¡¥¤¥ë¤ËÊÝÂ¸
+			-text     => kh_msg->get('save_log'), # åˆ†é¡žãƒ­ã‚°ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜
 			-variable => \$self->{check_savelog},
 			-anchor => 'w',
 	)->pack(-anchor => 'w');
 
 	$win->Button(
-		-text => kh_msg->gget('cancel'), # ¥­¥ã¥ó¥»¥ë
+		-text => kh_msg->gget('cancel'), # ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		-font => "TKFN",
 		-width => 8,
 		-command => sub{$self->withd;}
@@ -116,7 +116,7 @@ sub file{
 	
 	my $path = $self->win_obj->getOpenFile(
 		-filetypes  => \@types,
-		-title      => $self->gui_jt(kh_msg->get('opening_model')), # ³Ø½¬·ë²Ì¥Õ¥¡¥¤¥ë¤òÁªÂò¤·¤Æ¤¯¤À¤µ¤¤
+		-title      => $self->gui_jt(kh_msg->get('opening_model')), # å­¦ç¿’çµæžœãƒ•ã‚¡ã‚¤ãƒ«ã‚’é¸æŠžã—ã¦ãã ã•ã„
 		-initialdir => $self->gui_jchar($::config_obj->cwd),
 	);
 	if ($path){
@@ -131,7 +131,7 @@ sub file{
 sub start{
 	my $self = shift;
 
-	# Window¤òÊÄ¤¸¤ëºÝ¤Î¥Ð¥¤¥ó¥É
+	# Windowã‚’é–‰ã˜ã‚‹éš›ã®ãƒã‚¤ãƒ³ãƒ‰
 	$self->win_obj->bind(
 		'<Control-Key-q>',
 		sub{ $self->withd; }
@@ -144,18 +144,18 @@ sub start{
 }
 
 #----------------#
-#   ½èÍý¤Î¼Â¹Ô   #
+#   å‡¦ç†ã®å®Ÿè¡Œ   #
 
 sub _calc{
 	my $self = shift;
 
-	# ÆþÎÏ¥Á¥§¥Ã¥¯
+	# å…¥åŠ›ãƒã‚§ãƒƒã‚¯
 	my $path_i = $self->gui_jg( $self->{entry}->get );
 	$path_i= $::config_obj->os_path($path_i);
 	unless (-e $path_i ){
 		gui_errormsg->open(
 			type   => 'msg',
-			msg    => kh_msg->get('er_no_such_file'), # ¥Õ¥¡¥¤¥ë¤òÀµ¤·¤¯»ØÄê¤·¤Æ²¼¤µ¤¤¡£
+			msg    => kh_msg->get('er_no_such_file'), # ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ­£ã—ãæŒ‡å®šã—ã¦ä¸‹ã•ã„ã€‚
 			window => \$self->{win_obj},
 		);
 		return 0;
@@ -164,7 +164,7 @@ sub _calc{
 	unless ( length( $self->gui_jg($self->{entry_ovn}->get) ) ){
 		gui_errormsg->open(
 			type   => 'msg',
-			msg    => kh_msg->get('er_specify_name'), # ÊÑ¿ôÌ¾¤ò»ØÄê¤·¤Æ²¼¤µ¤¤¡£
+			msg    => kh_msg->get('er_specify_name'), # å¤‰æ•°åã‚’æŒ‡å®šã—ã¦ä¸‹ã•ã„ã€‚
 			window => \$self->{win_obj},
 		);
 		return 0;
@@ -176,13 +176,13 @@ sub _calc{
 	if ( defined($chk->{id}) ){
 		gui_errormsg->open(
 			type   => 'msg',
-			msg    => kh_msg->get('er_exists'), # »ØÄê¤µ¤ì¤¿Ì¾Á°¤ÎÊÑ¿ô¤¬¤¹¤Ç¤ËÂ¸ºß¤·¤Þ¤¹¡£
+			msg    => kh_msg->get('er_exists'), # æŒ‡å®šã•ã‚ŒãŸåå‰ã®å¤‰æ•°ãŒã™ã§ã«å­˜åœ¨ã—ã¾ã™ã€‚
 			window => \$self->{win_obj},
 		);
 		return 0;
 	}
 
-	# ÊÝÂ¸Àè¤Î»²¾È
+	# ä¿å­˜å…ˆã®å‚ç…§
 	my $path;
 	if ($self->{check_savelog}) {
 		my @types = (
@@ -194,7 +194,7 @@ sub _calc{
 			-defaultextension => '.nbl',
 			-filetypes        => \@types,
 			-title            =>
-				$self->gui_jt(kh_msg->get('saving_log')), # Ê¬Îà¥í¥°¤ò¥Õ¥¡¥¤¥ë¤ËÊÝÂ¸
+				$self->gui_jt(kh_msg->get('saving_log')), # åˆ†é¡žãƒ­ã‚°ã‚’ãƒ•ã‚¡ã‚¤ãƒ«ã«ä¿å­˜
 			-initialdir       => $self->gui_jchar($::config_obj->cwd),
 		);
 	}
@@ -226,7 +226,7 @@ sub _calc{
 
 	$wait_window->end(no_dialog => 1);
 
-	# ¡Ö³°ÉôÊÑ¿ô¥ê¥¹¥È¡×¤ò³«¤¯
+	# ã€Œå¤–éƒ¨å¤‰æ•°ãƒªã‚¹ãƒˆã€ã‚’é–‹ã
 	my $win_list = gui_window::outvar_list->open;
 	$win_list->_fill;
 
@@ -236,7 +236,7 @@ sub _calc{
 
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 
 
 sub tani{

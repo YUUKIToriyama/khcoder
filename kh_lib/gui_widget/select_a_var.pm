@@ -26,7 +26,7 @@ sub fill{
 		];
 	}
 	
-	# ¸«½Ğ¤·
+	# è¦‹å‡ºã—
 	if ($self->{show_headings}){
 		foreach my $i ("h1","h2","h3","h4","h5"){
 			if ( $self->{higher_headings} && $i eq $self->{tani} ){
@@ -39,7 +39,7 @@ sub fill{
 				)->hundle->fetch->[0]
 			){
 				my $t = substr($i,1,1);
-				$t = kh_msg->get('heading').$t; # ¸«½Ğ¤·
+				$t = kh_msg->get('heading').$t; # è¦‹å‡ºã—
 				push @options, [$t, $i];
 				$vars{$i} = 1;
 			}
@@ -49,7 +49,7 @@ sub fill{
 		}
 	}
 	
-	# ³°ÉôÊÑ¿ô
+	# å¤–éƒ¨å¤‰æ•°
 	my %tani_check = ();
 	foreach my $i ('h1','h2','h3','h4','h5','dan','bun'){
 		$tani_check{$i} = 1;
@@ -69,7 +69,7 @@ sub fill{
 		$self->{opt_body}->destroy;
 	}
 	
-	# Widget¤ÎºîÀ®
+	# Widgetã®ä½œæˆ
 	$self->{var_id} = undef;
 	unless ($self->{pack}){
 		$self->{pack} = {-anchor => 'w', -padx => 2};
@@ -95,7 +95,7 @@ sub fill{
 			pack    => $self->{pack},
 			options => 
 				[
-					[ kh_msg->get('na') , -1], # ÍøÍÑÉÔ²Ä
+					[ kh_msg->get('na') , -1], # åˆ©ç”¨ä¸å¯
 				],
 			variable => \$self->{var_id},
 		);

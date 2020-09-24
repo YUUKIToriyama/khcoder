@@ -10,24 +10,24 @@ use Gui_DragDrop;
 my $last_stanf_lang;
 
 #------------------#
-#   Window¤ò³«¤¯   #
+#   Windowã‚’é–‹ã   #
 #------------------#
 
 sub __new{
 
 #------------------#
-#   Chasen¤ÎÀßÄê   #
+#   Chasenã®è¨­å®š   #
 
 	my $self = shift;
 	my $mw   = $::main_gui->mw;
 	my $inis = $self->{win_obj};
 
-	$inis->title( $self->gui_jt( kh_msg->get('win_title') ) );#'KH Coder¤ÎÀßÄê','euc') );
+	$inis->title( $self->gui_jt( kh_msg->get('win_title') ) );#'KH Coderã®è¨­å®š','euc') );
 	
 	my $left = $inis->Frame()->pack(-fill=>'both', -expand => 1, -side => 'left');
 	
 	my $lfra = $left->LabFrame(
-		-label => kh_msg->get('words_ext'),#$self->gui_jchar('[¸ì¤òÃê½Ð¤¹¤ëÊýË¡]'),
+		-label => kh_msg->get('words_ext'),#$self->gui_jchar('[èªžã‚’æŠ½å‡ºã™ã‚‹æ–¹æ³•]'),
 		-labelside => 'acrosstop',
 		-borderwidth => 2,
 		-foreground => 'blue',
@@ -37,13 +37,13 @@ sub __new{
 
 	# ChaSen
 	$lfra->Label(
-		-text     => kh_msg->get('chasen'),#$self->gui_jchar('Ããä¥¡ÊÆüËÜ¸ì¡Ë'),
+		-text     => kh_msg->get('chasen'),#$self->gui_jchar('èŒ¶ç­Œï¼ˆæ—¥æœ¬èªžï¼‰'),
 	)->pack(-anchor => 'w');
 
 	my $fra1 = $lfra->Frame() ->pack(-anchor=>'c',-fill=>'x',-expand=>'yes');
 
 	$self->{lb1} = $fra1->Label(
-		-text => kh_msg->get('p_chasenrc'),#$self->gui_jchar('"chasenrc"¤Î¥Ñ¥¹¡§'),
+		-text => kh_msg->get('p_chasenrc'),#$self->gui_jchar('"chasenrc"ã®ãƒ‘ã‚¹ï¼š'),
 		-font => 'TKFN'
 	)->pack(-side => 'left');
 
@@ -59,7 +59,7 @@ sub __new{
 	);
 
 	$self->{btn1} = $fra1->Button(
-		-text => kh_msg->gget('browse'),#$self->gui_jchar('»²¾È'),
+		-text => kh_msg->gget('browse'),#$self->gui_jchar('å‚ç…§'),
 		-font => 'TKFN',
 		-command => sub { $self->gui_get_exe('chasenrc','entry1'); }
 	)->pack(-padx => '2',-side => 'right');
@@ -67,7 +67,7 @@ sub __new{
 	my $fra2 = $lfra->Frame() ->pack(-anchor=>'c',-fill=>'x',-expand=>'yes');
 
 	$self->{lb2} = $fra2->Label(
-		-text => kh_msg->get('p_grammer.cha'),#$self->gui_jchar('"grammar.cha"¤Î¥Ñ¥¹¡§','euc'),
+		-text => kh_msg->get('p_grammer.cha'),#$self->gui_jchar('"grammar.cha"ã®ãƒ‘ã‚¹ï¼š','euc'),
 		-font => 'TKFN'
 	)->pack(-side => 'left');
 
@@ -83,14 +83,14 @@ sub __new{
 	);
 
 	$self->{btn2} = $fra2->Button(
-		-text => kh_msg->gget('browse'),#$self->gui_jchar('»²¾È'),
+		-text => kh_msg->gget('browse'),#$self->gui_jchar('å‚ç…§'),
 		-font => 'TKFN',
 		-command => sub { $self->gui_get_exe('grammar.cha','entry2'); }
 	)->pack(-padx => '2',-side => 'right');
 
 	# MeCab
 	$lfra->Label(
-		-text     => kh_msg->get('mecab'),#$self->gui_jchar('MeCab¤òÍøÍÑ'),
+		-text     => kh_msg->get('mecab'),#$self->gui_jchar('MeCabã‚’åˆ©ç”¨'),
 	)->pack(-anchor => 'w');
 
 	my $fra3 = $lfra->Frame() ->pack(-anchor=>'c',-fill=>'x',-expand=>'yes');	
@@ -113,7 +113,7 @@ sub __new{
 		-text     => kh_msg->get('stanford'),#$self->gui_jchar('Stemming with "Snowball"'),
 	)->pack(-anchor => 'w');
 
-	# POS Tagger¤Î*.jar¥Õ¥¡¥¤¥ë
+	# POS Taggerã®*.jarãƒ•ã‚¡ã‚¤ãƒ«
 	my $fra_jar = $lfra->Frame()->pack(-fill=>'x',-expand=>'yes',-pady => 1);
 
 	$self->{label_stan3} = $fra_jar->Label(
@@ -132,7 +132,7 @@ sub __new{
 	);
 
 	$self->{btn_stan2} = $fra_jar->Button(
-		-text => kh_msg->gget('browse'),#$self->gui_jchar('»²¾È'),
+		-text => kh_msg->gget('browse'),#$self->gui_jchar('å‚ç…§'),
 		-font => 'TKFN',
 		-command => sub { $self->browse_stanford_jar(); }
 	)->pack(-padx => '2',-side => 'right');
@@ -141,7 +141,7 @@ sub __new{
 		0, $self->gui_jchar($::config_obj->stanf_jar_path)
 	);
 
-	# POS Tagger¤Î¤½¤ÎÂ¾¤ÎÀßÄê
+	# POS Taggerã®ãã®ä»–ã®è¨­å®š
 	my $fra_stan = $lfra->Frame()->pack(-anchor => 'w',-pady => 1);
 	
 	$self->{label_stan1} = $fra_stan->Label(
@@ -177,7 +177,7 @@ sub __new{
 		}
 	)->pack(-side => 'left');
 
-	# POS Tagger¤Î*.tagger¥Õ¥¡¥¤¥ë
+	# POS Taggerã®*.taggerãƒ•ã‚¡ã‚¤ãƒ«
 	my $fra_tag = $lfra->Frame()->pack(-fill=>'x',-expand=>'yes');
 
 	$self->{label_stan4} = $fra_tag->Label(
@@ -196,7 +196,7 @@ sub __new{
 	);
 
 	$self->{btn_stan3} = $fra_tag->Button(
-		-text => kh_msg->gget('browse'),#$self->gui_jchar('»²¾È'),
+		-text => kh_msg->gget('browse'),#$self->gui_jchar('å‚ç…§'),
 		-font => 'TKFN',
 		-command => sub { $self->browse_stanford_tag(); }
 	)->pack(-padx => '2',-side => 'right');
@@ -215,7 +215,7 @@ sub __new{
 		-background => 'white'
 	)->pack(-side => 'right');
 	$fra_flp->Button(
-		-text => kh_msg->gget('browse'),#$self->gui_jchar('»²¾È'),
+		-text => kh_msg->gget('browse'),#$self->gui_jchar('å‚ç…§'),
 		-command => sub { $self->browse_freeling(); }
 	)->pack(-padx => '2',-side => 'right');
 	$self->{entry_freeling}->insert(
@@ -324,24 +324,24 @@ sub __new{
 
 
 #----------------------#
-#   ³°Éô¥¢¥×¥ê¤ÎÀßÄê   #
+#   å¤–éƒ¨ã‚¢ãƒ—ãƒªã®è¨­å®š   #
 
 	my $afra = $inis->LabFrame(
-		-label       => kh_msg->get('apps'),#$self->gui_jchar('[³°Éô¥¢¥×¥ê¥±¡¼¥·¥ç¥ó]'),
+		-label       => kh_msg->get('apps'),#$self->gui_jchar('[å¤–éƒ¨ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³]'),
 		-labelside   => 'acrosstop',
 		-borderwidth => 2,
 		-foreground  => 'blue',
 	)->pack(-expand=>'yes',-fill=>'both');
 
 	#$afra->Label(
-	#	-text => $self->gui_jchar('¡¦¤½¤ÎÂ¾¤Î³°Éô¥¢¥×¥ê¥±¡¼¥·¥ç¥ó'),
+	#	-text => $self->gui_jchar('ãƒ»ãã®ä»–ã®å¤–éƒ¨ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³'),
 	#	-font => 'TKFN'
 	#)->pack(-anchor => 'w');
 
-	# Web¥Ö¥é¥¦¥¶
+	# Webãƒ–ãƒ©ã‚¦ã‚¶
 	my $appf1 = $afra->Frame()->pack(-expand => 1, -fill => 'x');
 	$appf1->Label(
-		-text => kh_msg->get('web_browser'),#$self->gui_jchar('Web¥Ö¥é¥¦¥¶¡§'),
+		-text => kh_msg->get('web_browser'),#$self->gui_jchar('Webãƒ–ãƒ©ã‚¦ã‚¶ï¼š'),
 		-font => 'TKFN'
 	)->pack(-side => 'left');
 	my $ent_html = $appf1->Entry(
@@ -350,10 +350,10 @@ sub __new{
 		-width => 26
 	)->pack( -side => 'right' );
 
-	# É½·×»»
+	# è¡¨è¨ˆç®—
 	my $appf2 = $afra->Frame()->pack(-expand => 1, -fill => 'x');
 	$appf2->Label(
-		-text => kh_msg->get('s_sheet'),#$self->gui_jchar('É½·×»»¡ÊCSV/Excel¡Ë¡§'),
+		-text => kh_msg->get('s_sheet'),#$self->gui_jchar('è¡¨è¨ˆç®—ï¼ˆCSV/Excelï¼‰ï¼š'),
 		-font => 'TKFN'
 	)->pack(-side => 'left');
 	my $ent_csv = $appf2->Entry(
@@ -362,10 +362,10 @@ sub __new{
 		-width => 26
 	)->pack( -side => 'right' );
 
-	# PDF¥Ó¥å¡¼¥¢
+	# PDFãƒ“ãƒ¥ãƒ¼ã‚¢
 	my $appf3 = $afra->Frame()->pack(-expand => 1, -fill => 'x');
 	$appf3->Label(
-		-text => kh_msg->get('pdf'),#$self->gui_jchar('PDF¥Ó¥å¡¼¥¢'),
+		-text => kh_msg->get('pdf'),#$self->gui_jchar('PDFãƒ“ãƒ¥ãƒ¼ã‚¢'),
 		-font => 'TKFN'
 	)->pack(-side => 'left');
 	my $ent_pdf = $appf3->Entry(
@@ -375,14 +375,14 @@ sub __new{
 	)->pack( -side => 'right' );
 
 	$afra->Label(
-		-text => kh_msg->get('note_s'),#$self->gui_jchar('¢¨ %s¤Ï¥Õ¥¡¥¤¥ëÌ¾¤äURL¤ÇÃÖ¤­´¹¤¨¤é¤ì¤Þ¤¹'),
+		-text => kh_msg->get('note_s'),#$self->gui_jchar('â€» %sã¯ãƒ•ã‚¡ã‚¤ãƒ«åã‚„URLã§ç½®ãæ›ãˆã‚‰ã‚Œã¾ã™'),
 		-font => 'TKFN'
 	)->pack(-anchor => 'w');
 
 
 
 	$inis->Button(
-		-text => kh_msg->gget('cancel'),#$self->gui_jchar('¥­¥ã¥ó¥»¥ë'),
+		-text => kh_msg->gget('cancel'),#$self->gui_jchar('ã‚­ãƒ£ãƒ³ã‚»ãƒ«'),
 		-font => 'TKFN',
 		-width => 8,
 		-command => sub{$self->close;}
@@ -409,7 +409,7 @@ sub __new{
 }
 
 #--------------------#
-#   ¥Õ¥¡¥ó¥¯¥·¥ç¥ó   #
+#   ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³   #
 #--------------------#
 
 sub unselect{
@@ -437,7 +437,7 @@ sub save_tagger{
 	$last_stanf_lang = $self->{opt_stan_val};
 }
 
-# OK¥Ü¥¿¥ó
+# OKãƒœã‚¿ãƒ³
 sub ok{
 	my $self = shift;
 	
@@ -497,7 +497,7 @@ sub ok{
 	}
 }
 
-# ¥Õ¥¡¥¤¥ë¡¦¥ª¡¼¥×¥ó¡¦¥À¥¤¥¢¥í¥°
+# ãƒ•ã‚¡ã‚¤ãƒ«ãƒ»ã‚ªãƒ¼ãƒ—ãƒ³ãƒ»ãƒ€ã‚¤ã‚¢ãƒ­ã‚°
 sub gui_get_exe{
 	my $self = shift;
 	my $file = shift;
@@ -526,7 +526,7 @@ sub gui_get_exe{
 }
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 #--------------#
 
 sub entry1{

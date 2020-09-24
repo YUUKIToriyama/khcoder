@@ -8,7 +8,7 @@ sub _get_wnum{
 	my $d1   = shift;
 	my $d2   = shift;
 
-	# ñ��ꥹ�Ȥκ���
+	# 単語リストの作製
 	mysql_exec->drop_table("genkei_in_use");
 	mysql_exec->do("create temporary table genkei_in_use
 		(
@@ -44,13 +44,13 @@ sub _get_wnum{
 	}
 	mysql_exec->do($sql,1);
 
-	# �����ѿ��Υ����å�
-	my @missing = ('missing', '.', '��»��');
+	# 外部変数のチェック
+	my @missing = ('missing', '.', '欠損値');
 	my $var_obj = mysql_outvar::a_var->new(undef,$self->{outvar});
 	foreach my $i ( keys %{$var_obj->{labels}} ){
 		if (
 			   $var_obj->{labels}{$i} eq '.'
-			|| $var_obj->{labels}{$i} eq '��»��'
+			|| $var_obj->{labels}{$i} eq '欠損値'
 			|| $var_obj->{labels}{$i} =~ /missing/io
 		){
 			push @missing, $i;
@@ -96,7 +96,7 @@ sub _get_wnum{
 	}
 	mysql_exec->do($sql,1);
 
-	# ñ��ο�������å�
+	# 単語の数をチェック
 
 	$sql = '';
 	$sql = "

@@ -10,7 +10,7 @@ sub _new{
 	my $self = shift;
 	my $mw = $::main_gui->mw;
 	my $bunhyojiwin = $self->{win_obj};
-	$bunhyojiwin->title(  $self->gui_jt( kh_msg->get('win_title') )); # '¸ì¤ÎÃê½Ð·ë²Ì¡§¾ÜºÙ'
+	$bunhyojiwin->title(  $self->gui_jt( kh_msg->get('win_title') )); # 'èªžã®æŠ½å‡ºçµæžœï¼šè©³ç´°'
 
 	$self->{list} = $bunhyojiwin->Scrolled(
 		'HList',
@@ -29,15 +29,15 @@ sub _new{
 		#-height           => 20,
 	)->pack(-fill =>'both',-expand => 'yes');
 	
-	$self->{list}->header('create',0,-text => kh_msg->get('hyoso') ); # $self->gui_jchar('É½ÁØ¸ì')
-	$self->{list}->header('create',1,-text => kh_msg->get('base') ); # $self->gui_jchar('´ðËÜ·Á')
-	$self->{list}->header('create',2,-text => kh_msg->get('pos_kh') ); # $self->gui_jchar('ÉÊ»ì')
+	$self->{list}->header('create',0,-text => kh_msg->get('hyoso') ); # $self->gui_jchar('è¡¨å±¤èªž')
+	$self->{list}->header('create',1,-text => kh_msg->get('base') ); # $self->gui_jchar('åŸºæœ¬å½¢')
+	$self->{list}->header('create',2,-text => kh_msg->get('pos_kh') ); # $self->gui_jchar('å“è©ž')
 	$self->{list}->header('create',3,-text =>' ');
-	$self->{list}->header('create',4,-text => kh_msg->get('pos_cha') ); # $self->gui_jchar('Ããä¥-ÉÊ»ì')
-	$self->{list}->header('create',5,-text => kh_msg->get('katuyo') ); # $self->gui_jchar('Ããä¥-³èÍÑ')
+	$self->{list}->header('create',4,-text => kh_msg->get('pos_cha') ); # $self->gui_jchar('èŒ¶ç­Œ-å“è©ž')
+	$self->{list}->header('create',5,-text => kh_msg->get('katuyo') ); # $self->gui_jchar('èŒ¶ç­Œ-æ´»ç”¨')
 
 	$self->{pre_btn} = $bunhyojiwin->Button(
-		-text => kh_msg->get('previous'),#$self->gui_jchar('Á°¤Î¸¡º÷·ë²Ì'),
+		-text => kh_msg->get('previous'),#$self->gui_jchar('å‰ã®æ¤œç´¢çµæžœ'),
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub {
@@ -48,7 +48,7 @@ sub _new{
 	)->pack(-side => 'left',-pady   => 1,);
 
 	$self->{nxt_btn} = $bunhyojiwin->Button(
-		-text => kh_msg->get('next'),#$self->gui_jchar('¼¡¤Î¸¡º÷·ë²Ì'),
+		-text => kh_msg->get('next'),#$self->gui_jchar('æ¬¡ã®æ¤œç´¢çµæžœ'),
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub {
@@ -59,7 +59,7 @@ sub _new{
 	)->pack(-side => 'left',-pady   => 1,);
 
 	$bunhyojiwin->Button(
-		-text => kh_msg->gget('copy'),#$self->gui_jchar('¥³¥Ô¡¼'),
+		-text => kh_msg->gget('copy'),#$self->gui_jchar('ã‚³ãƒ”ãƒ¼'),
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub {gui_hlist->copy($self->list);}
@@ -107,13 +107,13 @@ sub _view{
 sub update_buttons{
 	my $self = shift;
 	
-	# ¼¡¤Î·ë²Ì
+	# æ¬¡ã®çµæžœ
 	if ($self->{parent}->if_next){
 		$self->{nxt_btn}->configure(-state, 'normal');
 	} else {
 		$self->{nxt_btn}->configure(-state, 'disable');
 	}
-	# Á°¤Î·ë²Ì
+	# å‰ã®çµæžœ
 	if ($self->{parent}->if_prev){
 		$self->{pre_btn}->configure(-state, 'normal');
 	} else {

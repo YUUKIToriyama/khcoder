@@ -26,13 +26,13 @@ use gui_window::stop_words::freeling_sl;
 use kh_msg;
 
 #------------------#
-#   Window¤ò³«¤¯   #
+#   Windowã‚’é–‹ã   #
 #------------------#
 
 sub _new{
 	my $self = shift;
 
-	# GUI¤ÎºîÀ®
+	# GUIã®ä½œæˆ
 	$self->{win_obj}->title(
 		$self->gui_jt(
 			kh_msg->get('stopwords','gui_window::sysconfig')
@@ -127,7 +127,7 @@ sub _new{
 		-command => sub{$self->save;}
 	)->pack(-anchor=>'e',-side => 'right');
 	
-	# ÀßÄê¤ÎÆÉ¤ß¼è¤ê¤ÈÉ½¼¨
+	# è¨­å®šã®èª­ã¿å–ã‚Šã¨è¡¨ç¤º
 	my $words = $::config_obj->stopwords(
 		method => $self->method,
 		locale => $self->locale_name

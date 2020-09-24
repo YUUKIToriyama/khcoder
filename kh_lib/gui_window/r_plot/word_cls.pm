@@ -21,13 +21,13 @@ sub option1_options{
 }
 
 sub option1_name{
-	return kh_msg->get('method'); #  ÊıË¡¡§
+	return kh_msg->get('method'); #  æ–¹æ³•ï¼š
 }
 
 sub start{
 	my $self = shift;
 	$self->{bottom_frame}->Button(
-		-text => kh_msg->get('agglomer'), # Ê»¹ç¿å½à
+		-text => kh_msg->get('agglomer'), # ä½µåˆæ°´æº–
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub {
@@ -135,7 +135,7 @@ sub end{
 }
 
 sub win_title{
-	return kh_msg->get('win_title'); # Ãê½Ğ¸ì¡¦¥¯¥é¥¹¥¿¡¼Ê¬ÀÏ
+	return kh_msg->get('win_title'); # æŠ½å‡ºèªãƒ»ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼åˆ†æ
 }
 
 sub win_name{

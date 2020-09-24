@@ -6,15 +6,15 @@ sub option1_options{
 
 	if (@{$self->{plots}} == 2){
 		return [
-			kh_msg->get('gui_window::r_plot::word_corresp->d_l'), # ¥É¥Ã¥È¤È¥é¥Ù¥ë
-			kh_msg->get('gui_window::r_plot::word_corresp->d'), # ¥É¥Ã¥È¤Î¤ß
+			kh_msg->get('gui_window::r_plot::word_corresp->d_l'), # ãƒ‰ãƒƒãƒˆã¨ãƒ©ãƒ™ãƒ«
+			kh_msg->get('gui_window::r_plot::word_corresp->d'), # ãƒ‰ãƒƒãƒˆã®ã¿
 		] ;
 	} else {
 		return [
-			kh_msg->get('gui_window::r_plot::word_corresp->col'), # ¥«¥é¡¼
-			kh_msg->get('gui_window::r_plot::word_corresp->gray'), # ¥°¥ì¡¼¥¹¥±¡¼¥ë
-			kh_msg->get('gui_window::r_plot::word_corresp->var'), # ÊÑ¿ô¤Î¤ß
-			kh_msg->get('gui_window::r_plot::word_corresp->d'), # ¥É¥Ã¥È¤Î¤ß
+			kh_msg->get('gui_window::r_plot::word_corresp->col'), # ã‚«ãƒ©ãƒ¼
+			kh_msg->get('gui_window::r_plot::word_corresp->gray'), # ã‚°ãƒ¬ãƒ¼ã‚¹ã‚±ãƒ¼ãƒ«
+			kh_msg->get('gui_window::r_plot::word_corresp->var'), # å¤‰æ•°ã®ã¿
+			kh_msg->get('gui_window::r_plot::word_corresp->d'), # ãƒ‰ãƒƒãƒˆã®ã¿
 		] ;
 	}
 }
@@ -26,11 +26,11 @@ sub extra_save_types{
 }
 
 sub option1_name{
-	return kh_msg->get('gui_window::r_plot::word_corresp->view'); #  É½¼¨¡§
+	return kh_msg->get('gui_window::r_plot::word_corresp->view'); #  è¡¨ç¤ºï¼š
 }
 
 sub win_title{
-	return kh_msg->get('win_title'); # ¥³¡¼¥Ç¥£¥ó¥°¡¦ÂĞ±şÊ¬ÀÏ
+	return kh_msg->get('win_title'); # ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ»å¯¾å¿œåˆ†æ
 }
 
 sub win_name{

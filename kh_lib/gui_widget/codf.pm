@@ -10,12 +10,12 @@ sub _new{
 	$self->{win_obj} = $f1;
 	
 	$self->{label} = $f1->Label(
-		-text => kh_msg->get('cod_rule_f'), # ¥³¡¼¥Ç¥£¥ó¥°¥ë¡¼¥ë¡¦¥Õ¥¡¥¤¥ë¡§
+		-text => kh_msg->get('cod_rule_f'), # ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ«ãƒ¼ãƒ«ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«ï¼š
 		-font => "TKFN",
 	)->pack(-anchor =>'w',-side => 'left');
 	
 	$self->{button} = $f1->Button(
-		-text => kh_msg->gget('browse'), # »²¾È
+		-text => kh_msg->gget('browse'), # å‚ç…§
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub{$self->_sansyo;}
@@ -23,7 +23,7 @@ sub _new{
 	
 	if ($self->{r_button}){
 		$self->{button} = $f1->Button(
-			-text => kh_msg->get('reload'), # ¥ê¥í¡¼¥É
+			-text => kh_msg->get('reload'), # ãƒªãƒ­ãƒ¼ãƒ‰
 			-font => "TKFN",
 			-borderwidth => '1',
 			-command => sub{
@@ -57,7 +57,7 @@ sub _new{
 		$e1->configure(-state,'disable');
 	} else {
 		$e1->configure(-state,'normal');
-		$e1->insert('0',kh_msg->get('no_file')); # ÁªÂò¥Õ¥¡¥¤¥ëÌµ¤·
+		$e1->insert('0',kh_msg->get('no_file')); # é¸æŠžãƒ•ã‚¡ã‚¤ãƒ«ç„¡ã—
 		$e1->configure(-state,'disable');
 	}
 	$self->{entry} = $e1;
@@ -108,7 +108,7 @@ sub _drop{
 }
 
 #------------------#
-#   »²¾È¥ë¡¼¥Á¥ó   #
+#   å‚ç…§ãƒ«ãƒ¼ãƒãƒ³   #
 sub _sansyo{
 	my $self = shift;
 
@@ -119,7 +119,7 @@ sub _sansyo{
 
 	my $path = $self->win_obj->getOpenFile(
 		-filetypes  => \@types,
-		-title      => gui_window->gui_jt( kh_msg->get('browse_title') ), # ¥³¡¼¥Ç¥£¥ó¥°¡¦¥ë¡¼¥ë¡¦¥Õ¥¡¥¤¥ë¤òÁªÂò¤·¤Æ¤¯¤À¤µ¤¤
+		-title      => gui_window->gui_jt( kh_msg->get('browse_title') ), # ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ»ãƒ«ãƒ¼ãƒ«ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é¸æŠžã—ã¦ãã ã•ã„
 		-initialdir => gui_window->gui_jchar($::config_obj->cwd),
 	);
 	
@@ -142,7 +142,7 @@ sub _sansyo{
 }
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 
 sub normal{
 	my $self = shift;

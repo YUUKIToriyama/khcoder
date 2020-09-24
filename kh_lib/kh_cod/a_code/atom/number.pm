@@ -1,4 +1,4 @@
-# Ê¸½ñÈÖ¹æ¤Ë¤è¤ë»ØÄê --- ¡ÖNo. == 3¡×
+# æ–‡æ›¸ç•ªå·ã«ã‚ˆã‚‹æŒ‡å®š --- ã€ŒNo. == 3ã€
 
 package kh_cod::a_code::atom::number;
 use base qw(kh_cod::a_code::atom);

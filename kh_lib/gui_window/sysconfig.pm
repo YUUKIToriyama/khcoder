@@ -6,7 +6,7 @@ use gui_window::sysconfig::win32;
 use gui_window::sysconfig::linux;
 
 #------------------#
-#   Window¤ò³«¤¯   #
+#   Windowã‚’é–‹ã   #
 #------------------#
 
 sub _new{
@@ -47,7 +47,7 @@ sub Tk::Separator
     $direction eq 'vertical' ? '-width' : '-height' => 2 } } );
   }
 
-# .jar¤Î»²¾È
+# .jarã®å‚ç…§
 sub browse_stanford_jar{
 	my $self  = shift;
 
@@ -71,7 +71,7 @@ sub browse_stanford_jar{
 	}
 }
 
-# *.tagger¤Î»²¾È
+# *.taggerã®å‚ç…§
 sub browse_stanford_tag{
 	my $self  = shift;
 

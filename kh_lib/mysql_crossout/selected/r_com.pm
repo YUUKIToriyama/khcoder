@@ -2,13 +2,13 @@ package mysql_crossout::selected::r_com;
 use base qw(mysql_crossout::selected);
 use strict;
 
-# º£¤Î¤È¤³¤í¸«½Ğ¤·¤ÎÉÕÍ¿¤ä¡¢Ê¸½ñÄ¹¤Î½ñ¤­½Ğ¤·¤Ë¤ÏÌ¤ÂĞ±ş
+# ä»Šã®ã¨ã“ã‚è¦‹å‡ºã—ã®ä»˜ä¸ã‚„ã€æ–‡æ›¸é•·ã®æ›¸ãå‡ºã—ã«ã¯æœªå¯¾å¿œ
 
 sub run{
 	my $self = shift;
 	my $tani = $self->{tani};
 
-	# ¥Ç¡¼¥¿¤Î¼è¤ê½Ğ¤·1: ¸ì¤Î¥ê¥¹¥È
+	# ãƒ‡ãƒ¼ã‚¿ã®å–ã‚Šå‡ºã—1: èªã®ãƒªã‚¹ãƒˆ
 	my @word_ids = ();
 	my @word_nms = ();
 	my $h = mysql_exec->select("
@@ -24,7 +24,7 @@ sub run{
 		push @word_nms, $i->[1];
 	}
 
-	# ¥Ç¡¼¥¿¤Î¼è¤ê½Ğ¤·2: Ê¸½ñ-¸ì
+	# ãƒ‡ãƒ¼ã‚¿ã®å–ã‚Šå‡ºã—2: æ–‡æ›¸-èª
 	my $d;
 	if ($tani eq 'bun'){
 		$h = mysql_exec->select("
@@ -51,7 +51,7 @@ sub run{
 		++$d->{$i->[0]}{$i->[1]};
 	}
 
-	# ¥Ç¡¼¥¿¤òÊİÂ¸¤¹¤ë¥Õ¥¡¥¤¥ë
+	# ãƒ‡ãƒ¼ã‚¿ã‚’ä¿å­˜ã™ã‚‹ãƒ•ã‚¡ã‚¤ãƒ«
 	my $file = $::project_obj->file_TempR;
 	open my $fh, '>:encoding(utf8)', $file or
 		gui_errormsg->open(
@@ -59,7 +59,7 @@ sub run{
 			thefile => $file,
 		);
 
-	# RÍÑ¤Î¥Ç¡¼¥¿ºîÀ®
+	# Rç”¨ã®ãƒ‡ãƒ¼ã‚¿ä½œæˆ
 	my $nrow = 0;
 	my $ncol = @word_ids;
 	print $fh "d <- matrix( c(\n";
@@ -93,7 +93,7 @@ sub run{
 	close ($fh);
 	#$r_cmd .= "# END: DATA\n\n";
 
-	# R¥³¥Ş¥ó¥É
+	# Rã‚³ãƒãƒ³ãƒ‰
 	my $r_cmd = "source(\"$file\", encoding=\"UTF-8\")\n";
 
 	if ($::config_obj->os eq 'win32'){

@@ -6,17 +6,17 @@ use strict;
 my $debug_ms = 0;
 
 #-------------#
-#   GUI∫Ó¿Ω   #
+#   GUI‰ΩúË£Ω   #
 
 sub _new{
 	my $self = shift;
 	my $mw = $::main_gui->mw;
 	my $win = $self->{win_obj};
 	#$win->focus;
-	$win->title($self->gui_jt(kh_msg->get('win_title'))); # •≥°º•«•£•Û•∞°¶Œ‡ª˜≈Ÿπ‘ŒÛ° Jaccard∑∏øÙ°À
+	$win->title($self->gui_jt(kh_msg->get('win_title'))); # „Ç≥„Éº„Éá„Ç£„É≥„Ç∞„ÉªÈ°û‰ººÂ∫¶Ë°åÂàóÔºàJaccard‰øÇÊï∞Ôºâ
 
 	#------------------------#
-	#   •™•◊•∑•Á•Û∆˛Œœ…Ù ¨   #
+	#   „Ç™„Éó„Ç∑„Éß„É≥ÂÖ•ÂäõÈÉ®ÂàÜ   #
 
 	my $lf = $win->LabFrame(
 		-label => 'Entry',
@@ -24,15 +24,15 @@ sub _new{
 		-borderwidth => 2,
 	)->pack(-fill => 'x');
 	
-	# •Î°º•Î°¶•’•°•§•Î
+	# „É´„Éº„É´„Éª„Éï„Ç°„Ç§„É´
 	my %pack0 = (-side => 'left');
 	$self->{codf_obj} = gui_widget::codf->open(
 		parent => $lf,
 		pack   => \%pack0
 	);
-	# •≥°º•«•£•Û•∞√±∞Ã
+	# „Ç≥„Éº„Éá„Ç£„É≥„Ç∞Âçò‰Ωç
 	$lf->Label(
-		-text => kh_msg->get('unit_cod'), # °°•≥°º•«•£•Û•∞√±∞Ã°ß
+		-text => kh_msg->get('unit_cod'), # „ÄÄ„Ç≥„Éº„Éá„Ç£„É≥„Ç∞Âçò‰ΩçÔºö
 		-font => "TKFN",
 	)->pack(-side => 'left');
 	$self->{tani_obj} = gui_widget::tani->open(
@@ -41,14 +41,14 @@ sub _new{
 	);
 
 	$lf->Button(
-		-text    => kh_msg->get('gui_window::cod_outtab->run'), # Ω∏∑◊
+		-text    => kh_msg->get('gui_window::cod_outtab->run'), # ÈõÜË®à
 		-font    => "TKFN",
 		-width   => 8,
 		-command => sub{$self->_calc;}
 	)->pack( -anchor => 'e', -side => 'right');
 	
 	#------------------#
-	#   ∑Î≤Ã…Ωº®…Ù ¨   #
+	#   ÁµêÊûúË°®Á§∫ÈÉ®ÂàÜ   #
 
 	my $rf = $win->LabFrame(
 		-label => 'Result',
@@ -82,7 +82,7 @@ sub _new{
 	)->pack(-side => 'left');
 
 	$self->{btn_copy} = $rf->Button(
-		-text => kh_msg->gget('copy_all'), # •≥•‘°º° …Ω¡¥¬Œ°À
+		-text => kh_msg->gget('copy_all'), # „Ç≥„Éî„ÉºÔºàË°®ÂÖ®‰ΩìÔºâ
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub { $self->copy; }
@@ -102,7 +102,7 @@ sub _new{
 }
 
 #------------------#
-#   Ω∏∑◊•Î°º•¡•Û   #
+#   ÈõÜË®à„É´„Éº„ÉÅ„É≥   #
 
 sub _calc{
 	my $self = shift;
@@ -112,14 +112,14 @@ sub _calc{
 	);
 	$self->win_obj->update;
 
-	# ∆˛Œœ∆‚Õ∆•¡•ß•√•Ø
+	# ÂÖ•ÂäõÂÜÖÂÆπ„ÉÅ„Çß„ÉÉ„ÇØ
 	unless (
 		   $self->tani
 		&& -e $self->cfile
 	){
 		my $win = $self->win_obj;
 		gui_errormsg->open(
-			msg => kh_msg->get('gui_window::cod_count->error_cod_f'), # "•≥°º•«•£•Û•∞•Î°º•Î°¶•’•°•§•Î§ÚªÿƒÍ§∑§∆≤º§µ§§°£",
+			msg => kh_msg->get('gui_window::cod_count->error_cod_f'), # "„Ç≥„Éº„Éá„Ç£„É≥„Ç∞„É´„Éº„É´„Éª„Éï„Ç°„Ç§„É´„ÇíÊåáÂÆö„Åó„Å¶‰∏ã„Åï„ÅÑ„ÄÇ",
 			window => \$win,
 			type => 'msg',
 		);
@@ -127,7 +127,7 @@ sub _calc{
 		return 0;
 	}
 	
-	# Ω∏∑◊§Œº¬π‘
+	# ÈõÜË®à„ÅÆÂÆüË°å
 	my $result;
 	unless ($result = kh_cod::func->read_file($self->cfile)){
 		$self->rtn;
@@ -145,7 +145,7 @@ sub _calc{
 	#	}
 	#}
 
-	# ∑Î≤Ã…Ωº®Õ—§ŒHList∫Ó¿Æ
+	# ÁµêÊûúË°®Á§∫Áî®„ÅÆHList‰ΩúÊàê
 	my $cols = @{$result->[0]};
 	my $width = 0;
 	foreach my $i (@{$result}){
@@ -155,13 +155,13 @@ sub _calc{
 	}
 	$width = $width * 2;
 
-	$self->{list}->destroy if $self->{list};                # ∏≈§§§‚§Œ§Ú«—¥˛
+	$self->{list}->destroy if $self->{list};                # Âè§„ÅÑ„ÇÇ„ÅÆ„ÇíÂªÉÊ£Ñ
 	$self->{list2}->destroy if $self->{list2};
 	$self->{sb1}->destroy if $self->{sb1};
 	$self->{sb2}->destroy if $self->{sb2};
 	$self->{list_flame_inner}->destroy if $self->{list_flame_inner};
 
-	$self->{list_flame_inner} = $self->{list_flame}->Frame( # ø∑§ø§ •Í•π•»∫Ó¿Æ
+	$self->{list_flame_inner} = $self->{list_flame}->Frame( # Êñ∞„Åü„Å™„É™„Çπ„Éà‰ΩúÊàê
 		-relief      => 'sunken',
 		-borderwidth => 2
 	);
@@ -195,7 +195,7 @@ sub _calc{
 		-highlightthickness => 0,
 	);
 
-	my $col = 0;                                            # Header∫Ó¿Æ
+	my $col = 0;                                            # Header‰ΩúÊàê
 	foreach my $i (@{$result->[0]}){
 		unless ($col){
 			++$col;
@@ -235,7 +235,7 @@ sub _calc{
 	shift @{$result};
 	$self->{result} = $result;
 
-	my $sb1 = $self->{list_flame}->Scrollbar(               # •π•Ø•Ì°º•Î¿ﬂƒÍ
+	my $sb1 = $self->{list_flame}->Scrollbar(               # „Çπ„ÇØ„É≠„Éº„É´Ë®≠ÂÆö
 		-orient  => 'v',
 		-command => sub {
 			$self->multiscrolly(@_);
@@ -249,7 +249,7 @@ sub _calc{
 	$self->{list}->configure(
 		-yscrollcommand => sub{
 			$sb1->set(@_);
-			# §‚§¶∞Ï ˝§Œ•Í•π•»§¨ƒ…øÔ§∑§∆§§§ §±§Ï§–∆±¥¸§µ§ª§Î
+			# „ÇÇ„ÅÜ‰∏ÄÊñπ„ÅÆ„É™„Çπ„Éà„ÅåËøΩÈöè„Åó„Å¶„ÅÑ„Å™„Åë„Çå„Å∞ÂêåÊúü„Åï„Åõ„Çã
 			my $p1 = $_[0];
 			my @t = $self->{list2}->yview;
 			my $p2 = $t[0];
@@ -281,7 +281,7 @@ sub _calc{
 	$self->{list2}->configure(
 		-yscrollcommand => sub{
 			$sb1->set(@_);
-			# §‚§¶∞Ï ˝§Œ•Í•π•»§¨ƒ…øÔ§∑§∆§§§ §±§Ï§–∆±¥¸§µ§ª§Î
+			# „ÇÇ„ÅÜ‰∏ÄÊñπ„ÅÆ„É™„Çπ„Éà„ÅåËøΩÈöè„Åó„Å¶„ÅÑ„Å™„Åë„Çå„Å∞ÂêåÊúü„Åï„Åõ„Çã
 			my $p1 = $_[0];
 			my @t = $self->{list}->yview;
 			my $p2 = $t[0];
@@ -320,7 +320,7 @@ sub _calc{
 	$self->{list}->pack(-fill =>'both',-expand => 'yes', -pady => 0);
 	$sb2->pack(-fill => 'x');
 
-	# ∑Î≤Ã§ŒΩÒ§≠Ω–§∑
+	# ÁµêÊûú„ÅÆÊõ∏„ÅçÂá∫„Åó
 	my $right_style = $self->list->ItemStyle(
 		'text',
 		-font => "TKFN",
@@ -386,21 +386,21 @@ sub sort{
 	$self->{list}->delete('all');
 	$self->{list2}->delete('all');
 	
-	# •Ω°º•»
+	# „ÇΩ„Éº„Éà
 	my @temp;
 	if ($key){
 		@temp = sort { $b->[$key] <=> $a->[$key] } @{$self->{result}};
 		$self->{btn_copy}->configure(
-			-text => kh_msg->get('copy_sel') # •≥•‘°º° ¡™¬ÚŒÛ°À
+			-text => kh_msg->get('copy_sel') # „Ç≥„Éî„ÉºÔºàÈÅ∏ÊäûÂàóÔºâ
 		);
 	} else {
 		@temp = @{$self->{result}};
 		$self->{btn_copy}->configure(
-			-text => kh_msg->gget('copy_all') # •≥•‘°º° …Ω¡¥¬Œ°À
+			-text => kh_msg->gget('copy_all') # „Ç≥„Éî„ÉºÔºàË°®ÂÖ®‰ΩìÔºâ
 		);
 	}
 
-	# Ω–Œœ
+	# Âá∫Âäõ
 	my $right_style = $self->list->ItemStyle(
 		'text',
 		-font => "TKFN",
@@ -433,7 +433,7 @@ sub sort{
 	$self->{list}->yview(0);
 	$self->{list2}->yview(0);
 	
-	# •È•Ÿ•Î§Œøß§Ú —ππ
+	# „É©„Éô„É´„ÅÆËâ≤„ÇíÂ§âÊõ¥
 	if ($key){
 		my $w = $self->{list}->header(
 			'cget',
@@ -450,7 +450,7 @@ sub sort{
 		);
 	}
 	
-	# ¡∞≤Û —ππ§∑§ø•È•Ÿ•Î§Œøß§Ú∏µ§ÀÃ·§π
+	# ÂâçÂõûÂ§âÊõ¥„Åó„Åü„É©„Éô„É´„ÅÆËâ≤„ÇíÂÖÉ„Å´Êàª„Åô
 	if ($self->{last_sort_key}){
 		my $lw = $self->{list}->header(
 			'cget',
@@ -475,7 +475,7 @@ sub copy{
 	
 	return 0 unless $self->{result};
 	
-	# 1π‘Ã‹
+	# 1Ë°åÁõÆ
 	my $clip = "\t";
 	
 	my $cols = @{$self->{result}->[0]} - 2;
@@ -496,10 +496,10 @@ sub copy{
 	chop $clip;
 	$clip .= "\n";
 	
-	# √Êø»
+	# ‰∏≠Ë∫´
 	my $rows = @{$self->{result}} - 1;
 	for (my $r = 0; $r <= $rows; ++$r){
-		# 1ŒÛÃ‹
+		# 1ÂàóÁõÆ
 		if ($self->{list2}->itemExists($r, 0)){
 			my $cell = $self->{list2}->itemCget($r, 0, -text);
 			chop $cell if $cell =~ /\r$/o;
@@ -507,7 +507,7 @@ sub copy{
 		} else {
 			$clip .= "\t";
 		}
-		# 2ŒÛÃ‹∞ πﬂ
+		# 2ÂàóÁõÆ‰ª•Èôç
 		for (my $c = 0; $c <= $cols; ++$c){
 			if ($self->{last_sort_key}){
 				unless ($c + 1 == $self->{last_sort_key}){
@@ -532,7 +532,7 @@ sub copy{
 }
 
 #--------------#
-#   •¢•Ø•ª•µ   #
+#   „Ç¢„ÇØ„Çª„Çµ   #
 
 sub cfile{
 	my $self = shift;

@@ -5,7 +5,7 @@ sub innner{
 	my $self = shift;
 	my $lf = $self->{labframe};
 
-	# ¥¯¥é¥¹¥¿¡¼¿ô
+	# ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼æ•°
 	$self->{cls_obj} = gui_widget::r_cls->open(
 		parent  => $lf,
 		command => sub{ $self->calc; },
@@ -26,7 +26,7 @@ sub calc{
 	} else {
 		gui_errormsg->open(
 			type => 'msg',
-			msg  => kh_msg->gget('r_net_msg_fail'), # Ä´À°¤Ë¼ºÇÔ¤·¤Ş¤·¤Ş¤·¤¿¡£
+			msg  => kh_msg->gget('r_net_msg_fail'), # èª¿æ•´ã«å¤±æ•—ã—ã¾ã—ã¾ã—ãŸã€‚
 		);
 		print "$self->{command_f}\n";
 		$self->close;
@@ -39,7 +39,7 @@ sub calc{
 	) {
 		gui_errormsg->open(
 			type => 'msg',
-			msg  => kh_msg->get('err_no_auto'), # ¤³¤ÎWindow¤Ç¤Ï¡ÖAuto¡×»ØÄê¤Ï¤Ç¤­¤Ş¤»¤ó¡£¿ôÃÍ¤òÆşÎÏ¤·¤Æ¤¯¤À¤µ¤¤
+			msg  => kh_msg->get('err_no_auto'), # ã“ã®Windowã§ã¯ã€ŒAutoã€æŒ‡å®šã¯ã§ãã¾ã›ã‚“ã€‚æ•°å€¤ã‚’å…¥åŠ›ã—ã¦ãã ã•ã„
 		);
 		return 0;
 	}
@@ -63,7 +63,7 @@ sub calc{
 }
 
 sub win_title{
-	return kh_msg->get('win_title'); # Ãê½Ğ¸ì¡¦¥¯¥é¥¹¥¿¡¼Ê¬ÀÏ¡§Ä´À°
+	return kh_msg->get('win_title'); # æŠ½å‡ºèªãƒ»ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼åˆ†æï¼šèª¿æ•´
 }
 
 sub win_name{

@@ -6,14 +6,14 @@ use strict;
 use mysql_html2csv;
 
 #-------------#
-#   GUIºîÀ½   #
+#   GUIä½œè£½   #
 
 sub _new{
 	my $self = shift;
 	my $mw = $::main_gui->mw;
 	my $win = $self->{win_obj};
 	#$win->focus;
-	$win->title($self->gui_jt(kh_msg->get('win_title'))); # CSV¥Õ¥¡¥¤¥ë¤ËÊÑ´¹
+	$win->title($self->gui_jt(kh_msg->get('win_title'))); # CSVãƒ•ã‚¡ã‚¤ãƒ«ã«å¤‰æ›
 	
 	#$self->{win_obj} = $win;
 
@@ -24,14 +24,14 @@ sub _new{
 	)->pack(-fill => 'x');
 	
 	$lf->Label(
-		-text => kh_msg->get('unit'), # ¤É¤ÎÃ±°Ì¤ò1¹Ô¡Ê1¥±¡¼¥¹¡Ë¤È¤·¤Æ½ÐÎÏ¤·¤Þ¤¹¤«¡©
+		-text => kh_msg->get('unit'), # ã©ã®å˜ä½ã‚’1è¡Œï¼ˆ1ã‚±ãƒ¼ã‚¹ï¼‰ã¨ã—ã¦å‡ºåŠ›ã—ã¾ã™ã‹ï¼Ÿ
 		-font => "TKFN"
 	)->pack(-anchor => 'w');
 	
 	my $f1 = $lf->Frame()->pack(-fill => 'x',-pady => 3);
 	
 	$f1->Label(
-		-text => kh_msg->get('select'), #   ÁªÂò¡§
+		-text => kh_msg->get('select'), #   é¸æŠžï¼š
 		-font => "TKFN"
 	)->pack(-anchor => 'w', -side => 'left');
 	
@@ -46,7 +46,7 @@ sub _new{
 	);
 	
 	$win->Button(
-		-text => kh_msg->gget('cancel'), # ¥­¥ã¥ó¥»¥ë
+		-text => kh_msg->gget('cancel'), # ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		-font => "TKFN",
 		-width => 8,
 		-command => sub{$self->close;}
@@ -64,7 +64,7 @@ sub _new{
 }
 
 #--------------------#
-#   ¥Õ¥¡¥ó¥¯¥·¥ç¥ó   #
+#   ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³   #
 
 sub save{
 	my $self = shift;
@@ -78,7 +78,7 @@ sub save{
 			-defaultextension => '.csv',
 			-filetypes        => \@types,
 			-title            =>
-				$self->gui_jt(kh_msg->get('saving')), # CSV¥Õ¥¡¥¤¥ë¤ÎÊÝÂ¸
+				$self->gui_jt(kh_msg->get('saving')), # CSVãƒ•ã‚¡ã‚¤ãƒ«ã®ä¿å­˜
 			-initialdir       => gui_window->gui_jchar($::config_obj->cwd)
 		)
 	);
@@ -98,7 +98,7 @@ sub save{
 
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 
 sub tani{
 	my $self = shift;

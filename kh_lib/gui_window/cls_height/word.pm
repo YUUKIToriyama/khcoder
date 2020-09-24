@@ -4,7 +4,7 @@ use base qw(gui_window::cls_height);
 
 sub win_title{
 	my $self = shift;
-	return $self->gui_jt( kh_msg->get('win_title') ); # 'Ãê½Ğ¸ì¤Î¥¯¥é¥¹¥¿¡¼Ê¬ÀÏ¡§Ê»¹ç¿å½à'
+	return $self->gui_jt( kh_msg->get('win_title') ); # 'æŠ½å‡ºèªã®ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼åˆ†æï¼šä½µåˆæ°´æº–'
 }
 
 sub win_name{

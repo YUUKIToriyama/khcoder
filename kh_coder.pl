@@ -2,15 +2,15 @@
 
 =head1 COPYRIGHT
 
-Copyright (C) 2001-2013 �����̰� <http://koichi.nihon.to/psnl>
+Copyright (C) 2001-2013 樋口耕一 <http://koichi.nihon.to/psnl>
 
-�ܥץ������ϥե꡼�����եȥ������Ǥ���
+本プログラムはフリー・ソフトウェアです。
 
-���ʤ��ϡ�Free Software Foundation ����ɽ����GNU���̸�ͭ���ѵ������The GNU General Public License�ˤΡ֥С������2�װ����Ϥ���ʹߤγƥС��������椫�餤���줫�����򤷡����ΥС������������˽��ä��ܥץ���������ѡ������ۡ��ޤ����ѹ����뤳�Ȥ��Ǥ��ޤ���
+あなたは、Free Software Foundation が公表したGNU一般公有使用許諾書（The GNU General Public License）の「バージョン2」或いはそれ以降の各バージョンの中からいずれかを選択し、そのバージョンが定める条項に従って本プログラムを使用、再頒布、または変更することができます。
 
-�ܥץ�������ͭ�ѤȤϻפ��ޤ��������ۤ������äƤϡ��Ծ����ڤ�������ŪŬ�����ˤĤ��Ƥΰ��ۤ��ݾڤ�ޤ�ơ������ʤ��ݾڤ�Ԥ��ޤ���
+本プログラムは有用とは思いますが、頒布に当たっては、市場性及び特定目的適合性についての暗黙の保証を含めて、いかなる保証も行いません。
 
-�ܺ٤ˤĤ��Ƥ�GNU���̸�ͭ���ѵ�������ɤ߲�������GNU���̸�ͭ���ѵ�������ܥץ������Υޥ˥奢���������ź�դ���Ƥ��ޤ������뤤��<http://www.gnu.org/licenses/>�Ǥ⡢GNU���̸�ͭ���ѵ������������뤳�Ȥ��Ǥ��ޤ���
+詳細についてはGNU一般公有使用許諾書をお読み下さい。GNU一般公有使用許諾書は本プログラムのマニュアルの末尾に添付されています。あるいは<http://www.gnu.org/licenses/>でも、GNU一般公有使用許諾書を閲覧することができます。
 
 =cut
 
@@ -69,7 +69,7 @@ BEGIN {
 	# for Windows [1]
 	use Cwd;
 	if ($^O eq 'MSWin32'){
-		# Cwd.pm�ξ��
+		# Cwd.pmの上書き
 		no warnings 'redefine';
 		sub Cwd::_win32_cwd {
 			if (defined &DynaLoader::boot_DynaLoader) {
@@ -87,12 +87,12 @@ BEGIN {
 		use warnings 'redefine';
 	}
 
-	# �⥸�塼��Υѥ����ɲ�
+	# モジュールのパスを追加
 	unshift @INC, cwd.'/kh_lib';
 
 	# for Windows [2]
 	if ($^O eq 'MSWin32'){
-		# ���󥽡����Ǿ���
+		# コンソールを最小化
 		require Win32::Console;
 		Win32::Console->new->Title('Console of KH Coder');
 		Win32::Sleep(50);
@@ -107,7 +107,7 @@ BEGIN {
 			$ShowWindow->Call( $hw, 7 );
 		}
 		$SIG{TERM} = $SIG{QUIT} = sub{ exit; };
-		# ���ץ�å���
+		# スプラッシュ
 		#require Tk::Splash;
 		#$splash = Tk::Splash->Show(
 		#	Tk->findINC('kh_logo.bmp'),
@@ -115,15 +115,15 @@ BEGIN {
 		#	109,
 		#	'',
 		#);
-		# Tk��Invoke���ʤ��ޥ������å��ѤΥ��ץ�å���
+		# TkをInvokeしないマルチスレッド用のスプラッシュ
 		if (eval 'require Win32::GUI::SplashScreen'){
-			require Tk::Splash; # findINC�ؿ������뤿��
+			require Tk::Splash; # findINC関数を得るため
 			Win32::GUI::SplashScreen::Show(
 				-file => Tk->findINC('kh_logo.bmp'),
 				-mintime => 3,
 			);
 		}
-		# ����
+		# 設定
 		require Tk::Clipboard;
 		require Tk::Clipboard_kh;
 	} 
@@ -141,7 +141,7 @@ BEGIN {
 		}
 	}
 
-	# ������ɤ߹���
+	# 設定の読み込み
 	require kh_sysconfig;
 	$config_obj = kh_sysconfig->readin('./config/coder.ini',&cwd);
 }
@@ -159,7 +159,7 @@ use gui_window;
 print "This is KH Coder $kh_version on $^O.\n";
 print "CWD: ", $config_obj->cwd, "\n";
 
-# Windows�ǥѥå������Ѥν����
+# Windows版パッケージ用の初期化
 if (
 	   ($::config_obj->os eq 'win32')
 	&& $::config_obj->all_in_one_pack
@@ -168,7 +168,7 @@ if (
 	kh_all_in_one->init;
 }
 
-# Mac OS X�ǥѥå������Ѥν����
+# Mac OS X版パッケージ用の初期化
 if (
 	   ($^O eq 'darwin')
 	&& $::config_obj->all_in_one_pack
@@ -177,7 +177,7 @@ if (
 	kh_all_in_mac->init;
 }
 
-# R�ν����
+# Rの初期化
 use Statistics::R;
 
 no  warnings 'redefine';
@@ -219,11 +219,11 @@ if ($::config_obj->{R}){
 chdir ($::config_obj->{cwd});
 $::config_obj->R_version;
 
-# �ޥ������åɽ����ν���
+# マルチスレッド処理の準備
 use my_threads;
 my_threads->init;
 
-# GUI�γ���
+# GUIの開始
 $main_gui = gui_window::main->open;
 
 # for macOS
@@ -239,7 +239,7 @@ MainLoop;
 
 __END__
 
-# �ƥ����ѥץ��������Ȥ򳫤�
+# テスト用プロジェクトを開く
 kh_project->temp(
 	target  =>
 		'F:/home/Koichi/Study/perl/test_data/STATS_News-IT-2004/2004p.txt',
@@ -252,11 +252,11 @@ $::main_gui->close_all;
 $::main_gui->menu->refresh;
 $::main_gui->inner->refresh;
 
-# �����ͥåȥ������
+# 共起ネットワーク作成
 my $win_net = gui_window::word_netgraph->open;
 $win_net->calc;
 
-# �����ͥåȥ���Ρ�Ĵ���פ򷫤��֤�
+# 共起ネットワークの「調整」を繰り返す
 my $n = 0;
 while (1){
 	my $c = $::main_gui->get('w_word_netgraph_plot');

@@ -6,20 +6,20 @@ use Jcode;
 use mysql_outvar::read;
 
 #------------------#
-#   ¥Õ¥¡¥¤¥ë»²¾È   #
+#   ãƒ•ã‚¡ã‚¤ãƒ«å‚ç…§   #
 #------------------#
 
 sub file{
 	my $self = shift;
 
 	my @types = (
-		[ kh_msg->get('tabdelf'),[qw/.dat .txt/] ], # ¥¿¥Ö¶èÀÚ¤ê¥Õ¥¡¥¤¥ë
+		[ kh_msg->get('tabdelf'),[qw/.dat .txt/] ], # ã‚¿ãƒ–åŒºåˆ‡ã‚Šãƒ•ã‚¡ã‚¤ãƒ«
 		["All files",'*']
 	);
 
 	my $path = $self->win_obj->getOpenFile(
 		-filetypes  => \@types,
-		-title      => $self->gui_jt(kh_msg->get('open')), # ³°ÉôÊÑ¿ô¥Õ¥¡¥¤¥ë¤òÁªÂò¤·¤Æ¤¯¤À¤µ¤¤
+		-title      => $self->gui_jt(kh_msg->get('open')), # å¤–éƒ¨å¤‰æ•°ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é¸æŠã—ã¦ãã ã•ã„
 		-initialdir => $self->gui_jchar($::config_obj->cwd),
 	);
 
@@ -32,7 +32,7 @@ sub file{
 }
 
 #--------------#
-#   ÆÉ¤ß¹ş¤ß   #
+#   èª­ã¿è¾¼ã¿   #
 #--------------#
 
 sub __read{
@@ -45,17 +45,17 @@ sub __read{
 }
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 #--------------#
 
 sub file_label{
 	my $self = shift;
-	return kh_msg->get('tabdel'); # ¥¿¥Ö¶èÀÚ¤ê¥Õ¥¡¥¤¥ë
+	return kh_msg->get('tabdel'); # ã‚¿ãƒ–åŒºåˆ‡ã‚Šãƒ•ã‚¡ã‚¤ãƒ«
 }
 
 sub win_title{
 	my $self = shift;
-	return $self->gui_jt(kh_msg->get('win_title')); # ³°ÉôÊÑ¿ô¤ÎÆÉ¤ß¹ş¤ß¡§ ¥¿¥Ö¶èÀÚ¤ê
+	return $self->gui_jt(kh_msg->get('win_title')); # å¤–éƒ¨å¤‰æ•°ã®èª­ã¿è¾¼ã¿ï¼š ã‚¿ãƒ–åŒºåˆ‡ã‚Š
 }
 
 sub win_name{

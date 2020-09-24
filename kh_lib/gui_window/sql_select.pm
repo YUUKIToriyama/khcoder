@@ -13,13 +13,13 @@ use DBI;
 use Jcode;
 
 #----------------#
-#   WindowÉÁ²è   #
+#   Windowæç”»   #
 #----------------#
 
 sub _new{
 	
 #--------------#
-#   ÆþÎÏÉôÊ¬   #
+#   å…¥åŠ›éƒ¨åˆ†   #
 
 	my $self = shift;
 	my $win = $self->{win_obj};
@@ -70,7 +70,7 @@ sub _new{
 	$t->bind("Tk::Text", "<Shift-KeyRelease-Return>", sub {});
 	$t->focus;
 	
-	# ¥É¥é¥Ã¥°¡õ¥É¥í¥Ã¥×
+	# ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—
 	$t->DropSite(
 		-dropcommand => [\&Gui_DragDrop::read_TextFile_droped,$t],
 		-droptypes => ($^O eq 'MSWin32' ? 'Win32' : ['XDND', 'Sun'])
@@ -116,13 +116,13 @@ sub _new{
 	);
 
 #----------------#
-#   ·ë²ÌÉ½¼¨Éô   #
+#   çµæžœè¡¨ç¤ºéƒ¨   #
 
 #	my $plane = gui_airborne->make(
 #		parent      => $win,
 #		parent_name => $self->win_name,
 #		tower       => $lf,
-#		title       => $self->gui_jchar('SQLÊ¸¤Î¼Â¹Ô·ë²Ì'),
+#		title       => $self->gui_jchar('SQLæ–‡ã®å®Ÿè¡Œçµæžœ'),
 #	);
 
 	my $field = $lf2->Frame()->pack(-fill => 'both', -expand => 1);
@@ -168,11 +168,11 @@ sub _new{
 }
 
 #--------------#
-#   ¥¤¥Ù¥ó¥È   #
+#   ã‚¤ãƒ™ãƒ³ãƒˆ   #
 #--------------#
 
 #--------------#
-#   ¸¡º÷¼Â¹Ô   #
+#   æ¤œç´¢å®Ÿè¡Œ   #
 
 sub exec{
 	my $self = shift;
@@ -183,9 +183,9 @@ sub exec{
 	
 	my $t;
 	foreach my $i (@temp){
-		# SQL¼Â¹Ô
+		# SQLå®Ÿè¡Œ
 		my $tc = mysql_exec->select($i);
-		# ¥¨¥é¡¼¥Á¥§¥Ã¥¯
+		# ã‚¨ãƒ©ãƒ¼ãƒã‚§ãƒƒã‚¯
 		if ( $tc->err ){
 			my $msg = kh_msg->get('sql_error')."\n\n".$self->gui_jchar($tc->err);
 			my $w = $self->win_obj;
@@ -199,7 +199,7 @@ sub exec{
 		$t = $tc;
 	}
 	
-	# ½ñ¤­½Ð¤¹¤Ù¤­·ë²Ì¤¬¤¢¤ë¤«¤É¤¦¤«¤ò¥Á¥§¥Ã¥¯
+	# æ›¸ãå‡ºã™ã¹ãçµæžœãŒã‚ã‚‹ã‹ã©ã†ã‹ã‚’ãƒã‚§ãƒƒã‚¯
 	unless ($t->hundle->{'NUM_OF_FIELDS'}){
 		$self->label->configure(
 			-text, kh_msg->get('rows').'n/a'
@@ -207,8 +207,8 @@ sub exec{
 		return 1;
 	}
 	
-	# ·ë²Ì¤Î½ñ¤­½Ð¤·
-	$self->list->destroy;                                   # Æþ¤ìÊª
+	# çµæžœã®æ›¸ãå‡ºã—
+	$self->list->destroy;                                   # å…¥ã‚Œç‰©
 	$self->{list} = $self->field->Scrolled('HList',
 		-scrollbars       => 'osoe',
 		-header           => '1',
@@ -246,7 +246,7 @@ sub exec{
 		-padx => 3,
 	);
 	
-	my $row = 0;                                            # Ãæ¿È
+	my $row = 0;                                            # ä¸­èº«
 	my $max = $self->max; my $frag = 0;
 	while (my $i = $t->hundle->fetch){
 		$self->list->add($row,-at => "$row");
@@ -273,7 +273,7 @@ sub exec{
 			last;
 		}
 	}
-	if ($frag){                                             # ½ÐÎÏ¹Ô¿ô¥«¥¦¥ó¥È
+	if ($frag){                                             # å‡ºåŠ›è¡Œæ•°ã‚«ã‚¦ãƒ³ãƒˆ
 		while (my $i = $t->hundle->fetch){
 			++$row;
 		}
@@ -296,7 +296,7 @@ sub exec{
 #}
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 #--------------#
 
 sub max{

@@ -1,8 +1,8 @@
-# ¡Ö¥Æ¥­¥¹¥È¥Õ¥¡¥¤¥ë¤ÎÊÑ·Á¡×->¡ÖHTML¤«¤éCSV¤ËÊÑ´¹¡×¥³¥Ş¥ó¥É¤Î¤¿¤á¤Î¥í¥¸¥Ã¥¯
+# ã€Œãƒ†ã‚­ã‚¹ãƒˆãƒ•ã‚¡ã‚¤ãƒ«ã®å¤‰å½¢ã€->ã€ŒHTMLã‹ã‚‰CSVã«å¤‰æ›ã€ã‚³ãƒãƒ³ãƒ‰ã®ãŸã‚ã®ãƒ­ã‚¸ãƒƒã‚¯
 # Usage:
 # 	mysql_csvout->exec(
 # 		tani => h1 | h2 | h3 ...
-# 		file => '½ñ¤­½Ğ¤·¥Õ¥¡¥¤¥ë'
+# 		file => 'æ›¸ãå‡ºã—ãƒ•ã‚¡ã‚¤ãƒ«'
 # 	);
 
 package mysql_html2csv;
@@ -15,7 +15,7 @@ sub exec{
 	my $class = shift;
 	my %args  = @_;
 	
-	# Â¸ºß¤¹¤ë¸«½Ğ¤·¤Î¥Á¥§¥Ã¥¯
+	# å­˜åœ¨ã™ã‚‹è¦‹å‡ºã—ã®ãƒã‚§ãƒƒã‚¯
 	my @h = ();
 	foreach my $i ("h1", "h2", "h3", "h4", "h5"){
 		if ($args{tani} eq $i) {last;}
@@ -28,7 +28,7 @@ sub exec{
 		}
 	}
 
-	# ½ñ¤­½Ğ¤·ÍÑ¥Õ¥¡¥¤¥ë¤ò¥ª¡¼¥×¥ó
+	# æ›¸ãå‡ºã—ç”¨ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ã‚ªãƒ¼ãƒ—ãƒ³
 	use File::BOM;
 	open (CSVO,'>:encoding(utf8):via(File::BOM)', $args{file}) or 
 		gui_errormsg->open(
@@ -60,12 +60,12 @@ sub exec{
 	}
 	use kh_csv;
 	while (my $i = $hundle->fetchrow_hashref){
-		if ($i->{"$args{tani}"."_id"}){           # ËÜÊ¸¤Î¾ì¹ç
+		if ($i->{"$args{tani}"."_id"}){           # æœ¬æ–‡ã®å ´åˆ
 			# print "$i->{$the_tani},";
-			if ($i->{$the_tani} == $last){             # ·Ñ¤®Â­¤·
+			if ($i->{$the_tani} == $last){             # ç¶™ãè¶³ã—
 				$current .= $spacer if length($current);
 				$current .= $i->{rowtxt};
-			} else {                                   # ½ñ¤­½Ğ¤·¡ÊÏ¢Â³¡Ë
+			} else {                                   # æ›¸ãå‡ºã—ï¼ˆé€£ç¶šï¼‰
 				unless (length($current)){
 					$last = $i->{$the_tani};
 					$current = $i->{rowtxt};
@@ -84,8 +84,8 @@ sub exec{
 				$last = $i->{$the_tani};
 				$current = $i->{rowtxt};
 			}
-		} else {                                  # ¾å°Ì¸«½Ğ¤·¤Î¾ì¹ç
-			if ( length($current) ){                   # ½ñ¤­½Ğ¤·¡Ê¸«½Ğ¤·ÊÑ²½¡Ë
+		} else {                                  # ä¸Šä½è¦‹å‡ºã—ã®å ´åˆ
+			if ( length($current) ){                   # æ›¸ãå‡ºã—ï¼ˆè¦‹å‡ºã—å¤‰åŒ–ï¼‰
 				foreach my $g (@h){
 					print CSVO kh_csv->value_conv($head{$g}).',';
 				}
@@ -100,7 +100,7 @@ sub exec{
 			$last = 0;
 			
 			my $midashi_tani = '';
-			foreach my $g (reverse @h){                # ¸«½Ğ¤·¤ÎÊÑ¹¹
+			foreach my $g (reverse @h){                # è¦‹å‡ºã—ã®å¤‰æ›´
 				if ( $i->{"$g"."_id"} ){
 					$head{$g} = $i->{rowtxt};
 					$head{$g} =~ s#<h[1-5]>(.*)</h[1-5]>#$1#i;
@@ -119,7 +119,7 @@ sub exec{
 				}
 			}
 			
-			if ($args{tani} eq 'bun' && $i->{len} > 0) { # Ê¸Ã±°Ì¤Î¾ì¹ç¤À¤±½ñ¤­½Ğ¤·
+			if ($args{tani} eq 'bun' && $i->{len} > 0) { # æ–‡å˜ä½ã®å ´åˆã ã‘æ›¸ãå‡ºã—
 				foreach my $g (@h){
 					print CSVO kh_csv->value_conv($head{$g}).',';
 				}
@@ -130,7 +130,7 @@ sub exec{
 		}
 	}
 	
-	# ºÇ¸å¤Î¥Ç¡¼¥¿¤ò½ñ¤­½Ğ¤·
+	# æœ€å¾Œã®ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãå‡ºã—
 	if (length($current)) {
 		foreach my $g (@h){
 			print CSVO "$head{$g},";

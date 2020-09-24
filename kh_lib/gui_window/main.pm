@@ -8,27 +8,27 @@ use gui_window::main::inner;
 use Tk;
 
 #----------------------------------#
-#   ¥á¥¤¥ó¥¦¥£¥ó¥É¥¦¡¦¥¯¥é¥¹ºîÀ®   #
+#   ãƒ¡ã‚¤ãƒ³ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ»ã‚¯ãƒ©ã‚¹ä½œæˆ   #
 #----------------------------------#
 
 sub _new{
 	my $self = shift;
-	$::main_gui = $self; # ¥ê¥Õ¥¡¥ì¥ó¥¹¤Ê¤Î¤Ç¡¢°Ê¹ß¤Ï¤É¤Á¤é¤ò½ñ¤­´¹¤¨¤Æ¤â¡¢Î¾Êý½ñ¤­´¹¤ï¤ë
+	$::main_gui = $self; # ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãªã®ã§ã€ä»¥é™ã¯ã©ã¡ã‚‰ã‚’æ›¸ãæ›ãˆã¦ã‚‚ã€ä¸¡æ–¹æ›¸ãæ›ã‚ã‚‹
 
-	# Window¤Ø¤Î½ñ¤­¹þ¤ß
-	$self->make_font;                                        # ¥Õ¥©¥ó¥È½àÈ÷
-	$self->{win_obj}->title('KH Coder');                     # Window¥¿¥¤¥È¥ë
+	# Windowã¸ã®æ›¸ãè¾¼ã¿
+	$self->make_font;                                        # ãƒ•ã‚©ãƒ³ãƒˆæº–å‚™
+	$self->{win_obj}->title('KH Coder');                     # Windowã‚¿ã‚¤ãƒˆãƒ«
 	$self->{menu}  =
-		gui_window::main::menu->make(  $self->{win_obj} );   # ¥á¥Ë¥å¡¼¡õÆâÍÆ
+		gui_window::main::menu->make(  $self->{win_obj} );   # ãƒ¡ãƒ‹ãƒ¥ãƒ¼ï¼†å†…å®¹
 
 	#-----------------------#
-	#   KH Coder ³«»Ï½èÍý   #
+	#   KH Coder é–‹å§‹å‡¦ç†   #
 	#-----------------------#
 	
 	$self->menu->refresh;
 	$self->inner->refresh;
 
-	# ¥¹¥×¥é¥Ã¥·¥åWindow¤òÊÄ¤¸¤ë
+	# ã‚¹ãƒ—ãƒ©ãƒƒã‚·ãƒ¥Windowã‚’é–‰ã˜ã‚‹
 	if ($::config_obj->os eq 'win32'){
 		$::splash->Destroy if $::splash;
 		$self->{win_obj}->focus;
@@ -41,11 +41,11 @@ sub start{
 	
 	my $self = shift;
 	
-	# Windows¤Ç¤Ï¤³¤³¤Çicon¤ò¥»¥Ã¥È¤·¤Ê¤¤¤È¥Õ¥©¡¼¥«¥¹¤¬Íè¤Ê¤«¤Ã¤¿¡©
+	# Windowsã§ã¯ã“ã“ã§iconã‚’ã‚»ãƒƒãƒˆã—ãªã„ã¨ãƒ•ã‚©ãƒ¼ã‚«ã‚¹ãŒæ¥ãªã‹ã£ãŸï¼Ÿ
 	# $self->position_icon(no_geometry => 1);
 	$self->position_icon();
 	$self->inner->refresh;
-	# ¥á¥¤¥ó²èÌÌ¤À¤±¤ÏESC¥­¡¼¤ÇÊÄ¤¸¤Ê¤¤
+	# ãƒ¡ã‚¤ãƒ³ç”»é¢ã ã‘ã¯ESCã‚­ãƒ¼ã§é–‰ã˜ãªã„
 	$self->win_obj->bind(
 		'<Key-Escape>',
 		sub{ return 1; }
@@ -53,7 +53,7 @@ sub start{
 }
 
 #------------------#
-#   ¥Õ¥©¥ó¥ÈÀßÄê   #
+#   ãƒ•ã‚©ãƒ³ãƒˆè¨­å®š   #
 #------------------#
 
 sub make_font{
@@ -82,7 +82,7 @@ sub remove_font{
 }
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 #--------------#
 
 sub mw{
@@ -102,7 +102,7 @@ sub win_name{
 	return 'main_window';
 }
 #----------------------#
-#   Â¾¤ÎWindow¤Î´ÉÍý   #
+#   ä»–ã®Windowã®ç®¡ç†   #
 #----------------------#
 sub if_opened{
 	my $self        = shift;
@@ -132,17 +132,17 @@ sub opened{
 	my $window      = shift;
 	
 	$self->{$window_name} = $window;
-	#$::main_gui = $self; # ¥ê¥Õ¥¡¥ì¥ó¥¹¤Ê¤Î¤Ç¼«Æ°Åª¤Ë¹¹¿·¤µ¤ì¤ë
+	#$::main_gui = $self; # ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãªã®ã§è‡ªå‹•çš„ã«æ›´æ–°ã•ã‚Œã‚‹
 }
 sub closed{
 	my $self        = shift;
 	my $window_name = shift;
 	
 	undef $self->{$window_name};
-	#$::main_gui = $self; # ¥ê¥Õ¥¡¥ì¥ó¥¹¤Ê¤Î¤Ç¼«Æ°Åª¤Ë¹¹¿·¤µ¤ì¤ë
+	#$::main_gui = $self; # ãƒªãƒ•ã‚¡ãƒ¬ãƒ³ã‚¹ãªã®ã§è‡ªå‹•çš„ã«æ›´æ–°ã•ã‚Œã‚‹
 }
 
-# ¥×¥í¥°¥é¥àÁ´ÂÎ¤Î½ªÎ»½èÍý
+# ãƒ—ãƒ­ã‚°ãƒ©ãƒ å…¨ä½“ã®çµ‚äº†å‡¦ç†
 sub close{
 	my $self        = shift;
 	$self->close_all;

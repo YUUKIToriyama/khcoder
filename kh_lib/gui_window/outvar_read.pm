@@ -9,7 +9,7 @@ use gui_window::outvar_read::tab;
 use gui_window::outvar_read::csv;
 
 #---------------------#
-#   Window ¥ª¡¼¥×¥ó   #
+#   Window ã‚ªãƒ¼ãƒ—ãƒ³   #
 #---------------------#
 
 sub _new{
@@ -26,7 +26,7 @@ sub _new{
 		-borderwidth => 2,
 	)->pack(-fill=>'x');
 
-	# ¥Õ¥¡¥¤¥ëÌ¾»ØÄê¤Î¥Õ¥ì¡¼¥à
+	# ãƒ•ã‚¡ã‚¤ãƒ«åæŒ‡å®šã®ãƒ•ãƒ¬ãƒ¼ãƒ 
 	my $fra4e = $fra4->Frame()->pack(-expand => 'y', -fill => 'x',-pady => 3);
 	
 	$fra4e->Label(
@@ -35,7 +35,7 @@ sub _new{
 	)->pack(-side => 'left');
 	
 	$fra4e->Button(
-		-text    => kh_msg->gget('browse'), # »²¾È
+		-text    => kh_msg->gget('browse'), # å‚ç…§
 		-font    => "TKFN",
 		-command => sub { $self->file; },
 	)->pack(-side => 'left');
@@ -52,11 +52,11 @@ sub _new{
 	);
 	
 
-	# ÆÉ¤ß¹þ¤ßÃ±°Ì¤Î»ØÄê
+	# èª­ã¿è¾¼ã¿å˜ä½ã®æŒ‡å®š
 	my $fra4f = $fra4->Frame()->pack(-expand => 'y', -fill => 'x', -pady =>3);
 	
 	$fra4f->Label(
-		-text => kh_msg->get('unit'), # ÆÉ¤ß¹þ¤ßÃ±°Ì¡§
+		-text => kh_msg->get('unit'), # èª­ã¿è¾¼ã¿å˜ä½ï¼š
 		-font => "TKFN"
 	)->pack(-anchor => 'w', -side => 'left');
 
@@ -71,7 +71,7 @@ sub _new{
 	);
 
 	$wmw->Button(
-		-text => kh_msg->gget('cancel'), # ¥­¥ã¥ó¥»¥ë
+		-text => kh_msg->gget('cancel'), # ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		-font => "TKFN",
 		-width => 8,
 		-command => sub{$self->close;}
@@ -91,35 +91,35 @@ sub _new{
 }
 
 #--------------#
-#   ÆÉ¤ß¹þ¤ß   #
+#   èª­ã¿è¾¼ã¿   #
 #--------------#
 
 sub _read{
 	my $self = shift;
 
-	# ÆþÎÏ¥Á¥§¥Ã¥¯
+	# å…¥åŠ›ãƒã‚§ãƒƒã‚¯
 	unless (-e $::config_obj->os_path( $self->gui_jg( $self->{entry}->get ) ) ){
 		gui_errormsg->open(
 			type   => 'msg',
-			msg    => kh_msg->get('no_such_file'), # ¥Õ¥¡¥¤¥ë¤òÀµ¤·¤¯»ØÄê¤·¤Æ²¼¤µ¤¤¡£
+			msg    => kh_msg->get('no_such_file'), # ãƒ•ã‚¡ã‚¤ãƒ«ã‚’æ­£ã—ãæŒ‡å®šã—ã¦ä¸‹ã•ã„ã€‚
 			window => \$self->{win_obj},
 		);
 		return 0;
 	}
 
-	# ÆÉ¤ß¹þ¤ß¤Î¼Â¹Ô
+	# èª­ã¿è¾¼ã¿ã®å®Ÿè¡Œ
 	$self->__read or return 0;
 
-	# °Ê²¼¤Ï´°Î»½èÍý
+	# ä»¥ä¸‹ã¯å®Œäº†å‡¦ç†
 	
-	# ÊÑ¿ô¥ê¥¹¥ÈWindow¤ò¥ª¡¼¥×¥ó
+	# å¤‰æ•°ãƒªã‚¹ãƒˆWindowã‚’ã‚ªãƒ¼ãƒ—ãƒ³
 	$self->close;
 	$::main_gui->close_all;
 	
 	my $list = gui_window::outvar_list->open;
 	$list->_fill;
 	
-	# ¡Ö¥³¡¼¥Ç¥£¥ó¥°¡¦³°ÉôÊÑ¿ô¤È¤Î¥¯¥í¥¹½¸·×¡×Window¤¬³«¤¤¤Æ¤¤¤¿¾ì¹ç
+	# ã€Œã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ»å¤–éƒ¨å¤‰æ•°ã¨ã®ã‚¯ãƒ­ã‚¹é›†è¨ˆã€WindowãŒé–‹ã„ã¦ã„ãŸå ´åˆ
 	if ( $::main_gui->if_opened('w_cod_outtab') ){
 		$::main_gui->get('w_cod_outtab')->fill;
 	}

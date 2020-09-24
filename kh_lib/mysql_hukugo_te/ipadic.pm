@@ -48,7 +48,7 @@ sub _run_from_morpho{
 		chomp;
 		my $text = katakana_h2z($_);
 		$text =~ s/ /　/go;
-		$text =~ s/\\/￥/go;
+		$text =~ s/\\/¥/go;
 		$text =~ s/'/’/go;
 		$text =~ s/"/”/go;
 		print MARKED "$text\n";

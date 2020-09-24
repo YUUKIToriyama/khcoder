@@ -9,14 +9,14 @@ sub _save{
 	unless (-e $self->cfile){
 		my $win = $self->win_obj;
 		gui_errormsg->open(
-			msg => kh_msg->get('gui_window::cod_count->error_cod_f'), #"¥³¡¼¥Ç¥£¥ó¥°¥ë¡¼¥ë¡¦¥Õ¥¡¥¤¥ë¤¬ÁªÂò¤µ¤ì¤Æ¤¤¤Ş¤»¤ó¡£",
+			msg => kh_msg->get('gui_window::cod_count->error_cod_f'), #"ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ«ãƒ¼ãƒ«ãƒ»ãƒ•ã‚¡ã‚¤ãƒ«ãŒé¸æŠã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚",
 			window => \$win,
 			type => 'msg',
 		);
 		return;
 	}
 	
-	# ÊİÂ¸Àè¤Î»²¾È
+	# ä¿å­˜å…ˆã®å‚ç…§
 	my @types = (
 		[ "csv file",[qw/.csv/] ],
 		["All files",'*']
@@ -25,11 +25,11 @@ sub _save{
 		-defaultextension => '.csv',
 		-filetypes        => \@types,
 		-title            =>
-			$self->gui_jt(kh_msg->get('save_as')), # ¥³¡¼¥Ç¥£¥ó¥°·ë²Ì¡ÊCSV¡Ë¡§Ì¾Á°¤òÉÕ¤±¤ÆÊİÂ¸
+			$self->gui_jt(kh_msg->get('save_as')), # ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°çµæœï¼ˆCSVï¼‰ï¼šåå‰ã‚’ä»˜ã‘ã¦ä¿å­˜
 		-initialdir       => $self->gui_jchar($::config_obj->cwd)
 	);
 	
-	# ÊİÂ¸¤ò¼Â¹Ô
+	# ä¿å­˜ã‚’å®Ÿè¡Œ
 	if ($path){
 		$path = gui_window->gui_jg_filename_win98($path);
 		$path = gui_window->gui_jg($path);
@@ -45,7 +45,7 @@ sub _save{
 }
 
 sub win_label{
-	return kh_msg->get('win_title'); # ¥³¡¼¥Ç¥£¥ó¥°·ë²Ì¤Î½ĞÎÏ¡§CSV¥Õ¥¡¥¤¥ë
+	return kh_msg->get('win_title'); # ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°çµæœã®å‡ºåŠ›ï¼šCSVãƒ•ã‚¡ã‚¤ãƒ«
 }
 
 sub win_name{

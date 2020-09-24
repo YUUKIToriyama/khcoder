@@ -11,7 +11,7 @@ sub _new{
 	my $self = shift;
 	my $mw = $::main_gui->mw;
 	my $win= $self->{win_obj};
-	$win->title($self->gui_jt( kh_msg->get('win_title') )); # '½Ğ¸½²ó¿ô¤ÈÊ¸½ñ¿ô'
+	$win->title($self->gui_jt( kh_msg->get('win_title') )); # 'å‡ºç¾å›æ•°ã¨æ–‡æ›¸æ•°'
 
 	$self->{img} = $win->Photo();
 
@@ -30,7 +30,7 @@ sub _new{
 	);
 
 	$f1->Label(
-		-text => kh_msg->get('units'), #$self->gui_jchar('½¸·×Ã±°Ì¡§'),
+		-text => kh_msg->get('units'), #$self->gui_jchar('é›†è¨ˆå˜ä½ï¼š'),
 		-font => "TKFN"
 	)->pack(-anchor => 'e', -side => 'left');
 	my %pack = (-side => 'left');
@@ -41,7 +41,7 @@ sub _new{
 	);
 
 	$f1->Label(
-		-text => kh_msg->get('log'), #$self->gui_jchar('  ÂĞ¿ô¼´¤Î»ÈÍÑ¡§'),
+		-text => kh_msg->get('log'), #$self->gui_jchar('  å¯¾æ•°è»¸ã®ä½¿ç”¨ï¼š'),
 		-font => "TKFN"
 	)->pack(-anchor => 'e', -side => 'left');
 	
@@ -53,9 +53,9 @@ sub _new{
 				[kh_msg->get('x')  => 1],
 				[kh_msg->get('xy') => 2],
 				[kh_msg->get('none') => 0],
-				#[$self->gui_jchar('½Ğ¸½²ó¿ô(X)')  => 1],
-				#[$self->gui_jchar('½Ğ¸½²ó¿ô(X)¤ÈÊ¸½ñ¿ô(Y)') => 2],
-				#[$self->gui_jchar('¤Ê¤·') => 0],
+				#[$self->gui_jchar('å‡ºç¾å›æ•°(X)')  => 1],
+				#[$self->gui_jchar('å‡ºç¾å›æ•°(X)ã¨æ–‡æ›¸æ•°(Y)') => 2],
+				#[$self->gui_jchar('ãªã—') => 0],
 			],
 		variable => \$self->{ax},
 		command  => sub {$self->renew;},
@@ -73,7 +73,7 @@ sub _new{
 
 
 	#$win->Button(
-	#	-text => $self->gui_jchar('ÊÄ¤¸¤ë'),
+	#	-text => $self->gui_jchar('é–‰ã˜ã‚‹'),
 	#	-font => "TKFN",
 	#	-width => 8,
 	#	-borderwidth => '1',
@@ -86,7 +86,7 @@ sub _new{
 }
 
 #----------------#
-#   ¥°¥é¥ÕºîÀ®   #
+#   ã‚°ãƒ©ãƒ•ä½œæˆ   #
 
 sub count{
 	my $self = shift;
@@ -192,7 +192,7 @@ sub end{
 sub save{
 	my $self = shift;
 
-	# ÊİÂ¸Àè¤Î»²¾È
+	# ä¿å­˜å…ˆã®å‚ç…§
 	my @types = (
 		[ "Encapsulated PostScript",[qw/.eps/] ],
 		[ "PDF",[qw/.pdf/] ],
@@ -221,7 +221,7 @@ sub save{
 }
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 
 
 sub win_name{

@@ -1,4 +1,4 @@
-# ��Υե졼���ˤ�����
+# 語のフレーズによる指定
 
 package kh_cod::a_code::atom::near;
 use base qw(kh_cod::a_code::atom);
@@ -15,7 +15,7 @@ sub reset{
 }
 
 #-----------------#
-#   SQLʸ�ν���   #
+#   SQL文の準備   #
 #-----------------#
 
 my %sql_join = (
@@ -80,7 +80,7 @@ my %sql_group = (
 my $dn;
 
 #--------------------#
-#   WHERE����SQLʸ   #
+#   WHERE節用SQL文   #
 #--------------------#
 
 sub expr{
@@ -98,7 +98,7 @@ sub idf{
 	my $self = shift;
 	return 0 unless $self->tables;
 	
-	# ��ʸ����μ������ݻ�
+	# 全文書数の取得・保持
 	unless (
 		($dn->{$self->{tani}}) && ($dn->{check} eq $::project_obj->file_target)
 	){
@@ -108,7 +108,7 @@ sub idf{
 		$dn->{check} = $::project_obj->file_target;
 	}
 	
-	# �׻�
+	# 計算
 	my $df;
 	$df = mysql_exec->select(
 		"SELECT COUNT(*) FROM $self->{tables}[0]",1
@@ -119,7 +119,7 @@ sub idf{
 }
 
 #----------------------#
-#   �����ǥ��󥰽���   #
+#   コーディング準備   #
 #----------------------#
 
 sub ready{
@@ -127,14 +127,14 @@ sub ready{
 	my $tani = shift;
 	$self->{tani} = $tani;
 	
-	# �롼�����β��
+	# ルール指定の解釈
 	my @wlist;
 	my $max_dist = 10;
 	my $option   = '';
-	if ($self->raw =~ /^near\((.+)\)$/o){                   # �ǥե����
+	if ($self->raw =~ /^near\((.+)\)$/o){                   # デフォルト
 		@wlist = split /\-/, $1;
 	}
-	elsif ( $self->raw =~ /^near\((.+)\)\[(.+)\]$/o ){      # ���ץ����
+	elsif ( $self->raw =~ /^near\((.+)\)\[(.+)\]$/o ){      # オプション
 		@wlist = split /\-/, $1;
 		if ($2 =~ /^([0-9]+)$/){
 			$max_dist = $1;
@@ -163,7 +163,7 @@ sub ready{
 		}
 	}
 	
-	# ��ñ��νи�ʸ��ꥹ�Ȥ����
+	# 各単語の出現文書リストを作製
 	my (%w2tab, %w2hyoso, @hyosos, %hyoso2w);
 	foreach my $i (@wlist){
 		my $list = mysql_a_word->new(
@@ -208,7 +208,7 @@ sub ready{
 		}
 	}
 	
-	# �ơ��֥�̾����ȥ���å���Υ����å�
+	# テーブル名決定とキャッシュのチェック
 	my @c_c = kh_cod::a_code->cache_check(
 		tani => $tani,
 		kind => 'near',
@@ -226,7 +226,7 @@ sub ready{
 		print "\n" if $debug;
 	}
 
-	# AND�����ˤ��ʤ����
+	# AND検索による絞り込み
 	mysql_exec->drop_table("ct_tmp_near");
 	mysql_exec->do("
 		CREATE TEMPORARY TABLE ct_tmp_near (id int) TYPE=HEAP
@@ -257,7 +257,7 @@ sub ready{
 	$sql .= ")";
 	mysql_exec->do("$sql",1);
 
-	# �᤯�˽и����Ƥ��뤫�ɤ���������å�:  1. �ǡ����μ��Ф�
+	# 近くに出現しているかどうかをチェック:  1. データの取り出し
 	$sql  = '';
 	$sql .= "SELECT $tani.id, hyosobun.id, hyosobun.hyoso_id";
 	if ($option eq 'b'){
@@ -314,37 +314,37 @@ sub ready{
 		];
 	}
 
-	# �᤯�˽и����Ƥ��뤫�ɤ���������å�:  2. �����å��¹�
+	# 近くに出現しているかどうかをチェック:  2. チェック実行
 	my %result = ();
 	my $chk_data_rows = @chk_data - @wlist;
 	for (my $n = 0; $n <= $chk_data_rows; ++$n){
 		print "$n,$chk_data[$n]->[0],$chk_data[$n]->[1],$chk_data[$n]->[2]\n" if $debug;
 		
-		# ľ�夬Ʊ����ξ��ϥ����å��򥹥��å�
+		# 直後が同じ語の場合はチェックをスキップ
 		if ($chk_data[$n]->[2] eq $chk_data[$n+1]->[2]){
 			print "\tskip (0)\n" if $debug;
 			next;
 		}
 		
-		# ��³������å�
+		# 後続をチェック
 		my $w_count     = 0;
 		my %w_count_chk = ();
 		my $sn          = $n;
 		my $pos_hb      = $chk_data[$n]->[1];
 		my $pos_opt     = $chk_data[$n]->[3];
 		while ($chk_data[$sn]->[0] == $chk_data[$n]->[0]){
-			# Ʊ��ʸ����θ�³������å����Ƥ���
+			# 同じ文書内の後続をチェックしていく
 			print "\t$sn,$chk_data[$sn]->[0],$chk_data[$sn]->[1],$chk_data[$sn]->[2],$chk_data[$sn]->[3]\n" if $debug;
 			
-			# ��³��Υ�줹���Ƥ��������
-			if (                                                 # ���
+			# 後続が離れすぎていれば中断
+			if (                                                 # 語数
 				   ( $max_dist > 0 )
 				&& ( $chk_data[$sn]->[1] - $pos_hb > $max_dist )
 			){
 				print "\ttoo long!\n" if $debug;
 				last;
 			}
-			if (                                                 # ʸ������
+			if (                                                 # 文・段落
 				   ( length($option) > 0 )
 				&! ( $pos_opt == $chk_data[$sn]->[3] )
 			){
@@ -352,7 +352,7 @@ sub ready{
 				last;
 			}
 			
-			# ̤�����å��θ줬ͭ��Х�����ȥ��å�
+			# 未チェックの語が有ればカウントアップ
 			unless ($w_count_chk{$chk_data[$sn]->[2]}){
 				print "\tcount up!\n" if $debug;
 				$w_count_chk{$chk_data[$sn]->[2]} = 1;
@@ -368,7 +368,7 @@ sub ready{
 		}
 	}
 
-	# �᤯�˽и����Ƥ��뤫�ɤ���������å�:  3. ��̤ν񤭽Ф�
+	# 近くに出現しているかどうかをチェック:  3. 結果の書き出し
 	++$num;
 	mysql_exec->drop_table($table_cache);
 	mysql_exec->do("
@@ -387,7 +387,7 @@ sub ready{
 }
 
 #--------------#
-#   ��������   #
+#   アクセサ   #
 #--------------#
 
 sub tables{

@@ -10,7 +10,7 @@ use kh_r_plot;
 use plotR::som;
 
 #-------------#
-#   GUIºîÀ½   #
+#   GUIä½œè£½   #
 
 sub _new{
 	my $self = shift;
@@ -19,14 +19,14 @@ sub _new{
 	$win->title($self->gui_jt($self->label));
 
 	my $lf_w = $win->LabFrame(
-		-label       => kh_msg->get('u_w'), # ½¸·×Ã±°Ì¤ÈÃê½Ğ¸ì¤ÎÁªÂò
+		-label       => kh_msg->get('u_w'), # é›†è¨ˆå˜ä½ã¨æŠ½å‡ºèªã®é¸æŠ
 		-labelside   => 'acrosstop',
 		-borderwidth => 2,
 		-foreground  => 'blue',
 	)->pack(-fill => 'both', -expand => 1, -side => 'left');
 
 	my $lf = $win->LabFrame(
-		-label       => kh_msg->get('opt'), # SOM¤Î¥ª¥×¥·¥ç¥ó
+		-label       => kh_msg->get('opt'), # SOMã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 		-labelside   => 'acrosstop',
 		-borderwidth => 2,
 		-foreground  => 'blue',
@@ -34,21 +34,21 @@ sub _new{
 
 	$self->{words_obj} = gui_widget::words->open(
 		parent => $lf_w,
-		verb   => kh_msg->get('cluster'), # Ê¬Îà
+		verb   => kh_msg->get('cluster'), # åˆ†é¡
 		sampling     => 1,
 		command      => sub{
 			$self->calc;
 		},
 	);
 
-	# SOM¤Î¥ª¥×¥·¥ç¥ó
+	# SOMã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 	$self->{som_obj} = gui_widget::r_som->open(
 		parent       => $lf,
 		command      => sub{ $self->calc; },
 		pack    => { -anchor   => 'w'},
 	);
 
-	# ¥Õ¥©¥ó¥È¥µ¥¤¥º
+	# ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º
 	$self->{font_obj} = gui_widget::r_font->open(
 		parent    => $lf,
 		command   => sub{ $self->calc; },
@@ -93,7 +93,7 @@ sub start_raise{
 sub start{
 	my $self = shift;
 
-	# Window¤òÊÄ¤¸¤ëºİ¤Î¥Ğ¥¤¥ó¥É
+	# Windowã‚’é–‰ã˜ã‚‹éš›ã®ãƒã‚¤ãƒ³ãƒ‰
 	$self->win_obj->bind(
 		'<Control-Key-q>',
 		sub{ $self->withd; }
@@ -106,16 +106,16 @@ sub start{
 }
 
 #----------#
-#   ¼Â¹Ô   #
+#   å®Ÿè¡Œ   #
 
 sub calc{
 	my $self = shift;
 	
-	# ÆşÎÏ¤Î¥Á¥§¥Ã¥¯
+	# å…¥åŠ›ã®ãƒã‚§ãƒƒã‚¯
 	unless ( eval(@{$self->hinshi}) ){
 		gui_errormsg->open(
 			type => 'msg',
-			msg  => kh_msg->get('gui_window::word_corresp->select_pos'), # 'ÉÊ»ì¤¬1¤Ä¤âÁªÂò¤µ¤ì¤Æ¤¤¤Ş¤»¤ó¡£',
+			msg  => kh_msg->get('gui_window::word_corresp->select_pos'), # 'å“è©ãŒ1ã¤ã‚‚é¸æŠã•ã‚Œã¦ã„ã¾ã›ã‚“ã€‚',
 		);
 		return 0;
 	}
@@ -136,7 +136,7 @@ sub calc{
 	if ($check_num < 3){
 		gui_errormsg->open(
 			type => 'msg',
-			msg  => kh_msg->gget('select_3words'), #'¾¯¤Ê¤¯¤È¤â3¤Ä°Ê¾å¤ÎÃê½Ğ¸ì¤òÁªÂò¤·¤Æ²¼¤µ¤¤¡£',
+			msg  => kh_msg->gget('select_3words'), #'å°‘ãªãã¨ã‚‚3ã¤ä»¥ä¸Šã®æŠ½å‡ºèªã‚’é¸æŠã—ã¦ä¸‹ã•ã„ã€‚',
 		);
 		return 0;
 	}
@@ -164,7 +164,7 @@ sub calc{
 
 	my $wait_window = gui_wait->start;
 
-	# ¥Ç¡¼¥¿¤Î¼è¤ê½Ğ¤·
+	# ãƒ‡ãƒ¼ã‚¿ã®å–ã‚Šå‡ºã—
 	my $r_command = mysql_crossout::r_com->new(
 		tani   => $self->tani,
 		tani2  => $self->tani,
@@ -180,7 +180,7 @@ sub calc{
 	$r_command .= "d <- t(d)\n";
 	$r_command .= "# END: DATA\n";
 
-	# SOM¤Î¼Â¹Ô
+	# SOMã®å®Ÿè¡Œ
 	use plotR::som;
 	my $plotR = plotR::som->new(
 		$self->{som_obj}->params,
@@ -192,7 +192,7 @@ sub calc{
 		data_number    => $check_num,
 	);
 
-	# ¥×¥í¥Ã¥ÈWindow¤ò³«¤¯
+	# ãƒ—ãƒ­ãƒƒãƒˆWindowã‚’é–‹ã
 	$wait_window->end(no_dialog => 1);
 	$wait_window = undef;
 	return 0 unless $plotR;
@@ -221,11 +221,11 @@ sub calc{
 }
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 
 
 sub label{
-	return kh_msg->get('win_title'); # Ãê½Ğ¸ì¡¦¥¯¥é¥¹¥¿¡¼Ê¬ÀÏ¡§¥ª¥×¥·¥ç¥ó
+	return kh_msg->get('win_title'); # æŠ½å‡ºèªãƒ»ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼åˆ†æï¼šã‚ªãƒ—ã‚·ãƒ§ãƒ³
 }
 
 sub win_name{

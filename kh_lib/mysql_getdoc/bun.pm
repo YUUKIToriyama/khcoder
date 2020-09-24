@@ -64,7 +64,7 @@ sub get_header{
 	}
 	
 	foreach my $i (@possible){
-		if (                                      # ¥¿¥°¤¬¤¢¤ë¤«¥Á¥§¥Ã¥¯
+		if (                                      # ã‚¿ã‚°ãŒã‚ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 			mysql_exec->select(
 				"select status from status where name = \'$i\'",1
 			)->hundle->fetch->[0]

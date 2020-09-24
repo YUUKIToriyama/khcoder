@@ -25,14 +25,14 @@ sub wrap{
 	while (1){
 		my $check_t = $srtxt->get("$line.0", "$line.$wrap");
 		my $leng = length($check_t);
-		if ($leng == $wrap){                       # Ä¹¤«¤Ã¤¿¤éÀŞ¤êÊÖ¤·
+		if ($leng == $wrap){                       # é•·ã‹ã£ãŸã‚‰æŠ˜ã‚Šè¿”ã—
 			unless ( $check_t =~ /^(?: $sjis)*$/x){
 				$wrap2 = $wrap + 1;
 			} else {
 				$wrap2 = $wrap;
 			}
 			$srtxt->insert("$line.$wrap2","\n");
-		} else {                                   # Ã»¤«¤Ã¤¿¤é½ªÎ»¥Á¥§¥Ã¥¯
+		} else {                                   # çŸ­ã‹ã£ãŸã‚‰çµ‚äº†ãƒã‚§ãƒƒã‚¯
 			my $lastline = $srtxt->index('end');
 			my @temp = split /\./, $lastline;
 			$lastline = $temp[0];

@@ -890,7 +890,7 @@ sub ListBrowse {
     my $okBtn = $w->{'okBtn'};
     if (!$isDir) {
 
-	my $t_gui = $text->[0]; # Ê£¿ô¥Õ¥¡¥¤¥ëÁªÂò¤Ë¤ÏÌ¤ÂÐ±þ
+	my $t_gui = $text->[0]; # è¤‡æ•°ãƒ•ã‚¡ã‚¤ãƒ«é¸æŠžã«ã¯æœªå¯¾å¿œ
 	print "Tk::Fbox::ListBrowse: 1: $t_gui\n" if $debug_kh;
 	$t_gui = $w->_decode_filename($t_gui) unless utf8::is_utf8($t_gui);
 	print "Tk::Fbox::ListBrowse: 1: $t_gui\n" if $debug_kh;

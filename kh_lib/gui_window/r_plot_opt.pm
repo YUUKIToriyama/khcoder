@@ -36,7 +36,7 @@ sub _new{
 	$self->{labframe} = $lf;
 	$self->innner;
 
-	# ¥Õ¥©¥ó¥È¥µ¥¤¥º
+	# ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º
 	$self->{font_obj} = gui_widget::r_font->open(
 		parent       => $lf,
 		command      => sub{ $self->calc; },
@@ -50,7 +50,7 @@ sub _new{
 
 	# OK, Cancel
 	$self->{win_obj}->Button(
-		-text => kh_msg->gget('cancel'), # ¥­¥ã¥ó¥»¥ë
+		-text => kh_msg->gget('cancel'), # ã‚­ãƒ£ãƒ³ã‚»ãƒ«
 		-font => "TKFN",
 		-width => 8,
 		-command => sub{$self->close;}
@@ -69,7 +69,7 @@ sub _new{
 sub _configure_mother{
 	my $self = shift;
 
-	# ¸Æ¤Ó½Ğ¤·¸µ¤òÃµ¤·¤ÆÀßÄê
+	# å‘¼ã³å‡ºã—å…ƒã‚’æ¢ã—ã¦è¨­å®š
 	my @temp = split /\:\:/, ref $self;
 	my $name = pop @temp;
 	$name = 'gui_window::r_plot::'.$name;

@@ -61,7 +61,7 @@ sub do_predict {
   
   # Note that we're using the log(prob) here.  That's why we add instead of multiply.
 
-  # Ê¬Îà¥×¥í¥»¥¹¤ÎÊÝÂ¸ÍÑ
+  # åˆ†é¡žãƒ—ãƒ­ã‚»ã‚¹ã®ä¿å­˜ç”¨
   my $spd = $self->save_prediction_detail;
   my $kh_process if $spd;
   
@@ -71,7 +71,7 @@ sub do_predict {
     while (my ($label, $attributes) = each %{$m->{probs}}) {
       $scores{$label} += ($attributes->{$feature} || $m->{smoother}{$label})*$value;   # P($feature|$label)**$value
  
-      # Ê¬Îà¥×¥í¥»¥¹¤ÎÊÝÂ¸ÍÑ
+      # åˆ†é¡žãƒ—ãƒ­ã‚»ã‚¹ã®ä¿å­˜ç”¨
       if ($spd){
         $kh_process->{$feature}{v} = $value;
         $kh_process->{$feature}{l}{$label} = ( $attributes->{$feature} || $m->{smoother}{$label} );

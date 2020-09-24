@@ -9,7 +9,7 @@ use strict;
 use kh_dictio;
 
 #----------------#
-#   WindowÉ½¼¨   #
+#   Windowè¡¨ç¤º   #
 #----------------#
 
 sub _new{
@@ -18,7 +18,7 @@ sub _new{
 	
 	my $wmw= $self->{win_obj};
 	#$wmw->focus;
-	$wmw->title($self->gui_jt( kh_msg->get('win_title') )); # 'Ê¬ÀÏ¤Ë»ÈÍÑ¤¹¤ë¸ì¤Î¼è¼ÎÁªÂò'
+	$wmw->title($self->gui_jt( kh_msg->get('win_title') )); # 'åˆ†æžã«ä½¿ç”¨ã™ã‚‹èªžã®å–æ¨é¸æŠž'
 	
 	my $base = $wmw->Frame()->pack(-expand => '1', -fill => 'both');
 
@@ -39,7 +39,7 @@ sub _new{
 
 
 	$f_hinshi->Label(
-		-text => kh_msg->get('pos'),#$self->gui_jchar('¡¦ÉÊ»ì¤Ë¤è¤ë¸ì¤ÎÁªÂò'),
+		-text => kh_msg->get('pos'),#$self->gui_jchar('ãƒ»å“è©žã«ã‚ˆã‚‹èªžã®é¸æŠž'),
 		-font => "TKFN"
 	)->pack(-anchor=>'w');
 	my $hlist = $f_hinshi->Scrolled(
@@ -56,11 +56,11 @@ sub _new{
 	)->pack(-expand => '1', -fill => 'both');
 
 	$f_mark->Label(
-		-text => kh_msg->get('force_pick'),#$self->gui_jchar('¡¦¶¯À©Ãê½Ð¤¹¤ë¸ì¤Î»ØÄê'),
+		-text => kh_msg->get('force_pick'),#$self->gui_jchar('ãƒ»å¼·åˆ¶æŠ½å‡ºã™ã‚‹èªžã®æŒ‡å®š'),
 		-font => "TKFN"
 	)->pack(-anchor=>'w');
 	$f_mark->Label(
-		-text => kh_msg->get('one_line1'),#$self->gui_jchar('¡¡¡ÊÊ£¿ô¤Î¾ì¹ç¤Ï²þ¹Ô¤Ç¶èÀÚ¤ë¡Ë'),
+		-text => kh_msg->get('one_line1'),#$self->gui_jchar('ã€€ï¼ˆè¤‡æ•°ã®å ´åˆã¯æ”¹è¡Œã§åŒºåˆ‡ã‚‹ï¼‰'),
 		-font => "TKFN"
 	)->pack(-anchor=>'w');
 	my $t1 = $f_mark->Scrolled(
@@ -73,7 +73,7 @@ sub _new{
 		-font       => "TKFN",
 	)->pack(-expand => 1, -fill => 'both');
 
-	# ¥Õ¥¡¥¤¥ë¤«¤é¤ÎÆÉ¤ß¹þ¤ß
+	# ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã®èª­ã¿è¾¼ã¿
 	$self->{ff_mark_check} = $f_mark->Checkbutton(
 			-text     => kh_msg->get('use_file'),
 			-variable => \$self->{ff_mark_check_v},
@@ -102,11 +102,11 @@ sub _new{
 	gui_window->disabled_entry_configure($self->{ff_mark_entry});
 
 	$f_stop->Label(
-		-text => kh_msg->get('force_ignore'),#$self->gui_jchar('¡¦»ÈÍÑ¤·¤Ê¤¤¸ì¤Î»ØÄê'),
+		-text => kh_msg->get('force_ignore'),#$self->gui_jchar('ãƒ»ä½¿ç”¨ã—ãªã„èªžã®æŒ‡å®š'),
 		-font => "TKFN"
 	)->pack(-anchor=>'w');
 	$f_stop->Label(
-		-text => kh_msg->get('one_line2'),#$self->gui_jchar('¡¡¡ÊÊ£¿ô¤Î¾ì¹ç¤Ï²þ¹Ô¤Ç¶èÀÚ¤ë¡Ë'),
+		-text => kh_msg->get('one_line2'),#$self->gui_jchar('ã€€ï¼ˆè¤‡æ•°ã®å ´åˆã¯æ”¹è¡Œã§åŒºåˆ‡ã‚‹ï¼‰'),
 		-font => "TKFN"
 	)->pack(-anchor=>'w');
 	my $t2 = $f_stop->Scrolled(
@@ -119,7 +119,7 @@ sub _new{
 		-background => 'white'
 	)->pack(-expand => 1, -fill => 'both');
 
-	# ¥Õ¥¡¥¤¥ë¤«¤é¤ÎÆÉ¤ß¹þ¤ß
+	# ãƒ•ã‚¡ã‚¤ãƒ«ã‹ã‚‰ã®èª­ã¿è¾¼ã¿
 	$self->{ff_stop_check} = $f_stop->Checkbutton(
 			-text     => kh_msg->get('use_file'),
 			-variable => \$self->{ff_stop_check_v},
@@ -148,13 +148,13 @@ sub _new{
 	gui_window->disabled_entry_configure($self->{ff_stop_entry});
 
 
-	# Ê¸»ú²½¤±²óÈò¥Ð¥¤¥ó¥É
+	# æ–‡å­—åŒ–ã‘å›žé¿ãƒã‚¤ãƒ³ãƒ‰
 	#$t1->bind("<Key>",[\&gui_jchar::check_key,Ev('K'),\$t1]);
 	#$t1->bind("<Button-1>",[\&gui_jchar::check_mouse,\$t1]);
 	#$t2->bind("<Key>",[\&gui_jchar::check_key,Ev('K'),\$t2]);
 	#$t2->bind("<Button-1>",[\&gui_jchar::check_mouse,\$t2]);
 
-	# ¥É¥é¥Ã¥°¡õ¥É¥í¥Ã¥×
+	# ãƒ‰ãƒ©ãƒƒã‚°ï¼†ãƒ‰ãƒ­ãƒƒãƒ—
 	$t1->DropSite(
 		-dropcommand => [\&Gui_DragDrop::read_TextFile_droped,$t1],
 		-droptypes => ($^O eq 'MSWin32' ? 'Win32' : ['XDND', 'Sun'])
@@ -170,13 +170,13 @@ sub _new{
 	#SCREEN Plugin
 	
 	$wmw->Label(
-		-text => kh_msg->get('note1'),#$self->gui_jchar("(*) ¡Ö¶¯À©Ãê½Ð¤¹¤ë¸ì¡×¤Î»ØÄê¤Ï¡¢ºÆÅÙ\n¡¡¡¡Á°½èÍý¤ò¹Ô¤¦¤Þ¤ÇÈ¿±Ç¤µ¤ì¤Þ¤»¤ó¡£"),
+		-text => kh_msg->get('note1'),#$self->gui_jchar("(*) ã€Œå¼·åˆ¶æŠ½å‡ºã™ã‚‹èªžã€ã®æŒ‡å®šã¯ã€å†åº¦\nã€€ã€€å‰å‡¦ç†ã‚’è¡Œã†ã¾ã§åæ˜ ã•ã‚Œã¾ã›ã‚“ã€‚"),
 		-font => 'TKFN',
 		-justify => 'left',
 	)->pack(-anchor => 'w', -side => 'left');
 
 	$wmw->Button(
-		-text => kh_msg->gget('cancel'),#$self->gui_jchar('¥­¥ã¥ó¥»¥ë'),
+		-text => kh_msg->gget('cancel'),#$self->gui_jchar('ã‚­ãƒ£ãƒ³ã‚»ãƒ«'),
 		-font => 'TKFN',
 		-width => 8,
 		-command => sub{$self->close;}
@@ -299,14 +299,14 @@ sub ff_stop_browse{
 
 
 #---------------------------------------#
-#   ¸½ºß¤ÎÀßÄêÆâÍÆ¤òWindown¤Ë½ñ¤­¹þ¤ß   #
+#   ç¾åœ¨ã®è¨­å®šå†…å®¹ã‚’Windownã«æ›¸ãè¾¼ã¿   #
 #---------------------------------------#
 
 sub _fill_in{
 	my $self = shift;
 	$self->{config} = kh_dictio->readin;
 
-	# ÉÊ»ì¥ê¥¹¥È
+	# å“è©žãƒªã‚¹ãƒˆ
 	my $row = 0;
 	my @selection;
 	my $right = $self->hlist->ItemStyle('window',-anchor => 'w');
@@ -337,7 +337,7 @@ sub _fill_in{
 	}
 
 
-	# ¶¯À©Ãê½Ð
+	# å¼·åˆ¶æŠ½å‡º
 	if ($self->config->words_mk){
 		foreach my $i (@{$self->config->words_mk}){
 #			print "$i\n";
@@ -346,7 +346,7 @@ sub _fill_in{
 			$self->t1->insert('end',"$t\n");
 		}
 	}
-	# »ÈÍÑ¤·¤Ê¤¤¸ì
+	# ä½¿ç”¨ã—ãªã„èªž
 	if ($self->config->words_st){
 		foreach my $i (@{$self->config->words_st}){
 			next unless length($i);
@@ -355,7 +355,7 @@ sub _fill_in{
 		}
 	}
 
-	# ¶¯À©Ãê½Ð¡¦¥Õ¥¡¥¤¥ë
+	# å¼·åˆ¶æŠ½å‡ºãƒ»ãƒ•ã‚¡ã‚¤ãƒ«
 	if ($self->config->words_mk_file_chk){
 		$self->{ff_mark_check_v} = 1;
 		$self->{ff_mark_entry}->insert(
@@ -363,7 +363,7 @@ sub _fill_in{
 		);
 	}
 
-	# »ÈÍÑ¤·¤Ê¤¤¸ì¡¦¥Õ¥¡¥¤¥ë
+	# ä½¿ç”¨ã—ãªã„èªžãƒ»ãƒ•ã‚¡ã‚¤ãƒ«
 	if ($self->config->words_st_file_chk){
 		$self->{ff_stop_check_v} = 1;
 		$self->{ff_stop_entry}->insert(
@@ -380,12 +380,12 @@ sub unselect{
 }
 
 #----------------------#
-#   ÀßÄê¤òÊÝÂ¸¡¦Å¬ÍÑ   #
+#   è¨­å®šã‚’ä¿å­˜ãƒ»é©ç”¨   #
 #----------------------#
 sub save{
 	my $self = shift;
 
-	# ¶¯À©Ãê½Ð
+	# å¼·åˆ¶æŠ½å‡º
 	my @mark; my %check;
 	my $t = $self->t1->get("1.0","end");
 	$t =~ s/\x0D\x0A|\x0D|\x0A/\n/g;
@@ -421,9 +421,9 @@ sub save{
 		$self->config->words_mk_file($file);
 	}
 
-	$self->config->words_mk(\@mark); # ¥Õ¥¡¥¤¥ëÍøÍÑ¤Î¤¢¤È¤«¤éÀßÄê
+	$self->config->words_mk(\@mark); # ãƒ•ã‚¡ã‚¤ãƒ«åˆ©ç”¨ã®ã‚ã¨ã‹ã‚‰è¨­å®š
 
-	# »ÈÍÑ¤·¤Ê¤¤¸ì
+	# ä½¿ç”¨ã—ãªã„èªž
 	my @stop; %check = ();
 	$t = $self->t2->get("1.0","end");
 	$t =~ s/\x0D\x0A|\x0D|\x0A/\n/g;
@@ -459,9 +459,9 @@ sub save{
 		$self->config->words_st_file($file);
 	}
 
-	$self->config->words_st(\@stop); # ¥Õ¥¡¥¤¥ëÍøÍÑ¤Î¤¢¤È¤«¤éÀßÄê
+	$self->config->words_st(\@stop); # ãƒ•ã‚¡ã‚¤ãƒ«åˆ©ç”¨ã®ã‚ã¨ã‹ã‚‰è¨­å®š
 
-	# ÉÊ»ìÁªÂò
+	# å“è©žé¸æŠž
 	if ($self->config->hinshi_list){
 		my $row = 0;
 		foreach my $i (@{$self->config->hinshi_list}){
@@ -474,7 +474,7 @@ sub save{
 	$self->config->save;
 	$self->close;
 	
-	# Main Window¤ÎÉ½¼¨¤ò¹¹¿·
+	# Main Windowã®è¡¨ç¤ºã‚’æ›´æ–°
 	$::main_gui->inner->refresh;
 	
 	if ( $::main_gui->if_opened('w_doc_ass') ){
@@ -483,7 +483,7 @@ sub save{
 }
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 #--------------#
 sub config{
 	my $self = shift;

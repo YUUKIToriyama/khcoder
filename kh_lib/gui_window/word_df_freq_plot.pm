@@ -4,7 +4,7 @@ use Tk::PNG;
 use base qw(gui_window);
 
 #------------------#
-#   Window¤ò³«¤¯   #
+#   Windowã‚’é–‹ã   #
 #------------------#
 
 sub _new{
@@ -13,7 +13,7 @@ sub _new{
 	my $mw = $::main_gui->mw;
 	my $win = $self->{win_obj};
 
-	$win->title($self->gui_jt( kh_msg->get('win_title') )); # 'Ê¸½ñ¿ô¡§Ê¬ÉÛ¡§¥×¥í¥Ã¥È'
+	$win->title($self->gui_jt( kh_msg->get('win_title') )); # 'æ–‡æ›¸æ•°ï¼šåˆ†å¸ƒï¼šãƒ—ãƒ­ãƒƒãƒˆ'
 
 	$self->{img} = $win->Photo(-file => $args{images}->[1]->path);
 	
@@ -26,7 +26,7 @@ sub _new{
 	my $f1 = $win->Frame()->pack(-expand => 'y', -fill => 'x', -pady => 2);
 
 	$f1->Label(
-		-text => kh_msg->get('log'), #$self->gui_jchar(' ÂĞ¿ô¼´¤Î»ÈÍÑ¡§'),
+		-text => kh_msg->get('log'), #$self->gui_jchar(' å¯¾æ•°è»¸ã®ä½¿ç”¨ï¼š'),
 		-font => "TKFN"
 	)->pack(-anchor => 'e', -side => 'left');
 	
@@ -84,7 +84,7 @@ sub end{
 sub save{
 	my $self = shift;
 
-	# ÊİÂ¸Àè¤Î»²¾È
+	# ä¿å­˜å…ˆã®å‚ç…§
 	my @types = (
 		[ "Encapsulated PostScript",[qw/.eps/] ],
 		[ "PDF",[qw/.pdf/] ],
@@ -113,7 +113,7 @@ sub save{
 }
 
 #--------------#
-#   WindowÌ¾   #
+#   Windowå   #
 
 sub win_name{
 	return 'w_word_df_freq_plot';

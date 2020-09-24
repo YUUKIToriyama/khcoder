@@ -4,7 +4,7 @@ use base qw(gui_window::contxt_out);
 use strict;
 
 #--------------#
-#   �����å�   #
+#   ロジック   #
 #--------------#
 
 sub go{
@@ -33,7 +33,7 @@ sub go{
 }
 
 #-----------------#
-#   ��¸��λ���  #
+#   保存先の参照  #
 
 sub file_name{
 	my $self = shift;
@@ -45,7 +45,7 @@ sub file_name{
 		-defaultextension => '.csv',
 		-filetypes        => \@types,
 		-title            =>
-			$self->gui_jt(kh_msg->get('saving')), # ����и��ʸ̮�٥��ȥ��ɽ��̾�����դ�����¸
+			$self->gui_jt(kh_msg->get('saving')), # 「抽出語ｘ文脈ベクトル」表：名前を付けて保存
 		-initialdir       => $self->gui_jchar($::config_obj->cwd),
 	);
 	unless ($path){
@@ -57,9 +57,9 @@ sub file_name{
 	return $path;
 }
 
-# Window��٥�
+# Windowラベル
 sub label{
-	return kh_msg->get('win_title'); # ����и��ʸ̮�٥��ȥ��ɽ�ν��ϡ� CSV
+	return kh_msg->get('win_title'); # 「抽出語ｘ文脈ベクトル」表の出力： CSV
 }
 
 sub win_name{

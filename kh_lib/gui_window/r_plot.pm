@@ -43,7 +43,7 @@ sub _new{
 	my $win= $self->{win_obj};
 	$win->title($self->gui_jt( $self->win_title ));
 
-	# ²èÁü¤ò¥í¡¼¥É
+	# ç”»åƒã‚’ãƒ­ãƒ¼ãƒ‰
 	$self->{ax} = 0 unless defined( $self->{ax} );
 	$self->{ax} = 0 if $self->{ax} < 0;
 	$self->{ax} = 0 unless $self->{plots}[$self->{ax}];
@@ -59,7 +59,7 @@ sub _new{
 			);
 	}
 	
-	# ²èÁü¥µ¥¤¥º¤ò¥Á¥§¥Ã¥¯
+	# ç”»åƒã‚µã‚¤ã‚ºã‚’ãƒã‚§ãƒƒã‚¯
 	$self->{img_height} = $imgs->{$self->win_name}->height;
 	$self->{img_width}  = $imgs->{$self->win_name}->width;
 	my $size = $imgs->{$self->win_name}->height;
@@ -76,7 +76,7 @@ sub _new{
 	}
 	$self->{photo_pane_height} = $size;
 
-	# ²èÁüÉ½¼¨ÍÑ¥Ú¥¤¥ó
+	# ç”»åƒè¡¨ç¤ºç”¨ãƒšã‚¤ãƒ³
 	my $fp = $win->Frame(
 		-borderwidth => 2,
 		-relief      => 'sunken',
@@ -99,7 +99,7 @@ sub _new{
 		-expand => 1,
 	);
 	
-	# Clickable¤Ë¤¹¤ë¾ì¹ç¤Ïcanvas
+	# Clickableã«ã™ã‚‹å ´åˆã¯canvas
 	if ( $self->{coord} ) {
 		$self->{canvas} = $self->{photo_pane}->Canvas(
 			-width  => $self->{img_width},
@@ -121,7 +121,7 @@ sub _new{
 		);
 		#print "image_id: $image_id\n";
 
-		# ²èÁü¤Î¥É¥é¥Ã¥°
+		# ç”»åƒã®ãƒ‰ãƒ©ãƒƒã‚°
 		( $self->{xscroll}, $self->{yscroll} ) =
 			$self->{photo_pane}->Subwidget( 'xscrollbar', 'yscrollbar' );
 		$self->{canvas}->CanvasBind(
@@ -135,7 +135,7 @@ sub _new{
 			]
 		);
 	}
-	# Clickable¤Ë¤·¤Ê¤¤¾ì¹ç¤Ïlabel
+	# Clickableã«ã—ãªã„å ´åˆã¯label
 	else {
 		$self->{photo} = $self->{photo_pane}->Label(
 			-image       => $imgs->{$self->win_name},
@@ -147,7 +147,7 @@ sub _new{
 			-fill   => 'both',
 		);
 		
-		# ²èÁü¤Î¥É¥é¥Ã¥°
+		# ç”»åƒã®ãƒ‰ãƒ©ãƒƒã‚°
 		( $self->{xscroll}, $self->{yscroll} ) =
 			$self->{photo_pane}->Subwidget( 'xscrollbar', 'yscrollbar' );
 		$self->{photo}->bind(
@@ -162,7 +162,7 @@ sub _new{
 		);
 	}
 
-	# ¥«¡¼¥½¥ë¥­¡¼¤Ë¤è¤ë¥¹¥¯¥í¡¼¥ë
+	# ã‚«ãƒ¼ã‚½ãƒ«ã‚­ãƒ¼ã«ã‚ˆã‚‹ã‚¹ã‚¯ãƒ­ãƒ¼ãƒ«
 	$self->win_obj->bind( '<Up>'    =>
 		sub {
 			$self->{photo_pane}->yview(scroll => -0.1, 'pages');
@@ -229,7 +229,7 @@ sub _new{
 	}
 
 	$self->{button_config} = $f1->Button(
-		-text => kh_msg->get('options'), # Ä´À°
+		-text => kh_msg->get('options'), # èª¿æ•´
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub {$self->open_config;},
@@ -257,7 +257,7 @@ sub _new{
 	}
 
 	$f1->Button(
-		-text => kh_msg->gget('close'), # ÊÄ¤¸¤ë
+		-text => kh_msg->gget('close'), # é–‰ã˜ã‚‹
 		-font => "TKFN",
 		-width => 8,
 		-borderwidth => '1',
@@ -267,7 +267,7 @@ sub _new{
 	)->pack(-side => 'right');
 
 	$f1->Button(
-		-text => kh_msg->gget('save'), # ÊİÂ¸
+		-text => kh_msg->gget('save'), # ä¿å­˜
 		-font => "TKFN",
 		#-width => 8,
 		-borderwidth => '1',
@@ -352,7 +352,7 @@ sub dont_close_child{
 sub end{
 	my $self = shift;
 
-	# Ä´À°Window¤òÊÄ¤¸¤ë
+	# èª¿æ•´Windowã‚’é–‰ã˜ã‚‹
 	if ( ($self->{child}) and not ($self->dont_close_child) ){
 		print "Closing child: ", ref $self->{child}, "\n";
 		if ( Exists($self->{child}->{win_obj}) ){
@@ -361,17 +361,17 @@ sub end{
 	}
 
 	#--------------------------------#
-	#   °Ê²¼¥á¥â¥ê¡¦¥ê¡¼¥¯¤ÎËÉ»ßÍÑ   #
+	#   ä»¥ä¸‹ãƒ¡ãƒ¢ãƒªãƒ»ãƒªãƒ¼ã‚¯ã®é˜²æ­¢ç”¨   #
 
-	# ¥Ğ¥ë¡¼¥ó¥Ø¥ë¥×
+	# ãƒãƒ«ãƒ¼ãƒ³ãƒ˜ãƒ«ãƒ—
 	if ( $self->{blhelp} ){
 		 $self->{blhelp}->destroy;
 	}
 
-	# R¤Î¥×¥í¥Ã¥È¡¦¥ª¥Ö¥¸¥§¥¯¥È
+	# Rã®ãƒ—ãƒ­ãƒƒãƒˆãƒ»ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 	$self->{plots} = undef;
 
-	# Image¥ª¥Ö¥¸¥§¥¯¥È¤Î¥¯¥ê¥¢
+	# Imageã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚¯ãƒªã‚¢
 	$imgs->{$self->win_name}->delete;
 	$imgs->{$self->win_name}->destroy;
 	$imgs->{$self->win_name} = undef;
@@ -384,7 +384,7 @@ sub end{
 sub save{
 	my $self = shift;
 
-	# ÊİÂ¸Àè¤Î»²¾È
+	# ä¿å­˜å…ˆã®å‚ç…§
 	my @types = (
 		[ "Encapsulated PostScript",[qw/.eps/] ],
 		[ "PNG",[qw/.png/] ],
@@ -415,7 +415,7 @@ sub save{
 		-defaultextension => '.pdf',
 		-filetypes        => \@types,
 		-title            =>
-			$self->gui_jt(kh_msg->get('saving')), # ¥×¥í¥Ã¥È¤òÊİÂ¸
+			$self->gui_jt(kh_msg->get('saving')), # ãƒ—ãƒ­ãƒƒãƒˆã‚’ä¿å­˜
 		-initialdir       => $self->gui_jchar($::config_obj->cwd)
 	);
 
@@ -467,7 +467,7 @@ sub show_kwic{
 	my $self = shift;
 	my $id = shift;
 
-	# ¥³¥ó¥³¡¼¥À¥ó¥¹¤Î¸Æ¤Ó½Ğ¤·
+	# ã‚³ãƒ³ã‚³ãƒ¼ãƒ€ãƒ³ã‚¹ã®å‘¼ã³å‡ºã—
 	my $conc = gui_window::word_conc->open;
 	$conc->entry->delete(0,'end');
 	$conc->entry4->delete(0,'end');

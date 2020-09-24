@@ -10,12 +10,12 @@ if (eval 'require Encode::EUCJPMS'){
 }
 
 my %errors = (
-	'error_m1'  => kh_msg->get('error_m1'),#'Ä¹¤¹¤®¤ë¸«½Ğ¤·¹Ô¤¬¤¢¤ê¤Ş¤¹¡Ê¼«Æ°½¤ÀµÉÔ²Ä¡Ë',
-	'error_c1'  => kh_msg->get('error_c1'),#'Ê¸»ú²½¤±¤ò´Ş¤à¹Ô¤¬¤¢¤ê¤Ş¤¹',
-	'error_c2'  => kh_msg->get('error_c2'),#'Ë¾¤Ş¤·¤¯¤Ê¤¤È¾³Ñµ­¹æ¤¬´Ş¤Ş¤ì¤Æ¤¤¤ë¹Ô¤¬¤¢¤ê¤Ş¤¹',
-	'error_n1a' => kh_msg->get('error_n1a'),#'Ä¹¤¹¤®¤ë¹Ô¤¬¤¢¤ê¤Ş¤¹',
-	'error_n1b' => kh_msg->get('error_n1b'),#'Ä¹¤¹¤®¤ë¾å¤Ë¡¢¥¹¥Ú¡¼¥¹¡¦¶çÅÀÅù¤¬Å¬Åö¤Ê°ÌÃÖ¤Ë´Ş¤Ş¤ì¤Æ¤¤¤Ê¤¤¹Ô¤¬¤¢¤ê¤Ş¤¹¡Ê¼«Æ°½¤ÀµÉÔ²Ä¡Ë',
-	'error_mn' => kh_msg->get('error_mn'),#'H1¡ÁH5¥¿¥°¤ò»È¤Ã¤¿¸«½Ğ¤·ºîÀ®¤Ë¼ºÇÔ¤·¤Æ¤¤¤ë²ÄÇ½À­¤¬¤¢¤ê¤Ş¤¹¡Ê¼«Æ°½¤ÀµÉÔ²Ä¡Ë',
+	'error_m1'  => kh_msg->get('error_m1'),#'é•·ã™ãã‚‹è¦‹å‡ºã—è¡ŒãŒã‚ã‚Šã¾ã™ï¼ˆè‡ªå‹•ä¿®æ­£ä¸å¯ï¼‰',
+	'error_c1'  => kh_msg->get('error_c1'),#'æ–‡å­—åŒ–ã‘ã‚’å«ã‚€è¡ŒãŒã‚ã‚Šã¾ã™',
+	'error_c2'  => kh_msg->get('error_c2'),#'æœ›ã¾ã—ããªã„åŠè§’è¨˜å·ãŒå«ã¾ã‚Œã¦ã„ã‚‹è¡ŒãŒã‚ã‚Šã¾ã™',
+	'error_n1a' => kh_msg->get('error_n1a'),#'é•·ã™ãã‚‹è¡ŒãŒã‚ã‚Šã¾ã™',
+	'error_n1b' => kh_msg->get('error_n1b'),#'é•·ã™ãã‚‹ä¸Šã«ã€ã‚¹ãƒšãƒ¼ã‚¹ãƒ»å¥ç‚¹ç­‰ãŒé©å½“ãªä½ç½®ã«å«ã¾ã‚Œã¦ã„ãªã„è¡ŒãŒã‚ã‚Šã¾ã™ï¼ˆè‡ªå‹•ä¿®æ­£ä¸å¯ï¼‰',
+	'error_mn' => kh_msg->get('error_mn'),#'H1ã€œH5ã‚¿ã‚°ã‚’ä½¿ã£ãŸè¦‹å‡ºã—ä½œæˆã«å¤±æ•—ã—ã¦ã„ã‚‹å¯èƒ½æ€§ãŒã‚ã‚Šã¾ã™ï¼ˆè‡ªå‹•ä¿®æ­£ä¸å¯ï¼‰',
 );
 
 sub run{
@@ -28,7 +28,7 @@ sub run{
 	}
 	bless $self, $class;
 
-	# Ê¸»ú¥³¡¼¥É¤Î¥Á¥§¥Ã¥¯
+	# æ–‡å­—ã‚³ãƒ¼ãƒ‰ã®ãƒã‚§ãƒƒã‚¯
 	my $icode = kh_jchar->check_code($self->{file_source});
 	unless (
 		   $icode eq 'sjis'
@@ -38,12 +38,12 @@ sub run{
 	) {
 		gui_errormsg->open(
 			type => 'msg',
-			msg  => kh_msg->get('error_charcode')#"Ê¬ÀÏÂĞ¾İ¥Õ¥¡¥¤¥ë¤ÎÊ¸»ú¥³¡¼¥ÉÈ½ÊÌ¤Ë¼ºÇÔ¤·¤Ş¤·¤¿¡£\n¥×¥í¥¸¥§¥¯¥ÈÊÔ½¸²èÌÌ¤ÇÊ¸»ú¥³¡¼¥É¤ò»ØÄê¤·¤Æ²¼¤µ¤¤¡£\n¥×¥í¥¸¥§¥¯¥ÈÊÔ½¸²èÌÌ¤ò³«¤¯¤Ë¤Ï¡¢¥á¥Ë¥å¡¼¤«¤é¡Ö¥×¥í¥¸¥§¥¯¥È¡×¢ª¡Ö³«¤¯¡×¢ª¡ÖÊÔ½¸¡×¤ò¥¯¥ê¥Ã¥¯¤·¤Ş¤¹¡£"
+			msg  => kh_msg->get('error_charcode')#"åˆ†æå¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«ã®æ–‡å­—ã‚³ãƒ¼ãƒ‰åˆ¤åˆ¥ã«å¤±æ•—ã—ã¾ã—ãŸã€‚\nãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆç·¨é›†ç”»é¢ã§æ–‡å­—ã‚³ãƒ¼ãƒ‰ã‚’æŒ‡å®šã—ã¦ä¸‹ã•ã„ã€‚\nãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆç·¨é›†ç”»é¢ã‚’é–‹ãã«ã¯ã€ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‹ã‚‰ã€Œãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã€â†’ã€Œé–‹ãã€â†’ã€Œç·¨é›†ã€ã‚’ã‚¯ãƒªãƒƒã‚¯ã—ã¾ã™ã€‚"
 		);
 		return 0;
 	}
 
-	# ²ş¹Ô¥³¡¼¥É¤ÎÅı°ì
+	# æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã®çµ±ä¸€
 	my $file_lines = $::project_obj->file_TempTXT;
 	my $line_count1 = 0;
 	open (SOURCE,"$self->{file_source}") or
@@ -64,7 +64,7 @@ sub run{
 	close (SOURCE);
 	close (LINES);
 	
-	# ÆâÍÆ¥Á¥§¥Ã¥¯¤Î¼Â¹Ô
+	# å†…å®¹ãƒã‚§ãƒƒã‚¯ã®å®Ÿè¡Œ
 	open (SOURCE,$file_lines) or
 		gui_errormsg->open(
 			type => 'file',
@@ -87,7 +87,7 @@ sub run{
 		my $co = '';
 		my ($t_c1, $t_c2, $t_n1a, $t_n1b);
 		
-		# ¸«½Ğ¤·¹Ô
+		# è¦‹å‡ºã—è¡Œ
 		if ($ci =~ /^<(H)([1-5])>(.*)<\/H\2>$/i){
 			if (length($ci) > 8000){
 				$self->{error_m1}{flag} = 1;
@@ -96,7 +96,7 @@ sub run{
 			( $co, $t_c1, $t_c2, $t_n1a, $t_n1b ) = &my_cleaner::exec($3);
 			$co = "<$1$2>$co</$1$2>";
 		}
-		# ÄÌ¾ï¤Î¹Ô
+		# é€šå¸¸ã®è¡Œ
 		else {
 			( $co, $t_c1, $t_c2, $t_n1a, $t_n1b ) = &my_cleaner::exec($ci);
 			if ($t_n1a and not $t_n1b){
@@ -127,7 +127,7 @@ sub run{
 	close (SOURCE);
 	unlink ($file_lines);
 	
-	# ²ş¹Ô¥³¡¼¥É¤ÎÉÔÅı°ì¤¬È¯¸«¤µ¤ì¤¿¾ì¹ç
+	# æ”¹è¡Œã‚³ãƒ¼ãƒ‰ã®ä¸çµ±ä¸€ãŒç™ºè¦‹ã•ã‚ŒãŸå ´åˆ
 	my $line_count2 = $n - 1;
 	unless  ($line_count1 == $line_count2) {
 		print "lines: $line_count1, $line_count2\n";
@@ -137,7 +137,7 @@ sub run{
 		}
 	}
 
-	# ¥ì¥İ¡¼¥È¡Ê³µÍ×¡Ë¤ÎºîÀ®
+	# ãƒ¬ãƒãƒ¼ãƒˆï¼ˆæ¦‚è¦ï¼‰ã®ä½œæˆ
 	my $if_errors = 0;
 	my $msg = '';
 	foreach my $i ('error_m1','error_n1b','error_mn','error_c1','error_c2','error_n1a'){
@@ -146,7 +146,7 @@ sub run{
 			$num = '?' unless $num;
 			$msg .= "  * $errors{$i}: $num".kh_msg->get('lines')."\n";
 			
-			# ¼«Æ°½¤Àµ¤Ç¤­¤ë¤«¤É¤¦¤«¤ÇÊ¬¤±¤ë
+			# è‡ªå‹•ä¿®æ­£ã§ãã‚‹ã‹ã©ã†ã‹ã§åˆ†ã‘ã‚‹
 			if (
 				   $i eq 'error_m1'
 				|| $i eq 'error_n1b'
@@ -159,10 +159,10 @@ sub run{
 		}
 	}
 	if ($msg){
-		$msg = kh_msg->get('errors_summary')."\n".$msg; # "Ê¬ÀÏÂĞ¾İ¥Õ¥¡¥¤¥ëÆâ¤Ë°Ê²¼¤ÎÌäÂêÅÀ¤¬È¯¸«¤µ¤ì¤Ş¤·¤¿¡ÊÍ×ÌóÉ½¼¨¡Ë¡§"
+		$msg = kh_msg->get('errors_summary')."\n".$msg; # "åˆ†æå¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«å†…ã«ä»¥ä¸‹ã®å•é¡Œç‚¹ãŒç™ºè¦‹ã•ã‚Œã¾ã—ãŸï¼ˆè¦ç´„è¡¨ç¤ºï¼‰ï¼š"
 		$self->{repo_sum} = $msg;
 	} else {
-		$msg = kh_msg->get('looks_good'); #"Ê¬ÀÏÂĞ¾İ¥Õ¥¡¥¤¥ëÆâ¤Ë´ûÃÎ¤ÎÌäÂêÅÀ¤ÏÈ¯¸«¤µ¤ì¤Ş¤»¤ó¤Ç¤·¤¿¡£\nÁ°½èÍı¤ò°ÂÁ´¤Ë¼Â¹Ô¤Ç¤­¤ë¤È¹Í¤¨¤é¤ì¤Ş¤¹¡£";
+		$msg = kh_msg->get('looks_good'); #"åˆ†æå¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«å†…ã«æ—¢çŸ¥ã®å•é¡Œç‚¹ã¯ç™ºè¦‹ã•ã‚Œã¾ã›ã‚“ã§ã—ãŸã€‚\nå‰å‡¦ç†ã‚’å®‰å…¨ã«å®Ÿè¡Œã§ãã‚‹ã¨è€ƒãˆã‚‰ã‚Œã¾ã™ã€‚";
 		gui_errormsg->open(
 			type => 'msg',
 			msg  => $msg,
@@ -172,8 +172,8 @@ sub run{
 		return 1;
 	}
 	
-	# ¥ì¥İ¡¼¥È¡Ê¾ÜºÙ¡Ë¤ÎºîÀ®
-	$msg = kh_msg->get('errors_detail')."\n";#"Ê¬ÀÏÂĞ¾İ¥Õ¥¡¥¤¥ëÆâ¤Ë°Ê²¼¤ÎÌäÂêÅÀ¤¬È¯¸«¤µ¤ì¤Ş¤·¤¿¡Ê¾ÜºÙÉ½¼¨¡Ë¡§\n";
+	# ãƒ¬ãƒãƒ¼ãƒˆï¼ˆè©³ç´°ï¼‰ã®ä½œæˆ
+	$msg = kh_msg->get('errors_detail')."\n";#"åˆ†æå¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«å†…ã«ä»¥ä¸‹ã®å•é¡Œç‚¹ãŒç™ºè¦‹ã•ã‚Œã¾ã—ãŸï¼ˆè©³ç´°è¡¨ç¤ºï¼‰ï¼š\n";
 	foreach my $i ('error_m1','error_n1b','error_mn','error_c1','error_c2','error_n1a'){
 		if ($self->{$i}{flag}){
 			my $num = @{$self->{$i}{array}};
@@ -181,7 +181,7 @@ sub run{
 			$msg .= "\n* $errors{$i}: $num".kh_msg->get('lines')."\n";
 			
 			foreach my $h (@{$self->{$i}{array}}){
-				$msg .= "l. $h->[0]\t"; # ¹ÔÈÖ¹æ
+				$msg .= "l. $h->[0]\t"; # è¡Œç•ªå·
 				my $line;
 				if (length($h->[1]) > 60 ){
 					my $n = 60;
@@ -209,7 +209,7 @@ sub run{
 }
 
 #------------------------#
-#   ¾ÜºÙ¥ì¥İ¡¼¥È¤òÊİÂ¸   #
+#   è©³ç´°ãƒ¬ãƒãƒ¼ãƒˆã‚’ä¿å­˜   #
 
 sub save{
 	my $self = shift;
@@ -231,12 +231,12 @@ sub save{
 }
 
 #--------------#
-#   ¼«Æ°½¤Àµ   #
+#   è‡ªå‹•ä¿®æ­£   #
 
 sub edit{
 	my $self = shift;
 
-	# ¥Ğ¥Ã¥¯¥¢¥Ã¥×ºîÀ®
+	# ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ä½œæˆ
 	my $file_target = $::config_obj->os_path( $::project_obj->file_target );
 	$self->{file_backup} = $::project_obj->file_backup;
 	rename($file_target, $self->{file_backup}) or
@@ -245,14 +245,14 @@ sub edit{
 			thefile => $self->{file_backup}
 		);
 
-	# ½¤Àµ¡ÊÃÖ´¹¡Ë
+	# ä¿®æ­£ï¼ˆç½®æ›ï¼‰
 	rename($self->{file_temp}, $file_target) or
 		gui_errormsg->open(
 			type => 'file',
 			thefile => $file_target
 		);
 
-	# DiffºîÀ®
+	# Diffä½œæˆ
 	if ( 0 ) {
 	#if (-s $self->{file_backup} < 50*1024*1024 ) {
 		$self->{diff} = 1;
@@ -274,13 +274,13 @@ sub edit{
 		$self->{diff} = 0;
 	}
 
-	# ¥ì¥İ¡¼¥È¡Ê¾ÜºÙ¡Ë¤ÎºÆºîÀ®
+	# ãƒ¬ãƒãƒ¼ãƒˆï¼ˆè©³ç´°ï¼‰ã®å†ä½œæˆ
 	if ($self->{auto_ng}){
-		my $msg = kh_msg->get('errors_detail')."\n";#"Ê¬ÀÏÂĞ¾İ¥Õ¥¡¥¤¥ëÆâ¤Ë°Ê²¼¤ÎÌäÂêÅÀ¤¬È¯¸«¤µ¤ì¤Ş¤·¤¿¡Ê¾ÜºÙÉ½¼¨¡Ë¡§\n";
+		my $msg = kh_msg->get('errors_detail')."\n";#"åˆ†æå¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«å†…ã«ä»¥ä¸‹ã®å•é¡Œç‚¹ãŒç™ºè¦‹ã•ã‚Œã¾ã—ãŸï¼ˆè©³ç´°è¡¨ç¤ºï¼‰ï¼š\n";
 		foreach my $i ('error_m1','error_n1b','error_mn','error_c1','error_c2','error_n1a'){
 			if ($self->{$i}{flag}){
 			
-				# ¼«Æ°½¤Àµ¤Ç¤­¤ë¤«¤É¤¦¤«¤ÇÊ¬¤±¤ë
+				# è‡ªå‹•ä¿®æ­£ã§ãã‚‹ã‹ã©ã†ã‹ã§åˆ†ã‘ã‚‹
 				if (
 					   $i eq 'error_m1'
 					|| $i eq 'error_n1b'
@@ -289,16 +289,16 @@ sub edit{
 					next;
 				}
 				
-				#unless ( $errors{$i} =~ /¼«Æ°½¤ÀµÉÔ²Ä/ ){
+				#unless ( $errors{$i} =~ /è‡ªå‹•ä¿®æ­£ä¸å¯/ ){
 				#	next;
 				#}
 				
 				my $num = @{$self->{$i}{array}};
 				$num = '?' unless $num;
-				$msg .= "\n* $errors{$i}¡§ $num".kh_msg->get('lines')."\n";
+				$msg .= "\n* $errors{$i}ï¼š $num".kh_msg->get('lines')."\n";
 				
 				foreach my $h (@{$self->{$i}{array}}){
-					$msg .= "l. $h->[0]\t"; # ¹ÔÈÖ¹æ
+					$msg .= "l. $h->[0]\t"; # è¡Œç•ªå·
 					my $line;
 					if (length($h->[1]) > 60 ){
 						my $n = 60;
@@ -321,7 +321,7 @@ sub edit{
 		$msg = Encode::decode('cp932', $msg);
 		$self->{repo_full} = $msg;
 	} else {
-		$self->{repo_full} = kh_msg->get('corrected')."\n"; #"´ûÃÎ¤ÎÌäÂêÅÀ¤Ï¤¹¤Ù¤Æ½¤Àµ¤µ¤ì¤Æ¤¤¤Ş¤¹¡£\n";
+		$self->{repo_full} = kh_msg->get('corrected')."\n"; #"æ—¢çŸ¥ã®å•é¡Œç‚¹ã¯ã™ã¹ã¦ä¿®æ­£ã•ã‚Œã¦ã„ã¾ã™ã€‚\n";
 	}
 	
 	#print "back up [0]: $self->{file_backup}\n";
@@ -329,7 +329,7 @@ sub edit{
 }
 
 #----------------------------------#
-#   ½ªÎ»½èÍı¡§°ì»ş¥Õ¥¡¥¤¥ë¤Îºï½ü   #
+#   çµ‚äº†å‡¦ç†ï¼šä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ«ã®å‰Šé™¤   #
 
 sub clean_up{
 	my $self = shift;
@@ -337,7 +337,7 @@ sub clean_up{
 }
 
 #--------------------------------------------------------------#
-#   À°·Á¡ÊÊ¸»ú²½¤±ÉôÊ¬ºï½ü¡¦È¾³Ñµ­¹æºï½ü¡¦ÀŞ¤êÊÖ¤·¡Ë¥ë¡¼¥Á¥ó   #
+#   æ•´å½¢ï¼ˆæ–‡å­—åŒ–ã‘éƒ¨åˆ†å‰Šé™¤ãƒ»åŠè§’è¨˜å·å‰Šé™¤ãƒ»æŠ˜ã‚Šè¿”ã—ï¼‰ãƒ«ãƒ¼ãƒãƒ³   #
 #--------------------------------------------------------------#
 
 package my_cleaner;
@@ -347,19 +347,19 @@ BEGIN{
 	$ascii           = '[\x00-\x7F]';
 	$twoBytes        = '[\x8E\xA1-\xFE][\xA1-\xFE]';
 	$threeBytes      = '\x8F[\xA1-\xFE][\xA1-\xFE]';
-	$ctrl            = '[[:cntrl:]]';                         # À©¸æÊ¸»ú
-	$character_undef = '(?:[\xA9-\xAF\xF5-\xFE][\xA1-\xFE]|'  # 9-15,85-94¶è
-		. '\x8E[\xE0-\xFE]|'                                     # È¾³Ñ¥«¥¿¥«¥Ê
-		. '\xA2[\xAF-\xB9\xC2-\xC9\xD1-\xDB\xEB-\xF1\xFA-\xFD]|' # 2¶è
-		. '\xA3[\xA1-\xAF\xBA-\xC0\xDB-\xE0\xFB-\xFE]|'          # 3¶è
-		. '\xA4[\xF4-\xFE]|'                                     # 4¶è
-		. '\xA5[\xF7-\xFE]|'                                     # 5¶è
-		. '\xA6[\xB9-\xC0\xD9-\xFE]|'                            # 6¶è
-		. '\xA7[\xC2-\xD0\xF2-\xFE]|'                            # 7¶è
-		. '\xA8[\xC1-\xFE]|'                                     # 8¶è
-		. '\xCF[\xD4-\xFE]|'                                     # 47¶è
-		. '\xF4[\xA7-\xFE]|'                                     # 84¶è
-		. '\x8F[\xA1-\xFE][\xA1-\xFE])';                         # 3¥Ğ¥¤¥ÈÊ¸»ú
+	$ctrl            = '[[:cntrl:]]';                         # åˆ¶å¾¡æ–‡å­—
+	$character_undef = '(?:[\xA9-\xAF\xF5-\xFE][\xA1-\xFE]|'  # 9-15,85-94åŒº
+		. '\x8E[\xE0-\xFE]|'                                     # åŠè§’ã‚«ã‚¿ã‚«ãƒŠ
+		. '\xA2[\xAF-\xB9\xC2-\xC9\xD1-\xDB\xEB-\xF1\xFA-\xFD]|' # 2åŒº
+		. '\xA3[\xA1-\xAF\xBA-\xC0\xDB-\xE0\xFB-\xFE]|'          # 3åŒº
+		. '\xA4[\xF4-\xFE]|'                                     # 4åŒº
+		. '\xA5[\xF7-\xFE]|'                                     # 5åŒº
+		. '\xA6[\xB9-\xC0\xD9-\xFE]|'                            # 6åŒº
+		. '\xA7[\xC2-\xD0\xF2-\xFE]|'                            # 7åŒº
+		. '\xA8[\xC1-\xFE]|'                                     # 8åŒº
+		. '\xCF[\xD4-\xFE]|'                                     # 47åŒº
+		. '\xF4[\xA7-\xFE]|'                                     # 84åŒº
+		. '\x8F[\xA1-\xFE][\xA1-\xFE])';                         # 3ãƒã‚¤ãƒˆæ–‡å­—
 }
 
 sub exec{
@@ -374,26 +374,26 @@ sub exec{
 	if (
 		   $::config_obj->c_or_j eq 'chasen'
 		|| $::config_obj->c_or_j eq 'mecab'
-	){                                            # chasen¡¦mecab¤ò»È¤¦¾ì¹ç
+	){                                            # chasenãƒ»mecabã‚’ä½¿ã†å ´åˆ
 		if ($t =~ /'|\\|"|<|>|$ctrl|\|/){
 			$flag_hankaku = 1;
 		}
-		# È¾³Ñµ­¹æ¤Îºï½ü
-		$t =~ s/'/¡Ç/g;
-		$t =~ s/\\/¡ï/g;
-		$t =~ s/"/¡É/g;
-		$t =~ s/\|/¡Ã/g;
-		$t =~ s/</¡ã/g;
-		$t =~ s/>/¡ä/g;
+		# åŠè§’è¨˜å·ã®å‰Šé™¤
+		$t =~ s/'/â€™/g;
+		$t =~ s/\\/Â¥/g;
+		$t =~ s/"/â€/g;
+		$t =~ s/\|/ï½œ/g;
+		$t =~ s/</ï¼œ/g;
+		$t =~ s/>/ï¼/g;
 		$t =~ s/$ctrl/ /g;
-		$t =~ s/ /¡¡/g;
-	} else {                                      # chasen¡¦mecab°Ê³°¤Î¾ì¹ç
+		$t =~ s/ /ã€€/g;
+	} else {                                      # chasenãƒ»mecabä»¥å¤–ã®å ´åˆ
 		if ($t =~ /<|>|$ctrl/){
 			$flag_hankaku = 1;
 		}
-		# È¾³Ñµ­¹æ¤Îºï½ü
-		$t =~ s/</¡ã/g;
-		$t =~ s/>/¡ä/g;
+		# åŠè§’è¨˜å·ã®å‰Šé™¤
+		$t =~ s/</ï¼œ/g;
+		$t =~ s/>/ï¼/g;
 		$t =~ s/$ctrl/ /g;
 	}
 
@@ -403,14 +403,14 @@ sub exec{
 		$flag_long = 1;
 	}
 
-	# °ìÊ¸»ú¤º¤Ä½èÍı
+	# ä¸€æ–‡å­—ãšã¤å‡¦ç†
 	my @chars = $t =~ /$ascii|$twoBytes|$threeBytes/og;
 
 	my $n = 0;
 	my $r = '';
 	my $cu = '';
 	foreach my $i (@chars){
-		# ²½¤±¤Æ¤¤¤ëÊ¸»ú¤Ï¥¹¥­¥Ã¥×¡Êµ¡¼ï°ÍÂ¸Ê¸»ú¡¦3¥Ğ¥¤¥ÈÊ¸»ú¤â¥¹¥­¥Ã¥×¡Ë
+		# åŒ–ã‘ã¦ã„ã‚‹æ–‡å­—ã¯ã‚¹ã‚­ãƒƒãƒ—ï¼ˆæ©Ÿç¨®ä¾å­˜æ–‡å­—ãƒ»3ãƒã‚¤ãƒˆæ–‡å­—ã‚‚ã‚¹ã‚­ãƒƒãƒ—ï¼‰
 		if (
 			   ($i =~ /$character_undef/o)
 			|| (
@@ -422,24 +422,24 @@ sub exec{
 			next;
 		}
 		
-		# È¾³Ñ¥«¥Ê¤Î½¤Àµ
+		# åŠè§’ã‚«ãƒŠã®ä¿®æ­£
 		if ($i =~ /(?:\x8E[\xA6-\xDF])/){ 
 			$i = Jcode->new($i,'euc')->h2z;
 			$flag_hankaku = 1;
 		}
 		
-		# ÀŞ¤êÊÖ¤·
+		# æŠ˜ã‚Šè¿”ã—
 		if (
 			( $n > 200   )
 			&& ( $flag_long )
 			&& (
 				   $i eq ' '
-				|| $i eq '¡¡'
-				|| $i eq '¡£'
+				|| $i eq 'ã€€'
+				|| $i eq 'ã€‚'
 				|| $i eq '.'
 				|| $i eq '-'
-				|| $i eq '¡İ'
-				|| $i eq '¡½'
+				|| $i eq 'âˆ’'
+				|| $i eq 'â€”'
 			)
 		){
 			$cu .= "$i\n";

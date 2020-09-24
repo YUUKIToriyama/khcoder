@@ -2,12 +2,12 @@ package mysql_a_word;
 use strict;
 use mysql_exec;
 
-# ´ğËÜ·ÁID¥ê¥¹¥È¤Î¼èÆÀ
+# åŸºæœ¬å½¢IDãƒªã‚¹ãƒˆã®å–å¾—
 sub new{
 	my $class = shift;
 	my %args = @_;
 
-	# ¡Ö¤½¤ÎÂ¾¡×ÉÊ»ìÂĞºö
+	# ã€Œãã®ä»–ã€å“è©å¯¾ç­–
 	#if ($args{genkei} =~ /\((.*)\)/){
 	#	$args{hinshi} = $1;
 	#	$args{genkei} = substr( $args{genkei}, 0, index($args{genkei},'(') );
@@ -15,7 +15,7 @@ sub new{
 	#	print Jcode->new("$args{genkei}, $args{hinshi}\n")->sjis;
 	#}
 
-	# ¥¨¥¹¥±¡¼¥×
+	# ã‚¨ã‚¹ã‚±ãƒ¼ãƒ—
 	$args{genkei} =~ s/'/\\'/go;
 
 	my $self = \%args;
@@ -52,7 +52,7 @@ sub genkei_ids{
 	return $self->{genkei_id_s};
 }
 
-# É½ÁØ¸ìID¥ê¥¹¥È¤òÊÖ¤¹
+# è¡¨å±¤èªIDãƒªã‚¹ãƒˆã‚’è¿”ã™
 sub hyoso_id_s{
 	my $self = shift;
 	

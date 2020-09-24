@@ -5,8 +5,8 @@ use Tk;
 use Jcode;
 
 my %name = (
-	"bun" => kh_msg->gget('sentence'), # Ê¸
-	"dan" => kh_msg->gget('paragraph'), # ÃÊÍî
+	"bun" => kh_msg->gget('sentence'), # æ–‡
+	"dan" => kh_msg->gget('paragraph'), # æ®µè½
 	"h5"  => "H5",
 	"h4"  => "H4",
 	"h3"  => "H3",
@@ -25,7 +25,7 @@ my %value = (
 );
 
 #----------------#
-#   WidgetºîÀ®   #
+#   Widgetä½œæˆ   #
 
 sub _new{
 	my $self = shift;
@@ -77,7 +77,7 @@ sub _new{
 			#$self->{hlist}->itemCreate(
 			#	$row,1,
 			#	-itemtype  => 'text',
-			#	-text      => gui_window->gui_jchar($name{$i}.' ¡¡'),
+			#	-text      => gui_window->gui_jchar($name{$i}.' ã€€'),
 			#);
 			$self->{hlist}->itemCreate(
 				$row,1,

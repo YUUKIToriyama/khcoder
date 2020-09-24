@@ -6,20 +6,20 @@ use Jcode;
 use mysql_outvar::read;
 
 #------------------#
-#   е╒ебедеы╗▓╛╚   #
+#   уГХуВбуВдуГлхПВчЕз   #
 #------------------#
 
 sub file{
 	my $self = shift;
 
 	my @types = (
-		[ $self->gui_jchar("CSVе╒ебедеы"),[qw/.csv/] ],
+		[ $self->gui_jchar("CSVуГХуВбуВдуГл"),[qw/.csv/] ],
 		["All files",'*']
 	);
 
 	my $path = $self->win_obj->getOpenFile(
 		-filetypes  => \@types,
-		-title      => $self->gui_jt(kh_msg->get('open')), # │░╔Ї╩╤┐Їе╒ебедеыдЄ┴к┬Єд╖д╞дпд└д╡дд
+		-title      => $self->gui_jt(kh_msg->get('open')), # хдЦщГихдЙцХ░уГХуВбуВдуГлуВТщБ╕цКЮуБЧуБжуБПуБауБХуБД
 		-initialdir => $self->gui_jchar($::config_obj->cwd),
 	);
 	
@@ -32,7 +32,7 @@ sub file{
 }
 
 #--------------#
-#   ╞╔д▀╣■д▀   #
+#   шкнуБ┐ш╛╝уБ┐   #
 #--------------#
 
 sub __read{
@@ -47,17 +47,17 @@ sub __read{
 }
 
 #--------------#
-#   евепе╗е╡   #
+#   уВвуВпуВ╗уВ╡   #
 #--------------#
 
 sub file_label{
 	my $self = shift;
-	kh_msg->get('csv'); # CSVе╒ебедеы
+	kh_msg->get('csv'); # CSVуГХуВбуВдуГл
 }
 
 sub win_title{
 	my $self = shift;
-	return $self->gui_jt(kh_msg->get('win_title')); # │░╔Ї╩╤┐Їд╬╞╔д▀╣■д▀бз CSVе╒ебедеы
+	return $self->gui_jt(kh_msg->get('win_title')); # хдЦщГихдЙцХ░уБошкнуБ┐ш╛╝уБ┐я╝Ъ CSVуГХуВбуВдуГл
 }
 
 sub win_name{

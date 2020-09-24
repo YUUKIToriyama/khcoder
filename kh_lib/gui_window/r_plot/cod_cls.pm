@@ -58,7 +58,7 @@ sub end{
 }
 
 sub win_title{
-	return kh_msg->get('win_titile') # ¥³¡¼¥Ç¥£¥ó¥°¡¦¥¯¥é¥¹¥¿¡¼Ê¬ÀÏ
+	return kh_msg->get('win_titile') # ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°ãƒ»ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼åˆ†æ
 }
 
 sub win_name{

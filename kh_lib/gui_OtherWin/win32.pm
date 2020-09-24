@@ -10,7 +10,7 @@ sub _open{
 	require Win32;
 	if ( Win32::IsWinNT() ){
 		# Win32::Process
-		unless ($cmd_path){            # cmd.exe‚ð’T‚·
+		unless ($cmd_path){            # cmd.exeã‚’æŽ¢ã™
 			if (-e $ENV{'WINDIR'}.'\system32\cmd.exe'){
 				$cmd_path = $ENV{'WINDIR'}.'\system32\cmd.exe';
 				print "cmd.exe: $cmd_path\n";
@@ -49,10 +49,10 @@ sub _open{
 			print "Could not find cmd.exe\n";
 		}
 
-		### systemŠÖ”iƒVƒ“ƒvƒ‹j
+		### systemé–¢æ•°ï¼ˆã‚·ãƒ³ãƒ—ãƒ«ï¼‰
 		#system("start \"khcoder\" \"$t\"");
 
-		### systemŠÖ”iŒÃ‚¢j
+		### systemé–¢æ•°ï¼ˆå¤ã„ï¼‰
 		#my $cmd;
 		#if ($t =~ /^http/o){
 		#	$cmd = "start /MIN cmd.exe /c start $t";
@@ -61,7 +61,7 @@ sub _open{
 		#}
 		#system $cmd;
 		
-		### IPC::Run ¨perlapp‚Æ‚Ì‘Š«~
+		### IPC::Run â†’perlappã¨ã®ç›¸æ€§Ã—
 		#if(defined(&PerlApp::extract_bound_file)){
 		#	my $path = $ENV{'PWD'}.'/'.PerlApp::extract_bound_file('perl.exe');
 		#	$path = Jcode->new($path,'sjis')->euc;

@@ -9,14 +9,14 @@ use kh_cod::search;
 use mysql_getdoc;
 
 #-------------#
-#   GUI∫Ó¿Ω   #
+#   GUI‰ΩúË£Ω   #
 #-------------#
 
 sub _new{
 	my $self = shift;
 	my $mw = $::main_gui->mw;
 	my $win = $self->{win_obj};
-	$win->title($self->gui_jt(kh_msg->get('win_title'))); #  ∏ΩÒ∏°∫˜
+	$win->title($self->gui_jt(kh_msg->get('win_title'))); # ÊñáÊõ∏Ê§úÁ¥¢
 	
 	my $lf = $win->Frame(
 		-borderwidth => 2,
@@ -41,14 +41,14 @@ sub _new{
 
 
 	#--------------------#
-	#   ∏°∫˜•™•◊•∑•Á•Û   #
+	#   Ê§úÁ¥¢„Ç™„Éó„Ç∑„Éß„É≥   #
 
 	my $left = $lf->Frame()->pack(-side => 'left', -fill => 'both', -expand => 1);
 	my $right = $lf->Frame()->pack(-side => 'right', -anchor => 'nw');
 	
-	# •≥°º•…¡™¬Ú
+	# „Ç≥„Éº„ÉâÈÅ∏Êäû
 	#$left->Label(
-	#	-text => kh_msg->get('1'), # °¶•≥°º•…¡™¬Ú
+	#	-text => kh_msg->get('1'), # „Éª„Ç≥„Éº„ÉâÈÅ∏Êäû
 	#	-font => "TKFN"
 	#)->pack(-anchor => 'w');
 	
@@ -72,7 +72,7 @@ sub _new{
 		-browsecmd        => sub{ $self->clist_check; },
 	)->pack(-anchor => 'w', -padx => '4',-pady => '2', -fill => 'both',-expand => 1);
 
-	# •≥°º•«•£•Û•∞•Î°º•Î°¶•’•°•§•Î
+	# „Ç≥„Éº„Éá„Ç£„É≥„Ç∞„É´„Éº„É´„Éª„Éï„Ç°„Ç§„É´
 	my %pack0 = (
 			-anchor => 'w',
 			-fill   => 'x',
@@ -85,10 +85,10 @@ sub _new{
 		pack     => \%pack0,
 	);
 
-	# ƒæ¿‹∆˛Œœ•’•Ï°º•‡
+	# Áõ¥Êé•ÂÖ•Âäõ„Éï„É¨„Éº„É†
 	my $f3 = $right->Frame()->pack(-fill => 'x', -pady => 6);
 	$self->{direct_w_l} = $f3->Label(
-		-text => kh_msg->get('gui_window::word_ass->direct'), # ƒæ¿‹∆˛Œœ°ß
+		-text => kh_msg->get('gui_window::word_ass->direct'), # Áõ¥Êé•ÂÖ•ÂäõÔºö
 		-font => "TKFN"
 	)->pack(-side => 'left');
 
@@ -116,12 +116,12 @@ sub _new{
 	$self->{direct_w_e}->bind("<KP_Enter>",sub{$self->search;});
 
 
-	# ≥∆ºÔ•™•◊•∑•Á•Û
+	# ÂêÑÁ®Æ„Ç™„Éó„Ç∑„Éß„É≥
 	my $f2 = $right->Frame()->pack(-fill => 'x',-pady => 2);
 
 	$self->{btn_search} = $f2->Button(
 		-font    => "TKFN",
-		-text    => kh_msg->get('run'), # ∏°∫˜
+		-text    => kh_msg->get('run'), # Ê§úÁ¥¢
 		-command => sub{$self->search;}
 	)->pack(-side => 'right',-padx => 4);
 	$win->Balloon()->attach(
@@ -140,7 +140,7 @@ sub _new{
 		pack   => \%pack
 	);
 	$self->{l_c_2} = $f2->Label(
-		-text => kh_msg->get('unit'), # ∏°∫˜√±∞Ã°ß
+		-text => kh_msg->get('unit'), # Ê§úÁ¥¢Âçò‰ΩçÔºö
 		-font => "TKFN"
 	)->pack(-anchor => 'w', -side => 'right');
 
@@ -149,8 +149,8 @@ sub _new{
 		pack    => {-pady => '1', -side => 'left'},
 		options =>
 			[
-				[kh_msg->get('gui_window::word_ass->and'), 'and'], # AND∏°∫˜
-				[kh_msg->get('gui_window::word_ass->or') , 'or'] # OR∏°∫˜
+				[kh_msg->get('gui_window::word_ass->and'), 'and'], # ANDÊ§úÁ¥¢
+				[kh_msg->get('gui_window::word_ass->or') , 'or'] # ORÊ§úÁ¥¢
 			],
 		variable => \$self->{opt_method1},
 	);
@@ -160,16 +160,16 @@ sub _new{
 		pack    => {-padx => 8, -pady => 1},
 		options =>
 			[
-				[kh_msg->get('no_sort')   , 'by'    ], # Ω–∏ΩΩÁ
-				[kh_msg->get('tf')     , 'tf'    ], # tfΩÁ
-				[kh_msg->get('tf_M_idf') , 'tf*idf'], # tf*idfΩÁ
-				[kh_msg->get('tf_D_idf') , 'tf/idf'] # tf/idfΩÁ
+				[kh_msg->get('no_sort')   , 'by'    ], # Âá∫ÁèæÈ†Ü
+				[kh_msg->get('tf')     , 'tf'    ], # tfÈ†Ü
+				[kh_msg->get('tf_M_idf') , 'tf*idf'], # tf*idfÈ†Ü
+				[kh_msg->get('tf_D_idf') , 'tf/idf'] # tf/idfÈ†Ü
 			],
 		variable => \$self->{opt_order},
 	);
 
 	#--------------#
-	#   ∏°∫˜∑Î≤Ã   #
+	#   Ê§úÁ¥¢ÁµêÊûú   #
 
 	$self->{rlist} = $rf->Scrolled(
 		'HList',
@@ -199,7 +199,7 @@ sub _new{
 
 	$self->{copy_btn} = $f5->Button(
 		-font    => "TKFN",
-		-text    => kh_msg->gget('copy'), # •≥•‘°º
+		-text    => kh_msg->gget('copy'), # „Ç≥„Éî„Éº
 		-width   => 8,
 		-command => sub{$self->copy;},
 		-borderwidth => 1
@@ -218,7 +218,7 @@ sub _new{
 	$f5->Button(
 		-font    => "TKFN",
 		-width   => 8,
-		-text    => kh_msg->get('gui_window::word_conc->viewDoc'), #  ∏ΩÒ…Ωº®
+		-text    => kh_msg->get('gui_window::word_conc->viewDoc'), # ÊñáÊõ∏Ë°®Á§∫
 		-command => sub{$self->view_doc;},
 		-borderwidth => 1
 	)->pack(-side => 'left',-padx => 2);
@@ -255,7 +255,7 @@ sub _new{
 	)->pack(-side => 'left');
 
 	$self->{hits_label} = $f5->Label(
-		-text       => kh_msg->get('gui_window::word_conc->hits'), #   •“•√•»øÙ°ß0
+		-text       => kh_msg->get('gui_window::word_conc->hits'), #   „Éí„ÉÉ„ÉàÊï∞Ôºö0
 		-font       => "TKFN",
 	)->pack(-side => 'left',);
 
@@ -280,7 +280,7 @@ sub start{
 }
 
 #------------------------------------#
-#   •Î°º•Î•’•°•§•Î§Œππø∑§Ú•¡•ß•√•Ø   #
+#   „É´„Éº„É´„Éï„Ç°„Ç§„É´„ÅÆÊõ¥Êñ∞„Çí„ÉÅ„Çß„ÉÉ„ÇØ   #
 
 sub activate{
 	my $self = shift;
@@ -304,24 +304,24 @@ sub activate{
 }
 
 #----------------------------#
-#   •Î°º•Î•’•°•§•Î∆…§ﬂπ˛§ﬂ   #
+#   „É´„Éº„É´„Éï„Ç°„Ç§„É´Ë™≠„ÅøËæº„Åø   #
 
 sub read_code{
 	my $self = shift;
 	
 	$self->{clist}->delete('all');
 	
-	# °÷ƒæ¿‹∆˛Œœ°◊§Úƒ…≤√
+	# „ÄåÁõ¥Êé•ÂÖ•Âäõ„Äç„ÇíËøΩÂä†
 	$self->{clist}->add(0,-at => 0);
 	$self->{clist}->itemCreate(
 		0,
 		0,
-		-text  => kh_msg->get('gui_window::word_ass->direct_code'), # °Ùƒæ¿‹∆˛Œœ
+		-text  => kh_msg->get('gui_window::word_ass->direct_code'), # ÔºÉÁõ¥Êé•ÂÖ•Âäõ
 	);
 	#$self->{clist}->selectionClear;
 	$self->{clist}->selectionSet(0);
 
-	# •Î°º•Î•’•°•§•Î§Ú∆…§ﬂπ˛§ﬂ
+	# „É´„Éº„É´„Éï„Ç°„Ç§„É´„ÇíË™≠„ÅøËæº„Åø
 	unless (-e $self->cfile ){
 		$self->{code_obj} = kh_cod::search->new;
 		return 0;
@@ -347,12 +347,12 @@ sub read_code{
 	}
 	$self->{code_obj} = $cod_obj;
 	
-	# °÷•≥°º•…Ãµ§∑°◊§Ú…’Õø
+	# „Äå„Ç≥„Éº„ÉâÁÑ°„Åó„Äç„Çí‰ªò‰∏é
 	$self->{clist}->add($row,-at => "$row");
 	$self->{clist}->itemCreate(
 		$row,
 		0,
-		-text  => kh_msg->get('gui_window::word_ass->no_code'), # °Ù•≥°º•…Ãµ§∑
+		-text  => kh_msg->get('gui_window::word_ass->no_code'), # ÔºÉ„Ç≥„Éº„ÉâÁÑ°„Åó
 	);
 	gui_hlist->update4scroll($self->{clist});
 	$self->clist_check;
@@ -360,7 +360,7 @@ sub read_code{
 }
 
 #----------------------------------#
-#   °÷ƒæ¿‹∆˛Œœ°◊§Œon/off¿⁄§Í¬ÿ§®   #
+#   „ÄåÁõ¥Êé•ÂÖ•Âäõ„Äç„ÅÆon/offÂàá„ÇäÊõø„Åà   #
 
 sub clist_check{
 	my $self = shift;
@@ -388,7 +388,7 @@ sub clist_check{
 }
 
 #--------------#
-#    ∏ΩÒ…Ωº®   #
+#   ÊñáÊõ∏Ë°®Á§∫   #
 #--------------#
 
 sub view_doc{
@@ -503,27 +503,27 @@ sub end{
 
 
 #--------------#
-#   ∏°∫˜º¬π‘   #
+#   Ê§úÁ¥¢ÂÆüË°å   #
 #--------------#
 
 sub search{
 	my $self = shift;
 	$self->activate;
 	
-	# ¡™¬Ú§Œ•¡•ß•√•Ø
+	# ÈÅ∏Êäû„ÅÆ„ÉÅ„Çß„ÉÉ„ÇØ
 	my @selected = $self->{clist}->info('selection');
 	unless (@selected){
 		my $win = $self->win_obj;
 		gui_errormsg->open(
 			type   => 'msg',
-			msg    => kh_msg->get('error_no_code'), # •≥°º•…§¨¡™¬Ú§µ§Ï§∆§§§ﬁ§ª§Û'
+			msg    => kh_msg->get('error_no_code'), # „Ç≥„Éº„Éâ„ÅåÈÅ∏Êäû„Åï„Çå„Å¶„ÅÑ„Åæ„Åõ„Çì'
 			window => \$win,
 		);
 		return 0;
 	}
 	
-	# •È•Ÿ•Î§Œ —ππ
-	$self->{hits_label}->configure(-text => kh_msg->get('gui_window::word_conc->hits').'0'); #   •“•√•»øÙ°ß 0
+	# „É©„Éô„É´„ÅÆÂ§âÊõ¥
+	$self->{hits_label}->configure(-text => kh_msg->get('gui_window::word_conc->hits').'0'); #   „Éí„ÉÉ„ÉàÊï∞Ôºö 0
 	$self->{status_label}->configure(
 		-foreground => 'red',
 		-text => 'Searching...'
@@ -533,13 +533,13 @@ sub search{
 	sleep (0.01);
 	
 	
-	# ƒæ¿‹∆˛Œœ…Ù ¨§Œ∆…§ﬂπ˛§ﬂ
+	# Áõ¥Êé•ÂÖ•ÂäõÈÉ®ÂàÜ„ÅÆË™≠„ÅøËæº„Åø
 	$self->{code_obj}->add_direct(
 		mode => $self->gui_jg( $self->{opt_direct}      ),
 		raw  => $self->gui_jg( $self->{direct_w_e}->get ),
 	);
 	
-	# ∏°∫˜•Ì•∏•√•Ø§Œ∏∆§”Ω–§∑° ∏°∫˜º¬π‘°À
+	# Ê§úÁ¥¢„É≠„Ç∏„ÉÉ„ÇØ„ÅÆÂëº„Å≥Âá∫„ÅóÔºàÊ§úÁ¥¢ÂÆüË°åÔºâ
 	my $query_ok = $self->{code_obj}->search(
 		selected => \@selected,
 		tani     => $self->tani,
@@ -561,14 +561,14 @@ sub search{
 }
 
 #------------------------#
-#   ∏°∫˜∑Î≤Ã§ŒΩÒ§≠Ω–§∑   #
+#   Ê§úÁ¥¢ÁµêÊûú„ÅÆÊõ∏„ÅçÂá∫„Åó   #
 
 sub display{
 	my $self = shift;
 	my $start = shift;
 	$self->{current_start} = $start;
 
-	# HList§Œππø∑
+	# HList„ÅÆÊõ¥Êñ∞
 	unless ( $self->{code_obj} ){return undef;}
 	$self->{result}     = $self->{code_obj}->fetch_results($start);
 	$self->{rlist}->delete('all');
@@ -589,7 +589,7 @@ sub display{
 	
 	gui_hlist->update4scroll($self->{rlist});
 
-	# •È•Ÿ•Î§Œππø∑
+	# „É©„Éô„É´„ÅÆÊõ¥Êñ∞
 	my $num_total = $self->{code_obj}->total_hits;
 	my $num_disp  = $start + kh_cod::search->docs_per_once - 1;
 	my $num_disp2;
@@ -607,7 +607,7 @@ sub display{
 			."-$num_disp2"
 	);
 
-	# •‹•ø•Û§Œππø∑
+	# „Éú„Çø„É≥„ÅÆÊõ¥Êñ∞
 	if ($start > 1){
 		$self->{btn_prev}->configure(-state => 'normal');
 	} else {
@@ -623,7 +623,7 @@ sub display{
 }
 
 #------------------#
-#    ∏ΩÒ§Œ•≥•‘°º   #
+#   ÊñáÊõ∏„ÅÆ„Ç≥„Éî„Éº   #
 #------------------#
 
 sub copy{
@@ -658,7 +658,7 @@ sub copy{
 }
 
 #--------------#
-#   •¢•Ø•ª•µ   #
+#   „Ç¢„ÇØ„Çª„Çµ   #
 #--------------#
 
 sub last_words{

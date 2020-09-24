@@ -49,7 +49,7 @@ sub innner{
 	my $self = shift;
 	my $lf = $self->{labframe};
 
-	# ¶¦ÄÌ¤Î¥Ñ¥é¥á¡¼¥¿¡¼
+	# å…±é€šã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ãƒ¼
 	my @code_names = ();
 	if ( $self->{command_f} =~ /colnames\(d\) <\- c\((.+)\)\n/ ){
 		use Unicode::Escape;
@@ -75,7 +75,7 @@ sub innner{
 	}
 
 
-	# ¶¦ÄÌ¤ÎGUI
+	# å…±é€šã®GUI
 
 	$lf->Label(
 		-text => kh_msg->get('gui_window::cod_corresp->select_codes'),
@@ -108,7 +108,7 @@ sub innner{
 			-expand => 1
 	);
 
-	# ¥³¡¼¥ÉÁªÂòÍÑHList
+	# ã‚³ãƒ¼ãƒ‰é¸æŠžç”¨HList
 	$self->{hlist} = $lf2_1->Scrolled(
 		'HList',
 		-scrollbars         => 'osoe',
@@ -131,21 +131,21 @@ sub innner{
 		-side   => 'left'
 	);
 	$lf2_2->Button(
-		-text => kh_msg->gget('all'), # ¤¹¤Ù¤Æ
+		-text => kh_msg->gget('all'), # ã™ã¹ã¦
 		-width => 8,
 		-font => "TKFN",
 		-borderwidth => 1,
 		-command => sub{$self->select_all;}
 	)->pack(-pady => 3);
 	$lf2_2->Button(
-		-text => kh_msg->gget('clear'), # ¥¯¥ê¥¢
+		-text => kh_msg->gget('clear'), # ã‚¯ãƒªã‚¢
 		-width => 8,
 		-font => "TKFN",
 		-borderwidth => 1,
 		-command => sub{$self->select_none;}
 	)->pack();
 
-	# ¥³¡¼¥É¤Î¥ê¥¹¥È¥¢¥Ã¥×
+	# ã‚³ãƒ¼ãƒ‰ã®ãƒªã‚¹ãƒˆã‚¢ãƒƒãƒ—
 	my $wleft = $self->{hlist}->ItemStyle('window',-anchor => 'w');
 
 	my $row = 0;
@@ -177,7 +177,7 @@ sub innner{
 		++$row;
 	}
 
-	# ¥Õ¥©¥ó¥È¥µ¥¤¥º
+	# ãƒ•ã‚©ãƒ³ãƒˆã‚µã‚¤ã‚º
 	my $lf3 = $lf->Frame()->pack(
 		-fill   => 'x',
 		-expand => 0,
@@ -238,7 +238,7 @@ sub calc{
 		gui_errormsg->open(
 			type   => 'msg',
 			window  => \$self->win_obj,
-			msg    => kh_msg->get('select_1'), # '¥³¡¼¥É¤ò1¤Ä°Ê¾åÁªÂò¤·¤Æ¤¯¤À¤µ¤¤¡£'
+			msg    => kh_msg->get('select_1'), # 'ã‚³ãƒ¼ãƒ‰ã‚’1ã¤ä»¥ä¸Šé¸æŠžã—ã¦ãã ã•ã„ã€‚'
 		);
 		return 0;
 	}
@@ -273,7 +273,7 @@ sub calc{
 }
 
 
-# ¤¹¤Ù¤ÆÁªÂò
+# ã™ã¹ã¦é¸æŠž
 sub select_all{
 	my $self = shift;
 	foreach my $i (@{$self->{checks}}){
@@ -282,7 +282,7 @@ sub select_all{
 	return $self;
 }
 
-# ¥¯¥ê¥¢
+# ã‚¯ãƒªã‚¢
 sub select_none{
 	my $self = shift;
 	foreach my $i (@{$self->{checks}}){

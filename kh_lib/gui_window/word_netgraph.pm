@@ -74,7 +74,7 @@ sub _new{
 	}
 
 	$f5->Radiobutton(
-		-text             => kh_msg->get('w_w'), # 語 ― 語
+		-text             => kh_msg->get('w_w'), # 語 — 語
 		-font             => "TKFN",
 		-variable         => \$self->{radio_type},
 		-value            => 'words',
@@ -87,7 +87,7 @@ sub _new{
 	)->pack(-anchor => 'nw', -side => 'left');
 
 	$f5->Radiobutton(
-		-text             => kh_msg->get('w_v'), # 語 ― 外部変数・見出し
+		-text             => kh_msg->get('w_v'), # 語 — 外部変数・見出し
 		-font             => "TKFN",
 		-variable         => \$self->{radio_type},
 		-value            => 'twomode',

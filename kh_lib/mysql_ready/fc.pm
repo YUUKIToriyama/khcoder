@@ -4,7 +4,7 @@ use strict;
 my $st;
 my $number_per_once = 100;
 
-# SQL���iSELECT�j�Ŋe��̏��o�ꏊ������
+# SQL文（SELECT）で各語の初出場所を検索
 sub calc_by_db{
 	$st = 1;
 	my $max = mysql_exec->select("select max(id) from genkei",1)
@@ -50,7 +50,7 @@ sub sql{
 
 __END__
 
-# Perl�őS�f�[�^���Ȃ߂Ȃ���`�F�b�N
+# Perlで全データをなめながらチェック
 sub calc_by_perl{
 	mysql_exec->drop_table("fc_bun");
 	mysql_exec->do("
@@ -75,4 +75,4 @@ sub calc_by_perl{
 			$check{$i->[0]} = 1;
 		}
 	}
-}	# SQL���iSELECT�j�̕������� �iPerl�̕���HDD�ɂ͗D�����������c�j
+}	# SQL文（SELECT）の方が速い （Perlの方がHDDには優しそうだが…）

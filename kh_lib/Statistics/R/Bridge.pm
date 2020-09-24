@@ -125,8 +125,8 @@
     my $CLASS_HPLOO ;
     $CLASS_HPLOO = $this if defined $this ;
     
-    # Perl 5.18�ł͂Ȃ���UNIVERSAL::isa()��1��Ԃ����߂ɁA����������
-    # �����Ȃ��Ă����̂Łu&& ref($_[0])�v��ǉ�
+    # Perl 5.18ではなぜかUNIVERSAL::isa()が1を返すために、挙動がおか
+    # しくなっていたので「&& ref($_[0])」を追加
     my $this = UNIVERSAL::isa($_[0],'UNIVERSAL') && ref($_[0]) # kh
     	? shift : $CLASS_HPLOO ;                               # kh
     

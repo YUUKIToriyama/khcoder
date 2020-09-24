@@ -11,15 +11,15 @@ sub _new{
 
 	my $mw = $::main_gui->mw;
 	my $wmw= $self->{win_obj};
-	$wmw->title($self->gui_jt(kh_msg->get('gui_window::doc_cls_res->win_title'))); # Ê¸½ñ¤Î¥¯¥é¥¹¥¿¡¼Ê¬ÀÏ
+	$wmw->title($self->gui_jt(kh_msg->get('gui_window::doc_cls_res->win_title'))); # æ–‡æ›¸ã®ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼åˆ†æ
 
 	#--------------------------------#
-	#   ³Æ¥¯¥é¥¹¥¿¡¼¤Ë´Ş¤Ş¤ì¤ëÊ¸½ñ   #
+	#   å„ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ã«å«ã¾ã‚Œã‚‹æ–‡æ›¸   #
 
 	my $fr_top = $wmw->Frame()->pack(-fill => 'both', -expand => 'yes');
 
 	my $fr_dcs = $fr_top->LabFrame(
-		-label => kh_msg->get('gui_window::doc_cls_res->docs_in_clusters'), # ³Æ¥¯¥é¥¹¥¿¡¼¤Ë´Ş¤Ş¤ì¤ëÊ¸½ñ
+		-label => kh_msg->get('gui_window::doc_cls_res->docs_in_clusters'), # å„ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ã«å«ã¾ã‚Œã‚‹æ–‡æ›¸
 		-labelside => 'acrosstop',
 		-borderwidth => 2,
 	)->pack(-fill=>'both', -expand => 1, -padx => 2, -pady => 2, -side => 'left');
@@ -42,8 +42,8 @@ sub _new{
 		-height           => 10,
 		-width            => 10,
 	)->pack(-fill =>'both',-expand => 'yes');
-	$lis2->header('create',0,-text => kh_msg->get('gui_window::doc_cls_res->h_cls_id')); # ¥¯¥é¥¹¥¿¡¼ÈÖ¹æ
-	$lis2->header('create',1,-text => kh_msg->get('gui_window::doc_cls_res->h_doc_num')); # Ê¸½ñ¿ô
+	$lis2->header('create',0,-text => kh_msg->get('gui_window::doc_cls_res->h_cls_id')); # ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ç•ªå·
+	$lis2->header('create',1,-text => kh_msg->get('gui_window::doc_cls_res->h_doc_num')); # æ–‡æ›¸æ•°
 
 	$lis2->bind("<Shift-Double-1>",sub{$self->cls_words;});
 	$lis2->bind("<ButtonPress-3>",sub{$self->cls_words;});
@@ -55,7 +55,7 @@ sub _new{
 	my $fhl = $fr_dcs->Frame->pack(-fill => 'x');
 
 	my $btn_ds = $fhl->Button(
-		-text        => kh_msg->get('gui_window::doc_cls_res->docs'), # Ê¸½ñ¸¡º÷
+		-text        => kh_msg->get('gui_window::doc_cls_res->docs'), # æ–‡æ›¸æ¤œç´¢
 		-font        => "TKFN",
 		-borderwidth => '1',
 		-command     => sub {$self->cls_docs;}
@@ -63,12 +63,12 @@ sub _new{
 
 	$wmw->Balloon()->attach(
 		$btn_ds,
-		-balloonmsg => kh_msg->get('gui_window::doc_cls_res->bal_docs'), # ¥¯¥é¥¹¥¿¡¼¤Ë´Ş¤Ş¤ì¤ëÊ¸½ñ¤ò¸¡º÷\n[¥¯¥é¥¹¥¿¡¼¤ò¥À¥Ö¥ë¥¯¥ê¥Ã¥¯]
+		-balloonmsg => kh_msg->get('gui_window::doc_cls_res->bal_docs'), # ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ã«å«ã¾ã‚Œã‚‹æ–‡æ›¸ã‚’æ¤œç´¢\n[ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ã‚’ãƒ€ãƒ–ãƒ«ã‚¯ãƒªãƒƒã‚¯]
 		-font       => "TKFN"
 	);
 
 	my $btn_ass = $fhl->Button(
-		-text        => kh_msg->get('gui_window::doc_cls_res->words'), # ÆÃÄ§¸ì
+		-text        => kh_msg->get('gui_window::doc_cls_res->words'), # ç‰¹å¾´èª
 		-font        => "TKFN",
 		-borderwidth => '1',
 		-command     => sub {$self->cls_words;}
@@ -76,19 +76,19 @@ sub _new{
 	
 	$wmw->Balloon()->attach(
 		$btn_ass,
-		-balloonmsg => kh_msg->get('gui_window::doc_cls_res->bal_words'), # ¥¯¥é¥¹¥¿¡¼¤ÎÆÃÄ§¤ò¤¢¤é¤ï¤¹¸ì¤ò¸¡º÷\n[Shift + ¥¯¥é¥¹¥¿¡¼¤ò¥À¥Ö¥ë¥¯¥ê¥Ã¥¯]
+		-balloonmsg => kh_msg->get('gui_window::doc_cls_res->bal_words'), # ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ã®ç‰¹å¾´ã‚’ã‚ã‚‰ã‚ã™èªã‚’æ¤œç´¢\n[Shift + ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ã‚’ãƒ€ãƒ–ãƒ«ã‚¯ãƒªãƒƒã‚¯]
 		-font       => "TKFN"
 	);
 	
 	$self->{copy_btn} = $fhl->Button(
-		-text        => kh_msg->gget('copy'), # ¥³¥Ô¡¼
+		-text        => kh_msg->gget('copy'), # ã‚³ãƒ”ãƒ¼
 		-font        => "TKFN",
 		-borderwidth => '1',
 		-command     => sub {gui_hlist->copy_all($self->list);}
 	)->pack(-side => 'right', -padx => 2, -pady => 2, -anchor => 'c');
 
 	#$fhl->Button(
-	#	-text        => kh_msg->gget('plot'), # ¥×¥í¥Ã¥È
+	#	-text        => kh_msg->gget('plot'), # ãƒ—ãƒ­ãƒƒãƒˆ
 	#	-font        => "TKFN",
 	#	-borderwidth => '1',
 	#	-command     => sub {
@@ -105,10 +105,10 @@ sub _new{
 	#->configure(-state => 'disabled');
 
 	#--------------------------#
-	#   ¥¯¥é¥¹¥¿¡¼Ê»¹ç¤Î²áÄø   #
+	#   ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ä½µåˆã®éç¨‹   #
 	
 	my $fr_cls = $fr_top->LabFrame(
-		-label => kh_msg->get('gui_window::doc_cls_res->agglm'), # ¥¯¥é¥¹¥¿¡¼Ê»¹ç¤Î²áÄø
+		-label => kh_msg->get('gui_window::doc_cls_res->agglm'), # ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ä½µåˆã®éç¨‹
 		-labelside => 'acrosstop',
 		-borderwidth => 2,
 	)->pack(-fill=>'both', -expand => 1, -padx => 2, -pady => 2, -side => 'right');
@@ -137,7 +137,7 @@ sub _new{
 	my $fhr = $fr_cls->Frame->pack(-fill => 'x');
 
 	my $mb = $fhr->Menubutton(
-		-text        => kh_msg->get('gui_window::doc_cls_res->docs'), # Ê¸½ñ¸¡º÷
+		-text        => kh_msg->get('gui_window::doc_cls_res->docs'), # æ–‡æ›¸æ¤œç´¢
 		-tearoff     => 'no',
 		-relief      => 'raised',
 		-indicator   => 'no',
@@ -149,27 +149,27 @@ sub _new{
 
 	$mb->command(
 		-command => sub {$self->merge_docs();},
-		-label   => kh_msg->get('gui_window::doc_cls_res->both'), # 1¤È2
+		-label   => kh_msg->get('gui_window::doc_cls_res->both'), # 1ã¨2
 	);
 
 	$mb->command(
 		-command => sub {$self->merge_docs('l');},
-		-label   => kh_msg->get('gui_window::doc_cls_res->only1'), # 1¤Î¤ß
+		-label   => kh_msg->get('gui_window::doc_cls_res->only1'), # 1ã®ã¿
 	);
 
 	$mb->command(
 		-command => sub {$self->merge_docs('r');},
-		-label   => kh_msg->get('gui_window::doc_cls_res->only2'), # 2¤Î¤ß
+		-label   => kh_msg->get('gui_window::doc_cls_res->only2'), # 2ã®ã¿
 	);
 
 	$wmw->Balloon()->attach(
 		$mb,
-		-balloonmsg => kh_msg->get('gui_window::doc_cls_res->bal_agg_docs'), # [¥À¥Ö¥ë¥¯¥ê¥Ã¥¯]\nÊ»¹ç¤·¤¿¥¯¥é¥¹¥¿¡¼¤Ë´Ş¤Ş¤ì¤ëÊ¸½ñ¤ò¸¡º÷
+		-balloonmsg => kh_msg->get('gui_window::doc_cls_res->bal_agg_docs'), # [ãƒ€ãƒ–ãƒ«ã‚¯ãƒªãƒƒã‚¯]\nä½µåˆã—ãŸã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼ã«å«ã¾ã‚Œã‚‹æ–‡æ›¸ã‚’æ¤œç´¢
 		-font       => "TKFN"
 	);
 
 	$self->{btn_prev} = $fhr->Button(
-		-text => kh_msg->get('gui_window::word_conc->prev').'200', # Á°200
+		-text => kh_msg->get('gui_window::word_conc->prev').'200', # å‰200
 		-font => "TKFN",
 		-borderwidth => '1',
 		-state => 'disabled',
@@ -180,7 +180,7 @@ sub _new{
 	)->pack(-side => 'left',-padx => 2, -pady => 2);
 
 	$self->{btn_next} = $fhr->Button(
-		-text => kh_msg->get('gui_window::word_conc->next').'200', # ¼¡200
+		-text => kh_msg->get('gui_window::word_conc->next').'200', # æ¬¡200
 		-font => "TKFN",
 		-borderwidth => '1',
 		-state => 'disabled',
@@ -191,7 +191,7 @@ sub _new{
 	)->pack(-side => 'left',-padx => 2, -pady => 2);
 
 	$fhr->Button(
-		-text        => kh_msg->gget('copy'), # ¥³¥Ô¡¼
+		-text        => kh_msg->gget('copy'), # ã‚³ãƒ”ãƒ¼
 		-font        => "TKFN",
 		-borderwidth => '1',
 		-state => 'disabled',
@@ -208,7 +208,7 @@ sub _new{
 	)->pack(-side => 'right', -padx => 2, -pady => 2);
 	
 	$fhr->Button(
-		-text => kh_msg->gget('plot'), # ¥×¥í¥Ã¥È
+		-text => kh_msg->gget('plot'), # ãƒ—ãƒ­ãƒƒãƒˆ
 		-font => "TKFN",
 		-borderwidth => '1',
 		-state => 'disabled',
@@ -228,12 +228,12 @@ sub _new{
 	
 	
 	#----------------#
-	#   Window²¼Éô   #
+	#   Windowä¸‹éƒ¨   #
 	
 	my $fb = $wmw->Frame()->pack(-fill => 'x', -padx => 2, -pady => 2);
 	
 	$fb->Button(
-		-text => kh_msg->get('gui_window::doc_cls_res->config'), # Ä´À°
+		-text => kh_msg->get('gui_window::doc_cls_res->config'), # èª¿æ•´
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub {
@@ -245,7 +245,7 @@ sub _new{
 	)->pack(-side => 'left',-padx => 5);
 
 	$fb->Button(
-		-text => kh_msg->get('gui_window::doc_cls_res->save'), # Ê¬Îà·ë²Ì¤ÎÊİÂ¸
+		-text => kh_msg->get('gui_window::doc_cls_res->save'), # åˆ†é¡çµæœã®ä¿å­˜
 		-font => "TKFN",
 		-borderwidth => '1',
 		-command => sub {

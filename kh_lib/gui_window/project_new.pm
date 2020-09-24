@@ -8,7 +8,7 @@ use vars qw/$lang/;
 use gui_jchar;
 
 #----------------------------#
-#   ¿·µ¬¥×¥í¥¸¥§¥¯¥ÈWindow   #
+#   æ–°è¦ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆWindow   #
 #----------------------------#
 
 sub _new{
@@ -37,7 +37,7 @@ sub _new{
 
 	# target file
 	$lfra->Label(
-		-text => kh_msg->get('target_file'),#$self->gui_jchar('Ê¬ÀÏÂÐ¾Ý¥Õ¥¡¥¤¥ë¡§'),
+		-text => kh_msg->get('target_file'),#$self->gui_jchar('åˆ†æžå¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«ï¼š'),
 		-font => "TKFN"
 	)->grid(-row => 0, -column => 0, -sticky => 'w', -pady=>2);
 	
@@ -49,7 +49,7 @@ sub _new{
 	)->pack(-side => 'right', -fill => 'x', -expand => 1);
 
 	$fra1->Button(
-		-text => kh_msg->gget('browse'),#$self->gui_jchar('»²¾È'),
+		-text => kh_msg->gget('browse'),#$self->gui_jchar('å‚ç…§'),
 		-font => "TKFN",
 		#-borderwidth => 1,
 		-command => sub{$self->_sansyo;}
@@ -79,7 +79,7 @@ sub _new{
 
 	# language
 	$lfra->Label(
-		-text => kh_msg->get('lang', 'gui_window::stop_words'), # ¸À¸ì
+		-text => kh_msg->get('lang', 'gui_window::stop_words'), # è¨€èªž
 		-font => "TKFN"
 	)->grid(-row => 2, -column => 0, -sticky => 'w', -pady=>2);
 	
@@ -115,7 +115,7 @@ sub _new{
 
 	# Memo
 	$lfra->Label(
-		-text => kh_msg->get('memo'),#$self->gui_jchar('ÀâÌÀ¡Ê¥á¥â¡Ë¡§'),
+		-text => kh_msg->get('memo'),#$self->gui_jchar('èª¬æ˜Žï¼ˆãƒ¡ãƒ¢ï¼‰ï¼š'),
 		-font => "TKFN"
 	)->grid(-row => 3, -column => 0, -sticky => 'w', -pady=>2);;
 
@@ -125,7 +125,7 @@ sub _new{
 	)->grid(-row => 3, -column => 1, -sticky => 'ew',-pady=>2, -padx=>2);
 
 	$mw->Button(
-		-text => kh_msg->gget('cancel'),#$self->gui_jchar('¥­¥ã¥ó¥»¥ë'),
+		-text => kh_msg->gget('cancel'),#$self->gui_jchar('ã‚­ãƒ£ãƒ³ã‚»ãƒ«'),
 		-font => "TKFN",
 		-width => 8,
 		-command => sub{$self->close;}
@@ -144,7 +144,7 @@ sub _new{
 	&screen_code::rde_newproject_button::add_button($self,$mw);
 	#SCREEN Plugin
 
-	# ENTRY¤Î¥Ð¥¤¥ó¥É
+	# ENTRYã®ãƒã‚¤ãƒ³ãƒ‰
 	$e1->DropSite(
 		-dropcommand => 
 			[
@@ -272,7 +272,7 @@ sub end{
 }
 
 #--------------------#
-#   ¥Õ¥¡¥ó¥¯¥·¥ç¥ó   #
+#   ãƒ•ã‚¡ãƒ³ã‚¯ã‚·ãƒ§ãƒ³   #
 
 sub _make_new{
 	my $self = shift;
@@ -417,7 +417,7 @@ sub _sansyo{
 	#print $::config_obj->cwd, "\n";
 	my $path = $self->win_obj->getOpenFile(
 		-filetypes  => \@types,
-		-title      => $self->gui_jt( kh_msg->get('browse_target')),#'Ê¬ÀÏÂÐ¾Ý¥Õ¥¡¥¤¥ë¤òÁªÂò¤·¤Æ¤¯¤À¤µ¤¤'
+		-title      => $self->gui_jt( kh_msg->get('browse_target')),#'åˆ†æžå¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é¸æŠžã—ã¦ãã ã•ã„'
 		-initialdir => $::config_obj->uni_path( $::config_obj->cwd ),
 	);
 	my $time = 0;
@@ -524,7 +524,7 @@ sub _columns{
 
 
 #--------------#
-#   ¥¢¥¯¥»¥µ   #
+#   ã‚¢ã‚¯ã‚»ã‚µ   #
 
 sub e1{
 	my $self = shift;

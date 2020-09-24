@@ -11,7 +11,7 @@ sub export{
 
 	my $mb = new_from_DBH MySQL::Backup_kh($::project_obj->dbh);
 
-	# MySQL¤Î¥Ç¡¼¥¿¤ò³ÊÇ¼
+	# MySQLã®ãƒ‡ãƒ¼ã‚¿ã‚’æ ¼ç´
 	my $file_temp_mysql = $::config_obj->file_temp;
 	open (MYSQLO,'>:encoding(utf8)', $file_temp_mysql) or
 		gui_errormsg->open(
@@ -24,13 +24,13 @@ sub export{
 	$mb->create_index_structure(*MYSQLO);
 	close (MYSQLO);
 
-	# MySQL::Backup¤Ï¤¤¤í¤¤¤í¤È½¤Àµ¤¹¤ëÉ¬Í×¤¬¤¢¤Ã¤¿
-	#   1. ¥Ð¥Ã¥¯¥¢¥Ã¥×¤ÎµóÆ°¤ò¡¢°ì¹Ô¤º¤Ä¤Î½ÐÎÏ¤ËÊÑ¹¹       ¢ª OK
-	#   2. ¥Ð¥Ã¥¯¥¢¥Ã¥×¤Î¸úÎ¨²½                             ¢ª OK
-	#   3. Ê£¹çIndex¤ËÂÐ±þ                                  ¢ª OK
-	#   4. ¥ê¥¹¥È¥¢¤ÎµóÆ°¤â¡¢°ì¹Ô¤º¤ÄÆÉ¤ß¹þ¤ó¤Ç¤Î¼Â¹Ô¤ËÊÑ¹¹ ¢ª OK
+	# MySQL::Backupã¯ã„ã‚ã„ã‚ã¨ä¿®æ­£ã™ã‚‹å¿…è¦ãŒã‚ã£ãŸ
+	#   1. ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã®æŒ™å‹•ã‚’ã€ä¸€è¡Œãšã¤ã®å‡ºåŠ›ã«å¤‰æ›´       â†’ OK
+	#   2. ãƒãƒƒã‚¯ã‚¢ãƒƒãƒ—ã®åŠ¹çŽ‡åŒ–                             â†’ OK
+	#   3. è¤‡åˆIndexã«å¯¾å¿œ                                  â†’ OK
+	#   4. ãƒªã‚¹ãƒˆã‚¢ã®æŒ™å‹•ã‚‚ã€ä¸€è¡Œãšã¤èª­ã¿è¾¼ã‚“ã§ã®å®Ÿè¡Œã«å¤‰æ›´ â†’ OK
 
-	# ¾ðÊó¥Õ¥¡¥¤¥ë¤òºîÀ®
+	# æƒ…å ±ãƒ•ã‚¡ã‚¤ãƒ«ã‚’ä½œæˆ
 	my $file_temp_info = $::config_obj->file_temp;
 	my %info;
 	$info{'file_name'} = encode_base64(
@@ -48,7 +48,7 @@ sub export{
 		)
 	;
 
-	# Zip¥Õ¥¡¥¤¥ë¤Ë¸Ç¤á¤ë
+	# Zipãƒ•ã‚¡ã‚¤ãƒ«ã«å›ºã‚ã‚‹
 	my $zip = Archive::Zip->new();
 	
 	$zip->addFile( $file_temp_mysql, 'mysql' );
@@ -65,7 +65,7 @@ sub export{
 		)
 	}
 
-	# °ì»þ¥Õ¥¡¥¤¥ë¤òºï½ü
+	# ä¸€æ™‚ãƒ•ã‚¡ã‚¤ãƒ«ã‚’å‰Šé™¤
 	unlink ($file_temp_mysql, $file_temp_info);
 
 	return 1;
@@ -75,13 +75,13 @@ sub import{
 	my $file_save   = shift;
 	my $file_target = shift;
 
-	# ¥×¥í¥¸¥§¥¯¥È¤ò³«¤¤¤Æ¤¤¤ë¾ì¹ç¤Ï¥¯¥í¡¼¥º
+	# ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’é–‹ã„ã¦ã„ã‚‹å ´åˆã¯ã‚¯ãƒ­ãƒ¼ã‚º
 	$::main_gui->close_all;
 	undef $::project_obj;
 	$::main_gui->menu->refresh;
 	$::main_gui->inner->refresh;
 
-	# Ê¬ÀÏÂÐ¾Ý¥Õ¥¡¥¤¥ë¤Î²òÅà
+	# åˆ†æžå¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«ã®è§£å‡
 	my $zip = Archive::Zip->new();
 	unless ( $zip->read( $file_save ) == "AZ_OK" ) {
 		print "Could not open zip file!\n";
@@ -98,10 +98,10 @@ sub import{
 			type => 'file',
 			file => $file_target
 		)
-	;	# 2¥Ð¥¤¥ÈÊ¸»ú¡ÊÂÌÌÜÊ¸»ú¡Ë¤¬¥Õ¥¡¥¤¥ëÌ¾¤Ë´Þ¤Þ¤ì¤Æ¤¤¤ë¤È¡¢²òÅà¤Ë¼ºÇÔ¤¹¤ë¡ª
-		# ¤Î¤Ç¡¢¤¤¤Ã¤¿¤ótemp¥Õ¥¡¥¤¥ë¤Ë²òÅà¤·¤Æ¤«¤é¥ê¥Í¡¼¥à
+	;	# 2ãƒã‚¤ãƒˆæ–‡å­—ï¼ˆé§„ç›®æ–‡å­—ï¼‰ãŒãƒ•ã‚¡ã‚¤ãƒ«åã«å«ã¾ã‚Œã¦ã„ã‚‹ã¨ã€è§£å‡ã«å¤±æ•—ã™ã‚‹ï¼
+		# ã®ã§ã€ã„ã£ãŸã‚“tempãƒ•ã‚¡ã‚¤ãƒ«ã«è§£å‡ã—ã¦ã‹ã‚‰ãƒªãƒãƒ¼ãƒ 
 
-	# ¥×¥í¥¸¥§¥¯¥È¤ÎÅÐÏ¿
+	# ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã®ç™»éŒ²
 	my $info = &get_info($file_save);
 	
 	my $new = kh_project->new(
@@ -109,9 +109,9 @@ sub import{
 		comment => $info->{comment},
 		icode   => 0,
 	) or return 0;
-	kh_projects->read->add_new($new) or return 0; # ¤³¤Î¥×¥í¥¸¥§¥¯¥È¤¬³«¤«¤ì¤ë
+	kh_projects->read->add_new($new) or return 0; # ã“ã®ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆãŒé–‹ã‹ã‚Œã‚‹
 
-	# MySQL¥Ç¡¼¥¿¥Ù¡¼¥¹¤Î½àÈ÷¡Ê¥¯¥ê¥¢¡Ë
+	# MySQLãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã®æº–å‚™ï¼ˆã‚¯ãƒªã‚¢ï¼‰
 	#mysql_exec->do("set global innodb_flush_log_at_trx_commit = 0");
 
 	my @tables = mysql_exec->table_list;
@@ -119,7 +119,7 @@ sub import{
 		mysql_exec->drop_table($i);
 	}
 
-	# MySQL¥Ç¡¼¥¿¥Ù¡¼¥¹¤ÎÉüµ¢
+	# MySQLãƒ‡ãƒ¼ã‚¿ãƒ™ãƒ¼ã‚¹ã®å¾©å¸°
 	my $file_temp_mysql = $::config_obj->file_temp;
 	unless ( $zip->extractMember('mysql',$file_temp_mysql) == "AZ__OK" ){
 		return undef;
@@ -138,7 +138,7 @@ sub import{
 sub get_info{
 	my $file = shift;
 	
-	# ²òÅà
+	# è§£å‡
 	my $zip = Archive::Zip->new();
 	unless ( $zip->read( $file ) == "AZ_OK" ) {
 		return undef;
@@ -148,7 +148,7 @@ sub get_info{
 		return undef;
 	}
 
-	# ²ò¼á
+	# è§£é‡ˆ
 	my %info = LoadFile($file_temp_info) or return undef;
 	foreach my $i (keys %info){
 		$info{$i} = Encode::decode('utf8', decode_base64($info{$i}) )

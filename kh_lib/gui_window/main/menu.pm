@@ -3,7 +3,7 @@ package gui_window::main::menu;
 use strict;
 use Tk;
 
-# ¥á¥Ë¥å¡¼¤ÎÀßÄê¡§¥×¥í¥¸¥§¥¯¥È¤¬ÁªÂò¤µ¤ì¤ì¤ĞActive
+# ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®è¨­å®šï¼šãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆãŒé¸æŠã•ã‚Œã‚Œã°Active
 my @menu0 = (
 	'm_b1_mark',
 	'm_b2_morpho',
@@ -15,7 +15,7 @@ my @menu0 = (
 	#'m_b2_datacheck',
 );
 
-# ¥á¥Ë¥å¡¼¤ÎÀßÄê¡§·ÁÂÖÁÇ²òÀÏ¤¬¹Ô¤ï¤ì¤Æ¤¤¤ì¤ĞActive
+# ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®è¨­å®šï¼šå½¢æ…‹ç´ è§£æãŒè¡Œã‚ã‚Œã¦ã„ã‚Œã°Active
 my @menu1 = (
 	't_word_search',
 	#'t_word_list',
@@ -58,7 +58,7 @@ my @menu1 = (
 
 
 #------------------#
-#   ¥á¥Ë¥å¡¼ºîÀ®   #
+#   ãƒ¡ãƒ‹ãƒ¥ãƒ¼ä½œæˆ   #
 #------------------#
 
 sub make{
@@ -71,7 +71,7 @@ sub make{
 	$mw->configure(-menu => $menubar);
 
 	#------------------#
-	#   ¥×¥í¥¸¥§¥¯¥È   #
+	#   ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆ   #
 
 	my $msg = gui_window->gui_jm( kh_msg->get('project') );
 	my $underline_pos = -1;
@@ -84,7 +84,7 @@ sub make{
 		-tearoff=>'no'
 	);
 
-	# ¤³¤³¤ÇMain Window¤ÎÃæ¿È¤òºîÀ®¤·¤Æ¤ª¤¯
+	# ã“ã“ã§Main Windowã®ä¸­èº«ã‚’ä½œæˆã—ã¦ãŠã
 	# http://koichi.nihon.to/cgi-bin/bbs_khn/khcf.cgi?no=2699&mode=allread#3107
 	$::main_gui->{inner} = 'gui_window::main::inner'->make($::main_gui->{win_obj});
 
@@ -122,7 +122,7 @@ sub make{
 			);
 
 		$self->{t_word_list_cf} = $f_export->command(
-				-label => kh_msg->get('word_freq'), #gui_window->gui_jchar('Ãê½Ğ¸ì¥ê¥¹¥È'),
+				-label => kh_msg->get('word_freq'), #gui_window->gui_jchar('æŠ½å‡ºèªãƒªã‚¹ãƒˆ'),
 				-font => "TKFN",
 				-command => sub{
 					gui_window::word_list->open;
@@ -133,14 +133,14 @@ sub make{
 		$f_export->separator;
 		
 		$self->{m_b3_crossout} = $f_export->cascade(
-				-label => kh_msg->get('doc_term_mtrx'),#gui_window->gui_jchar("¡ÖÊ¸½ñ£øÃê½Ğ¸ì¡×É½¤Î½ĞÎÏ",'euc'),
+				-label => kh_msg->get('doc_term_mtrx'),#gui_window->gui_jchar("ã€Œæ–‡æ›¸ï½˜æŠ½å‡ºèªã€è¡¨ã®å‡ºåŠ›",'euc'),
 				-font => "TKFN",
 				-state => 'disable',
 				-tearoff=>'no'
 			);
 
 			$self->{m_b3_crossout_csv} = $self->{m_b3_crossout}->command(
-				-label => kh_msg->gget('csv_f'),#gui_window->gui_jchar("CSV¥Õ¥¡¥¤¥ë"),
+				-label => kh_msg->gget('csv_f'),#gui_window->gui_jchar("CSVãƒ•ã‚¡ã‚¤ãƒ«"),
 				-font  => "TKFN",
 				-command => sub{
 					gui_window::morpho_crossout::csv->open;
@@ -148,7 +148,7 @@ sub make{
 			);
 
 			$self->{m_b3_crossout_spss} = $self->{m_b3_crossout}->command(
-				-label => kh_msg->gget('spss_f'),#gui_window->gui_jchar("SPSS¥Õ¥¡¥¤¥ë"),
+				-label => kh_msg->gget('spss_f'),#gui_window->gui_jchar("SPSSãƒ•ã‚¡ã‚¤ãƒ«"),
 				-font  => "TKFN",
 				-command => sub{
 					gui_window::morpho_crossout::spss->open;
@@ -156,7 +156,7 @@ sub make{
 			);
 
 			$self->{m_b3_crossout_tab} = $self->{m_b3_crossout}->command(
-				-label => kh_msg->gget('tab_f'),#gui_window->gui_jchar("¥¿¥Ö¶èÀÚ¤ê"),
+				-label => kh_msg->gget('tab_f'),#gui_window->gui_jchar("ã‚¿ãƒ–åŒºåˆ‡ã‚Š"),
 				-font  => "TKFN",
 				-command => sub{
 					gui_window::morpho_crossout::tab->open;
@@ -166,7 +166,7 @@ sub make{
 			$self->{m_b3_crossout}->separator;
 
 			$self->{m_b3_crossout_var} = $self->{m_b3_crossout}->command(
-				-label => kh_msg->gget('wm_f'),#gui_window->gui_jchar("ÉÔÄêÄ¹CSV ¡ÊWordMiner¡Ë"),
+				-label => kh_msg->gget('wm_f'),#gui_window->gui_jchar("ä¸å®šé•·CSV ï¼ˆWordMinerï¼‰"),
 				-font  => "TKFN",
 				-command => sub{
 					gui_window::morpho_crossout::var->open;
@@ -174,13 +174,13 @@ sub make{
 			);
 
 		$self->{t_cod_out} = $f_export->cascade(
-			-label => kh_msg->get('output_cod'),#gui_window->gui_jchar('¥³¡¼¥Ç¥£¥ó¥°·ë²Ì¤Î½ĞÎÏ'),
+			-label => kh_msg->get('output_cod'),#gui_window->gui_jchar('ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°çµæœã®å‡ºåŠ›'),
 			 -font => "TKFN",
 			 -tearoff=>'no'
 		);
 
 			$self->{t_cod_out_csv} = $self->{t_cod_out}->command(
-				-label => kh_msg->gget('csv_f'),#gui_window->gui_jchar('CSV¥Õ¥¡¥¤¥ë'),
+				-label => kh_msg->gget('csv_f'),#gui_window->gui_jchar('CSVãƒ•ã‚¡ã‚¤ãƒ«'),
 				-font => "TKFN",
 				-command => sub{
 						gui_window::cod_out::csv->open;
@@ -189,7 +189,7 @@ sub make{
 			);
 
 			$self->{t_cod_out_spss} = $self->{t_cod_out}->command(
-				-label => kh_msg->gget('spss_f'),#gui_window->gui_jchar('SPSS¥Õ¥¡¥¤¥ë'),
+				-label => kh_msg->gget('spss_f'),#gui_window->gui_jchar('SPSSãƒ•ã‚¡ã‚¤ãƒ«'),
 				-font => "TKFN",
 				-command => sub{
 						gui_window::cod_out::spss->open;
@@ -198,7 +198,7 @@ sub make{
 			);
 
 			$self->{t_cod_out_tab} = $self->{t_cod_out}->command(
-				-label => kh_msg->gget('tab_f'),#gui_window->gui_jchar('¥¿¥Ö¶èÀÚ¤ê'),
+				-label => kh_msg->gget('tab_f'),#gui_window->gui_jchar('ã‚¿ãƒ–åŒºåˆ‡ã‚Š'),
 				-font => "TKFN",
 				-command => sub{
 						gui_window::cod_out::tab->open;
@@ -209,7 +209,7 @@ sub make{
 			$self->{t_cod_out}->separator();
 
 			$self->{t_cod_out_var} = $self->{t_cod_out}->command(
-				-label => kh_msg->gget('wm_f'),#gui_window->gui_jchar('ÉÔÄêÄ¹CSV ¡ÊWordMiner¡Ë'),
+				-label => kh_msg->gget('wm_f'),#gui_window->gui_jchar('ä¸å®šé•·CSV ï¼ˆWordMinerï¼‰'),
 				-font => "TKFN",
 				-command => sub{
 						gui_window::cod_out::var->open;
@@ -218,7 +218,7 @@ sub make{
 			);
 
 		$self->{m_b3_contxtout} = $f_export->cascade(
-				-label => kh_msg->get('term_vec_mtrx'),#gui_window->gui_jchar("¡ÖÃê½Ğ¸ì£øÊ¸Ì®¥Ù¥¯¥È¥ë¡×É½¤Î½ĞÎÏ",'euc'),
+				-label => kh_msg->get('term_vec_mtrx'),#gui_window->gui_jchar("ã€ŒæŠ½å‡ºèªï½˜æ–‡è„ˆãƒ™ã‚¯ãƒˆãƒ«ã€è¡¨ã®å‡ºåŠ›",'euc'),
 				-font => "TKFN",
 				-state => 'disable',
 				-tearoff=>'no'
@@ -251,7 +251,7 @@ sub make{
 		$f_export->separator;
 
 		$self->{t_txt_pickup} = $f_export->command(
-			-label => kh_msg->get('partial'),#gui_window->gui_jchar('ÉôÊ¬¥Æ¥­¥¹¥È¤Î¼è¤ê½Ğ¤·'),
+			-label => kh_msg->get('partial'),#gui_window->gui_jchar('éƒ¨åˆ†ãƒ†ã‚­ã‚¹ãƒˆã®å–ã‚Šå‡ºã—'),
 			-font => "TKFN",
 			-command => sub{
 					gui_window::txt_pickup->open;
@@ -260,7 +260,7 @@ sub make{
 		);
 
 		$self->{t_txt_html2mod} = $f_export->command(
-			-label => kh_msg->get('to_csv'),#gui_window->gui_jchar('HTML¤«¤éCSV¤ËÊÑ´¹'),
+			-label => kh_msg->get('to_csv'),#gui_window->gui_jchar('HTMLã‹ã‚‰CSVã«å¤‰æ›'),
 			-font => "TKFN",
 			-command => sub{
 					gui_window::txt_html2csv->open;
@@ -324,7 +324,7 @@ sub make{
 		);
 
 	#------------#
-	#   Á°½èÍı   #
+	#   å‰å‡¦ç†   #
 
 	$underline_pos = index(kh_msg->get('prep'), 'R');
 	$underline_pos = 0 if $underline_pos == -1;
@@ -452,7 +452,7 @@ sub make{
 			);
 
 		$self->{m_b1_hukugo} = $f_hukugo->command(
-				-label => kh_msg->get('use_chasen'), #gui_window->gui_jchar('Ããä¥¤Ë¤è¤ëÏ¢·ë'),
+				-label => kh_msg->get('use_chasen'), #gui_window->gui_jchar('èŒ¶ç­Œã«ã‚ˆã‚‹é€£çµ'),
 				-font => "TKFN",
 				-command => sub{
 					$self->mc_hukugo;
@@ -472,7 +472,7 @@ sub make{
 				&screen_code::synonym_menu::add_menu_exec_plugin($self,$f,\@menu1);
 				#SCREEN Plugin
 			} else {
-				# ¤Á¤ç¤Ã¤È¸¡Æ¤Ãæ¡£¥³¥á¥ó¥È¥¢¥¦¥È¤ò³°¤¹¾ì¹ç¤Ï¡Öm_b0_editdata¡×¤òÊÌ¤ÎÌ¾Á°¤Ë¡£
+				# ã¡ã‚‡ã£ã¨æ¤œè¨ä¸­ã€‚ã‚³ãƒ¡ãƒ³ãƒˆã‚¢ã‚¦ãƒˆã‚’å¤–ã™å ´åˆã¯ã€Œm_b0_editdataã€ã‚’åˆ¥ã®åå‰ã«ã€‚
 				#$self->{m_b0_editdata} = $f->command(
 				#	-label => kh_msg->get('plugin_synonym2'),
 				#	-font => "TKFN",
@@ -487,7 +487,7 @@ sub make{
 		$f->separator();
 
 		$self->{m_b3_check} = $f->command(
-				-label => kh_msg->get('check_morpho'), #gui_window->gui_jchar('¸ì¤ÎÃê½Ğ·ë²Ì¤ò³ÎÇ§'),
+				-label => kh_msg->get('check_morpho'), #gui_window->gui_jchar('èªã®æŠ½å‡ºçµæœã‚’ç¢ºèª'),
 				-font => "TKFN",
 				-command => sub{
 					gui_window::morpho_check->open;
@@ -496,7 +496,7 @@ sub make{
 			);
 
 	#------------#
-	#   ¥Ä¡¼¥ë   #
+	#   ãƒ„ãƒ¼ãƒ«   #
 
 	$underline_pos = index(kh_msg->get('tools'), 'T');
 	$underline_pos = 0 if $underline_pos == -1;
@@ -508,13 +508,13 @@ sub make{
 	);
 
 	my $f3 = $f->cascade(
-			-label => kh_msg->get('words'),#gui_window->gui_jchar('Ãê½Ğ¸ì'),
+			-label => kh_msg->get('words'),#gui_window->gui_jchar('æŠ½å‡ºèª'),
 			-font => "TKFN",
 			-tearoff=>'no'
 		);
 
 		$self->{t_word_search} = $f3->command(
-				-label => kh_msg->get('word_search'),#gui_window->gui_jchar('Ãê½Ğ¸ì¸¡º÷'),
+				-label => kh_msg->get('word_search'),#gui_window->gui_jchar('æŠ½å‡ºèªæ¤œç´¢'),
 				-font => "TKFN",
 				-command => sub{
 					gui_window::word_search->open;
@@ -529,7 +529,7 @@ sub make{
 		);
 		
 		$self->{t_word_freq} = $f_wd_stats->command(
-				-label => kh_msg->get('freq_tf'),#gui_window->gui_jchar('½Ğ¸½²ó¿ô¤ÎÊ¬ÉÛ'),
+				-label => kh_msg->get('freq_tf'),#gui_window->gui_jchar('å‡ºç¾å›æ•°ã®åˆ†å¸ƒ'),
 				-font => "TKFN",
 				-command => sub{
 					gui_window::word_freq->open->count;
@@ -538,7 +538,7 @@ sub make{
 			);
 
 		$self->{t_word_df_freq} = $f_wd_stats->command(
-				-label => kh_msg->get('freq_df'),#gui_window->gui_jchar('Ê¸½ñ¿ô¤ÎÊ¬ÉÛ'),
+				-label => kh_msg->get('freq_df'),#gui_window->gui_jchar('æ–‡æ›¸æ•°ã®åˆ†å¸ƒ'),
 				-font => "TKFN",
 				-command => sub{
 					gui_window::word_df_freq->open->count;
@@ -547,7 +547,7 @@ sub make{
 			);
 
 		$self->{t_word_tf_df} = $f_wd_stats->command(
-				-label => kh_msg->get('tf_df'),#gui_window->gui_jchar('½Ğ¸½²ó¿ô£øÊ¸½ñ¿ô¤Î¥×¥í¥Ã¥È'),
+				-label => kh_msg->get('tf_df'),#gui_window->gui_jchar('å‡ºç¾å›æ•°ï½˜æ–‡æ›¸æ•°ã®ãƒ—ãƒ­ãƒƒãƒˆ'),
 				-font => "TKFN",
 				-command => sub{
 					gui_window::word_tf_df->open;
@@ -559,7 +559,7 @@ sub make{
 		$f3->separator;
 
 		$self->{t_word_conc} = $f3->command(
-				-label => kh_msg->get('kwic'),#gui_window->gui_jchar('KWIC¥³¥ó¥³¡¼¥À¥ó¥¹'),
+				-label => kh_msg->get('kwic'),#gui_window->gui_jchar('KWICã‚³ãƒ³ã‚³ãƒ¼ãƒ€ãƒ³ã‚¹'),
 				-font => "TKFN",
 				-command => sub{
 					gui_window::word_conc->open;
@@ -568,7 +568,7 @@ sub make{
 			);
 
 		$self->{t_word_ass} = $f3->command(
-				-label => kh_msg->get('word_ass'),#gui_window->gui_jchar('´ØÏ¢¸ìÃµº÷'),
+				-label => kh_msg->get('word_ass'),#gui_window->gui_jchar('é–¢é€£èªæ¢ç´¢'),
 				-font => "TKFN",
 				-command => sub{
 					gui_window::word_ass->open;
@@ -579,7 +579,7 @@ sub make{
 		$f3->separator;
 
 		$self->{t_word_corresp} = $f3->command(
-				-label => kh_msg->get('corresp'),#gui_window->gui_jchar('ÂĞ±şÊ¬ÀÏ'),
+				-label => kh_msg->get('corresp'),#gui_window->gui_jchar('å¯¾å¿œåˆ†æ'),
 				-font => "TKFN",
 				-command => sub{
 					gui_window::word_corresp->open;
@@ -589,7 +589,7 @@ sub make{
 		push @menu1, 't_word_corresp' if $::config_obj->R;
 
 		$self->{t_word_mds} = $f3->command(
-				-label => kh_msg->get('mds'),#gui_window->gui_jchar('Â¿¼¡¸µ¼ÜÅÙ¹½À®Ë¡'),
+				-label => kh_msg->get('mds'),#gui_window->gui_jchar('å¤šæ¬¡å…ƒå°ºåº¦æ§‹æˆæ³•'),
 				-font => "TKFN",
 				-command => sub{
 					gui_window::word_mds->open;
@@ -599,7 +599,7 @@ sub make{
 		push @menu1, 't_word_mds' if $::config_obj->R;
 
 		$self->{t_word_cls} = $f3->command(
-				-label => kh_msg->get('h_cluster'),#gui_window->gui_jchar('³¬ÁØÅª¥¯¥é¥¹¥¿¡¼Ê¬ÀÏ'),
+				-label => kh_msg->get('h_cluster'),#gui_window->gui_jchar('éšå±¤çš„ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼åˆ†æ'),
 				-font => "TKFN",
 				-command => sub{
 					gui_window::word_cls->open;
@@ -609,7 +609,7 @@ sub make{
 		push @menu1, 't_word_cls' if $::config_obj->R;
 
 		$self->{t_word_netgraph} = $f3->command(
-				-label => kh_msg->get('netg'),#gui_window->gui_jchar('¶¦µ¯¥Í¥Ã¥È¥ï¡¼¥¯'),
+				-label => kh_msg->get('netg'),#gui_window->gui_jchar('å…±èµ·ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯'),
 				-font => "TKFN",
 				-command => sub{
 					gui_window::word_netgraph->open;
@@ -619,7 +619,7 @@ sub make{
 		push @menu1, 't_word_netgraph' if $::config_obj->R;
 
 		$self->{t_word_som} = $f3->command(
-				-label => kh_msg->get('som'), # ¼«¸ÊÁÈ¿¥²½¥Ş¥Ã¥×
+				-label => kh_msg->get('som'), # è‡ªå·±çµ„ç¹”åŒ–ãƒãƒƒãƒ—
 				-font => "TKFN",
 				-command => sub{
 					gui_window::word_som->open;
@@ -629,13 +629,13 @@ sub make{
 		push @menu1, 't_word_som' if $::config_obj->R;
 
 	my $f8 = $f->cascade(
-			-label => kh_msg->get('docs'),#gui_window->gui_jchar('Ê¸½ñ'),
+			-label => kh_msg->get('docs'),#gui_window->gui_jchar('æ–‡æ›¸'),
 			-font => "TKFN",
 			-tearoff=>'no'
 		);
 
 		$self->{t_doc_search} = $f8->command(
-				-label => kh_msg->get('doc_search'),#gui_window->gui_jchar('Ê¸½ñ¸¡º÷'),
+				-label => kh_msg->get('doc_search'),#gui_window->gui_jchar('æ–‡æ›¸æ¤œç´¢'),
 				-font => "TKFN",
 				-command => sub{
 					gui_window::doc_search->open;
@@ -644,7 +644,7 @@ sub make{
 			);
 
 		$self->{t_doc_cls} = $f8->command(
-				-label => kh_msg->get('cluster'),#gui_window->gui_jchar('¥¯¥é¥¹¥¿¡¼Ê¬ÀÏ'),
+				-label => kh_msg->get('cluster'),#gui_window->gui_jchar('ã‚¯ãƒ©ã‚¹ã‚¿ãƒ¼åˆ†æ'),
 				-font => "TKFN",
 				-command => sub{
 					gui_window::doc_cls->open;
@@ -654,13 +654,13 @@ sub make{
 		push @menu1, 't_doc_cls' if $::config_obj->R;
 
 		$self->{t_cas_bayes} = $f8->cascade(
-			-label => kh_msg->get('docs_bayes'),#gui_window->gui_jchar('¥Ù¥¤¥º³Ø½¬¤Ë¤è¤ëÊ¬Îà'),
+			-label => kh_msg->get('docs_bayes'),#gui_window->gui_jchar('ãƒ™ã‚¤ã‚ºå­¦ç¿’ã«ã‚ˆã‚‹åˆ†é¡'),
 			 -font => "TKFN",
 			 -tearoff=>'no'
 		);
 
 		$self->{t_bayes_learn} = $self->{t_cas_bayes}->command(
-			-label => kh_msg->get('bayes_learn'),#gui_window->gui_jchar('³°ÉôÊÑ¿ô¤«¤é³Ø½¬'),
+			-label => kh_msg->get('bayes_learn'),#gui_window->gui_jchar('å¤–éƒ¨å¤‰æ•°ã‹ã‚‰å­¦ç¿’'),
 			-font => "TKFN",
 			-command => sub{
 				gui_window::bayes_learn->open;
@@ -669,7 +669,7 @@ sub make{
 		);
 
 		$self->{t_bayes_predict} = $self->{t_cas_bayes}->command(
-			-label => kh_msg->get('bayes_classi'),#gui_window->gui_jchar('³Ø½¬·ë²Ì¤òÍÑ¤¤¤¿¼«Æ°Ê¬Îà'),
+			-label => kh_msg->get('bayes_classi'),#gui_window->gui_jchar('å­¦ç¿’çµæœã‚’ç”¨ã„ãŸè‡ªå‹•åˆ†é¡'),
 			-font => "TKFN",
 			-command => sub{
 				gui_window::bayes_predict->open;
@@ -680,7 +680,7 @@ sub make{
 		$self->{t_cas_bayes}->separator;
 
 		$self->{t_bayes_view} = $self->{t_cas_bayes}->command(
-			-label => kh_msg->get('check_learning'),#gui_window->gui_jchar('³Ø½¬·ë²Ì¥Õ¥¡¥¤¥ë¤ÎÆâÍÆ¤ò³ÎÇ§'),
+			-label => kh_msg->get('check_learning'),#gui_window->gui_jchar('å­¦ç¿’çµæœãƒ•ã‚¡ã‚¤ãƒ«ã®å†…å®¹ã‚’ç¢ºèª'),
 			-font => "TKFN",
 			-command => sub{
 				$self->mc_view_knb;
@@ -689,7 +689,7 @@ sub make{
 		);
 
 		$self->{t_bayes_view_log} = $self->{t_cas_bayes}->command(
-			-label => kh_msg->get('check_classi'),#gui_window->gui_jchar('Ê¬Îà¥í¥°¥Õ¥¡¥¤¥ë¤ÎÆâÍÆ¤ò³ÎÇ§'),
+			-label => kh_msg->get('check_classi'),#gui_window->gui_jchar('åˆ†é¡ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã®å†…å®¹ã‚’ç¢ºèª'),
 			-font => "TKFN",
 			-command => sub{
 				$self->mc_view_nbl;
@@ -698,13 +698,13 @@ sub make{
 		);
 
 	my $f5 = $f->cascade(
-			-label => kh_msg->get('coding'),#gui_window->gui_jchar('¥³¡¼¥Ç¥£¥ó¥°'),
+			-label => kh_msg->get('coding'),#gui_window->gui_jchar('ã‚³ãƒ¼ãƒ‡ã‚£ãƒ³ã‚°'),
 			 -font => "TKFN",
 			 -tearoff=>'no'
 		);
 
 		$self->{t_cod_count} = $f5->command(
-			-label => kh_msg->get('freq'),#gui_window->gui_jchar('Ã±½ã½¸·×'),
+			-label => kh_msg->get('freq'),#gui_window->gui_jchar('å˜ç´”é›†è¨ˆ'),
 			-font => "TKFN",
 			-command => sub{
 					gui_window::cod_count->open;
@@ -713,7 +713,7 @@ sub make{
 		);
 
 		$self->{t_cod_outtab} = $f5->command(
-			-label => kh_msg->get('cross_vr'),#gui_window->gui_jchar('³°ÉôÊÑ¿ô¤È¤Î¥¯¥í¥¹½¸·×'),
+			-label => kh_msg->get('cross_vr'),#gui_window->gui_jchar('å¤–éƒ¨å¤‰æ•°ã¨ã®ã‚¯ãƒ­ã‚¹é›†è¨ˆ'),
 			-font => "TKFN",
 			-command => sub{
 					gui_window::cod_outtab->open;
@@ -722,7 +722,7 @@ sub make{
 		);
 
 		$self->{t_cod_jaccard} = $f5->command(
-			-label => kh_msg->get('jac_mtrx'),#gui_window->gui_jchar('Îà»÷ÅÙ¹ÔÎó'),
+			-label => kh_msg->get('jac_mtrx'),#gui_window->gui_jchar('é¡ä¼¼åº¦è¡Œåˆ—'),
 			-font => "TKFN",
 			-command => sub{
 					gui_window::cod_jaccard->open;
@@ -733,7 +733,7 @@ sub make{
 		$f5->separator();
 
 		$self->{t_cod_corresp} = $f5->command(
-				-label => kh_msg->get('corresp'),#gui_window->gui_jchar('ÂĞ±şÊ¬ÀÏ'),
+				-label => kh_msg->get('corresp'),#gui_window->gui_jchar('å¯¾å¿œåˆ†æ'),
 				-font => "TKFN",
 				-command => sub{
 					gui_window::cod_corresp->open;
@@ -743,13 +743,13 @@ sub make{
 		push @menu1, 't_cod_corresp' if $::config_obj->R;
 
 		#$self->{t_cod_multi} = $f5->cascade(
-		#	-label => gui_window->gui_jchar('¥³¡¼¥É´Ö´ØÏ¢'),
+		#	-label => gui_window->gui_jchar('ã‚³ãƒ¼ãƒ‰é–“é–¢é€£'),
 		#	 -font => "TKFN",
 		#	 -tearoff=>'no'
 		#);
 
 		$self->{t_cod_mds} = $f5->command(
-				-label => kh_msg->get('mds'),#gui_window->gui_jchar('Â¿¼¡¸µ¼ÜÅÙ¹½À®Ë¡'),
+				-label => kh_msg->get('mds'),#gui_window->gui_jchar('å¤šæ¬¡å…ƒå°ºåº¦æ§‹æˆæ³•'),
 				-font => "TKFN",
 				-command => sub{
 					gui_window::cod_mds->open;
@@ -769,7 +769,7 @@ sub make{
 		push @menu1, 't_cod_cls' if $::config_obj->R;
 
 		$self->{t_cod_netg} = $f5->command(
-				-label => kh_msg->get('netg'),#gui_window->gui_jchar('¶¦µ¯¥Í¥Ã¥È¥ï¡¼¥¯'),
+				-label => kh_msg->get('netg'),#gui_window->gui_jchar('å…±èµ·ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯'),
 				-font => "TKFN",
 				-command => sub{
 					gui_window::cod_netg->open;
@@ -779,7 +779,7 @@ sub make{
 		push @menu1, 't_cod_netg' if $::config_obj->R;
 
 		$self->{t_cod_som} = $f5->command(
-				-label => kh_msg->get('som'), # ¼«¸ÊÁÈ¿¥²½¥Ş¥Ã¥×
+				-label => kh_msg->get('som'), # è‡ªå·±çµ„ç¹”åŒ–ãƒãƒƒãƒ—
 				-font => "TKFN",
 				-command => sub{
 					gui_window::cod_som->open;
@@ -793,7 +793,7 @@ sub make{
 	$f->separator();
 
 	$self->{t_out_list} = $f->command(
-		-label => kh_msg->get('vars_heads'),#gui_window->gui_jchar('¥ê¥¹¥È¤Î³ÎÇ§¡¦´ÉÍı'),
+		-label => kh_msg->get('vars_heads'),#gui_window->gui_jchar('ãƒªã‚¹ãƒˆã®ç¢ºèªãƒ»ç®¡ç†'),
 		-font => "TKFN",
 		-command => sub{
 				gui_window::outvar_list->open;
@@ -801,10 +801,10 @@ sub make{
 		-state => 'disable'
 	);
 
-	# ¥×¥é¥°¥¤¥ó¤ÎÆÉ¤ß¹ş¤ß
+	# ãƒ—ãƒ©ã‚°ã‚¤ãƒ³ã®èª­ã¿è¾¼ã¿
 	$f->separator();
 	my $f_p = $f->cascade(
-			-label => kh_msg->get('plugin'),#gui_window->gui_jchar('¥×¥é¥°¥¤¥ó'),
+			-label => kh_msg->get('plugin'),#gui_window->gui_jchar('ãƒ—ãƒ©ã‚°ã‚¤ãƒ³'),
 			-font => "TKFN",
 			-tearoff=>'no'
 		);
@@ -851,7 +851,7 @@ sub make{
 		my $cu = $_;
 		my $mother = $f_p;
 		
-		# ¥°¥ë¡¼¥×»ØÄê¤ËÂĞ±ş
+		# ã‚°ãƒ«ãƒ¼ãƒ—æŒ‡å®šã«å¯¾å¿œ
 		if ( length($conf->{menu_grp}) ){
 			unless ( $self->{plugin_cascades}{$conf->{menu_grp}} ){
 				$self->{plugin_cascades}{$conf->{menu_grp}} = $f_p->cascade(
@@ -863,7 +863,7 @@ sub make{
 			$mother = $self->{plugin_cascades}{$conf->{menu_grp}};
 		}
 		
-		# ¥á¥Ë¥å¡¼¥³¥Ş¥ó¥ÉºîÀ®
+		# ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚³ãƒãƒ³ãƒ‰ä½œæˆ
 		my $tmp_menu = $mother->command(
 				-label => gui_window->gui_jchar($conf->{name}),
 				-font => "TKFN",
@@ -873,7 +873,7 @@ sub make{
 				-state => 'disable'
 		);
 		
-		# ¥á¥Ë¥å¡¼ÀßÄê
+		# ãƒ¡ãƒ‹ãƒ¥ãƒ¼è¨­å®š
 		$conf->{menu_cnf} = 0 unless defined($conf->{menu_cnf});
 		if ($conf->{menu_cnf} == 0){
 			$tmp_menu->configure(-state, 'normal');
@@ -891,7 +891,7 @@ sub make{
 
 
 	$self->{t_sql_select} = $f->command(
-			-label => kh_msg->get('exec_sql'),#gui_window->gui_jchar('SQLÊ¸¤Î¼Â¹Ô'),
+			-label => kh_msg->get('exec_sql'),#gui_window->gui_jchar('SQLæ–‡ã®å®Ÿè¡Œ'),
 			-font => "TKFN",
 			-command => sub{
 				gui_window::sql_select->open;
@@ -900,7 +900,7 @@ sub make{
 		);
 
 	#------------#
-	#   ¥Ø¥ë¥×   #
+	#   ãƒ˜ãƒ«ãƒ—   #
 
 	$underline_pos = index(kh_msg->get('help'), 'H');
 	$underline_pos = 0 if $underline_pos == -1;
@@ -940,7 +940,7 @@ sub make{
 		);
 
 	#--------------------#
-	#   ¥­¡¼¡¦¥Ğ¥¤¥ó¥É   #
+	#   ã‚­ãƒ¼ãƒ»ãƒã‚¤ãƒ³ãƒ‰   #
 	
 	$mw->bind(
 		'<Control-Key-o>',
@@ -996,7 +996,7 @@ sub make{
 }
 
 #------------------------------------#
-#   °ì¹Ô¤ò±Û¤¨¤ë¥á¥Ë¥å¡¼¡¦¥³¥Ş¥ó¥É   #
+#   ä¸€è¡Œã‚’è¶Šãˆã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒ»ã‚³ãƒãƒ³ãƒ‰   #
 #------------------------------------#
 
 sub mc_view_nbl{
@@ -1008,7 +1008,7 @@ sub mc_view_nbl{
 		-defaultextension => '.nbl',
 		-filetypes        => \@types,
 		-title            =>
-			gui_window->gui_jt( kh_msg->get('open_nbl') ), # ±ÜÍ÷¤¹¤ëÊ¬Îà¥í¥°¥Õ¥¡¥¤¥ë¤òÁªÂò
+			gui_window->gui_jt( kh_msg->get('open_nbl') ), # é–²è¦§ã™ã‚‹åˆ†é¡ãƒ­ã‚°ãƒ•ã‚¡ã‚¤ãƒ«ã‚’é¸æŠ
 		-initialdir       => gui_window->gui_jchar($::config_obj->cwd),
 	);
 	unless ($path){
@@ -1033,7 +1033,7 @@ sub mc_view_knb{
 		-defaultextension => '.knb',
 		-filetypes        => \@types,
 		-title            =>
-			gui_window->gui_jt( kh_msg->get('open_knb') ), # ±ÜÍ÷¤¹¤ë³Ø½¬·ë²Ì¥Õ¥¡¥¤¥ë¤òÁªÂò
+			gui_window->gui_jt( kh_msg->get('open_knb') ), # é–²è¦§ã™ã‚‹å­¦ç¿’çµæœãƒ•ã‚¡ã‚¤ãƒ«ã‚’é¸æŠ
 		-initialdir       => gui_window->gui_jchar($::config_obj->cwd),
 	);
 	unless ($path){
@@ -1058,7 +1058,7 @@ sub mc_view_knb{
 sub mc_import_project{
 	require kh_project_io;
 
-	# KHC¥Õ¥¡¥¤¥ë¤Î¥Ñ¥¹
+	# KHCãƒ•ã‚¡ã‚¤ãƒ«ã®ãƒ‘ã‚¹
 	my @types = (
 		['KH Coder',[qw/.khc/] ],
 		["All Files",'*']
@@ -1077,7 +1077,7 @@ sub mc_import_project{
 	$path = gui_window->gui_jg($path);
 	$path = $::config_obj->os_path($path);
 	
-	# Ê¬ÀÏÂĞ¾İ¥Õ¥¡¥¤¥ë¤ÎÊİÂ¸¾ì½ê
+	# åˆ†æå¯¾è±¡ãƒ•ã‚¡ã‚¤ãƒ«ã®ä¿å­˜å ´æ‰€
 	my $info = &kh_project_io::get_info($path);
 	return undef unless length($info->{file_name});
 	@types = (
@@ -1099,19 +1099,19 @@ sub mc_import_project{
 	$path_s = gui_window->gui_jg($path_s);
 	$path_s = $::config_obj->os_path($path_s);
 	
-	# ¼Â¹Ô
+	# å®Ÿè¡Œ
 	my $w = gui_wait->start;
 	&kh_project_io::import($path,$path_s);
 	$w->end;
 	
-	# ¥×¥í¥¸¥§¥¯¥È¥Ş¥Í¡¼¥¸¥ã¡¼¤òÉ½¼¨
+	# ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’è¡¨ç¤º
 	gui_window::project_open->open;
 
 }
 sub mc_export_project{
 	require kh_project_io;
 
-	# ¥Õ¥¡¥¤¥ëÌ¾
+	# ãƒ•ã‚¡ã‚¤ãƒ«å
 	my @types = (
 		['KH Coder',[qw/.khc/] ],
 		["All Files",'*']
@@ -1130,7 +1130,7 @@ sub mc_export_project{
 	$path = gui_window->gui_jg($path);
 	$path = $::config_obj->os_path($path);
 	
-	# ¼Â¹Ô
+	# å®Ÿè¡Œ
 	my $w = gui_wait->start;
 	&kh_project_io::export($path);
 	$w->end;
@@ -1183,7 +1183,7 @@ sub mc_hukugo{
 		my $t0 = (stat $file_target)[9];
 		my $t1 = (stat $file_hukugo)[9];
 		if ($t0 < $t1){
-			$if_exec = 0; # ¤³¤Î¾ì¹ç¤À¤±²òÀÏ¤·¤Ê¤¤
+			$if_exec = 0; # ã“ã®å ´åˆã ã‘è§£æã—ãªã„
 		}
 	}
 
@@ -1207,7 +1207,7 @@ sub mc_hukugo{
 
 
 #------------------------#
-#   ¥á¥Ë¥å¡¼¤Î¾õÂÖÊÑ¹¹   #
+#   ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®çŠ¶æ…‹å¤‰æ›´   #
 #------------------------#
 
 sub refresh{

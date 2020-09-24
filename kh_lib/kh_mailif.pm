@@ -1,4 +1,4 @@
-# Á°½èÍý¤ÎÀ®¸ù¡¦¼ºÇÔ¤ò¥á¡¼¥ë¤ÇÄÌÃÎ
+# å‰å‡¦ç†ã®æˆåŠŸãƒ»å¤±æ•—ã‚’ãƒ¡ãƒ¼ãƒ«ã§é€šçŸ¥
 
 package kh_mailif;
 use strict;
@@ -12,7 +12,7 @@ sub success{
 		return 0;
 	}
 
-	# ¥æ¡¼¥¶¡¼Ì¾¤È¥Û¥¹¥ÈÌ¾¤Î¼èÆÀ
+	# ãƒ¦ãƒ¼ã‚¶ãƒ¼åã¨ãƒ›ã‚¹ãƒˆåã®å–å¾—
 	my $user = $ENV{USERNAME};
 	unless ($user){ $user = $ENV{USER}; }
 	my $host = $ENV{USERDOMAIN};
@@ -28,7 +28,7 @@ sub success{
 		return 0;
 	}
 
-	# SMTPÇ§¾Ú
+	# SMTPèªè¨¼
 	# $smtp->auth('id', 'pass');
 
 	$smtp->mail($::config_obj->mail_from) or return 0;
@@ -38,7 +38,7 @@ sub success{
 	$smtp->datasend("To:The User<".$::config_obj->mail_to.">\n");
 	$smtp->datasend("Subject:Pre-processing is successfully complete.\n");
 	
-	# ËÜÊ¸
+	# æœ¬æ–‡
 	$smtp->datasend("Hello $user.\nI am KH Coder v. $::kh_version.\n\n");
 	$smtp->datasend("It is my honor to notify you that I have successfully comleted pre-processing of your data.\n\n");
 	$smtp->datasend("Here is some info.\n");
@@ -60,7 +60,7 @@ sub failure{
 		return 0;
 	}
 
-	# ¥æ¡¼¥¶¡¼Ì¾¤È¥Û¥¹¥ÈÌ¾¤Î¼èÆÀ
+	# ãƒ¦ãƒ¼ã‚¶ãƒ¼åã¨ãƒ›ã‚¹ãƒˆåã®å–å¾—
 	my $user = $ENV{USERNAME};
 	unless ($user){ $user = $ENV{USER}; }
 	my $host = $ENV{USERDOMAIN};
@@ -82,7 +82,7 @@ sub failure{
 	$smtp->datasend("From:KH Coder<".$::config_obj->mail_from.">\n");
 	$smtp->datasend("To:The User<".$::config_obj->mail_to.">\n");
 	$smtp->datasend("Subject:Failure in Pre-processing.\n");
-	# ËÜÊ¸
+	# æœ¬æ–‡
 	
 	$smtp->datasend("Hello $user.\nI am KH Coder v. $::kh_version.\n\n");
 	$smtp->datasend("I am sorry that I encountered a problem during the pre-processing and could not finish it.\n\n");

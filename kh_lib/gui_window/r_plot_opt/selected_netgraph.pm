@@ -5,7 +5,7 @@ sub innner{
 	my $self = shift;
 	my $lf = $self->{labframe};
 
-	# ¶¦µ¯¥Í¥Ã¥È¥ï¡¼¥¯¤Î¥ª¥×¥·¥ç¥ó
+	# å…±èµ·ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ã®ã‚ªãƒ—ã‚·ãƒ§ãƒ³
 	$self->{net_obj} = gui_widget::r_net->open(
 		parent  => $lf,
 		command => sub{ $self->calc; },
@@ -31,7 +31,7 @@ sub calc{
 	} else {
 		gui_errormsg->open(
 			type => 'msg',
-			msg  => kh_msg->gget('r_net_msg_fail'), # Ä´À°¤Ë¼ºÇÔ¤·¤Ş¤·¤Ş¤·¤¿¡£
+			msg  => kh_msg->gget('r_net_msg_fail'), # èª¿æ•´ã«å¤±æ•—ã—ã¾ã—ã¾ã—ãŸã€‚
 		);
 		print "$self->{command_f}\n";
 		$self->close;
@@ -50,7 +50,7 @@ sub calc{
 		r_command         => $r_command,
 		plotwin_name      => 'selected_netgraph',
 	);
-	# ¥×¥í¥Ã¥ÈWindow¤ò³«¤¯
+	# ãƒ—ãƒ­ãƒƒãƒˆWindowã‚’é–‹ã
 	$wait_window->end(no_dialog => 1);
 	
 	if ($::main_gui->if_opened('w_selected_netgraph_plot')){
@@ -86,7 +86,7 @@ sub calc{
 }
 
 sub win_title{
-	return kh_msg->get('win_title'); # ´ØÏ¢¸ì¡¦¶¦µ¯¥Í¥Ã¥È¥ï¡¼¥¯¡§Ä´À°
+	return kh_msg->get('win_title'); # é–¢é€£èªãƒ»å…±èµ·ãƒãƒƒãƒˆãƒ¯ãƒ¼ã‚¯ï¼šèª¿æ•´
 }
 
 sub win_name{

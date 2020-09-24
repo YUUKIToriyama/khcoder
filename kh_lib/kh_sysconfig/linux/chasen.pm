@@ -6,12 +6,12 @@ use gui_errormsg;
 sub config_morph{
 	my $self = shift;
 	
-	# Grammer.cha•’•°•§•Î§Œ —ππ
+	# Grammer.cha„Éï„Ç°„Ç§„É´„ÅÆÂ§âÊõ¥
 
 	unless (-e $self->grammarcha_path){
 		return 0;
 	}
-	# ∆…§ﬂπ˛§ﬂ
+	# Ë™≠„ÅøËæº„Åø
 	my $grammercha = $self->grammarcha_path;
 	my $temp = ''; my $khflg = 0;
 	open (GRA,"$grammercha") or
@@ -37,12 +37,12 @@ sub config_morph{
 	}
 	close (GRA);
 	
-	#  ‘Ω∏
-	my $temp2 = '( £πÁÃæªÏ)'."\n".'(•ø•∞)'."\n";
+	# Á∑®ÈõÜ
+	my $temp2 = '(Ë§áÂêàÂêçË©û)'."\n".'(„Çø„Ç∞)'."\n";
 #	Jcode::convert(\$temp2,'sjis','euc');
 	$temp .= "\n".'; by KH Coder, start.'."\n"."$temp2".'; by KH Coder, end.';
 
-	# ΩÒ§≠Ω–§∑
+	# Êõ∏„ÅçÂá∫„Åó
 	my $temp_file = 'temp.txt';
 	while (-e $temp_file){
 		$temp_file .= '.tmp';
@@ -58,12 +58,12 @@ sub config_morph{
 	unlink $grammercha;
 	rename ($temp_file,$grammercha);
 
-	# chasen.rc•’•°•§•Î§Œ —ππ
+	# chasen.rc„Éï„Ç°„Ç§„É´„ÅÆÂ§âÊõ¥
 	
 	unless (-e $self->chasenrc_path){
 		return 0;
 	}
-	# ∆…§ﬂπ˛§ﬂ
+	# Ë™≠„ÅøËæº„Åø
 	my $chasenrc = $self->chasenrc_path;
 	$temp = ''; $khflg = 0;
 	open (GRA,"$chasenrc") or
@@ -89,8 +89,8 @@ sub config_morph{
 	}
 	close (GRA);
 	
-	#  ‘Ω∏
-	$temp2 = '(√Ìº· (("<" ">") (•ø•∞)) )'."\n";
+	# Á∑®ÈõÜ
+	$temp2 = '(Ê≥®Èáà (("<" ">") („Çø„Ç∞)) )'."\n";
 	if ($self->{use_hukugo}){
 		my $hc = $self->hukugo_chasenrc;
 		$hc = Encode::encode('euc-jp', $hc) if utf8::is_utf8($hc);
@@ -99,7 +99,7 @@ sub config_morph{
 #	Jcode::convert(\$temp2,'sjis','euc');
 	$temp .= '; by KH Coder, start.'."\n"."$temp2".'; by KH Coder, end.';
 
-	# ΩÒ§≠Ω–§∑
+	# Êõ∏„ÅçÂá∫„Åó
 	$temp_file = 'temp.txt';
 	while (-e $temp_file){
 		$temp_file .= '.tmp';

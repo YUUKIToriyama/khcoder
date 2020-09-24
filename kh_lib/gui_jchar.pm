@@ -11,7 +11,7 @@ my $sjis = q{
 };
 
 #------------#
-#   TextÍÑ   #
+#   Textç”¨   #
 #------------#
 
 sub check_key{
@@ -68,7 +68,7 @@ sub check_key{
 	@base = $t->get("insert linestart", "insert lineend") =~ /$sjis/gox;
 }
 
-# ¥Þ¥¦¥¹¥¯¥ê¥Ã¥¯ÍÑ
+# ãƒžã‚¦ã‚¹ã‚¯ãƒªãƒƒã‚¯ç”¨
 
 sub check_mouse{
 	unless ($::config_obj->os eq 'win32'){
@@ -94,7 +94,7 @@ sub check_mouse{
 }
 
 #-------------#
-#   EntryÍÑ   #
+#   Entryç”¨   #
 #-------------#
 
 sub check_key_e_d{
@@ -106,10 +106,10 @@ sub check_key_e_d{
 	}
 
 	my $t = shift;
-	my $l = $t->index('insert') + 1;            # ¥«¡¼¥½¥ë¤ò1¤Ä±¦¤Ë
+	my $l = $t->index('insert') + 1;            # ã‚«ãƒ¼ã‚½ãƒ«ã‚’1ã¤å³ã«
 	$t->icursor($l);
 	
-	my $x = $t->get();                          # ¤Á¤ç¤óÀÚ¤ì¤Æ¤¿¤é¤â¤¦1¤Ä±¦
+	my $x = $t->get();                          # ã¡ã‚‡ã‚“åˆ‡ã‚Œã¦ãŸã‚‰ã‚‚ã†1ã¤å³
 	$x = substr($x,0,$l);
 	unless ($x =~ /^(?: $sjis)*$/x){
 		++$l;
@@ -117,10 +117,10 @@ sub check_key_e_d{
 #		print "a ";
 	}
 	
-	my $y = $t->index('insert')-1;              # °ìÅÙ¥Ð¥Ã¥¯¥¹¥Ú¡¼¥¹
+	my $y = $t->index('insert')-1;              # ä¸€åº¦ãƒãƒƒã‚¯ã‚¹ãƒšãƒ¼ã‚¹
 	$t->delete($y) if ($y >= 0);
 	
-	$x = $t->get();                             # ¤Á¤ç¤óÀÚ¤ì¤Æ¤¿¤é¤â¤¦°ì²ó
+	$x = $t->get();                             # ã¡ã‚‡ã‚“åˆ‡ã‚Œã¦ãŸã‚‰ã‚‚ã†ä¸€å›ž
 	$l = $t->index('insert');
 	$x = substr($x,0,$l);
 	unless ($x =~ /^(?: $sjis)*$/x){
@@ -130,7 +130,7 @@ sub check_key_e_d{
 	}
 }
 
-# ¥Ð¥Ã¥¯¥¹¥Ú¡¼¥¹¡¢º¸±¦¥«¡¼¥½¥ë¥­¡¼¤Î¥Ð¥¤¥ó¥É
+# ãƒãƒƒã‚¯ã‚¹ãƒšãƒ¼ã‚¹ã€å·¦å³ã‚«ãƒ¼ã‚½ãƒ«ã‚­ãƒ¼ã®ãƒã‚¤ãƒ³ãƒ‰
 
 sub check_key_e{
 	unless ($::config_obj->os eq 'win32'){

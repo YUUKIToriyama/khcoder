@@ -80,7 +80,7 @@ sub end{
 		print "done:  $h:$m:$s\n";
 	} else {
 		gui_errormsg->open(
-			msg    => kh_msg->get('done')." $h:$m:$s",#"½èÍý¤¬´°Î»¤·¤Þ¤·¤¿¡£\n·Ð²á»þ´Ö¡§ 
+			msg    => kh_msg->get('done')." $h:$m:$s",#"å‡¦ç†ãŒå®Œäº†ã—ã¾ã—ãŸã€‚\nçµŒéŽæ™‚é–“ï¼š 
 			type   => 'msg',
 			icon   => 'info',
 			window => \$win,
